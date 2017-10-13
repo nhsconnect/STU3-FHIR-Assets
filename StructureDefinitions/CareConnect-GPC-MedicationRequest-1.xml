@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-08-25T14:04:43.459+01:00" />
+    <lastUpdated value="2017-10-13T13:01:46.198+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
   <version value="0.0.1" />
-  <name value="CareConnect-MedicationRequest-1" />
+  <name value="CareConnect-GPC-MedicationRequest-1" />
   <status value="draft" />
   <date value="2017-07-14T10:40:46.3799462+01:00" />
   <publisher value="HL7 UK" />
@@ -354,7 +354,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationSupplyType-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationSupplyType-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -380,16 +380,16 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="MedicationRequest.extension:flag">
+    <element id="MedicationRequest.extension:statement">
       <path value="MedicationRequest.extension" />
-      <sliceName value="flag" />
-      <short value="Flags related to the patient's medications" />
-      <definition value="Flags related to the patient's medications." />
+      <sliceName value="statement" />
+      <short value="Medication Statement link" />
+      <definition value="Medication Statement link." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -397,7 +397,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationFlag-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationOrderStatement-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1505,7 +1505,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -2009,7 +2009,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3259,7 +3259,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4214,7 +4214,7 @@
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a manufactured material (e.g. a pharmaceutical product or personal medical device)." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ManufacturedMaterialSnCT-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-ManufacturedMaterialSnCT-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -4272,7 +4272,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4547,6 +4547,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -5249,15 +5250,15 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5508,7 +5509,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <condition value="mps-1" />
@@ -5742,7 +5743,7 @@
       <short value="Person who entered the request" />
       <definition value="The person who entered the order on behalf of another individual for example in the case of a verbal or a telephone order." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="MedicationRequest.recorder" />
@@ -5751,7 +5752,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6001,6 +6002,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationRequestReason" />
@@ -6529,11 +6531,11 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Condition-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6550,6 +6552,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6791,6 +6794,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6915,11 +6919,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7848,7 +7852,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -10662,7 +10666,7 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -10789,7 +10793,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -11589,7 +11593,7 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing method." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -11716,7 +11720,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -13588,7 +13592,7 @@
       <path value="MedicationRequest.dispenseRequest" />
       <short value="Medication supply authorization" />
       <definition value="Indicates the specific details for the dispense or medication supply part of a medication request (also known as a Medication Prescription or Medication Order).  Note that this information is not always sent with the order.  There may be in some settings (e.g. hospitals) institutional or system support for completing the dispense details in the pharmacy department." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="MedicationRequest.dispenseRequest" />
@@ -13993,7 +13997,7 @@
       <short value="Amount of medication to supply per dispense" />
       <definition value="The amount that is to be dispensed for one fill." />
       <comment value="The context of use may frequently define what kind of quantity this is and therefore what kind of units can be used. The context of use may also restrict the values for the comparator." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="MedicationRequest.dispenseRequest.quantity" />
@@ -14133,8 +14137,8 @@
     <element id="MedicationRequest.dispenseRequest.quantity:SimpleQuantity.extension:quantityText">
       <path value="MedicationRequest.dispenseRequest.quantity.extension" />
       <sliceName value="quantityText" />
-      <short value="Quantity representation" />
-      <definition value="Quantity representation." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -14747,7 +14751,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -15715,7 +15719,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -15980,6 +15984,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -16429,7 +16434,7 @@
     </element>
   </snapshot>
   <differential>
-    <element>
+    <element id="MedicationRequest.extension">
       <path value="MedicationRequest.extension" />
       <slicing>
         <discriminator>
@@ -16446,15 +16451,19 @@
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationSupplyType-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationSupplyType-1" />
       </type>
     </element>
-    <element id="MedicationRequest.extension:flag">
+    <element id="MedicationRequest.extension:statement">
       <path value="MedicationRequest.extension" />
-      <sliceName value="flag" />
+      <sliceName value="statement" />
+      <short value="Medication Statement link" />
+      <definition value="Medication Statement link." />
+      <min value="1" />
+      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationFlag-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationOrderStatement-1" />
       </type>
     </element>
     <element id="MedicationRequest.identifier.system">
@@ -16469,7 +16478,7 @@
       <path value="MedicationRequest.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="MedicationRequest.basedOn">
@@ -16488,14 +16497,14 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
       </type>
     </element>
     <element id="MedicationRequest.groupIdentifier.assigner">
       <path value="MedicationRequest.groupIdentifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="MedicationRequest.status">
@@ -16518,7 +16527,7 @@
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a manufactured material (e.g. a pharmaceutical product or personal medical device)." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ManufacturedMaterialSnCT-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-ManufacturedMaterialSnCT-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -16530,7 +16539,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
     </element>
     <element id="MedicationRequest.context">
@@ -16543,6 +16552,7 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="MedicationRequest.authoredOn">
       <path value="MedicationRequest.authoredOn" />
@@ -16560,41 +16570,51 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
     </element>
     <element id="MedicationRequest.requester.onBehalfOf">
       <path value="MedicationRequest.requester.onBehalfOf" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="MedicationRequest.recorder">
       <path value="MedicationRequest.recorder" />
+      <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+    </element>
+    <element id="MedicationRequest.reasonCode">
+      <path value="MedicationRequest.reasonCode" />
+      <mustSupport value="true" />
     </element>
     <element id="MedicationRequest.reasonReference">
       <path value="MedicationRequest.reasonReference" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Condition-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1" />
       </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="MedicationRequest.note">
+      <path value="MedicationRequest.note" />
+      <mustSupport value="true" />
     </element>
     <element id="MedicationRequest.note.author[x]">
       <path value="MedicationRequest.note.author[x]" />
@@ -16607,11 +16627,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
     </element>
     <element id="MedicationRequest.dosageInstruction">
@@ -16638,7 +16658,7 @@
       <sliceName value="snomedCT" />
       <max value="1" />
     </element>
-    <element>
+    <element id="MedicationRequest.dosageInstruction.additionalInstruction.coding:snomedCT.extension">
       <path value="MedicationRequest.dosageInstruction.additionalInstruction.coding.extension" />
       <slicing>
         <discriminator>
@@ -16651,10 +16671,9 @@
     <element id="MedicationRequest.dosageInstruction.additionalInstruction.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="MedicationRequest.dosageInstruction.additionalInstruction.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
     </element>
     <element id="MedicationRequest.dosageInstruction.additionalInstruction.coding:snomedCT.system">
@@ -16696,11 +16715,11 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
     </element>
-    <element>
+    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension">
       <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
       <slicing>
         <discriminator>
@@ -16713,10 +16732,9 @@
     <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
     </element>
     <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.system">
@@ -16758,11 +16776,11 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing method." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
         </valueSetReference>
       </binding>
     </element>
-    <element>
+    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension">
       <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
       <slicing>
         <discriminator>
@@ -16775,10 +16793,9 @@
     <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
     </element>
     <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.system">
@@ -16801,11 +16818,19 @@
       <path value="MedicationRequest.dosageInstruction.method.coding.display" />
       <min value="1" />
     </element>
+    <element id="MedicationRequest.dispenseRequest">
+      <path value="MedicationRequest.dispenseRequest" />
+      <min value="1" />
+    </element>
     <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
       <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
       <min value="1" />
     </element>
-    <element>
+    <element id="MedicationRequest.dispenseRequest.quantity">
+      <path value="MedicationRequest.dispenseRequest.quantity" />
+      <min value="1" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.quantity.extension">
       <path value="MedicationRequest.dispenseRequest.quantity.extension" />
       <slicing>
         <discriminator>
@@ -16871,15 +16896,19 @@
       <path value="MedicationRequest.dispenseRequest.performer" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="MedicationRequest.priorPrescription">
       <path value="MedicationRequest.priorPrescription" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
       </type>
+    </element>
+    <element id="MedicationRequest.detectedIssue">
+      <path value="MedicationRequest.detectedIssue" />
+      <mustSupport value="true" />
     </element>
   </differential>
 </StructureDefinition>
