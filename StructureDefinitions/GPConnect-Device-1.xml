@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-13T16:14:25.56+01:00" />
+    <lastUpdated value="2017-10-16T14:16:18.252+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Device-1" />
-  <version value="0.0.1" />
+  <version value="1.0.0" />
   <name value="GPConnect-Device-1" />
   <status value="draft" />
   <date value="2017-10-13T15:33:15.724+01:00" />
@@ -1098,7 +1098,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -3888,12 +3888,12 @@
     </element>
     <element id="Device.location">
       <path value="Device.location" />
-      <short value="Details and position information for a physical place" />
-      <definition value="Details and position information for a physical place where services are provided  and resources and participants may be stored, found, contained or accommodated." />
+      <short value="Where the resource is found" />
+      <definition value="The place where the device can be found." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Device.location can be used to track device location." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Device.location" />
         <min value="0" />
@@ -3901,7 +3901,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3918,34 +3918,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <constraint>
-        <key value="dom-2" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
-        <expression value="contained.contained.empty()" />
-        <xpath value="not(parent::f:contained and f:contained)" />
-      </constraint>
-      <constraint>
-        <key value="dom-1" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
-        <expression value="contained.text.empty()" />
-        <xpath value="not(parent::f:contained and f:text)" />
-      </constraint>
-      <constraint>
-        <key value="dom-4" />
-        <severity value="error" />
-        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
-        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
-        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
-      </constraint>
-      <constraint>
-        <key value="dom-3" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
-        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
-        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
-      </constraint>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -3961,18 +3933,6 @@
       <mapping>
         <identity value="w5" />
         <map value="where" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="Entity. Role, or Act" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value=".Role[classCode=SDLC]" />
-      </mapping>
-      <mapping>
-        <identity value="w5" />
-        <map value="administrative.entity" />
       </mapping>
     </element>
     <element id="Device.location.id">
@@ -4986,6 +4946,10 @@
       <path value="Device.identifier.type" />
       <max value="0" />
     </element>
+    <element id="Device.identifier.system">
+      <path value="Device.identifier.system" />
+      <min value="1" />
+    </element>
     <element id="Device.identifier.value">
       <path value="Device.identifier.value" />
       <min value="1" />
@@ -5078,7 +5042,7 @@
       <path value="Device.location" />
       <type>
         <code value="Reference" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
       </type>
     </element>
     <element id="Device.url">

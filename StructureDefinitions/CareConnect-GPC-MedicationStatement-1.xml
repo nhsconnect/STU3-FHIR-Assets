@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-16T10:29:48.212+01:00" />
+    <lastUpdated value="2017-10-16T14:16:29.624+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationStatement-1" />
-  <version value="0.0.1" />
+  <version value="1.0.0" />
   <name value="CareConnect-GPC-MedicationStatement-1" />
   <status value="draft" />
   <date value="2017-07-17T10:30:03.6179621+01:00" />
@@ -3846,6 +3846,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -12212,7 +12213,7 @@
     </element>
   </snapshot>
   <differential>
-    <element id="MedicationStatement.extension">
+    <element>
       <path value="MedicationStatement.extension" />
       <slicing>
         <discriminator>
@@ -12389,6 +12390,10 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
     </element>
+    <element id="MedicationStatement.derivedFrom">
+      <path value="MedicationStatement.derivedFrom" />
+      <mustSupport value="true" />
+    </element>
     <element id="MedicationStatement.reasonNotTaken.coding">
       <path value="MedicationStatement.reasonNotTaken.coding" />
       <slicing>
@@ -12405,7 +12410,7 @@
       <sliceName value="snomedCT" />
       <max value="1" />
     </element>
-    <element id="MedicationStatement.reasonNotTaken.coding:snomedCT.extension">
+    <element>
       <path value="MedicationStatement.reasonNotTaken.coding.extension" />
       <slicing>
         <discriminator>
@@ -12508,7 +12513,7 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationStatement.dosage.route.coding:snomedCT.extension">
+    <element>
       <path value="MedicationStatement.dosage.route.coding.extension" />
       <slicing>
         <discriminator>
@@ -12569,7 +12574,7 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationStatement.dosage.method.coding:snomedCT.extension">
+    <element>
       <path value="MedicationStatement.dosage.method.coding.extension" />
       <slicing>
         <discriminator>
