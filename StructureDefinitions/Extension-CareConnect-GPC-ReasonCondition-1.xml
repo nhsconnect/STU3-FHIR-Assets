@@ -1,40 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-13T10:36:13.358+01:00" />
+    <lastUpdated value="2017-10-13T14:49:28.085+01:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-ReasonCondition-1" />
   <version value="1.0.0" />
-  <name value="Extension-coding-sctdescid" />
+  <name value="Extension-CareConnect-GPC-ReasonCondition-1" />
   <status value="draft" />
-  <date value="2017-07-10T15:19:15.9321646+01:00" />
+  <date value="2017-07-12T10:48:31.4895265+01:00" />
   <publisher value="HL7 UK" />
-  <description value="This Extension resource is constrained to support SNOMED CT Description ID for the display." />
+  <description value="The reason why a resource was added/performed/given. This may be due to a Condition, may be coded entity of some type, or may simply be present as text." />
   <copyright value="Copyright © 2016 HL7 UK&#xD;&#xA;&#xD;&#xA;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&#xD;&#xA;&#xD;&#xA;HL7® FHIR® standard Copyright © 2011+ HL7&#xD;&#xA;&#xD;&#xA;The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at&#xD;&#xA;&#xD;&#xA;https://www.hl7.org/fhir/license.html" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
   <contextType value="resource" />
-  <context value="Encounter" />
-  <context value="Condition" />
   <context value="Observation" />
-  <context value="Flag" />
-  <context value="Immunization" />
-  <context value="AllergyIntolerance" />
-  <context value="FamilyMemberHistory" />
-  <context value="MedicationRequest" />
-  <context value="MedicationStatement" />
   <context value="Procedure" />
+  <context value="MedicationStatement" />
+  <context value="MedicationRequest" />
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <snapshot>
     <element id="Extension">
       <path value="Extension" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
+      <short value="Reason resource added/performed/given" />
+      <definition value="Reason resource added/performed/given." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Element" />
         <min value="0" />
@@ -158,7 +152,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-ReasonCondition-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -176,13 +170,12 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueId">
-      <path value="Extension.valueId" />
-      <sliceName value="valueId" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Reason resource added/performed/given" />
+      <definition value="Reason resource added/performed/given." />
       <comment value="A stream of bytes, base64 encoded" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Extension.value[x]" />
@@ -190,7 +183,11 @@
         <max value="1" />
       </base>
       <type>
-        <code value="id" />
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Condition-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -213,20 +210,24 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
-      <max value="1" />
+      <short value="Reason resource added/performed/given" />
+      <definition value="Reason resource added/performed/given." />
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-ReasonCondition-1" />
     </element>
-    <element id="Extension.value[x]:valueId">
-      <path value="Extension.valueId" />
-      <sliceName value="valueId" />
-      <short value="The SNOMED CT Description ID for the display" />
+    <element id="Extension.value[x]">
+      <path value="Extension.value[x]" />
+      <short value="Reason resource added/performed/given" />
+      <definition value="Reason resource added/performed/given." />
+      <min value="1" />
       <type>
-        <code value="id" />
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Condition-1" />
       </type>
     </element>
   </differential>
