@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
 <Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/GitHubRepo/ITK3-FHIR-eDischarge/schemas/bundle.xsd">
-	<id value="c06e13aa-8c3b-4e67-999b-6e07e399e741"/>
+	<id value="cb5626c6-ef5b-486d-9de9-e193d7cfd9d0"/>
 	<meta>
   <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
 	</meta>
 	 <identifier>
   <system value="https://tools.ietf.org/html/rfc4122"/>
-  <value value="d72694a8-8ec2-4884-b1df-d494471fef7e"/>
+  <value value="434f40c3-de6c-435a-914d-fb274b9a5e99"/>
  </identifier>
 	<type value="document"/>
 	<!--Emergency Care Composition-->
@@ -19,13 +19,13 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-ECD-Composition-1"/>
 				</meta>
-						<!-- Information Recipient 1 -->
+    <!-- Information Recipient 1 - the patient's community nurse -->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
 					<valueReference>
 						<reference value="urn:uuid:0105ae6a-a9a2-416f-b57e-e274ac9a48a2"/>
 					</valueReference>
 				</extension>
-				<!-- Information Recipient 2 -->
+    <!-- Information Recipient 2 - the patient's GP -->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
 					<valueReference>
 						<reference value="urn:uuid:bfeb7b70-ac1f-4a14-a3b9-5842a9e7b761"/>
@@ -44,6 +44,7 @@
 				<identifier>
 					<value value="2d361270-039f-4a48-827b-ef255ff8b6c4"/>
 				</identifier>
+   <!--The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document.-->
 	<status value="final"/>
 				<type>
      <!--Discharge Summary document type-->
@@ -53,6 +54,7 @@
 						<display value="Discharge summary"/>
 					</coding>
 				</type>
+				<!--Reference to the patient subject of the Composition-->
 			<subject>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</subject>
@@ -61,7 +63,8 @@
 					<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
 		</encounter>
 <!--The composition editing time, when the composition was last logically changed by the author.-->
-    <date value="2015-02-17T10:00:00+00:00"/>
+    <date value="2015-02-12T19:00:00+00:00"/>
+  <!--Identifies who is responsible for the information in the composition, not necessarily who typed it in-->
 				<author>
 					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
 				</author>
@@ -70,7 +73,7 @@
     <confidentiality value="V"/>
    <!--Identifies the organization responsible for ongoing maintenance of and access to the composition/document information.-->
 				<custodian>
-					<reference value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
+					<reference value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
 			</custodian>
 				<section>
 					<title value="Allergies and adverse reactions"/>
@@ -91,7 +94,7 @@
 										<td>Penicillin</td>
 									</tr>
 									<tr>
-										<th>Description of the reaction</th>
+										<th>Description of reaction</th>
 										<td>Rash. No swelling/anaphylaxis</td>
 									</tr>
 								</tbody>
@@ -106,7 +109,7 @@
 						</coding>
 					</orderedBy>
    		<entry>
-						<reference value="urn:uuid:e75e6df9-0c3d-40be-910c-567931d6ab85"/>
+						<reference value="urn:uuid:b37c89af-c5da-425f-8e6d-58c043ccf94b"/>
 					</entry>
 				</section>
 				<section>
@@ -127,7 +130,7 @@
 										<th>Date and time of arrival</th>
 										<td>12-Feb-2015 09:00</td>
 									</tr>
-								</tbody>
+									</tbody>
 							</table>
 						</div>
 					</text>
@@ -149,21 +152,9 @@
 									<tr>
 										<th>Clinical narrative</th>
 									</tr>
-									<tr>
-										<td>60 year old man with an acute history of cardiac sounding chest pain lasting around 2 hours.</td>
-									</tr>
-									<tr>
-										<td>Examination unremarkable.</td>
-									</tr>
-									<tr>
-										<td>Inferior ischaemic changes on ECGs and raised Troponin T.</td>
-									</tr>
-									<tr>
-										<td>Coronary angiogram demonstrated diseased RCA, drug eluting stent successfully placed.</td>
-									</tr>
-									<tr>
-										<td>Appropriate secondary prevention medications prescribed and for follow up with Cardiac Rehabilitation team.</td>
-									</tr>
+					     <tr>
+          <td><p>60 year old man complaining of chest pain lasting around 2 hours.</p><p>Examination unremarkable.</p><p>Inferior ischaemic changes on ECGs.</p></td>
+         </tr>
 								</tbody>
 							</table>
 							<table>
@@ -198,45 +189,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 									</tr>
 								</tbody>
 							</table>
-							<table>
-								<tbody>
-									<tr>
-										<td>ECG</td>
-										<td>Inferior ischaemic changes</td>
-									</tr>
-									<tr>
-										<td>Chest Xray</td>
-										<td>Normal</td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</text>
 				</section>
 				<section>
-					<title value="Contact for further information"/>
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1077931000000102"/>
-							<display value="Contact for further information"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Contact for further information</th>
-										<td>Mr Marcus Bradley, Emergency Department Administrator</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
-				</section>
-							<section>
 					<title value="Diagnoses"/>
 					<code>
 						<coding>
@@ -250,10 +206,14 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
-									<tr>
-										<th>Diagnosis</th>
-										<td>Cardiac chest pain/ACS</td>
-									</tr>
+								     <tr>
+          <th>Diagnosis</th>
+          <td><p>Chest pain</p><p>ECG: inferior ischaemia</p></td>
+          </tr>
+           <tr>
+          <th>Comment</th>
+          <td>Chest pain onset date/time: 2015-02-12 08:00. Inferior ischaemia asserted 2015-02-12 12:00.</td>
+          </tr>
 								</tbody>
 							</table>
 						</div>
@@ -266,9 +226,12 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						</coding>
 					</orderedBy>
 					<entry>
-						<reference value="urn:uuid:af25f1cf-207f-46f7-8644-2787d9829981"/>
+						<reference value="urn:uuid:80e53ab8-dcec-4b4d-aec2-eec9e00b5982"/>
 					</entry>
-				</section>
+					<entry>
+						<reference value="urn:uuid:50dc3efe-1826-4ee0-bcba-439c4fb38ff4"/>
+					</entry>
+					</section>
 						<section>
 					<title value="Discharge details"/>
 					<code>
@@ -283,19 +246,19 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
-									<tr>
-										<th>Discharge destination</th>
-										<td>Home</td>
-									</tr>
-									<tr>
-										<th>Discharge status</th>
-										<td>Treatment complete</td>
-									</tr>
-									<tr>
+								  <tr>
+          <th>Discharge destination</th>
+          <td>Discharge to ward</td>
+         </tr>
+									 <tr>
+          <th>Discharge status</th>
+          <td>Streamed from emergency department to urgent care service following initial assessment</td>
+         </tr>
+										<tr>
 										<th>Date and time of discharge</th>
-										<td>12-Feb-2015 18:00:00</td>
+										<td>12-Feb-2015 18:00</td>
 									</tr>
-								</tbody>
+									</tbody>
 							</table>
 						</div>
 					</text>
@@ -311,30 +274,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
 					</entry>
 				</section>
-								<section>
-					<title value="Information and advice given"/>
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1052951000000105"/>
-							<display value="Information and advice given"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Information and advice given</th>
-										<td>Patient seen by Cardiac Rehab and information given regarding diagnosis, lifestyle change and benefits of rehab programme. Community follow up planned.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
-				</section>
-								<section>
+				<section>
 					<title value="Medications and medical devices"/>
 					<code>
 						<coding>
@@ -353,11 +293,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Ramipril</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>2.5mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD</td>
 									</tr>
 									<tr>
@@ -365,8 +305,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>oral</td>
 									</tr>
 									<tr>
-										<th>Medication recommendations</th>
-										<td>continue</td>
+          <th>Medication change</th>
+          <td>Status: Continued</td>
 									</tr>
 								</tbody>
 							</table>
@@ -377,11 +317,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Omeprazole</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>20mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD/PRN</td>
 									</tr>
 									<tr>
@@ -389,8 +329,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>oral</td>
 									</tr>
 									<tr>
-										<th>Medication recommendations</th>
-										<td>continue</td>
+          <th>Medication change</th>
+          <td>Status: Continued</td>
 									</tr>
 								</tbody>
 							</table>
@@ -401,11 +341,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Aspirin</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>75mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD</td>
 									</tr>
 									<tr>
@@ -413,8 +353,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>oral</td>
 									</tr>
 									<tr>
-										<th>Medication recommendations</th>
-										<td>continue</td>
+          <th>Medication change</th>
+          <td>Status: Continued</td>
 									</tr>
 								</tbody>
 							</table>
@@ -425,11 +365,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Clopidogrel</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>75mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD</td>
 									</tr>
 									<tr>
@@ -449,11 +389,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Simvastatin</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>40mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD</td>
 									</tr>
 									<tr>
@@ -461,8 +401,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>oral</td>
 									</tr>
 									<tr>
-										<th>Medication recommendations</th>
-										<td>continue</td>
+          <th>Medication change</th>
+          <td>Status: Continued</td>
 									</tr>
 								</tbody>
 							</table>
@@ -473,11 +413,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<td>Bisoprolol</td>
 									</tr>
 									<tr>
-										<th>Dose</th>
+          <th>Dose amount</th>
 										<td>5mg</td>
 									</tr>
 									<tr>
-										<th>Medication frequency</th>
+         <th>Dose timing</th>
 										<td>OD</td>
 									</tr>
 									<tr>
@@ -501,7 +441,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 					</orderedBy>
      <!--Reference to medication list-->
 					<entry>
-						<reference value="urn:uuid:8166a004-0f7f-4210-a883-a3152d171bd4"/>
+						<reference value="urn:uuid:e3c8b45f-22d4-4ce6-970c-10a959831dca"/>
 					</entry>
 				</section>
 						<section>
@@ -522,11 +462,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 										<th>Name</th>
 										<td>Dr Paul Rastall</td>
 									</tr>
-									<tr>
+										<tr>
 										<th>Professional identifier</th>
-										<td>6122477 (GMC Reference Number)</td>
+										<td>6122477</td>
 									</tr>
-								</tbody>
+							</tbody>
 							</table>
 						</div>
 					</text>
@@ -545,18 +485,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
-									<tr>
-										<th>Action</th>
-										<td>GP please continue secondary preventative medication.</td>
-									</tr>
-									<tr>
-										<th>Action</th>
-										<td>Doses will be uptitrated by Cardiac Rehab team.</td>
-									</tr>
-									<tr>
-										<th>Action</th>
-										<td>Coronary angiogram performed, and demonstrated diseased RCA.</td>
-									</tr>
+								<tr>
+          <th>Action</th>
+          <td>Patient to be admitted to Cramer ward for further tests to investigate causes of his chest pain.<p>Status: Completed</p></td>
+         </tr>			
 								</tbody>
 							</table>
 						</div>
@@ -585,6 +517,63 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						</div>
 					</text>
 			</section>
+			 <section>
+     <title value="Procedures"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887171000000109"/>
+       <display value="Procedures"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table>
+        <tbody>
+         <tr>
+          <th>Procedure</th>
+          <td>Electrocardiographic monitoring</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+      <orderedBy>
+      <coding>
+       <system value="http://hl7.org/fhir/list-order"/>
+       <code value="system"/>
+       <display value="Sorted by System"/>
+      </coding>
+     </orderedBy>
+     <!--reference to further information carried in the procedure resource-->
+     <entry>
+      <reference value="urn:uuid:1a65a852-c14e-42ae-ae88-46ca1dc4d67f"/>
+     </entry>
+    </section>
+							<section>
+					<title value="Contact for further information"/>
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1077931000000102"/>
+							<display value="Contact for further information"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Contact for further information</th>
+										<td>Dr Paul Rastall Tel: 0113 6323200</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
+				</section>
 							<section>
 					<title value="Referrer details"/>
 					<code>
@@ -601,34 +590,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 								<tbody>
 									<tr>
 										<th>Referrer details</th>
-										<td>Mr Richard Smith (Self Referral)</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
-				</section>
-						<section>
-					<title value="Senior reviewing clinician"/>
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1078901000000109"/>
-							<display value="Senior reviewing clinician"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Name</th>
-										<td>Dr Jasinder Popital</td>
-									</tr>
-									<tr>
-										<th>Professional identifier</th>
-										<td>6122498 (GMC Reference Number)</td>
+										<td>Self-referral to accident and emergency department</td>
 									</tr>
 								</tbody>
 							</table>
@@ -653,6 +615,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 					<value value="ff84120c-43fe-4059-8839-dad2c4f9869c"/>
 				</identifier>
 				<status value="finished"/>
+				<class>
+     <system value="http://hl7.org/fhir/v3-ActEncounterCode"/>
+     <code value="EMER"/>
+     <display value="emergency"/>
+    </class>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
@@ -664,959 +631,1048 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 			<subject>
 			<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 			</subject>
-				<period>
+			 <!--Reference to the participants present during the encounter-->
+    <participant>
+     <type>
+      <coding>
+       <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+       <code value="PART"/>
+       <display value="Participation"/>
+      </coding>
+     </type>
+     <individual>
+      <reference value="urn:uuid:c6d67f90-7b84-4462-ab33-3777c56afd4a"/>
+     </individual>
+    </participant>
+ <participant>
+     <type>
+      <coding>
+       <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+       <code value="DIS"/>
+       <display value="discharger"/>
+      </coding>
+     </type>
+     <individual>
+        <reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+     </individual>
+    </participant>
+					<period>
 					<start value="2015-02-12T09:00:00+00:00"/>
 					<end value="2015-02-12T18:00:00+00:00"/>
 				</period>
-				<location>
-					<location>
-						<reference value="urn:uuid:50ed9220-2a96-47ba-9c28-d4a1e3ecd748"/>
-					</location>
-				</location>
-			</Encounter>
+				<!--Reason the encounter occurs-->
+			<reason>
+<coding>
+ <system value="http://snomed.info/sct"/>
+  <code value="29857009"/>
+  <display value="Chest pain"/>
+ </coding>
+</reason>
+<hospitalization>
+<!--From where patient was admitted-->
+     <admitSource>
+      <coding>
+       <system value="http://hl7.org/fhir/admit-source"/>
+       <code value="other"/>
+       <display value="Other"/>
+      </coding>
+      <text value="Patient admitted from home"/>
+     </admitSource>
+     <!--Reference to location where the patient is discharged to-->
+     <destination>
+	<reference value="urn:uuid:50ed9220-2a96-47ba-9c28-d4a1e3ecd748"/>
+</destination>
+<!--	Category or kind of location after discharge-->
+     <dischargeDisposition>
+      <coding>
+       <system value="http://hl7.org/fhir/discharge-disposition"/>
+       <code value="oth"/>
+       <display value="Other"/>
+      </coding>
+      <text value="Discharged to hospital ward"/>
+     </dischargeDisposition>
+    </hospitalization>
+    <!--List of locations where the patient has been-->
+    <location>
+     <location>
+   	<reference value="urn:uuid:64e97568-a879-4ebc-b506-a360fca0c286"/>  
+   	</location>
+   	<period>
+					<start value="2015-02-12T09:00:00+00:00"/>
+					<end value="2015-02-12T18:00:00+00:00"/>
+</period>
+</location>
+				</Encounter>
 		</resource>
 	</entry>
-	<!--Medication List Example -->
-	<entry>
-		<fullUrl value="urn:uuid:8166a004-0f7f-4210-a883-a3152d171bd4"/>
-		<resource>
-			<List>
-				<id value="8166a004-0f7f-4210-a883-a3152d171bd4"/>
-				<meta>
+	 <!--Medication list-->
+ <entry>
+  <fullUrl value="urn:uuid:e3c8b45f-22d4-4ce6-970c-10a959831dca"/>
+  <resource>
+   <List>
+    <id value="e3c8b45f-22d4-4ce6-970c-10a959831dca"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Medication-List-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="c6107fb7-b943-4318-890c-547adafc83a5"/>
-				</identifier>
-		<status value="current"/>
-		<mode value="snapshot"/>
-				<code>
-					<coding>
-						<system value="http://hl7.org/fhir/list-example-use-codes"/>
-						<code value="medications"/>
-						<display value="Medication List"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-		
-				<entry>
-					<flag>
-						<coding>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="d4f7c451-1523-4525-a5ed-420439bf04f9"/>
+    </identifier>
+    <status value="current"/>
+    <mode value="snapshot"/>
+    <!--Type of list-->
+    <code>
+     <coding>
+      <system value="http://hl7.org/fhir/list-example-use-codes"/>
+      <code value="medications"/>
+      <display value="Medication List"/>
+     </coding>
+    </code>
+    <!--Patient subject of the list-->
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:28ed9a1b-429a-47e4-8c78-1c1ec20b71e8"/>
-					</item>
-				</entry>
-				<entry>
-					<flag>
-						<coding>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:86442fdb-15ad-41cb-bd6a-f9a85db48d07"/>
+     </item>
+    </entry>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:18a9230b-4cab-43e6-b62f-2a497d644782"/>
-					</item>
-				</entry>
-				<entry>
-					<flag>
-						<coding>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:598c0803-062f-44c9-b767-f10377f141a8"/>
+     </item>
+    </entry>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:120b2c23-f7dc-47e7-9d63-849fb781e0bd"/>
-					</item>
-				</entry>
-				<entry>
-					<flag>
-						<coding>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:77ae6ef0-7a02-4845-bbde-4a6e5739c727"/>
+     </item>
+    </entry>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:61d60187-aeb5-43b7-8ac7-c3671082e415"/>
-					</item>
-				</entry>
-				<entry>
-					<flag>
-						<coding>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:0a7d4834-f1b5-4e2c-958d-6621c2ee6793"/>
+     </item>
+    </entry>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:bba57bf0-40d0-497d-ba44-b6cbf61d603d"/>
-					</item>
-				</entry>
-				<entry>
-					<flag>
-						<coding>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:a5b3e68f-0f80-4077-96e7-c41a23e14fd0"/>
+     </item>
+    </entry>
+    <entry>
+     <flag>
+      <coding>
        <system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
        <code value="09"/>
        <display value="Active"/>
-						</coding>
-					</flag>
-					<item>
-						<reference value="urn:uuid:4dc87d17-ea26-496f-9693-f2983ee23ae5"/>
-					</item>
-				</entry>
-			</List>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:28ed9a1b-429a-47e4-8c78-1c1ec20b71e8"/>
-		<resource>
-			<MedicationStatement>
-				<id value="28ed9a1b-429a-47e4-8c78-1c1ec20b71e8"/>
-				<meta>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:4d3001fa-bf73-4a4a-b950-d9c6a4b405bb"/>
+     </item>
+    </entry>
+   </List>
+  </resource>
+ </entry>
+ <!--Medication statement example 1-->
+ <entry>
+  <fullUrl value="urn:uuid:86442fdb-15ad-41cb-bd6a-f9a85db48d07"/>
+  <resource>
+   <MedicationStatement>
+    <id value="86442fdb-15ad-41cb-bd6a-f9a85db48d07"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-		
-			
-				<status value="active"/>
-				<medicationReference>
-					<reference value="urn:uuid:51eece1c-0f88-47f8-a83c-068cb6c1dcea"/>
-			</medicationReference>
-				<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-			</subject>
+    </meta>
+    <status value="active"/>
+    <medicationReference>
+     <reference value="urn:uuid:f4d39a59-b5e0-4d35-af9e-e2ae09a2b7fb"/>
+    </medicationReference>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
-					<asNeededBoolean value="false"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+      </repeat>
+     </timing>
+     <asNeededBoolean value="false"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
  <value value="2.5"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 2-->
-	<entry>
-		<fullUrl value="urn:uuid:18a9230b-4cab-43e6-b62f-2a497d644782"/>
-		<resource>
-			<MedicationStatement>
-				<id value="18a9230b-4cab-43e6-b62f-2a497d644782"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Statement Example 2-->
+ <entry>
+  <fullUrl value="urn:uuid:598c0803-062f-44c9-b767-f10377f141a8"/>
+  <resource>
+   <MedicationStatement>
+    <id value="598c0803-062f-44c9-b767-f10377f141a8"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-			
-			
-				<status value="active"/>
-				<medicationCodeableConcept>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="407847009"/>
+    </meta>
+    <status value="active"/>
+    <medicationCodeableConcept>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="407847009"/>
       <display value="Omeprazole 20mg gastro-resistant tablets"/>
-					</coding>
-				</medicationCodeableConcept>
+     </coding>
+    </medicationCodeableConcept>
     <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily as needed"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily as needed"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
-					<asNeededBoolean value="true"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+      </repeat>
+     </timing>
+     <asNeededBoolean value="true"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
       <value value="20"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 3-->
-	<entry>
-		<fullUrl value="urn:uuid:120b2c23-f7dc-47e7-9d63-849fb781e0bd"/>
-		<resource>
-			<MedicationStatement>
-				<id value="120b2c23-f7dc-47e7-9d63-849fb781e0bd"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Statement Example 3-->
+ <entry>
+  <fullUrl value="urn:uuid:77ae6ef0-7a02-4845-bbde-4a6e5739c727"/>
+  <resource>
+   <MedicationStatement>
+    <id value="77ae6ef0-7a02-4845-bbde-4a6e5739c727"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-			
-				<status value="active"/>
-				<medicationCodeableConcept>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="319781007"/>
+    </meta>
+    <status value="active"/>
+    <medicationCodeableConcept>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="319781007"/>
       <display value="Aspirin 75mg gastro-resistant tablets"/>
-					</coding>
-				</medicationCodeableConcept>
+     </coding>
+    </medicationCodeableConcept>
     <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
-					<asNeededBoolean value="true"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+      </repeat>
+     </timing>
+     <asNeededBoolean value="true"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
      <value value="75"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 4-->
-	<entry>
-		<fullUrl value="urn:uuid:61d60187-aeb5-43b7-8ac7-c3671082e415"/>
-		<resource>
-			<MedicationStatement>
-				<id value="61d60187-aeb5-43b7-8ac7-c3671082e415"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Statement Example 4-->
+ <entry>
+  <fullUrl value="urn:uuid:0a7d4834-f1b5-4e2c-958d-6621c2ee6793"/>
+  <resource>
+   <MedicationStatement>
+    <id value="0a7d4834-f1b5-4e2c-958d-6621c2ee6793"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-			
-				<status value="active"/>
-				<medicationCodeableConcept>
-					<coding>
-						<system value="http://snomed.info/sct"/>
+    </meta>
+    <status value="active"/>
+    <medicationCodeableConcept>
+     <coding>
+      <system value="http://snomed.info/sct"/>
       <code value="319799004"/>
       <display value="Clopidogrel 75mg tablets"/>
-					</coding>
-				</medicationCodeableConcept>
+     </coding>
+    </medicationCodeableConcept>
     <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
+      </repeat>
+     </timing>
      <asNeededBoolean value="false"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
      <value value="75"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 5-->
-	<entry>
-		<fullUrl value="urn:uuid:bba57bf0-40d0-497d-ba44-b6cbf61d603d"/>
-		<resource>
-			<MedicationStatement>
-				<id value="bba57bf0-40d0-497d-ba44-b6cbf61d603d"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Statement Example 5-->
+ <entry>
+  <fullUrl value="urn:uuid:a5b3e68f-0f80-4077-96e7-c41a23e14fd0"/>
+  <resource>
+   <MedicationStatement>
+    <id value="a5b3e68f-0f80-4077-96e7-c41a23e14fd0"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-			
-			
-				<status value="active"/>
-				<medicationCodeableConcept>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="320000009"/>
+    </meta>
+    <status value="active"/>
+    <medicationCodeableConcept>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="320000009"/>
       <display value="Simvastatin 40mg tablets"/>
-					</coding>
-				</medicationCodeableConcept>
+     </coding>
+    </medicationCodeableConcept>
     <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
+      </repeat>
+     </timing>
      <asNeededBoolean value="false"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
       <value value="40"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Statement Example 6-->
-	<entry>
-		<fullUrl value="urn:uuid:4dc87d17-ea26-496f-9693-f2983ee23ae5"/>
-		<resource>
-			<MedicationStatement>
-				<id value="4dc87d17-ea26-496f-9693-f2983ee23ae5"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Statement Example 6-->
+ <entry>
+  <fullUrl value="urn:uuid:4d3001fa-bf73-4a4a-b950-d9c6a4b405bb"/>
+  <resource>
+   <MedicationStatement>
+    <id value="4d3001fa-bf73-4a4a-b950-d9c6a4b405bb"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
-				</meta>
-			
-				
-				<status value="active"/>
-				<medicationCodeableConcept>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="318590006"/>
+    </meta>
+    <status value="active"/>
+    <medicationCodeableConcept>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="318590006"/>
       <display value="Bisoprolol 5mg tablets"/>
-					</coding>
-				</medicationCodeableConcept>
+     </coding>
+    </medicationCodeableConcept>
     <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <taken value="y"/>
-				<dosage>
-					<text value="Take one tablet daily"/>
-					<timing>
-						<repeat>
-							<frequency value="1"/>
-							<period value="1"/>
+    <dosage>
+     <text value="Take one tablet daily"/>
+     <timing>
+      <repeat>
+       <frequency value="1"/>
+       <period value="1"/>
        <periodUnit value="d"/>
-						</repeat>
-					</timing>
+      </repeat>
+     </timing>
      <asNeededBoolean value="false"/>
-					<route>
-						<coding>
-							<system value="http://snomed.info/sct"/>
+     <route>
+      <coding>
+       <system value="http://snomed.info/sct"/>
        <code value="26643006"/>
-							<display value="Oral"/>
-						</coding>
-					</route>
+       <display value="Oral"/>
+      </coding>
+     </route>
      <doseQuantity>
    <value value="5"/> 
       <unit value="mg"/> 
       <system value="http://unitsofmeasure.org"/> 
       <code value="mg"/> 
      </doseQuantity>
-					<maxDosePerPeriod>
-						<numerator>
-							<value value="1"/>
-							<unit value="Tablet"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="385055001"/>
-						</numerator>
-						<denominator>
-							<value value="1"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
-				</dosage>
-			</MedicationStatement>
-		</resource>
-	</entry>
-	<!--Medication Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:51eece1c-0f88-47f8-a83c-068cb6c1dcea"/>
-		<resource>
-			<Medication>
-				<id value="51eece1c-0f88-47f8-a83c-068cb6c1dcea"/>
-				<meta>
+     <maxDosePerPeriod>
+      <numerator>
+       <value value="1"/>
+       <unit value="Tablet"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="385055001"/>
+      </numerator>
+      <denominator>
+       <value value="1"/>
+       <system value="http://unitsofmeasure.org"/>
+       <code value="d"/>
+      </denominator>
+     </maxDosePerPeriod>
+    </dosage>
+   </MedicationStatement>
+  </resource>
+ </entry>
+ <!--Medication Example 1-->
+ <entry>
+  <fullUrl value="urn:uuid:f4d39a59-b5e0-4d35-af9e-e2ae09a2b7fb"/>
+  <resource>
+   <Medication>
+    <id value="f4d39a59-b5e0-4d35-af9e-e2ae09a2b7fb"/>
+    <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Medication-1"/>
-				</meta>
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="408050008"/>
+    </meta>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="408050008"/>
       <display value="Ramipril 2.5mg tablets"/>
-					</coding>
-				</code>
-			</Medication>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:ec30578d-c2fd-4c77-a84e-93efde69afb6"/>
-		<resource>
-			<Flag>
-				<id value="ec30578d-c2fd-4c77-a84e-93efde69afb6"/>
-				<meta>
+     </coding>
+    </code>
+   </Medication>
+  </resource>
+ </entry>
+ <!--Medication Flag Example 1-->
+ <entry>
+  <fullUrl value="urn:uuid:65df28da-9c0b-4ebd-9ceb-91a76b662184"/>
+  <resource>
+   <Flag>
+    <id value="65df28da-9c0b-4ebd-9ceb-91a76b662184"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
-				</meta>
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
-					<valueReference>
-						<reference value="urn:uuid:28ed9a1b-429a-47e4-8c78-1c1ec20b71e8"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="0420ab64-632a-4477-a16d-cf5afe204b6f"/>
-				</identifier>
-	<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-			
-			
-				<code>
-					<coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
-      <code value="continue-indefinitely"/>
-      <display value="Continue Indefinitely"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 2-->
-	<entry>
-		<fullUrl value="urn:uuid:6351ec6a-63e3-4656-907d-70eb501d4843"/>
-		<resource>
-			<Flag>
-				<id value="6351ec6a-63e3-4656-907d-70eb501d4843"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
-				</meta>
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
-					<valueReference>
-						<reference value="urn:uuid:18a9230b-4cab-43e6-b62f-2a497d644782"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="9f882897-d3fd-42d8-bbde-31ba4a0ff37d"/>
-				</identifier>
-<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-				
-			
-				<code>
-					<coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
-      <code value="continue-indefinitely"/>
-      <display value="Continue Indefinitely"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 3-->
-	<entry>
-		<fullUrl value="urn:uuid:448ba5a3-cfe1-4b46-832a-4ea6db0d124d"/>
-		<resource>
-			<Flag>
-				<id value="448ba5a3-cfe1-4b46-832a-4ea6db0d124d"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
-				</meta>
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
-					<valueReference>
-						<reference value="urn:uuid:120b2c23-f7dc-47e7-9d63-849fb781e0bd"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="4e445adc-9d4d-4359-bb13-019153dbd5c8"/>
-				</identifier>
-	<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-			
-			
-				<code>
-					<coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
-      <code value="continue-indefinitely"/>
-      <display value="Continue Indefinitely"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 4-->
-	<entry>
-		<fullUrl value="urn:uuid:94422279-41d8-4f85-919d-4ebde0d4d552"/>
-		<resource>
-			<Flag>
-				<id value="94422279-41d8-4f85-919d-4ebde0d4d552"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
-				</meta>
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
-					<valueReference>
-						<reference value="urn:uuid:61d60187-aeb5-43b7-8ac7-c3671082e415"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="67acad39-1169-4833-b64c-25190765ea36"/>
-				</identifier>
-	<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-			
-			
-				<code>
-					<coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
-      <code value="do-not-discontinue"/>
-      <display value="Do Not discontinue Medication"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 5-->
-	<entry>
-		<fullUrl value="urn:uuid:98d56d92-a3c6-49f6-8bdc-d88d8a8c12d6"/>
-		<resource>
-			<Flag>
-				<id value="98d56d92-a3c6-49f6-8bdc-d88d8a8c12d6"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-Medication-Flag-1"/>
-				</meta>
-				<extension url="https://fhir.hl7.org.uk/StructureDefinition/Extension-CareConnect-MedicationFlagAssociation-1">
-					<valueReference>
-						<reference value="urn:uuid:bba57bf0-40d0-497d-ba44-b6cbf61d603d"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="5998b26f-b47c-450a-a0cc-409f6b6c9668"/>
-				</identifier>
-								<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-
-			
-				<code>
-					<coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
-      <code value="continue-indefinitely"/>
-      <display value="Continue Indefinitely"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Medication Flag Example 6-->
-	<entry>
-		<fullUrl value="urn:uuid:432111ff-cea6-4b1d-a159-a5ddb621ef96"/>
-		<resource>
-			<Flag>
-				<id value="432111ff-cea6-4b1d-a159-a5ddb621ef96"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
-				</meta>
-				<!--Copied from EDIS - need to correct-->
+    </meta>
+    <!--This references the MedicationStatement.-->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
      <valueReference>
-      <reference value="urn:uuid:11baa8fd-b670-47d1-ab3a-183488af5c6e"/>
+      <reference value="urn:uuid:86442fdb-15ad-41cb-bd6a-f9a85db48d07"/>
      </valueReference>
     </extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="e5f8a4a2-dc01-4b4f-89e8-0d94c5e6b239"/>
-				</identifier>
-	<status value="active"/>
-				<category>
-					<coding>
-						<system value="http://hl7.org/fhir/flag-category"/>
-						<code value="drug"/>
-						<display value="Drug"/>
-					</coding>
-				</category>
-			
-			
-				<code>
-					<coding>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="d6ae02d9-988d-489a-8173-5c997dc229e6"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
+      <code value="continue-indefinitely"/>
+      <display value="Continue Indefinitely"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+  <!--Medication Flag Example 2-->
+ <entry>
+  <fullUrl value="urn:uuid:db0ed536-1a41-46b0-b84c-95f9d98b7240"/>
+  <resource>
+   <Flag>
+    <id value="db0ed536-1a41-46b0-b84c-95f9d98b7240"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
+     <valueReference>
+      <reference value="urn:uuid:598c0803-062f-44c9-b767-f10377f141a8"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="abb1c8d5-ec01-4a0d-af12-8251c1cf55fb"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
+      <code value="continue-indefinitely"/>
+      <display value="Continue Indefinitely"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+   <!--Medication Flag Example 3-->
+ <entry>
+  <fullUrl value="urn:uuid:5ee441ef-a4d0-42b1-b1cd-fd02aae55dc5"/>
+  <resource>
+   <Flag>
+    <id value="5ee441ef-a4d0-42b1-b1cd-fd02aae55dc5"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
+     <valueReference>
+      <reference value="urn:uuid:77ae6ef0-7a02-4845-bbde-4a6e5739c727"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="f6ec52e6-e6db-45ba-8d7d-cf40b2d23c12"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
+      <code value="continue-indefinitely"/>
+      <display value="Continue Indefinitely"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+   <!--Medication Flag Example 4-->
+ <entry>
+  <fullUrl value="urn:uuid:03c7add4-bae8-429a-a68c-5fb4f52bb0b0"/>
+  <resource>
+   <Flag>
+    <id value="03c7add4-bae8-429a-a68c-5fb4f52bb0b0"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
+     <valueReference>
+      <reference value="urn:uuid:0a7d4834-f1b5-4e2c-958d-6621c2ee6793"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="9ce24eb4-23a5-40fa-bbd5-e8dfb3ab6253"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
       <code value="do-not-discontinue"/>
       <display value="Do Not discontinue Medication"/>
-					</coding>
+     </coding>
+     </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+    <!--Medication Flag Example 5-->
+ <entry>
+  <fullUrl value="urn:uuid:3f192708-7f5e-4d45-8e20-9aed4055f877"/>
+  <resource>
+   <Flag>
+    <id value="3f192708-7f5e-4d45-8e20-9aed4055f877"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
+     <valueReference>
+      <reference value="urn:uuid:a5b3e68f-0f80-4077-96e7-c41a23e14fd0"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="307123ec-6297-4687-b83d-fb1fbf292cc9"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
+      <code value="continue-indefinitely"/>
+      <display value="Continue Indefinitely"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+ <!--Medication Flag Example 6-->
+ <entry>
+  <fullUrl value="urn:uuid:fa1095e9-8b3a-44f2-865d-e3d4bf1bb199"/>
+  <resource>
+   <Flag>
+    <id value="fa1095e9-8b3a-44f2-865d-e3d4bf1bb199"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
+     <valueReference>
+      <reference value="urn:uuid:4d3001fa-bf73-4a4a-b950-d9c6a4b405bb"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="d4e49e4a-bc9b-432a-9558-bce1f5ab7bad"/>
+    </identifier>
+    <status value="active"/>
+    <category>
+     <coding>
+      <system value="http://hl7.org/fhir/flag-category"/>
+      <code value="drug"/>
+      <display value="Drug"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-MedicationFlag-1"/>
+      <code value="do-not-discontinue"/>
+      <display value="Do Not discontinue Medication"/>
+     </coding>
      <text value="Uptitrate according to BP and HR."/>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Allergies List Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:e75e6df9-0c3d-40be-910c-567931d6ab85"/>
-		<resource>
-			<List>
-				<id value="e75e6df9-0c3d-40be-910c-567931d6ab85"/>
-				<meta>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+ <!--Allergies list-->
+ <entry>
+  <fullUrl value="urn:uuid:b37c89af-c5da-425f-8e6d-58c043ccf94b"/>
+  <resource>
+   <List>
+    <id value="b37c89af-c5da-425f-8e6d-58c043ccf94b"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergies-List-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="10333e47-6548-4b20-985e-f6b8372ac592"/>
-				</identifier>
-	<status value="current"/>
-				<mode value="snapshot"/>
-				<code>
-					<coding>
-						<system value="http://hl7.org/fhir/list-example-use-codes"/>
-						<code value="allergies"/>
-						<display value="Allergies"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			
-				<entry>
-					<item>
-						<reference value="urn:uuid:61988163-6efb-44ba-aef7-7e786e460bde"/>
-					</item>
-				</entry>
-			</List>
-		</resource>
-	</entry>
-	<!--Allergy Intolerance Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:61988163-6efb-44ba-aef7-7e786e460bde"/>
-		<resource>
-			<AllergyIntolerance>
-				<id value="61988163-6efb-44ba-aef7-7e786e460bde"/>
-				<meta>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="4344f700-a737-4796-9887-df3f3a546387"/>
+    </identifier>
+    <status value="current"/>
+    <mode value="snapshot"/>
+    <code>
+     <coding>
+      <system value="http://hl7.org/fhir/list-example-use-codes"/>
+      <code value="allergies"/>
+      <display value="Allergies"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+    <entry>
+     <flag>
+      <coding>
+       <system value="https://fhir.nhs.uk/STU3/ITK-PatientAllergyChangeType-1"/>
+       <code value="01"/>
+       <display value="Unchanged"/>
+      </coding>
+     </flag>
+     <item>
+      <reference value="urn:uuid:4559a534-7ebc-4139-8ada-09627696710a"/>
+     </item>
+    </entry>
+   </List>
+  </resource>
+ </entry>
+ <entry>
+  <fullUrl value="urn:uuid:4559a534-7ebc-4139-8ada-09627696710a"/>
+  <resource>
+   <AllergyIntolerance>
+    <id value="4559a534-7ebc-4139-8ada-09627696710a"/>
+    <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-AllergyIntolerance-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="06d65f0f-117a-43c6-84ea-f28c3bd664a2"/>
-				</identifier>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="8c972218-c58a-4d8a-bc4a-c7ecedfb5d9f"/>
+    </identifier>
     <clinicalStatus value="active"/>
     <verificationStatus value="confirmed"/>
     <type value="allergy"/>
     <category value="medication"/>
-	<patient>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</patient>
+    <patient>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </patient>
     <onsetDateTime value="2012-01-12T12:00:00+00:00"/>
-    				<reaction>
-				<substance>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="373270004"/>
-						<display value="Penicillin"/>
-					</coding>
-				</substance>				
-					<manifestation>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="271807003"/>
-							<display value="Eruption"/>
-						</coding>
-					</manifestation>
-				</reaction>
-			</AllergyIntolerance>
-		</resource>
-	</entry>
-	<!--Allergy Flag Example 1-->
-	<entry>
-		<fullUrl value="urn:uuid:9756d0fb-29b9-4220-a5ad-61ea284b9474"/>
-		<resource>
-			<Flag>
-				<id value="9756d0fb-29b9-4220-a5ad-61ea284b9474"/>
-				<meta>
+    <reaction>
+     <substance>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="373270004"/>
+       <display value="Penicillin -class of antibiotic-"/>
+      </coding>
+     </substance>
+     <manifestation>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="271807003"/>
+       <display value="Eruption"/>
+      </coding>
+     </manifestation>
+    </reaction>
+   </AllergyIntolerance>
+  </resource>
+ </entry>
+ <entry>
+  <fullUrl value="urn:uuid:a3e9f507-1d6a-4a88-b984-85561e661856"/>
+  <resource>
+   <Flag>
+    <id value="a3e9f507-1d6a-4a88-b984-85561e661856"/>
+    <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergy-Flag-1"/>
-				</meta>
+    </meta>
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-AllergyFlagDetail-1">
-					<valueReference>
-						<reference value="urn:uuid:61988163-6efb-44ba-aef7-7e786e460bde"/>
-					</valueReference>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="c968dcf3-298f-47d5-af61-ceb9f320e61b"/>
-				</identifier>
+     <valueReference>
+      <reference value="urn:uuid:4559a534-7ebc-4139-8ada-09627696710a"/>
+     </valueReference>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="e167efb9-e185-422d-a9ad-507746f4d7d3"/>
+    </identifier>
     <status value="active"/>
-				<category>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="886921000000105"/>
-						<display value="Allergies and adverse reactions"/>
-					</coding>
-				</category>
-			
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="416098002"/>
-						<display value="Drug allergy"/>
-					</coding>
-				</code>
-	<subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-				</subject>
-			</Flag>
-		</resource>
-	</entry>
-	<!--Condition-Example-1-->
-	<entry>
-		<fullUrl value="urn:uuid:af25f1cf-207f-46f7-8644-2787d9829981"/>
-		<resource>
-			<Condition>
-				<id value="af25f1cf-207f-46f7-8644-2787d9829981"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="7232d184-c9cd-465c-ae46-3e55cd6fba81"/>
-				</identifier>
-				
-			
-	<clinicalStatus value="active"/>
-				<verificationStatus value="confirmed"/>
-			
-			
-				<category>
-					<coding>
-						<system value="https://fhir.hl7.org.uk/CareConnect-ConditionCategory-1"/>
-						<code value="diagnosis"/>
-						<display value="Diagnosis"/>
-					</coding>
-				</category>
-					<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="1488382011"/>
-						<display value="Acute coronary syndrome"/>
-					</coding>
-				</code>		
-    <subject>
-					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
-    </subject>
-    <context>
-		<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
-    </context>
-	<onsetDateTime value="2015-02-12T12:00:00+00:00"/>		
-    <assertedDate value="2015-02-12"/>
-    	<asserter>
-					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
-	</asserter>
-<!--EDIS ref to Observation - will need updating for EC-->
- <stage>
-     <assessment>
-      <reference value="urn:uuid:6b639186-a9cd-43b0-9880-9ddb7902b934"/>
-     </assessment>
-    </stage>
-			</Condition>
-		</resource>
-	</entry>
-	<!--Condition-Example-2 - Changed to Observation - correct this for EC - but is it needed?-->
-	<entry>
-		<fullUrl value="urn:uuid:ac77f8b2-a387-495a-9c9a-b3dc6c40d2af"/>
-		<resource>
-   <Observation>
-				<id value="ac77f8b2-a387-495a-9c9a-b3dc6c40d2af"/>
-				<meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Observation-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="ed9e49fc-bf96-444f-9369-2c789601c1fb"/>
-				</identifier>
-    <status value="final"/>
+    <category>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="886921000000105"/>
+      <display value="Allergies and adverse reactions"/>
+     </coding>
+    </category>
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="251015000"/>
-      <display value="Coronary artery finding"/>
+      <code value="416098002"/>
+      <display value="Drug allergy"/>
      </coding>
     </code>
     <subject>
-    <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+   </Flag>
+  </resource>
+ </entry>
+	 <!--Condition example 1-->
+  <entry>
+  <fullUrl value="urn:uuid:50dc3efe-1826-4ee0-bcba-439c4fb38ff4"/>
+  <resource>
+   <Condition>
+    <id value="50dc3efe-1826-4ee0-bcba-439c4fb38ff4"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="4ebf5635-7bae-4051-80e4-5e7e06a2e055"/>
+    </identifier>
+    <clinicalStatus value="active"/>
+    <verificationStatus value="confirmed"/>
+    <category>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+		<code value="complaint"/>
+		<display value="Complaint"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="29857009"/>
+      <display value="Chest pain"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </subject>
     <context>
-    <reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+     <reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
     </context>
-    <effectiveDateTime value="2015-02-12T12:00:00+00:00"/>
-    <performer>
+    <onsetDateTime value="2015-02-12T09:00:00+00:00"/>
+    <assertedDate value="2015-02-12"/>
+    <asserter>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </asserter>
+   </Condition>
+  </resource>
+ </entry>
+  <!--Condition example 2-->
+ <entry>
+  <fullUrl value="urn:uuid:80e53ab8-dcec-4b4d-aec2-eec9e00b5982"/>
+  <resource>
+   <Condition>
+    <id value="80e53ab8-dcec-4b4d-aec2-eec9e00b5982"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="49e65c66-8c9f-4d54-a90d-a556e0e43f04"/>
+    </identifier>
+    <clinicalStatus value="active"/>
+    <verificationStatus value="confirmed"/>
+    <category>
+     <coding>
+      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <code value="diagnosis"/>
+      <display value="Diagnosis"/>
+     </coding>
+    </category>
+    <code>
+     <coding>
+   <system value="http://snomed.info/sct"/>
+      <code value="425419005"/>
+      <display value="ECG: inferior ischaemia"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+    <context>
+     <reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+    </context>
+    <onsetDateTime value="2015-02-12T12:00:00+00:00"/>
+    <assertedDate value="2015-02-12"/>
+    <asserter>
+     <reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+    </asserter>
+   </Condition>
+  </resource>
+ </entry> 
+ <!--Procedure Example 1-->
+  <entry>
+  <fullUrl value="urn:uuid:1a65a852-c14e-42ae-ae88-46ca1dc4d67f"/>
+  <resource>
+   <Procedure>
+    <id value="1a65a852-c14e-42ae-ae88-46ca1dc4d67f"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1"/>
+    </meta>
+    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1">
+     <valueDateTime value="2015-02-12"/>
+    </extension>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="077287c1-28cc-4939-b3c4-5f3e97844ae0"/>
+    </identifier>
+    <status value="completed"/>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="46825001"/>
+      <display value="Electrocardiographic monitoring"/>
+     </coding>
+    </code>
+     <subject>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
+    </subject>
+      <context>
+     <reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+    </context>
+    <performedDateTime value="2015-02-12T10:30:00+00:00"/>
+     <performer>
+     <actor>
     <reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+</actor>
     </performer>
-   </Observation>
-   </resource>
-   	</entry>
+    <bodySite>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="80891009"/>
+      <display value="Heart structure"/>
+     </coding>
+    </bodySite>
+   </Procedure>
+  </resource>
+ </entry>
 	<!--Patient-Example-1-->
 	<entry>
 		<fullUrl value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
@@ -1650,7 +1706,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
     <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ResidentialStatus-1">
 					<valueCodeableConcept>
 						<coding>
-							<system value="https://fhir.hl7.org.uk/CareConnect-ResidentialStatus-1"/>
+							<system value="https://fhir.hl7.org.uk/STU3/CareConnect-ResidentialStatus-1"/>
 							<code value="H"/>
 							<display value="UK Resident"/>
 						</coding>
@@ -1773,17 +1829,17 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				</Patient>
 						</resource>
 							</entry>
- <!--Related person Joy Smith - Check this as taken from EDIS - probably not linked to anything-->
+ <!--Related person Joy Smith -->
   <entry>
-  <fullUrl value="urn:uuid:a1b3f01d-a302-4c4a-92b7-82c1c98d5e14"/>
+  <fullUrl value="urn:uuid:c6d67f90-7b84-4462-ab33-3777c56afd4a"/>
   <resource>
  <RelatedPerson>
- <id value="a1b3f01d-a302-4c4a-92b7-82c1c98d5e14"/>
+ <id value="c6d67f90-7b84-4462-ab33-3777c56afd4a"/>
   <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1"/>
     </meta>
 	 <patient>
-     <reference value="urn:uuid:31686b67-9f20-4644-9a54-193d2f91de57"/>
+     <reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
     </patient>
     <relationship> 
     <coding> 
@@ -1815,6 +1871,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
 				</meta>
+		<identifier>
+  <system value="https://fhir.nhs.uk/Id/local-practitioner-identifier"/>
+     <value value="6122477"/>
+</identifier>
 				<name>
      <family value="Rastall"/>
      <given value="Paul"/>
@@ -1826,7 +1886,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 					<use value="work"/>
 				</telecom>
 				<address>
-					<line value="Leeds Teaching Hospital"/>
+     <line value="Leeds General Infirmary"/>
 					<line value="Great George Street"/>
 					<city value="Leeds"/>
 					<postalCode value="LS1 3EX"/>
@@ -1853,7 +1913,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 					<value value="01136323200"/>
 					<use value="work"/>
 				</telecom>
-		
 			</Practitioner>
 		</resource>
 	</entry>
@@ -1906,7 +1965,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <use value="work"/>
     </telecom>
     <address>
-     <line value="Cramer Ward"/>
      <line value="Leeds General Infirmary"/>
      <line value="Great George Street"/>
      <city value="Leeds"/>
@@ -1916,18 +1974,18 @@ LUCs						0.2			x10*9/L			&lt; 0.4
   </resource>
  </entry>
  <entry>
-  <fullUrl value="urn:uuid:7016a1b0-9fa4-4f4f-9eef-0922f3b2aa48"/>
+  <fullUrl value="urn:uuid:d9174bf6-0662-4ae1-b39a-f9fec278835d"/>
   <resource>
    <PractitionerRole>
-    <id value="7016a1b0-9fa4-4f4f-9eef-0922f3b2aa48"/>
+    <id value="d9174bf6-0662-4ae1-b39a-f9fec278835d"/>
     <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
     </meta>
     <practitioner>
-     <reference value="urn:uuid:6239b7a7-380d-46ff-a1c5-7abc4e68f8bc"/>
+     <reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
     </practitioner>
     <organization>
-     <reference value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
+     <reference value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
     </organization>
     <code>
      <coding>
@@ -1940,18 +1998,18 @@ LUCs						0.2			x10*9/L			&lt; 0.4
   </resource>
  </entry>
  <entry>
-  <fullUrl value="urn:uuid:a7922b56-d0da-4437-9c45-901b399e8cc5"/>
+  <fullUrl value="urn:uuid:8dcfc1f0-c44c-4436-a2fc-d8cd451d032a"/>
   <resource>
    <PractitionerRole>
-    <id value="a7922b56-d0da-4437-9c45-901b399e8cc5"/>
+    <id value="8dcfc1f0-c44c-4436-a2fc-d8cd451d032a"/>
     <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
     </meta>
     <practitioner>
-     <reference value="urn:uuid:8ece9986-9af0-4882-b0cf-23a96ea7b509"/>
+     <reference value="urn:uuid:0105ae6a-a9a2-416f-b57e-e274ac9a48a2"/>
     </practitioner>
     <organization>
-     <reference value="urn:uuid:acd640c9-5ff9-41ae-9ef3-07a1d5667140"/>
+     <reference value="urn:uuid:8c7377c5-4d72-43c2-8ae3-40b5713eb04c"/>
     </organization>
     <code>
      <coding>
@@ -1972,10 +2030,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
     </meta>
     <practitioner>
-     <reference value="urn:uuid:5e414a77-d394-4248-a631-00e45ddb64a0"/>
+     <reference value="urn:uuid:bfeb7b70-ac1f-4a14-a3b9-5842a9e7b761"/>
     </practitioner>
     <organization>
-     <reference value="urn:uuid:f9f24f89-646b-4a19-a6b1-cabfa3b612e1"/>
+     <reference value="urn:uuid:e4058bb2-bf1a-47a4-ab10-1471161380a1"/>
     </organization>
     <code>
      <coding>
@@ -1988,10 +2046,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
   </resource>
  </entry>
  <entry>
-  <fullUrl value="urn:uuid:51f91436-22f3-4093-bfa9-11a3e84280ee"/>
+  <fullUrl value="urn:uuid:ebe83c65-857d-4c2c-a739-87dac121e3ec"/>
   <resource>
    <PractitionerRole>
-    <id value="51f91436-22f3-4093-bfa9-11a3e84280ee"/>
+    <id value="ebe83c65-857d-4c2c-a739-87dac121e3ec"/>
     <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
     </meta>
@@ -1999,7 +2057,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <reference value="urn:uuid:d25fd1c6-2658-4db7-9af0-86c5f95e8ec9"/>
     </practitioner>
     <organization>
-     <reference value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
+     <reference value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
     </organization>
     <code>
      <coding>
@@ -2034,7 +2092,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<name value="MGP Medical Centre"/>
 				<telecom>
 					<system value="phone"/>
-					<value value="01634111223"/>
+					<value value="01134111223"/>
 					<use value="work"/>
 				</telecom>
 				<telecom>
@@ -2053,10 +2111,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 	</entry>
 		<!--Organization-Example-2-->
 		<entry>
-		<fullUrl value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
+		<fullUrl value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
 		<resource>
 			<Organization>
-				<id value="12bba528-a08a-448b-946b-7e8008044025"/>
+				<id value="120633ae-1a20-4e0e-b807-b78fb59679cc"/>
 				<meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
@@ -2080,7 +2138,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<address>
 					<line value="Leeds Teaching Hospitals NHS Trust"/>
 					<line value="St James's University Hospital"/>
-					
 					<line value="Beckett Street"/>
 					<city value="Leeds"/>
 					<postalCode value="LS9 7TF"/>
@@ -2125,23 +2182,64 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 			</Organization>
 		</resource>
 	</entry>
-	<!--Location-Example-1-->
+		<!--Location-Example-1-->
+	<entry>
+		<fullUrl value="urn:uuid:64e97568-a879-4ebc-b506-a360fca0c286"/>
+		<resource>
+			<Location>
+				<id value="64e97568-a879-4ebc-b506-a360fca0c286"/>
+			 <meta>
+     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
+    </meta>
+    	<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
+					<value value="RR8A2"/>
+				</identifier>
+ 	<name value="Accident and Emergency SJUH"/>
+ 			<telecom>
+					<system value="phone"/>
+					<value value="01132433146"/>
+					<use value="work"/>
+				</telecom>
+				<address>
+				<line value="St James's University Hospital"/>
+					<line value="Beckett Street"/>
+					<city value="Leeds"/>
+					<postalCode value="LS9 7TF"/>
+				</address>
+   <managingOrganization>
+     <reference value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
+    </managingOrganization>
+			</Location>
+		</resource>
+	</entry>
+	<!--Location-Example-2-->
 	<entry>
 		<fullUrl value="urn:uuid:50ed9220-2a96-47ba-9c28-d4a1e3ecd748"/>
 		<resource>
 			<Location>
 				<id value="50ed9220-2a96-47ba-9c28-d4a1e3ecd748"/>
-				<meta>
+			 <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
-				</meta>
-				<name value="Accident and Emergency department of Leeds Teaching Hospital"/>
-				<type>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="225728007"/>
-						<display value="Accident and Emergency department"/>
-					</coding>
-				</type>
+    </meta>
+    <name value="Cramer Ward"/>
+    <type>
+     <coding>
+      <system value="http://hl7.org/fhir/v3/RoleCode"/>
+      <code value="CCU"/>
+      <display value="Coronary care unit"/>
+     </coding>
+    </type>
+    <physicalType>
+     <coding>
+      <system value="http://hl7.org/fhir/location-physical-type"/>
+      <code value="wa"/>
+      <display value="Ward"/>
+     </coding>
+    </physicalType>
+    <managingOrganization>
+     <reference value="urn:uuid:120633ae-1a20-4e0e-b807-b78fb59679cc"/>
+    </managingOrganization>
 			</Location>
 		</resource>
 	</entry>
