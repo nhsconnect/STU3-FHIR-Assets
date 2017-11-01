@@ -520,11 +520,11 @@
 										<td>Status: Medication added</td>
 									</tr>
 									<tr>
-										<th>Start datetime</th>
+										<th>Start date/time</th>
 										<td>11/05/17</td>
 									</tr>
 									<tr>
-										<th>End datetime</th>
+										<th>End date/time</th>
 										<td>Trial for 2x weeks</td>
 									</tr>
 									<tr>
@@ -742,7 +742,7 @@
 					</coding>
 				</code>
 				<subject>
-					<!--Patient has same guid as edis example-->
+					<!--Patient reference-->
 					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
 				</subject>
 				<entry>
@@ -754,7 +754,6 @@
 						</coding>
 					</flag>
 					<item>
-						<!--same guid as for edis example-->
 						<reference value="urn:uuid:a7da3060-d2f5-4761-b010-aa04e9e491dc"/>
 					</item>
 				</entry>
@@ -770,18 +769,10 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
 				</meta>
-				<!--Must remove and ref elsewhere-->
-				<!--			<extension url="https://fhir.hl7.org.uk/StructureDefinition/Extension-CareConnect-MedicationFlag-1">
-					<valueReference>
-						<reference value="urn:uuid:ed5e6de1-cf12-4875-87d1-fc049946b018"/> -->
-				<!--this ref will cause validator to crash is urn:uuid suffix added. entry 6-->
-				<!--
-					</valueReference>
-				</extension>-->
 				<status value="active"/>
 				<medicationReference>
 					<reference value="urn:uuid:cc869708-b975-4fe5-a502-a6c22675c31e"/>
-					<display value="Enteral+supplement feeds"/>
+					<display value="Amitriptyline"/>
 				</medicationReference>
 				<subject>
 					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
@@ -789,7 +780,7 @@
 				<taken value="y"/>
 				<!--Update all dosage details and use edis example as basis-->
 				<dosage>
-					<text value="100ml a day"/>
+					<text value="1 x 10mg tablet "/>
 					<!--This is wrong - taken from edis example as a base template-->
 					<timing>
 						<repeat>
@@ -802,31 +793,17 @@
 					<route>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="225373002"/>
-							<display value="Percutaneous endoscopic gastrostomy feeding"/>
+							<code value="26643006"/>
+							<display value="Oral"/>
 						</coding>
 					</route>
 					<doseQuantity>
 						<!--Check dose quantity and codes used-->
 						<value value="10"/>
-						<unit value="ml"/>
+						<unit value="mg"/>
 						<system value="http://unitsofmeasure.org"/>
-						<code value="ml"/>
+						<code value="mg"/>
 					</doseQuantity>
-					<maxDosePerPeriod>
-						<!--This could all be wrong - snomed value is for fluid-->
-						<numerator>
-							<value value="10"/>
-							<unit value="ml"/>
-							<system value="http://snomed.info/sct"/>
-							<code value="255765007"/>
-						</numerator>
-						<denominator>
-							<value value="100"/>
-							<system value="http://unitsofmeasure.org"/>
-							<code value="d"/>
-						</denominator>
-					</maxDosePerPeriod>
 				</dosage>
 			</MedicationStatement>
 		</resource>
@@ -843,8 +820,8 @@
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="346415002"/>
-						<display value="Enteral+supplement feeds"/>
+						<code value="321745007"/>
+						<display value="Amitriptyline 10mg tablets"/>
 					</coding>
 				</code>
 			</Medication>
