@@ -22,6 +22,12 @@
 				<!-- Information Recipient 1 -->
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
 					<valueReference>
+						<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
+					</valueReference>
+				</extension>
+				<!-- Information Recipient 2 -->
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
+					<valueReference>
 						<reference value="urn:uuid:37fdbe18-3dd5-4b37-b090-a2f222bc968c"/>
 					</valueReference>
 				</extension>
@@ -69,42 +75,6 @@
 				</custodian>
 				<!--Sections are included here-->
 				<section>
-					<title value="Allergies and adverse reactions"/>
-					<!--SNOMED CT classification of section-->
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="886921000000105"/>
-							<display value="Allergies and adverse reactions"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Causative agent</th>
-										<td>No known allergies or adverse reactions</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
-					<!--Order of section entries-->
-					<orderedBy>
-						<coding>
-							<system value="http://hl7.org/fhir/list-order"/>
-							<code value="system"/>
-							<display value="Sorted by System"/>
-						</coding>
-					</orderedBy>
-					<!--Reference to Allergies List as the source of information for this section-->
-					<entry>
-						<reference value="urn:uuid:4d2876df-9027-4baa-a64d-3f3180ddd4ec"/>
-					</entry>
-				</section>
-				<section>
 					<title value="Attendance details"/>
 					<code>
 						<coding>
@@ -118,6 +88,10 @@
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
+									<tr>
+										<td colspan="2" style="width:100%">Dear Dr. O’Reilly<br/>Thank you for referring Miss Gently to my rheumatology outpatient clinic.<br/>
+										</td>
+									</tr>
 									<tr>
 										<th>Date of appointment/contact</th>
 										<td>11-May-2017 09:00</td>
@@ -135,7 +109,7 @@
 										<td>Dr H.H. Crippen</td>
 									</tr>
 									<tr>
-										<th>Seen by</th>
+										<th rowspan="2">Seen by</th>
 										<td>Dr H.H. Crippen</td>
 									</tr>
 									<tr>
@@ -161,54 +135,6 @@
 					<entry>
 						<reference value="urn:uuid:3abcaae6-dfbc-4e6d-80ed-912e64f3052f"/>
 					</entry>
-				</section>
-				<section>
-					<title value="Clinical review of systems section"/>
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="887121000000105"/>
-							<display value="Review of systems"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<td>Poor Sleep</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
-				</section>
-				<section>
-					<title value="Clinical summary"/>
-					<!--SNOMED CT classification of section-->
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="887181000000106"/>
-							<display value="Clinical summary"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Clinical Summary</th>
-									</tr>
-									<tr>
-										<td>Symptoms are unlikely to improve until sleep disturbance is tackled.  I suggest Amitriptyline is prescribed.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
 				</section>
 				<section>
 					<title value="Diagnoses"/>
@@ -259,14 +185,14 @@
 						<display value="Hypothyroidism"/>
 					</entry>
 				</section>
-				<!--Examination findings-->
 				<section>
-					<title value="Examination findings"/>
+					<title value="Clinical summary"/>
+					<!--SNOMED CT classification of section-->
 					<code>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="715851000000102"/>
-							<display value="Examination findings"/>
+							<code value="887181000000106"/>
+							<display value="Clinical summary"/>
 						</coding>
 					</code>
 					<text>
@@ -275,24 +201,15 @@
 							<table width="100%">
 								<tbody>
 									<tr>
-										<th>Examination findings</th>
-										<td>Musculoskeletal system - Trapezius discomfort on elevation of the shoulders. Discomfort on active neck movements.</td>
+										<th>Clinical Summary</th>
+									</tr>
+									<tr>
+										<td>Symptoms are unlikely to improve until sleep disturbance is tackled.  I suggest Amitriptyline is prescribed.</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</text>
-					<orderedBy>
-						<coding>
-							<system value="http://hl7.org/fhir/list-order"/>
-							<code value="system"/>
-							<display value="Sorted by System"/>
-						</coding>
-					</orderedBy>
-					<!--Reference to the resource where information for this section can be found, note as the string describing this is not machine processible, this coded entry has been removed.-->
-					<!--<entry>
-						<reference value="urn:uuid:745c4a67-563c-41c5-828e-bc1129df6c3a"/>
-					</entry>-->
 				</section>
 				<section>
 					<title value="History"/>
@@ -329,12 +246,13 @@
 					</entry>
 				</section>
 				<section>
-					<title value="Investigation results"/>
+					<title value="Allergies and adverse reactions"/>
+					<!--SNOMED CT classification of section-->
 					<code>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="1082101000000102"/>
-							<display value="Investigation results"/>
+							<code value="886921000000105"/>
+							<display value="Allergies and adverse reactions"/>
 						</coding>
 					</code>
 					<text>
@@ -343,21 +261,14 @@
 							<table width="100%">
 								<tbody>
 									<tr>
-										<th>Antinuclear antibodies</th>
-										<td>Normal</td>
-									</tr>
-									<tr>
-										<th>Complement levels</th>
-										<td>Normal</td>
-									</tr>
-									<tr>
-										<th>Immunoglobins</th>
-										<td>Normal</td>
+										<th>Causative agent</th>
+										<td>No known allergies or adverse reactions</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</text>
+					<!--Order of section entries-->
 					<orderedBy>
 						<coding>
 							<system value="http://hl7.org/fhir/list-order"/>
@@ -365,9 +276,9 @@
 							<display value="Sorted by System"/>
 						</coding>
 					</orderedBy>
-					<!--Reference to the resources where information for this section can be found-->
+					<!--Reference to Allergies List as the source of information for this section-->
 					<entry>
-						<reference value="urn:uuid:urn:uuid:b3327e38-00e2-4de9-b3e1-df326d8baf86"/>
+						<reference value="urn:uuid:4d2876df-9027-4baa-a64d-3f3180ddd4ec"/>
 					</entry>
 				</section>
 				<section>
@@ -387,7 +298,9 @@
 								<tbody>
 									<tr>
 										<th>Name of research study</th>
-										<td><a href="http://www.kcl.ac.uk/lsm/research/divisions/diiid/departments/rheumatology/research/clinical/current/apippra/apippra.aspx">APIPPRA</a></td>
+										<td>
+											<a href="http://www.kcl.ac.uk/lsm/research/divisions/diiid/departments/rheumatology/research/clinical/current/apippra/apippra.aspx">APIPPRA</a>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -397,30 +310,6 @@
 					<!--<entry>
 						<reference value="urn:uuid:urn:uuid:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
 					</entry-->
-				</section>
-				<section>
-					<title value="Patient and carer concerns, expectations and wishes"/>
-					<!--SNOMED CT classification of section-->
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1052941000000107"/>
-							<display value="Patient and carer concerns, expectations and wishes"/>
-						</coding>
-					</code>
-					<text>
-						<status value="generated"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Patient and carer concerns, expectations and wishes</th>
-										<td>I just want to stop hurting all the time and to have some energy back.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
 				</section>
 				<section>
 					<title value="Social context"/>
@@ -455,6 +344,130 @@
 					</text>
 				</section>
 				<section>
+					<title value="Clinical review of systems"/>
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="887121000000105"/>
+							<display value="Review of systems"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Clinical review of systems</th>
+										<td>Poor Sleep</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
+				</section>
+				<!--Examination findings-->
+				<section>
+					<title value="Examination findings"/>
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="715851000000102"/>
+							<display value="Examination findings"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Examination findings</th>
+										<td>Musculoskeletal system - Trapezius discomfort on elevation of the shoulders. Discomfort on active neck movements.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
+					<orderedBy>
+						<coding>
+							<system value="http://hl7.org/fhir/list-order"/>
+							<code value="system"/>
+							<display value="Sorted by System"/>
+						</coding>
+					</orderedBy>
+					<!--Reference to the resource where information for this section can be found, note as the string describing this is not machine processible, this coded entry has been removed.-->
+					<!--<entry>
+						<reference value="urn:uuid:745c4a67-563c-41c5-828e-bc1129df6c3a"/>
+					</entry>-->
+				</section>
+				<section>
+					<title value="Patient and carer concerns, expectations and wishes"/>
+					<!--SNOMED CT classification of section-->
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1052941000000107"/>
+							<display value="Patient and carer concerns, expectations and wishes"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Patient and carer concerns, expectations and wishes</th>
+										<td>I just want to stop hurting all the time and to have some energy back.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
+				</section>
+				<section>
+					<title value="Investigation results"/>
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1082101000000102"/>
+							<display value="Investigation results"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Investigation result</th>
+										<td>Antinuclear antibodies: Normal</td>
+									</tr>
+									<tr>
+										<th>Investigation result</th>
+										<td>Complement levels: Normal</td>
+									</tr>
+									<tr>
+										<th>Investigation result</th>
+										<td>Immunoglobins:Normal</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
+					<orderedBy>
+						<coding>
+							<system value="http://hl7.org/fhir/list-order"/>
+							<code value="system"/>
+							<display value="Sorted by System"/>
+						</coding>
+					</orderedBy>
+					<!--Reference to the resources where information for this section can be found-->
+					<entry>
+						<reference value="urn:uuid:urn:uuid:b3327e38-00e2-4de9-b3e1-df326d8baf86"/>
+					</entry>
+				</section>
+				<section>
 					<title value="Medications and medical devices"/>
 					<code>
 						<coding>
@@ -485,7 +498,7 @@
 										<td>1 x 10mg tablet</td>
 									</tr>
 									<tr>
-										<th>Dose timing</th>
+										<th>Medication frequency</th>
 										<td>Once per day</td>
 									</tr>
 									<tr>
@@ -494,7 +507,15 @@
 									</tr>
 									<tr>
 										<th>Medication change</th>
-										<td>Status: Medication added <br/>Description of amendment: Amended to 100ml/day of energy fibre feed given via PEG tube over 10hrs (10am-7pm). Mr. Linacre has been supplied with a feeding pump and a backpack has been ordered to enable him to feed while out in the day.</td>
+										<td>Status: Medication added</td>
+									</tr>
+									<tr>
+										<th>Start datetime</th>
+										<td>11/05/17</td>
+									</tr>
+									<tr>
+										<th>End datetime</th>
+										<td>Trial for 2x weeks</td>
 									</tr>
 									<tr>
 										<th>Reason for medication change</th>
@@ -510,14 +531,6 @@
 									</tr>
 									<tr>
 										<td>Patient given 2x week prescription in clinic. GP to please review in 2xweeks and renew or amend prescription as necessary.</td>
-									</tr>
-								</tbody>
-							</table>
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Medical devices</th>
-										<td>Mr. Linacre has been supplied with a feeding pump.</td>
 									</tr>
 								</tbody>
 							</table>
@@ -652,10 +665,10 @@
 	</entry>
 	<!--Medication List Example 1-->
 	<entry>
-		<fullUrl value="urn:uuid:e0a1f0cf-444a-4962-96cb-e396713cf7b7"/>
+		<fullUrl value="urn:uuid:cef7f8d5-78e3-4866-89f1-62470d6fd636"/>
 		<resource>
 			<List>
-				<id value="e0a1f0cf-444a-4962-96cb-e396713cf7b7"/>
+				<id value="cef7f8d5-78e3-4866-89f1-62470d6fd636"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Medication-List-1"/>
 				</meta>
@@ -823,7 +836,7 @@
 	</entry>
 	<!--Diagnoses 1-->
 	<entry>
-		<fullUrl value="urn:uuid:093a1c15-3e61-443b-8884-3a033590722b"/>
+		<fullUrl value="urn:uuid:7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
 		<resource>
 			<Condition>
 				<id value="7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
@@ -869,7 +882,7 @@
 		<fullUrl value="urn:uuid:0e5811d6-6e36-491a-9d2c-612149d4b3b9"/>
 		<resource>
 			<Condition>
-				<id value="7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
+				<id value="0e5811d6-6e36-491a-9d2c-612149d4b3b9"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
 				</meta>
@@ -913,7 +926,7 @@
 		<fullUrl value="urn:uuid:5af206c3-b5b5-4140-a9fa-4c4daf59331c"/>
 		<resource>
 			<Condition>
-				<id value="7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
+				<id value="5af206c3-b5b5-4140-a9fa-4c4daf59331c"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
 				</meta>
@@ -956,7 +969,7 @@
 		<fullUrl value="urn:uuid:8a29b416-2b8e-43db-bb92-578ba36961af"/>
 		<resource>
 			<Condition>
-				<id value="7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
+				<id value="8a29b416-2b8e-43db-bb92-578ba36961af"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
 				</meta>
@@ -1221,6 +1234,56 @@
 			</Practitioner>
 		</resource>
 	</entry>
+	<!--Practitioner role - General Medical Practitioner-->
+	<entry>
+		<fullUrl value="urn:uuid:fcc956a8-a96f-4bd5-b0b2-196bbb1f0f66"/>
+		<resource>
+			<PractitionerRole>
+				<id value="fcc956a8-a96f-4bd5-b0b2-196bbb1f0f66"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+				</meta>
+				<practitioner>
+					<reference value="urn:uuid:37fdbe18-3dd5-4b37-b090-a2f222bc968c"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:5c2e339d-3b3c-4de8-b61c-00cc9a4d6e41"/>
+				</organization>
+				<code>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+						<code value="R0260"/>
+						<display value="General Medical Practitioner"/>
+					</coding>
+				</code>
+			</PractitionerRole>
+		</resource>
+	</entry>
+	<!--Practitioner roles -Consultant-->
+	<entry>
+		<fullUrl value="urn:uuid:cd734ce9-468d-4a36-8dac-e453aa4747e0"/>
+		<resource>
+			<PractitionerRole>
+				<id value="cd734ce9-468d-4a36-8dac-e453aa4747e0"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+				</meta>
+				<practitioner>
+					<reference value="urn:uuid:9aaf5503-c48e-4ff8-9365-85f06295a11b"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:1cb3ed43-370c-4a1b-a6d4-1fab57f1646f"/>
+				</organization>
+				<code>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+						<code value="R0050"/>
+						<display value="Consultant"/>
+					</coding>
+				</code>
+			</PractitionerRole>
+		</resource>
+	</entry>
 	<!--Organization-Example-1-->
 	<entry>
 		<fullUrl value="urn:uuid:5c2e339d-3b3c-4de8-b61c-00cc9a4d6e41"/>
@@ -1297,7 +1360,7 @@
 		<fullUrl value="urn:uuid:4d2876df-9027-4baa-a64d-3f3180ddd4ec"/>
 		<resource>
 			<List>
-				<id value="ce5ce6f4-3834-45f7-8b4c-2d1f5125f37c"/>
+				<id value="4d2876df-9027-4baa-a64d-3f3180ddd4ec"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergies-List-1"/>
 				</meta>
@@ -1330,37 +1393,14 @@
 						<reference value="urn:uuid:c75a9645-399e-41eb-95d7-0af622e2e870"/>
 					</item>
 				</entry>
-			</List>
-		</resource>
-	</entry>
-	<entry>
-		<fullUrl value="urn:uuid:c75a9645-399e-41eb-95d7-0af622e2e870"/>
-		<resource>
-			<AllergyIntolerance>
-				<id value="c75a9645-399e-41eb-95d7-0af622e2e870"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-AllergyIntolerance-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="52d86ac1-e7c3-41df-a5b6-fc743ee7f4f9"/>
-				</identifier>
-				<clinicalStatus value="active"/>
-				<verificationStatus value="confirmed"/>
-				<type value="allergy"/>
-				<code>
+				<emptyReason>
 					<coding>
 						<system value="http://snomed.info/sct"/>
 						<code value="716186003"/>
 						<display value="No known allergy"/>
 					</coding>
-					<text value="No known allergies or adverse reactions"/>
-				</code>
-				<patient>
-					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
-				</patient>
-				<onsetDateTime value="2012-01-12T12:00:00+00:00"/>
-			</AllergyIntolerance>
+				</emptyReason>
+			</List>
 		</resource>
 	</entry>
 	<!--Procedure Example-->
