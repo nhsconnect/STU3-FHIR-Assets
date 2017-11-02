@@ -31,7 +31,6 @@
 						<reference value="urn:uuid:37fdbe18-3dd5-4b37-b090-a2f222bc968c"/>
 					</valueReference>
 				</extension>
-				<!-- Extension to carry details of the Correspondence Care Setting Type.  Rheumatology service is a member of the 999000381000000107 | Correspondence care setting type simple reference set |-->
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
 					<valueCodeableConcept>
 						<coding>
@@ -138,7 +137,6 @@
 				</section>
 				<section>
 					<title value="Diagnoses"/>
-					<!--SNOMED CT classification of section-->
 					<code>
 						<coding>
 							<system value="http://snomed.info/sct"/>
@@ -181,7 +179,7 @@
 					</orderedBy>
 					<!--Reference to the Condition resource which carries supporting information for this section.-->
 					<entry>
-						<reference value="urn:uuid:093a1c15-3e61-443b-8884-3a033590722b"/>
+						<reference value="urn:uuid:7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
 						<display value="Multiple joint pain"/>
 					</entry>
 					<entry>
@@ -252,7 +250,7 @@
 					</orderedBy>
 					<!--Reference to the resources where information for this section can be found-->
 					<entry>
-						<reference value="urn:uuid:urn:uuid:093a1c15-3e61-443b-8884-3a033590722b"/>
+						<reference value="urn:uuid:urn:uuid:7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
 					</entry>
 				</section>
 				<section>
@@ -316,10 +314,6 @@
 							</table>
 						</div>
 					</text>
-					<!--A placeholder for coded entries to be included if needed-->
-					<!--<entry>
-						<reference value="urn:uuid:urn:uuid:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
-					</entry-->
 				</section>
 				<section>
 					<title value="Social context"/>
@@ -406,10 +400,6 @@
 							<display value="Sorted by System"/>
 						</coding>
 					</orderedBy>
-					<!--Reference to the resource where information for this section can be found, note as the string describing this is not machine processible, this coded entry has been removed.-->
-					<!--<entry>
-						<reference value="urn:uuid:745c4a67-563c-41c5-828e-bc1129df6c3a"/>
-					</entry>-->
 				</section>
 				<section>
 					<title value="Patient and carer concerns, expectations and wishes"/>
@@ -633,7 +623,6 @@
 						<system value="http://snomed.info/sct"/>
 						<code value="17436001"/>
 						<display value="Medical consultation with outpatient"/>
-						<!--This is a member of the Refset Id 999000351000000101-->
 					</coding>
 				</type>
 				<!--Reference to the patient as the subject of the Encounter-->
@@ -749,8 +738,8 @@
 					<flag>
 						<coding>
 							<system value="https://fhir.nhs.uk/STU3/ITK-PatientMedicationChangeType-1"/>
-							<code value="09"/>
-							<display value="Active"/>
+							<code value="04"/>
+							<display value="Addition"/>
 						</coding>
 					</flag>
 					<item>
@@ -774,14 +763,26 @@
 					<reference value="urn:uuid:cc869708-b975-4fe5-a502-a6c22675c31e"/>
 					<display value="Amitriptyline"/>
 				</medicationReference>
+				<effectivePeriod>
+					<start value="2017-05-11"/>
+					<end value="2017-05-25"/>
+				</effectivePeriod>
 				<subject>
 					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
 				</subject>
 				<taken value="y"/>
-				<!--Update all dosage details and use edis example as basis-->
+				<reasonCode>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="44186003"/>
+						<display value="Dyssomnia"/>
+					</coding>
+				</reasonCode>
 				<dosage>
 					<text value="1 x 10mg tablet"/>
-					<!--This is wrong - taken from edis example as a base template-->
+					<additionalInstruction>
+						<text value="To be taken one hour before bed."/>
+					</additionalInstruction>
 					<timing>
 						<repeat>
 							<frequency value="1"/>
@@ -798,7 +799,6 @@
 						</coding>
 					</route>
 					<doseQuantity>
-						<!--Check dose quantity and codes used-->
 						<value value="10"/>
 						<unit value="mg"/>
 						<system value="http://unitsofmeasure.org"/>
@@ -836,7 +836,7 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-Flag-1"/>
 				</meta>
-				<!--This references the MedicationStatement - check this is correct.-->
+				<!--This references the MedicationStatement.-->
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-ITK-MedicationFlagAssociation-1">
 					<valueReference>
 						<reference value="urn:uuid:a7da3060-d2f5-4761-b010-aa04e9e491dc"/>
@@ -1040,81 +1040,8 @@
 			</Condition>
 		</resource>
 	</entry>
-	<!--This following string describing the Neck pain, is not machine processible, so a coded entry is not required here.-->
-	<!--Examination observation 1-->
-	<!--	<entry>
-		<fullUrl value="urn:uuid:745c4a67-563c-41c5-828e-bc1129df6c3a"/>
-		<resource>
-			<Observation>
-				<id value="745c4a67-563c-41c5-828e-bc1129df6c3a"/>
-				<meta>
-					-->
-	<!--Identifies the profile being used-->
-	<!--
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Observation-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="f36789a5-2ca3-41fc-a5e4-1a61ff136276"/>
-				</identifier>
-				<status value="final"/>
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="81680005"/>
-						<display value="Neck pain"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
-				</subject>
-				<effectiveDateTime value="2016-01-02T08:39:16+00:00"/>
-				<performer>
-					<reference value="urn:uuid:9aaf5503-c48e-4ff8-9365-85f06295a11b"/>
-				</performer>
-				<valueString value="Musculoskeletal system - Trapezius discomfort on elevation of the shoulders. Discomfort on active  neck movements."/>
-			</Observation>
-		</resource>
-	</entry>-->
-	<!--This following string describing the History, is not machine processible, so a coded entry is not required here.-->
-	<!--history observation 1-->
-	<!--<entry>
-		<fullUrl value="urn:uuid:b14fa02e-9df0-4a46-bcd8-1aab49aca483"/>
-		<resource>
-			<Observation>
-				<id value="b14fa02e-9df0-4a46-bcd8-1aab49aca483"/>
-				<meta>
-					-->
-	<!--Identifies the profile being used-->
-	<!--
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Observation-1"/>
-				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="3e716b2e-c32e-4909-9738-f65663193b7b"/>
-				</identifier>
-				<status value="final"/>
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="717121000000105"/>
-						<display value="History"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
-				</subject>
-				<effectiveDateTime value="2016-01-02T08:39:16+00:00"/>
-				<performer>
-					<reference value="urn:uuid:9aaf5503-c48e-4ff8-9365-85f06295a11b"/>
-				</performer>
-				<comment value="Miss Gently has had left wrist pain since December 2016. Since then she has also had right wrist pain and aching in the shoulders and knees. She describes tingling and burning in the forearms and in the calves and shins. Her symptoms are gradually worsening and they are now constant. She feels tired all the time and has broken unrefreshing sleep. She has been diagnosed with Type 1 diabetes and hypothyroidism."/>
-			</Observation>
-		</resource>
-	</entry>-->
 	<!--Patient-Example-1-->
 	<entry>
-		<!--Same guid as edis patient and same patient - correct-->
 		<fullUrl value="urn:uuid:bad2cc22-8186-437c-9531-68ff1e89104d"/>
 		<resource>
 			<Patient>
@@ -1448,7 +1375,7 @@
 				<performedDateTime value="2017-05-11T14:38:00+00:00"/>
 				<!--Reference to the condition which is the reason why this procedure has been performed-->
 				<reasonReference>
-					<reference value="urn:uuid:093a1c15-3e61-443b-8884-3a033590722b"/>
+					<reference value="urn:uuid:7c09df38-890a-4d4c-bb86-00f93cad74a5"/>
 				</reasonReference>
 			</Procedure>
 		</resource>
