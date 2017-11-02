@@ -1,0 +1,2524 @@
+<html xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns="http://hl7.org/fhir">
+   <head>
+      <title>FHIR Renderer</title><style type="text/css">
+						body { color: #000000; font-size: 12pt; line-height: normal; font-family: Verdana, Arial, sans-serif; margin: 10px; }
+						h1 { font-size: 14pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px;}
+						h2 { font-size: 12pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h3 { font-size: 10pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h4 { font-size: 10pt; font-weight: bold; text-decoration: underline; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h5 { font-size: 10pt; font-weight: normal; text-decoration: underline;  color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h6 { font-size: 10pt; font-weight: normal; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						table { border: 0px solid #000000; table-layout: fixed; text-align: left; width: 100%;}
+						th.default {padding: 3px; color: #000000; background-color: #eeeeee; text-align: left;}
+						th {padding: 3px;}
+						td {padding: 3px;}
+						/*Banner styles*/
+						div.banner {margin-bottom: 30px; border: 1px solid #000000; background-color: #eeeeee;}
+						div.banner TABLE {border: 1px solid black; background-color: #ffffff; margin-bottom: 5px; }
+						div.banner TD {background-color: #eeeeee; vertical-align: top; padding: 3px; font-weight: normal; font-size: 12pt;}
+						div.banner TH {background-color: #dddddd; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner TABLE P {margin: 0;}
+						div.banner-partial-cream {margin-bottom: 30px; border: 1px solid #000000; background-color: #ffffee; padding-left: 5px;}
+						div.banner-partial-cream TABLE {border: 0px; background-color: #ffffee;}
+						div.banner-partial-cream TD {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-cream TH {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: normal; font-style:italic; font-size: 12pt;}
+						div.banner-partial-cream TABLE P {margin: 0;}
+						div.banner-partial-violet {margin-bottom: 30px; border: 1px solid #000000; background-color: #eeeeff; padding-left: 5px;}
+						div.banner-partial-violet TABLE {border: 0px; background-color: #eeeeff; }
+						div.banner-partial-violet TD {background-color: #eeeeff; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-violet TH {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: normal; font-style:italic; font-size: 12pt;}
+						div.banner-partial-violet TABLE P {margin: 0;}
+						div.banner-partial-gray {margin-bottom: 30px; border: 0px solid #000000; background-color: #ffffff; padding-left: 5px;}
+						div.banner-partial-gray TABLE {border: 1px solid black; background-color: #ffffff; margin-bottom: 5px; }
+						div.banner-partial-gray TD {background-color: #eeeeee; vertical-align: top; padding: 3px; font-weight: normal; font-size: 12pt;}
+						div.banner-partial-gray TH {background-color: #dddddd; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-gray TABLE P {margin: 0; }
+						.label {font-style:italic; font-weight: normal;}
+						.bold {font-weight: bold;}
+						.bold-italic {font-style:italic; font-weight: bold;}
+						
+						/******************** CONFIG OPTIONS FOR RENDERING - START ********************/
+						/************************************************************************************************/
+						/* The FHIR Renderer has two options to either display the Full resource with all elements or a Partial resource with chosen elements,
+							to hide a particular view then un-comment the statement to hide, e.g. un-comment display:none so it will not display that particular view. */
+						#bundledetails-full {display: none;}
+						#full-resources {display: none;}
+						//#partial-resources {display: none;}
+						/**********************************************************************************************/
+						/******************** CONFIG OPTIONS FOR RENDERING - END ********************/
+				</style></head>
+   <body>
+      <div id="bundledetails-full">
+         <div id="bundledetails">
+            <h2>Bundle Details</h2> Bundle id: e9ab79f4-ca79-440d-a125-80c7a8ecb460<br></br>Type: document<br></br>Full Url: urn:uuid:db3a110c-3a3d-457d-913b-1473f3be2e32 urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65
+            urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029 urn:uuid:36704e79-7cb8-4813-8588-9c17ef3c7f6d
+            urn:uuid:b3650c3d-07cf-4490-97e8-5a9d81b4ddfe urn:uuid:c5f47e55-a2a0-4090-bebc-70166521a470
+            urn:uuid:52a2895a-7c29-49cb-a940-49e8b4e1b2d0 urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7
+            urn:uuid:b26285f5-aea0-4b1f-b0eb-bfcaa6a5d15c urn:uuid:07b3cbda-5d14-4fed-b84a-91d77ab500c2
+            urn:uuid:393db67a-1cc8-45b7-b0e2-1f1f5893e542 urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f
+            urn:uuid:23a936ae-65bb-48cf-9881-86e4b952289f urn:uuid:fcc956a8-a96f-4bd5-b0b2-196bbb1f0f66
+            urn:uuid:cd734ce9-468d-4a36-8dac-e453aa4747e0 urn:uuid:3eb488e4-f1b1-433d-91ba-e9fe60550211
+            urn:uuid:0b589972-4d02-4636-a090-964fe1952aa9 urn:uuid:02cccb1a-e461-4237-bb64-cb342ea57135
+            urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f<br></br><br></br></div>
+      </div>
+      <div id="partial-resources">
+         <h1>Patient Demographics</h1>
+         <div id="patient-header-partial" class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Patient name</th>
+                     <th>Date of birth</th>
+                     <th>Gender</th>
+                     <th>Ethnicity:</th>
+                     <th>Identifier</th>
+                  </tr>
+                  <tr>
+                     <td>Gently, Ophelia
+                        (Miss)
+                        
+                     </td>
+                     <td>01-Apr-1984</td>
+                     <td>female</td>
+                     <td>British, Mixed British</td>
+                     <td><span class="label">Number present and verified</span><br></br>987654321<br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p></p>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><span class="label">Home address</span></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>22 Acacia Road</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>BM9 6PL</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><span class="label">Mobile phone: </span>077 7777 776<br></br><span class="label">Home email: </span>ophelia@gently.net<br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="clinical-document-partial" class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Document Created</span></td>
+                     <td>11-May-2017 10:00</td>
+                  </tr>
+                  <tr>
+                     <td><span class="label">Document Owner</span></td>
+                     <td>St Crispin's Hospital</td>
+                  </tr>
+                  <tr>
+                     <td><span class="label">Authored By</span></td>
+                     <td>Rigsby, Rupert 
+                        (Mr)
+                        
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-violet">
+            <h2>Encounter Summary</h2>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Type </span></td>
+                     <td> Face to face assessment</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Time </span></td>
+                     <td>11-May-2017 10:00 to 11-May-2017 10:00</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Disposition </span></td>
+                     <td>Home</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Care Setting Type </span></td>
+                     <td>Ophthalmology service</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="bold">Other participant(s) in this document</span></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-gray">
+            <p>
+               <h1>Attendance details</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <td colspan="2" style="width:100%">Dear Dr. O’Reilly,<br></br>I had the pleasure of meeting Mr. Perrin in the orthoptic outpatient clinic today,
+                                 referred by Michael McMonagle, Occupational Therapist, Head Injury Team, St Crispin’s
+                                 Hospital, Donaldstown, DO5 7TP<br></br>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Date of appointment/contact</th>
+                              										
+                              <td>19-May-2017 09:00</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Contact type</th>
+                              										
+                              <td>First attendance</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Consultation method</th>
+                              										
+                              <td>Face-to-face</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Responsible Healthcare professional</th>
+                              										
+                              <td>Rupert Rigsby</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th rowspan="2">Seen by</th>
+                              										
+                              <td>Rupert Rigsby</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <td>Role: Orthoptist</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Outcome of outpatient attendance</th>
+                              										
+                              <td>Discharged (referred to ophthalmologist)</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Diagnoses</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Diagnosis</th>
+                              										
+                              <td>Right IV cranial nerve palsy</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>History</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Presenting complaint or issue</th>
+                              										
+                              <td>Diplopia and ocular motility defect</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Allergies and adverse reactions</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Causative agent</th>
+                              										
+                              <td>No known allergies or adverse reactions</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Examination findings</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Examination</th>
+                              										
+                              <td>Ocular mobility testing</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Examination findings</th>
+                              										
+                              <td>Right hypertropia</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Procedures</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Procedure</th>
+                              										
+                              <td>
+                                 											
+                                 <p>Fitted a prism on patient's glasses (right side)</p>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Clinical summary</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Clinical Summary</th>
+                              										
+                              <td>Referred from the head injury team as patient experiencing diplopia. Diagnosed with
+                                 a right IV nerve palsy. Fitted a prism on patients glasses to relieve diplopia.
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Plan and requested actions</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Actions for healthcare professionals</th>
+                              										
+                              <td>Referred to ophthalmologist by Rupert Rigsby on 19/05/17</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Actions for patient or their carer</th>
+                              										
+                              <td>Patient has been advised to inform the DVLA regarding the diplopia and fresnel prism</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Participation in research</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Name of research study</th>
+                              										
+                              <td>
+                                 											<a href="http://www.kcl.ac.uk/lsm/research/divisions/diiid/departments/rheumatology/research/clinical/current/apippra/apippra.aspx">APIPPRA</a>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Social context</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Occupational history</th>
+                              										
+                              <td>Unemployed</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Alcohol intake</th>
+                              										
+                              <td>10-12 units weekly</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Smoking</th>
+                              										
+                              <td>Ex-smoker</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Clinical review of systems</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Clinical review of systems</th>
+                              										
+                              <td>Poor Sleep</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Patient and carer concerns, expectations and wishes</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Patient and carer concerns, expectations and wishes</th>
+                              										
+                              <td>I just want to stop hurting all the time and to have some energy back.</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Investigation results</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Antinuclear antibodies: Normal</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Complement levels: Normal</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Immunoglobins:Normal</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Medications and medical devices</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Medication name</th>
+                              										
+                              <td>Amitriptyline</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication form</th>
+                              										
+                              <td>Tablet</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Route</th>
+                              										
+                              <td>Oral</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Dose</th>
+                              										
+                              <td>1 x 10mg tablet</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication frequency</th>
+                              										
+                              <td>Once per day</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Additional instructions</th>
+                              										
+                              <td>To be taken one hour before bed</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication change</th>
+                              										
+                              <td>Status: Medication added</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Start date/time</th>
+                              										
+                              <td>11/05/17</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>End date/time</th>
+                              										
+                              <td>Trial for 2x weeks</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Reason for medication change</th>
+                              										
+                              <td>Sleep disturbance</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Link to indication record</th>
+                              										
+                              <td>A link to the record which contains the Indication for this medication order.</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th rowspan="2">Medication recommendations</th>
+                              										
+                              <td>Titrating upwards according to response and tolerance.</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <td>Patient given 2x week prescription in clinic. GP to please review in 2xweeks and renew
+                                 or amend prescription as necessary.
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <h1>Information and advice given</h1>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Information and advice given</th>
+                              										
+                              <td>The patient was advised that previous abnormal blood results are not of any clinical
+                                 significant other than reflecting known diagnosis of thyroid disease. 
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text>
+               <hr></hr>
+               <hr></hr>
+            </p>
+         </div>
+         <h1>Distribution list</h1>
+         <div class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>O`Reilly, C
+                        (Dr)
+                        
+                     </td>
+                     <td></td>
+                     <td>01234 956412</td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="full-resources">
+         <div id="patient-full" class="banner">
+            <h1>Patient Demographics</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Name: </strong></th>
+                     <th><strong>Family: </strong></th>
+                     <th><strong>Given: </strong></th>
+                     <th><strong>Prefix: </strong></th>
+                     <th><strong>Suffix: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>usual</td>
+                     <td></td>
+                     <td>Gently<br></br></td>
+                     <td>Ophelia<br></br></td>
+                     <td>Miss<br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Date of Birth: </strong><br></br>1984-04-01
+                     </td>
+                     <td><strong>Gender: </strong><br></br>female
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr></tr>
+                  <tr></tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Deceased DateTime: </strong><br></br></td>
+                     <td><strong>Deceased Boolean: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><strong>Address: </strong><br></br>home
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>22 Acacia Road</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>BM9 6PL</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><strong>System: </strong>phone<br></br><strong>Value: </strong>077 7777 776<br></br><strong>Use: </strong>mobile<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br><strong>System: </strong>email<br></br><strong>Value: </strong>ophelia@gently.net<br></br><strong>Use: </strong>home<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>maritalStatus system: </strong><br></br></td>
+                     <td><strong>maritalStatus version: </strong><br></br></td>
+                     <td><strong>maritalStatus code: </strong><br></br></td>
+                     <td><strong>maritalStatus display: </strong><br></br></td>
+                     <td><strong>maritalStatus userselected: </strong><br></br></td>
+                     <td><strong>maritalStatus text: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>multipleBirthBoolean: </strong><br></br></td>
+                     <td><strong>multipleBirthInteger: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Photo contentType: </strong></th>
+                     <th><strong>Photo language: </strong></th>
+                     <th><strong>Photo data: </strong></th>
+                     <th><strong>Photo url: </strong></th>
+                     <th><strong>Photo size: </strong></th>
+                     <th><strong>Photo hash: </strong></th>
+                     <th><strong>Photo title: </strong></th>
+                     <th><strong>Photo creation: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Communication</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>System:</strong></th>
+                     <th><strong>Code:</strong></th>
+                     <th><strong>Display:</strong></th>
+                     <th><strong>Text:</strong></th>
+                     <th><strong>Preferred:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Care Provider</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Reference:</strong></th>
+                     <th><strong>Display:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Managing Organization</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Reference:</th>
+                     <th>Display:</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Link</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Other reference:</strong></th>
+                     <th><strong>Type:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="practitioner" class="banner">
+            <h1>Practitioner</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Name: </strong></th>
+                     <th><strong>Family: </strong></th>
+                     <th><strong>Given: </strong></th>
+                     <th><strong>Prefix: </strong></th>
+                     <th><strong>Suffix: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td>Rigsby<br></br>O`Reilly<br></br></td>
+                     <td>Rupert <br></br>C<br></br></td>
+                     <td>Mr<br></br>Dr<br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><strong>Address: </strong><br></br></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>Ophthalmology/orthoptics clinic</td>
+                              </tr>
+                              <tr>
+                                 <td>St Crispin's Hospital</td>
+                              </tr>
+                              <tr>
+                                 <td>Donaldstown</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>DO5 7TP</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><strong>System: </strong>email<br></br><strong>Value: </strong>orthde@stcrispins.nhs.uk<br></br><strong>Use: </strong>work<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br><strong>System: </strong>phone<br></br><strong>Value: </strong>01234 956412<br></br><strong>Use: </strong>work<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Active: </strong></td>
+                     <td><strong>Gender: </strong></td>
+                     <td><strong>Date of Birth: </strong></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Photo contentType: </strong></th>
+                     <th><strong>Photo language: </strong></th>
+                     <th><strong>Photo data: </strong></th>
+                     <th><strong>Photo url: </strong></th>
+                     <th><strong>Photo size: </strong></th>
+                     <th><strong>Photo hash: </strong></th>
+                     <th><strong>Photo title: </strong></th>
+                     <th><strong>Photo creation: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <hr></hr><strong>Qualification</strong><strong>Communication</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>System:</strong></th>
+                     <th><strong>Code:</strong></th>
+                     <th><strong>Display:</strong></th>
+                     <th><strong>Text:</strong></th>
+                     <th><strong>Preferred:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="compositionheader" class="banner">
+            <h1>Composition Header</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Id: </strong></th>
+                     <th><strong>Identifier system: </strong></th>
+                     <th><strong>Identifier value: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>db3a110c-3a3d-457d-913b-1473f3be2e32</td>
+                     <td></td>
+                     <td>1de8bd94-a4ff-4d69-a504-b04dd1e526ea</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Date: </strong></th>
+                     <th><strong>Type coding system: </strong></th>
+                     <th>Type coding code: </th>
+                  </tr>
+                  <tr>
+                     <td>2017-05-11T10:00:00+00:00</td>
+                     <td>http://snomed.info/sct</td>
+                     <td>823681000000100</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Type text:</strong></th>
+                     <th><strong>Title: </strong></th>
+                     <th><strong>Status: </strong></th>
+                     <th><strong>Confidentiality: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>Outpatient letter</td>
+                     <td>final</td>
+                     <td>V</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Class coding system:</strong></th>
+                     <th><strong>Class coding code: </strong></th>
+                     <th><strong>Class coding display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Subject display: </strong></th>
+                     <th><strong>Subject reference: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>author reference</th>
+                     <th>author display</th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>attester mode</th>
+                     <th>attester time</th>
+                     <th>attester reference</th>
+                     <th>attester display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Custodian reference: </strong></th>
+                     <th><strong>Custodian display: </strong></th>
+                     <th><strong>Encounter: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:0b589972-4d02-4636-a090-964fe1952aa9</td>
+                     <td></td>
+                     <td>urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>event system</th>
+                     <th>event code</th>
+                     <th>event display</th>
+                     <th>event period start</th>
+                     <th>event period end</th>
+                     <th>event detail reference</th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="compsections" class="banner">
+            <h1>Composition Sections</h1>
+            <p>
+               <table>
+                  <tbody>
+                     <tr>
+                        <th>Title</th>
+                        <th>Code - System/Code/Display</th>
+                        <th>Mode</th>
+                        <th>OrderedBy - System/Code/Display</th>
+                        <th>Entry</th>
+                        <th>emptyReason - System/Code/Display</th>
+                     </tr>
+                     <tr>
+                        <td>Attendance details</td>
+                        <td>http://snomed.info/sct<br></br>1077881000000105<br></br>Attendance details
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Diagnoses</td>
+                        <td>http://snomed.info/sct<br></br>887161000000102<br></br>Diagnoses
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>History</td>
+                        <td>http://snomed.info/sct<br></br>717121000000105<br></br>History
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Allergies and adverse reactions</td>
+                        <td>http://snomed.info/sct<br></br>886921000000105<br></br>Allergies and adverse reactions
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:02cccb1a-e461-4237-bb64-cb342ea57135<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Examination findings</td>
+                        <td>http://snomed.info/sct<br></br>715851000000102<br></br>Examination findings
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Procedures</td>
+                        <td>http://snomed.info/sct<br></br>887171000000109<br></br>Procedures
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Clinical summary</td>
+                        <td>http://snomed.info/sct<br></br>887181000000106<br></br>Clinical summary
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Plan and requested actions</td>
+                        <td>http://snomed.info/sct<br></br>887201000000105<br></br>Plan and requested actions
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Participation in research</td>
+                        <td>http://snomed.info/sct<br></br>886751000000102<br></br>Participation in research
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Social context</td>
+                        <td>http://snomed.info/sct<br></br>887051000000101<br></br>Social context
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Clinical review of systems</td>
+                        <td>http://snomed.info/sct<br></br>887121000000105<br></br>Review of systems
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Patient and carer concerns, expectations and wishes</td>
+                        <td>http://snomed.info/sct<br></br>1052941000000107<br></br>Patient and carer concerns, expectations and wishes
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Investigation results</td>
+                        <td>http://snomed.info/sct<br></br>1082101000000102<br></br>Investigation results
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Medications and medical devices</td>
+                        <td>http://snomed.info/sct<br></br>933361000000108<br></br>Medications and medical devices
+                        </td>
+                        <td><br></br></td>
+                        <td>http://hl7.org/fhir/list-order<br></br>system<br></br>Sorted by System
+                        </td>
+                        <td>urn:uuid:36704e79-7cb8-4813-8588-9c17ef3c7f6d<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Information and advice given</td>
+                        <td>http://snomed.info/sct<br></br>1052951000000105<br></br>Information and advice given
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                  </tbody>
+               </table>
+               <hr></hr>
+               <table>
+                  <tbody>
+                     <tr>
+                        <th>Title</th>
+                        <th>Code - System/Code/Display</th>
+                        <th>Mode</th>
+                        <th>OrderedBy - System/Code/Display</th>
+                        <th>Entry</th>
+                        <th>emptyReason - System/Code/Display</th>
+                     </tr>
+                  </tbody>
+               </table>
+            </p>
+         </div>
+         <hr></hr>
+         <div class="banner-partial-gray">
+            <p>
+               <h2>Attendance details</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <td colspan="2" style="width:100%">Dear Dr. O’Reilly,<br></br>I had the pleasure of meeting Mr. Perrin in the orthoptic outpatient clinic today,
+                                 referred by Michael McMonagle, Occupational Therapist, Head Injury Team, St Crispin’s
+                                 Hospital, Donaldstown, DO5 7TP<br></br>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Date of appointment/contact</th>
+                              										
+                              <td>19-May-2017 09:00</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Contact type</th>
+                              										
+                              <td>First attendance</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Consultation method</th>
+                              										
+                              <td>Face-to-face</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Responsible Healthcare professional</th>
+                              										
+                              <td>Rupert Rigsby</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th rowspan="2">Seen by</th>
+                              										
+                              <td>Rupert Rigsby</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <td>Role: Orthoptist</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Outcome of outpatient attendance</th>
+                              										
+                              <td>Discharged (referred to ophthalmologist)</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Diagnoses</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Diagnosis</th>
+                              										
+                              <td>Right IV cranial nerve palsy</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>History</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Presenting complaint or issue</th>
+                              										
+                              <td>Diplopia and ocular motility defect</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Allergies and adverse reactions</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Causative agent</th>
+                              										
+                              <td>No known allergies or adverse reactions</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Examination findings</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Examination</th>
+                              										
+                              <td>Ocular mobility testing</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Examination findings</th>
+                              										
+                              <td>Right hypertropia</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Procedures</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Procedure</th>
+                              										
+                              <td>
+                                 											
+                                 <p>Fitted a prism on patient's glasses (right side)</p>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Clinical summary</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Clinical Summary</th>
+                              										
+                              <td>Referred from the head injury team as patient experiencing diplopia. Diagnosed with
+                                 a right IV nerve palsy. Fitted a prism on patients glasses to relieve diplopia.
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Plan and requested actions</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Actions for healthcare professionals</th>
+                              										
+                              <td>Referred to ophthalmologist by Rupert Rigsby on 19/05/17</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Actions for patient or their carer</th>
+                              										
+                              <td>Patient has been advised to inform the DVLA regarding the diplopia and fresnel prism</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Participation in research</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Name of research study</th>
+                              										
+                              <td>
+                                 											<a href="http://www.kcl.ac.uk/lsm/research/divisions/diiid/departments/rheumatology/research/clinical/current/apippra/apippra.aspx">APIPPRA</a>
+                                 										
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Social context</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Occupational history</th>
+                              										
+                              <td>Unemployed</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Alcohol intake</th>
+                              										
+                              <td>10-12 units weekly</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Smoking</th>
+                              										
+                              <td>Ex-smoker</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Clinical review of systems</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Clinical review of systems</th>
+                              										
+                              <td>Poor Sleep</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Patient and carer concerns, expectations and wishes</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Patient and carer concerns, expectations and wishes</th>
+                              										
+                              <td>I just want to stop hurting all the time and to have some energy back.</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Investigation results</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Antinuclear antibodies: Normal</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Complement levels: Normal</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Investigation result</th>
+                              										
+                              <td>Immunoglobins:Normal</td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Medications and medical devices</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Medication name</th>
+                              										
+                              <td>Amitriptyline</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication form</th>
+                              										
+                              <td>Tablet</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Route</th>
+                              										
+                              <td>Oral</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Dose</th>
+                              										
+                              <td>1 x 10mg tablet</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication frequency</th>
+                              										
+                              <td>Once per day</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Additional instructions</th>
+                              										
+                              <td>To be taken one hour before bed</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Medication change</th>
+                              										
+                              <td>Status: Medication added</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Start date/time</th>
+                              										
+                              <td>11/05/17</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>End date/time</th>
+                              										
+                              <td>Trial for 2x weeks</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Reason for medication change</th>
+                              										
+                              <td>Sleep disturbance</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th>Link to indication record</th>
+                              										
+                              <td>A link to the record which contains the Indication for this medication order.</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <th rowspan="2">Medication recommendations</th>
+                              										
+                              <td>Titrating upwards according to response and tolerance.</td>
+                              									
+                           </tr>
+                           									
+                           <tr>
+                              										
+                              <td>Patient given 2x week prescription in clinic. GP to please review in 2xweeks and renew
+                                 or amend prescription as necessary.
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><h2>Information and advice given</h2>
+               <text xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  						
+                  <status value="generated"></status>
+                  						
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     							
+                     <table width="100%">
+                        								
+                        <tbody>
+                           									
+                           <tr>
+                              										
+                              <th>Information and advice given</th>
+                              										
+                              <td>The patient was advised that previous abnormal blood results are not of any clinical
+                                 significant other than reflecting known diagnosis of thyroid disease. 
+                              </td>
+                              									
+                           </tr>
+                           								
+                        </tbody>
+                        							
+                     </table>
+                     						
+                  </div>
+                  					
+               </text><br></br><hr></hr>
+            </p>
+         </div>
+         <div id="encounter" class="banner">
+            <h1>Encounter</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>c6fa7540-9044-45a5-a91f-9b41cbb2db5b</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://tools.ietf.org/html/rfc4122</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Status</strong></th>
+                     <th><strong>Class</strong></th>
+                  </tr>
+                  <tr>
+                     <td>finished</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Status History: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Type System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://snomed.info/sct</td>
+                     <td></td>
+                     <td>325941000000100</td>
+                     <td> Face to face assessment</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Priority System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Patient Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>episodeOfCare Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>incomingReferral Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Participant</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Type Code/Display: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Individual Reference: </strong></th>
+                     <th><strong>Individual Display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td> / <br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td>urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Appointment Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Period Start: </th>
+                     <th>Period End: </th>
+                  </tr>
+                  <tr>
+                     <td>2017-05-11T10:00:00+00:00</td>
+                     <td>2017-05-11T10:00:00+00:00</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Length Value: </th>
+                     <th>Comparator: </th>
+                     <th>Unit: </th>
+                     <th>System: </th>
+                     <th>Code: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Reason System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Indication Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Hospitalization</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>preAdmissionIdentifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Origin Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>admitSource System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://hl7.org/fhir/admit-source</td>
+                     <td></td>
+                     <td>gp</td>
+                     <td>General Practitioner referral</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>admittingDiagnosis Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>reAdmission System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dietPreference System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>specialCourtesy System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>specialArrangement System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Destination Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dischargeDisposition System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://hl7.org/fhir/discharge-disposition</td>
+                     <td></td>
+                     <td>home</td>
+                     <td>Home</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dischargeDiagnosis Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Location</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Reference: </strong></th>
+                     <th><strong>Display: </strong></th>
+                     <th><strong>Status: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>serviceProvider Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>partOf Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="medicationstatement" class="banner">
+            <h1>Medication Statement</h1>
+         </div>
+      </div>
+   </body>
+</html>
