@@ -19,7 +19,7 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-OPL-Composition-1"/>
 				</meta>
-				<!-- Information Recipient 1 -->
+				<!-- Information Recipient 1, the patient -->
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
 					<valueReference>
 						<reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
@@ -29,6 +29,12 @@
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
 					<valueReference>
 						<reference value="urn:uuid:23a936ae-65bb-48cf-9881-86e4b952289f"/>
+					</valueReference>
+				</extension>
+				<!-- Information Recipient 3 -->
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
+					<valueReference>
+						<reference value="urn:uuid:d4d154f9-7bbc-4760-8cac-00f7974f5e6c"/>
 					</valueReference>
 				</extension>
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
@@ -134,6 +140,33 @@
 					<entry>
 						<reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
 					</entry>
+				</section>
+				<section>
+					<title value="Referrer details"/>
+					<code>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1052891000000108"/>
+							<display value="Referrer details"/>
+						</coding>
+					</code>
+					<text>
+						<status value="generated"/>
+						<div xmlns="http://www.w3.org/1999/xhtml">
+							<table width="100%">
+								<tbody>
+									<tr>
+										<th>Referrer details</th>
+										<td>
+											<p>Michael McMonagle</p>
+											<p>Role: Occupational Therapist</p>
+											<p>Organisation: Head Injury Team, St Crispin’s Hospital, Donaldstown, DO5 7TP</p>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</text>
 				</section>
 				<section>
 					<title value="Diagnoses"/>
@@ -1037,6 +1070,48 @@
 			</PractitionerRole>
 		</resource>
 	</entry>
+	<!--Practitioner-Example-,Occupational Therapist-->
+	<entry>
+		<fullUrl value="urn:uuid:d4d154f9-7bbc-4760-8cac-00f7974f5e6c"/>
+		<resource>
+			<Practitioner>
+				<id value="d4d154f9-7bbc-4760-8cac-00f7974f5e6c"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
+				</meta>
+				<name>
+					<family value="McMonagle"/>
+					<given value="Michael "/>
+					<prefix value="Mr"/>
+				</name>
+			</Practitioner>
+		</resource>
+	</entry>
+	<!--Practitioner role - Occupational Therapist-->
+	<entry>
+		<fullUrl value="urn:uuid:2e91ae72-2e6a-46de-86c4-95d9a3025f5f"/>
+		<resource>
+			<PractitionerRole>
+				<id value="2e91ae72-2e6a-46de-86c4-95d9a3025f5f"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+				</meta>
+				<practitioner>
+					<reference value="urn:uuid:d4d154f9-7bbc-4760-8cac-00f7974f5e6c"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:784e2b8a-8daa-42f3-8e65-ffe84aee00a5"/>
+				</organization>
+				<code>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+						<code value="R0950"/>
+						<display value="Occupational Therapist"/>
+					</coding>
+				</code>
+			</PractitionerRole>
+		</resource>
+	</entry>
 	<!--Practitioner roles -Consultant-->
 	<entry>
 		<fullUrl value="urn:uuid:cd734ce9-468d-4a36-8dac-e453aa4747e0"/>
@@ -1111,11 +1186,11 @@
 				<type>
 					<coding>
 						<system value="http://hl7.org/fhir/organization-type"/>
-						<code value="prov"/>
-						<display value="Healthcare Provider"/>
+						<code value="dept"/>
+						<display value="Hospital Department"/>
 					</coding>
 				</type>
-				<name value="St Crispin's Hospital"/>
+				<name value="Ophthalmology/orthoptics clinic"/>
 				<telecom>
 					<system value="phone"/>
 					<value value="01234 567890"/>
@@ -1123,6 +1198,41 @@
 				</telecom>
 				<address>
 					<line value="Ophthalmology/orthoptics clinic"/>
+					<line value="St Crispin's Hospital"/>
+					<line value="Donaldstown"/>
+					<postalCode value="DO5 7TP"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<!--Organization-Example-3-->
+	<entry>
+		<fullUrl value="urn:uuid:784e2b8a-8daa-42f3-8e65-ffe84aee00a5"/>
+		<resource>
+			<Organization>
+				<id value="784e2b8a-8daa-42f3-8e65-ffe84aee00a5"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="RX0000"/>
+				</identifier>
+				<type>
+					<coding>
+						<system value="http://hl7.org/fhir/organization-type"/>
+						<code value="dept"/>
+						<display value="Hospital Department"/>
+					</coding>
+				</type>
+				<name value="Head Injury Team"/>
+				<telecom>
+					<system value="phone"/>
+					<value value="01234 567890"/>
+					<use value="work"/>
+				</telecom>
+				<address>
+					<line value="Head Injury Team"/>
 					<line value="St Crispin's Hospital"/>
 					<line value="Donaldstown"/>
 					<postalCode value="DO5 7TP"/>
