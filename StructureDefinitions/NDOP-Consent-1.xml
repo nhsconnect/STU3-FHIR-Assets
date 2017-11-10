@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-24T15:10:23.491+01:00" />
+    <lastUpdated value="2017-11-09T15:46:52.117+00:00" />
     <tag>
       <code value="1" />
     </tag>
@@ -858,6 +858,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="Opt-out Source Code" />
+        <valueCode value="OP" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -903,6 +907,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="Opt-out Source Description" />
+        <valueString value="Online Process" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -981,7 +989,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -2061,13 +2069,6 @@
       </constraint>
       <mustSupport value="true" />
       <isSummary value="true" />
-      <binding>
-        <strength value="required" />
-        <description value="Code to support the Opt-out category." />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Category-1" />
-        </valueSetReference>
-      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -2275,6 +2276,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="Opt-out Category" />
+        <valueCode value="NDOP" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2321,6 +2326,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="Description of Opt-out Category" />
+        <valueString value="National Data Opt-out Programme" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2577,6 +2586,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="Reference" />
+        <valueString value="https://demographics.spineservices.nhs.uk/STU3/Patient/6101231234" />
+      </example>
       <condition value="ele-1" />
       <condition value="ref-1" />
       <constraint>
@@ -3176,7 +3189,7 @@
       <definition value="Who or what is controlled by this consent. Use group to identify a set of actors by some property they share (e.g. 'admitting officers')." />
       <comment value="The actor will either be the patient or the health care professional.  Note, the actor will never be the legal guardian, not will the actor be the legal power of attorney.  The opt-out service is limited to over 16 year olds, who will in most cases be advised by their GP about how to proceeed." />
       <min value="1" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Consent.actor" />
         <min value="0" />
@@ -3503,7 +3516,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -3728,6 +3741,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="INF" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3773,6 +3787,7 @@
       <type>
         <code value="string" />
       </type>
+      <fixedString value="informant" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3851,7 +3866,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -4025,11 +4040,11 @@
       </type>
       <example>
         <label value="Practitioner" />
-        <valueString value="https://proxy.sds.nhs.uk" />
+        <valueString value="https://directory.spineservices.nhs.uk/STU3/Practitioner/G1231234" />
       </example>
       <example>
         <label value="Patient" />
-        <valueString value="https://proxy.pds.nhs.uk" />
+        <valueString value="https://demographics.spineservices.nhs.uk/STU3/Patient/6101231234" />
       </example>
       <condition value="ele-1" />
       <condition value="ref-1" />
@@ -4799,7 +4814,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="https://proxy.sds.nhs.uk/X26" />
+      <fixedString value="https://directory.spineservices.nhs.uk/STU3/Organization/X26" />
       <condition value="ele-1" />
       <condition value="ref-1" />
       <constraint>
@@ -5117,7 +5132,7 @@
       <short value="Enforcement source for policy" />
       <definition value="Entity or Organization having regulatory jurisdiction or accountability for  enforcing policies pertaining to Consent Directives." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Consent.policy.authority" />
@@ -5690,6 +5705,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-PreferenceCodes-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10093,19 +10109,33 @@
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NDOP-OptOutSource-1" />
       </type>
     </element>
-    <element id="Consent.extension:OptOutSource.value[x]:valueCodeableConcept">
-      <path value="Consent.extension.valueCodeableConcept" />
-      <sliceName value="valueCodeableConcept" />
-      <binding>
-        <strength value="required" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-OptOutSource-1" />
-        </valueSetReference>
-      </binding>
-    </element>
     <element id="Consent.extension:OptOutSource.value[x]:valueCodeableConcept.coding.system">
       <path value="Consent.extension.valueCodeableConcept.coding.system" />
       <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-OptOutSource-1" />
+    </element>
+    <element id="Consent.extension:OptOutSource.value[x]:valueCodeableConcept.coding.code">
+      <path value="Consent.extension.valueCodeableConcept.coding.code" />
+      <example>
+        <label value="Opt-out Source Code" />
+        <valueCode value="OP" />
+      </example>
+    </element>
+    <element id="Consent.extension:OptOutSource.value[x]:valueCodeableConcept.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Consent.extension.valueCodeableConcept.coding.display" />
+      <example>
+        <label value="Opt-out Source Description" />
+        <valueString value="Online Process" />
+      </example>
+    </element>
+    <element id="Consent.extension:OptOutSource.value[x]:valueCodeableConcept.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Consent.extension.valueCodeableConcept.text" />
+      <max value="0" />
     </element>
     <element id="Consent.identifier">
       <path value="Consent.identifier" />
@@ -10167,13 +10197,6 @@
       <min value="1" />
       <max value="1" />
       <mustSupport value="true" />
-      <binding>
-        <strength value="required" />
-        <description value="Code to support the Opt-out category." />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Category-1" />
-        </valueSetReference>
-      </binding>
     </element>
     <element id="Consent.category.coding.system">
       <path value="Consent.category.coding.system" />
@@ -10188,6 +10211,10 @@
     <element id="Consent.category.coding.code">
       <path value="Consent.category.coding.code" />
       <min value="1" />
+      <example>
+        <label value="Opt-out Category" />
+        <valueCode value="NDOP" />
+      </example>
       <mustSupport value="true" />
     </element>
     <element id="Consent.category.coding.display">
@@ -10196,6 +10223,10 @@
       </extension>
       <path value="Consent.category.coding.display" />
       <min value="1" />
+      <example>
+        <label value="Description of Opt-out Category" />
+        <valueString value="National Data Opt-out Programme" />
+      </example>
       <mustSupport value="true" />
     </element>
     <element id="Consent.patient">
@@ -10208,6 +10239,10 @@
     <element id="Consent.patient.reference">
       <path value="Consent.patient.reference" />
       <min value="1" />
+      <example>
+        <label value="Reference" />
+        <valueString value="https://demographics.spineservices.nhs.uk/STU3/Patient/6101231234" />
+      </example>
     </element>
     <element id="Consent.patient.identifier">
       <path value="Consent.patient.identifier" />
@@ -10269,6 +10304,7 @@
       <path value="Consent.actor" />
       <comment value="The actor will either be the patient or the health care professional.  Note, the actor will never be the legal guardian, not will the actor be the legal power of attorney.  The opt-out service is limited to over 16 year olds, who will in most cases be advised by their GP about how to proceeed." />
       <min value="1" />
+      <max value="1" />
     </element>
     <element>
       <path value="Consent.actor.extension" />
@@ -10292,6 +10328,7 @@
     </element>
     <element id="Consent.actor.role.coding">
       <path value="Consent.actor.role.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Consent.actor.role.coding.system">
@@ -10305,6 +10342,7 @@
     <element id="Consent.actor.role.coding.code">
       <path value="Consent.actor.role.coding.code" />
       <min value="1" />
+      <fixedCode value="INF" />
     </element>
     <element id="Consent.actor.role.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -10312,6 +10350,14 @@
       </extension>
       <path value="Consent.actor.role.coding.display" />
       <min value="1" />
+      <fixedString value="informant" />
+    </element>
+    <element id="Consent.actor.role.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Consent.actor.role.text" />
+      <max value="0" />
     </element>
     <element id="Consent.actor.reference">
       <path value="Consent.actor.reference" />
@@ -10329,11 +10375,11 @@
       <min value="1" />
       <example>
         <label value="Practitioner" />
-        <valueString value="https://proxy.sds.nhs.uk" />
+        <valueString value="https://directory.spineservices.nhs.uk/STU3/Practitioner/G1231234" />
       </example>
       <example>
         <label value="Patient" />
-        <valueString value="https://proxy.pds.nhs.uk" />
+        <valueString value="https://demographics.spineservices.nhs.uk/STU3/Patient/6101231234" />
       </example>
     </element>
     <element id="Consent.actor.reference.identifier">
@@ -10386,7 +10432,7 @@
     <element id="Consent.organization.reference">
       <path value="Consent.organization.reference" />
       <min value="1" />
-      <fixedString value="https://proxy.sds.nhs.uk/X26" />
+      <fixedString value="https://directory.spineservices.nhs.uk/STU3/Organization/X26" />
     </element>
     <element id="Consent.organization.identifier">
       <path value="Consent.organization.identifier" />
@@ -10407,10 +10453,6 @@
       <path value="Consent.policy" />
       <min value="1" />
       <max value="1" />
-    </element>
-    <element id="Consent.policy.authority">
-      <path value="Consent.policy.authority" />
-      <min value="1" />
     </element>
     <element id="Consent.policy.uri">
       <path value="Consent.policy.uri" />
@@ -10464,6 +10506,7 @@
     <element id="Consent.purpose.system">
       <path value="Consent.purpose.system" />
       <min value="1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-PreferenceCodes-1" />
     </element>
     <element id="Consent.purpose.version">
       <path value="Consent.purpose.version" />
