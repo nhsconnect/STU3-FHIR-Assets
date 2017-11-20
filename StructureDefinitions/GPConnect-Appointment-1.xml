@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-26T15:23:43.507+01:00" />
+    <lastUpdated value="2017-11-20T15:27:37.775+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Appointment-1" />
   <version value="1.0.0" />
   <name value="GPConnect-Appointment-1" />
-  <status value="draft" />
+  <status value="active" />
   <date value="2017-10-23T08:47:25.616+01:00" />
   <publisher value="NHS Digital" />
   <contact>
@@ -353,13 +353,13 @@
     <element id="Appointment.extension:appointmentCancellationReason">
       <path value="Appointment.extension" />
       <sliceName value="appointmentCancellationReason" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The reason the appointment was cancelled" />
+      <definition value="The reason the appointment was cancelled." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -396,13 +396,13 @@
     <element id="Appointment.extension:bookingOrganisation">
       <path value="Appointment.extension" />
       <sliceName value="bookingOrganisation" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="An extension to record the organisation booking the appointment" />
+      <definition value="An extension to record the organisation booking the appointment." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -1219,6 +1219,10 @@
         <label value="General" />
         <valueUri value="http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri" />
       </example>
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-appointment-identifier" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1263,6 +1267,10 @@
       <example>
         <label value="General" />
         <valueString value="123456" />
+      </example>
+      <example>
+        <label value="General" />
+        <valueString value="898976578" />
       </example>
       <condition value="ele-1" />
       <constraint>
@@ -1762,6 +1770,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="General" />
+        <valueCode value="booked" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1805,7 +1817,7 @@
       <definition value="A broad categorisation of the service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Appointment.serviceCategory" />
         <min value="0" />
@@ -2326,7 +2338,7 @@
       <definition value="The specific service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Appointment.serviceType" />
         <min value="0" />
@@ -2847,7 +2859,7 @@
       <definition value="The specialty of a practitioner that would be required to perform the service requested in this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Appointment.specialty" />
         <min value="0" />
@@ -3208,6 +3220,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="General" />
+        <valueCode value="394733009" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3253,6 +3269,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="General" />
+        <valueString value="Medical specialty--OTHER--NOT LISTED" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3372,7 +3392,7 @@
       <definition value="The style of appointment or patient that has been booked in the slot (not service type)." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Appointment.appointmentType" />
         <min value="0" />
@@ -3897,7 +3917,7 @@
       <definition value="The reason that this appointment is being scheduled. This is more clinical than administrative." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Appointment.reason" />
         <min value="0" />
@@ -3919,7 +3939,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ApptReason" />
         </extension>
-        <strength value="preferred" />
+        <strength value="required" />
         <description value="The Reason for the appointment to take place." />
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/encounter-reason" />
@@ -4166,7 +4186,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -4176,6 +4196,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="http://snomed.info/sct" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4208,7 +4229,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -4249,7 +4270,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -4259,6 +4280,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="General" />
+        <valueCode value="17436001" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4294,7 +4319,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -4304,6 +4329,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="General" />
+        <valueString value="Medical consultation with outpatient" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4337,7 +4366,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -4423,7 +4452,7 @@
       <definition value="Reason the appointment has been scheduled to take place, as specified using information from another resource. When the patient arrives and the encounter begins it may be used as the admission diagnosis. The indication will typically be a Condition (with other resources referenced in the evidence.detail), or a Procedure." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Appointment.indication" />
         <min value="0" />
@@ -4431,11 +4460,11 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Procedure-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4748,7 +4777,7 @@
       <definition value="Additional information to support the appointment provided when making the appointment." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Appointment.supportingInformation" />
         <min value="0" />
@@ -5234,6 +5263,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="General" />
+        <valueString value="Slot/79a37bc3-8d22-4805-b1a7-8cf8ceca9217" />
+      </example>
       <condition value="ele-1" />
       <condition value="ref-1" />
       <constraint>
@@ -5316,6 +5349,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="General" />
+        <valueString value="Appointment Slot - Out of Hours GP Clinic - 19:30 - 19:45" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5381,6 +5418,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="General" />
+        <valueString value="Discussion on problem 'Increased pain in right arm.'" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5412,7 +5453,7 @@
       <definition value="The referral request this appointment is allocated to assess (incoming referral)." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Appointment.incomingReferral" />
         <min value="0" />
@@ -6714,7 +6755,7 @@
       <definition value="A set of date ranges (potentially including times) that the appointment is preferred to be scheduled within. When using these values, the minutes duration should be provided to indicate the length of the appointment to fill and populate the start/end times for the actual allocated time." />
       <comment value="This does not introduce a capacity for recurring appointments." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Appointment.requestedPeriod" />
         <min value="0" />
@@ -6953,10 +6994,18 @@
     <element id="Appointment.identifier.system">
       <path value="Appointment.identifier.system" />
       <min value="1" />
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-appointment-identifier" />
+      </example>
     </element>
     <element id="Appointment.identifier.value">
       <path value="Appointment.identifier.value" />
       <min value="1" />
+      <example>
+        <label value="General" />
+        <valueString value="898976578" />
+      </example>
     </element>
     <element id="Appointment.identifier.period">
       <path value="Appointment.identifier.period" />
@@ -6966,16 +7015,91 @@
       <path value="Appointment.identifier.assigner" />
       <max value="0" />
     </element>
+    <element id="Appointment.status">
+      <path value="Appointment.status" />
+      <example>
+        <label value="General" />
+        <valueCode value="booked" />
+      </example>
+    </element>
+    <element id="Appointment.serviceCategory">
+      <path value="Appointment.serviceCategory" />
+      <max value="0" />
+    </element>
+    <element id="Appointment.serviceType">
+      <path value="Appointment.serviceType" />
+      <max value="0" />
+    </element>
+    <element id="Appointment.specialty">
+      <path value="Appointment.specialty" />
+      <max value="1" />
+    </element>
+    <element id="Appointment.specialty.coding.code">
+      <path value="Appointment.specialty.coding.code" />
+      <example>
+        <label value="General" />
+        <valueCode value="394733009" />
+      </example>
+    </element>
+    <element id="Appointment.specialty.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Appointment.specialty.coding.display" />
+      <example>
+        <label value="General" />
+        <valueString value="Medical specialty--OTHER--NOT LISTED" />
+      </example>
+    </element>
+    <element id="Appointment.appointmentType">
+      <path value="Appointment.appointmentType" />
+      <max value="0" />
+    </element>
+    <element id="Appointment.reason">
+      <path value="Appointment.reason" />
+      <max value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ApptReason" />
+        </extension>
+        <strength value="required" />
+      </binding>
+    </element>
+    <element id="Appointment.reason.coding.system">
+      <path value="Appointment.reason.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Appointment.reason.coding.version">
+      <path value="Appointment.reason.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Appointment.reason.coding.code">
+      <path value="Appointment.reason.coding.code" />
+      <min value="1" />
+      <example>
+        <label value="General" />
+        <valueCode value="17436001" />
+      </example>
+    </element>
+    <element id="Appointment.reason.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Appointment.reason.coding.display" />
+      <min value="1" />
+      <example>
+        <label value="General" />
+        <valueString value="Medical consultation with outpatient" />
+      </example>
+    </element>
+    <element id="Appointment.reason.coding.userSelected">
+      <path value="Appointment.reason.coding.userSelected" />
+      <max value="0" />
+    </element>
     <element id="Appointment.indication">
       <path value="Appointment.indication" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Procedure-1" />
-      </type>
+      <max value="0" />
     </element>
     <element id="Appointment.priority">
       <path value="Appointment.priority" />
@@ -6984,6 +7108,10 @@
     <element id="Appointment.description">
       <path value="Appointment.description" />
       <min value="1" />
+    </element>
+    <element id="Appointment.supportingInformation">
+      <path value="Appointment.supportingInformation" />
+      <max value="0" />
     </element>
     <element id="Appointment.start">
       <path value="Appointment.start" />
@@ -7001,9 +7129,34 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Slot-1" />
       </type>
     </element>
+    <element id="Appointment.slot.reference">
+      <path value="Appointment.slot.reference" />
+      <example>
+        <label value="General" />
+        <valueString value="Slot/79a37bc3-8d22-4805-b1a7-8cf8ceca9217" />
+      </example>
+    </element>
+    <element id="Appointment.slot.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Appointment.slot.display" />
+      <example>
+        <label value="General" />
+        <valueString value="Appointment Slot - Out of Hours GP Clinic - 19:30 - 19:45" />
+      </example>
+    </element>
     <element id="Appointment.comment">
       <path value="Appointment.comment" />
       <short value="Any additional comments about the appointment" />
+      <example>
+        <label value="General" />
+        <valueString value="Discussion on problem 'Increased pain in right arm.'" />
+      </example>
+    </element>
+    <element id="Appointment.incomingReferral">
+      <path value="Appointment.incomingReferral" />
+      <max value="0" />
     </element>
     <element id="Appointment.participant.actor">
       <path value="Appointment.participant.actor" />
@@ -7032,6 +7185,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
       </type>
+    </element>
+    <element id="Appointment.requestedPeriod">
+      <path value="Appointment.requestedPeriod" />
+      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>

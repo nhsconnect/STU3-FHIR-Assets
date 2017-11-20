@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-26T09:28:25.036+01:00" />
+    <lastUpdated value="2017-11-20T15:52:49.568+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Schedule-1" />
   <version value="1.0.0" />
   <name value="GPConnect-Schedule-1" />
-  <status value="draft" />
+  <status value="active" />
   <date value="2017-10-23T14:08:25.701+01:00" />
   <publisher value="NHS Digital" />
   <contact>
@@ -1098,7 +1098,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -1111,6 +1111,10 @@
       <example>
         <label value="General" />
         <valueUri value="http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri" />
+      </example>
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-schedule-identifier" />
       </example>
       <condition value="ele-1" />
       <constraint>
@@ -1646,7 +1650,7 @@
       <definition value="Whether this schedule record is in active use, or should not be used (such as was entered in error)." />
       <comment value="This element is labeled as a modifier because it may be used to mark that the resource was created in error." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Schedule.active" />
         <min value="0" />
@@ -1681,7 +1685,7 @@
       <definition value="A broad categorisation of the service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Schedule.serviceCategory" />
         <min value="0" />
@@ -2202,7 +2206,7 @@
       <definition value="The specific service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Schedule.serviceType" />
         <min value="0" />
@@ -2727,7 +2731,7 @@
       <definition value="The specialty of a practitioner that would be required to perform the service requested in this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Schedule.specialty" />
         <min value="0" />
@@ -2861,7 +2865,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -3760,7 +3764,10 @@
     </element>
     <element id="Schedule.identifier.system">
       <path value="Schedule.identifier.system" />
-      <min value="1" />
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-schedule-identifier" />
+      </example>
     </element>
     <element id="Schedule.identifier.value">
       <path value="Schedule.identifier.value" />
@@ -3772,6 +3779,26 @@
     </element>
     <element id="Schedule.identifier.assigner">
       <path value="Schedule.identifier.assigner" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.active">
+      <path value="Schedule.active" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.serviceCategory">
+      <path value="Schedule.serviceCategory" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.serviceType">
+      <path value="Schedule.serviceType" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.specialty">
+      <path value="Schedule.specialty" />
+      <max value="1" />
+    </element>
+    <element id="Schedule.specialty.coding">
+      <path value="Schedule.specialty.coding" />
       <max value="0" />
     </element>
     <element id="Schedule.actor">
