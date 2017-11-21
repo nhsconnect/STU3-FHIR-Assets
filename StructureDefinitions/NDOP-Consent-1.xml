@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-11-10T10:30:37.251+00:00" />
+    <lastUpdated value="2017-11-21T14:51:27.201+00:00" />
     <tag>
       <code value="1" />
     </tag>
@@ -10,7 +10,7 @@
     <valueCode value="cbcc" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1" />
-  <version value="1.1.0" />
+  <version value="1.2.0" />
   <name value="NDOP-Consent-1" />
   <title value="NDOP-Consent-1.xml" />
   <status value="draft" />
@@ -1911,7 +1911,7 @@
       <short value="Classification of the consent statement - for indexing/retrieval" />
       <definition value="A classification of the type of consents found in the statement. This element supports indexing and retrieval of consent statements." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Consent.category" />
@@ -1934,10 +1934,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ConsentCategory" />
         </extension>
-        <strength value="required" />
+        <strength value="example" />
         <description value="A classification of the type of consents found in a consent statement" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Category-1" />
+          <reference value="http://hl7.org/fhir/ValueSet/consent-category" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -2049,7 +2049,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -2182,7 +2182,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -2192,7 +2192,6 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-Categories-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2266,7 +2265,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -2276,10 +2275,6 @@
       <type>
         <code value="code" />
       </type>
-      <example>
-        <label value="Opt-out Category" />
-        <valueCode value="NDOP" />
-      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2316,7 +2311,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -2326,10 +2321,6 @@
       <type>
         <code value="string" />
       </type>
-      <example>
-        <label value="Description of Opt-out Category" />
-        <valueString value="National Data Opt-out Programme" />
-      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10180,29 +10171,16 @@
     </element>
     <element id="Consent.category">
       <path value="Consent.category" />
-      <min value="1" />
       <max value="1" />
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ConsentCategory" />
-        </extension>
-        <strength value="required" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Category-1" />
-        </valueSetReference>
-      </binding>
     </element>
     <element id="Consent.category.coding">
       <path value="Consent.category.coding" />
-      <min value="1" />
       <max value="1" />
       <mustSupport value="true" />
     </element>
     <element id="Consent.category.coding.system">
       <path value="Consent.category.coding.system" />
       <short value="Identity of the category system" />
-      <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-Categories-1" />
     </element>
     <element id="Consent.category.coding.version">
       <path value="Consent.category.coding.version" />
@@ -10210,11 +10188,6 @@
     </element>
     <element id="Consent.category.coding.code">
       <path value="Consent.category.coding.code" />
-      <min value="1" />
-      <example>
-        <label value="Opt-out Category" />
-        <valueCode value="NDOP" />
-      </example>
       <mustSupport value="true" />
     </element>
     <element id="Consent.category.coding.display">
@@ -10222,11 +10195,6 @@
         <valueBoolean value="true" />
       </extension>
       <path value="Consent.category.coding.display" />
-      <min value="1" />
-      <example>
-        <label value="Description of Opt-out Category" />
-        <valueString value="National Data Opt-out Programme" />
-      </example>
       <mustSupport value="true" />
     </element>
     <element id="Consent.patient">
