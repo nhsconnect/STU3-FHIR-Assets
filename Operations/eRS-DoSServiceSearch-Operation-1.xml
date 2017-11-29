@@ -1,0 +1,115 @@
+<OperationDefinition xmlns="http://hl7.org/fhir">
+	<meta>
+		<lastUpdated value="2016-09-22T00:00:00+01:00"/>
+		<tag>
+			<system value="urn:hscic:examples"/>
+			<code value="Operation-DoSServiceSearch"/>
+			<display value="Fetch Worklist Operation"/>
+		</tag>
+	</meta>
+	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-DoSServiceSearch-Operation-1"/>
+	<version value="1.0"/>
+	<name value="eRS-DoSServiceSearch-Operation-1"/>
+	<status value="active"/>
+	<kind value="operation"/>
+	<date value="2016-09-22T00:00:00+01:00"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="interoperabilityteam@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="Request to retrieve a healthcare service using Directory of Services details."/>
+	<code value="ers.DoSServiceSearch"/>
+	<system value="false"/>
+	<instance value="false"/>
+	<parameter>
+		<name value="requestType"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Request Type"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetReference>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-RequestType-1"/>
+			</valueSetReference>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="priority"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Priority"/>
+		<type value="CodeableConcept"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetReference>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1"/>
+			</valueSetReference>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="specialty"/>
+		<use value="in"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The service location identifier."/>
+		<type value="Identifier"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetReference>
+				<reference value="https://fhir.nhs.uk/ValueSet/eRS-Specialty-1"/>
+			</valueSetReference>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="clinicType"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Clinic Type"/>
+		<binding>
+			<strength value="required"/>
+			<valuesetReference>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-ClinicType-1"/>
+			</valuesetReference>	
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="patientPostcode"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Postcode"/>
+		<type value="string"/>
+	</parameter>
+	<parameter>
+		<name value="commissioningProvisioning"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Commissioning Provisioning"/>
+		<binding>
+			<strength value="required"/>
+			<valuesetReference>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-CommissioningProvisioning-1"/>
+			</valuesetReference>	
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="response"/>
+		<use value="out"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The List resource that has been returned in response to the given input parameters"/>
+		<type value="List"/>
+		<profile>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-HealthcareService-1"/>
+		</profile>
+	</parameter>
+</OperationDefinition>
