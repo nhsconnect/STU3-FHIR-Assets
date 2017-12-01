@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CapabilityStatement xmlns="http://hl7.org/fhir">
+<CapabilityStatement xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///Z:/Jen/STU3%20Schemas/capabilitystatement.xsd">
 	<url value="https://fhir.nhs.uk/STU3/CapabilityStatement/ODSAPI-CapabilityStatement-1"/>
 	<version value="1.0.0"/>
 	<name value="ODSAPI-CapabilityStatement-1"/>
 	<status value="draft"/>
-	<date value="2017-11-24"/>
+	<date value="2017-12-01"/>
 	<publisher value="NHS Digital"/>
 	<contact>
 		<name value="Interoperability Team"/>
@@ -14,7 +14,7 @@
 			<use value="work"/>
 		</telecom>
 	</contact>
-	<description value="An API for retreiving organisation data from the NHS Digital Organisation Data Service."/>
+	<description value="An API for retrieving organisation data from the NHS Digital Organisation Data Service."/>
 	<copyright value="Copyright © 2017 NHS Digital"/>
 	<kind value="requirements"/>
 	<fhirVersion value="3.0.1"/>
@@ -46,6 +46,14 @@
 			<cors value="true"/>
 		</security>
 		<resource>
+			<extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+				<extension url="required">
+					<valueString value="ods-org-primaryRole"/>
+				</extension>
+				<extension url="required">
+					<valueString value="ods-org-role"/>
+				</extension>
+			</extension>
 			<type value="Organization"/>
 			<profile>
 				<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/ODSAPI-Organization-1"/>
@@ -57,6 +65,12 @@
 				<code value="search-type"/>
 			</interaction>
 			<versioning value="no-version"/>
+			<readHistory value="false"/>
+			<updateCreate value="false"/>
+			<conditionalCreate value="false"/>
+			<conditionalRead value="not-supported"/>
+			<conditionalUpdate value="false"/>
+			<conditionalDelete value="not-supported"/>
 			<searchParam>
 				<name value="_id"/>
 				<type value="token"/>
@@ -95,10 +109,12 @@
 			</searchParam>
 			<searchParam>
 				<name value="ods-org-role"/>
+				<definition value="https://fhir.nhs.uk/STU3/SearchParameter/ODSAPI-OrganizationRole-Role-1"/>
 				<type value="token"/>
 			</searchParam>
 			<searchParam>
 				<name value="ods-org-primaryRole"/>
+				<definition value="https://fhir.nhs.uk/STU3/SearchParameter/ODSAPI-OrganizationRole-PrimaryRole-1"/>
 				<type value="token"/>
 			</searchParam>
 		</resource>
