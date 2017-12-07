@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-11-21T14:51:27.201+00:00" />
-    <tag>
-      <code value="1" />
-    </tag>
+    <lastUpdated value="2017-12-06T14:58:54.586+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="cbcc" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1" />
-  <version value="1.2.0" />
+  <version value="1.3.0" />
   <name value="NDOP-Consent-1" />
   <title value="NDOP-Consent-1.xml" />
   <status value="draft" />
@@ -24,15 +21,10 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An NHS Digital profile for recording the National Data Opt-out Programme Consent.." />
-  <purpose value="This is to capture whether an NHS patient has opted-out of sharing their data for the purposes of either:&#xD;&#xA;&#xD;&#xA;1. Research.&#xD;&#xA;2. Support planning and commissioning." />
+  <description value="An NHS Digital profile for recording a patients preferences for thw National Data Opt-out Programme.." />
+  <purpose value="This is to capture whether an NHS patient has opted-out of sharing their data that is not related to the patients direct care." />
   <copyright value="© 2017 NHS Digital" />
   <fhirVersion value="3.0.0" />
-  <mapping>
-    <identity value="cda" />
-    <uri value="http://hl7.org/v3/cda" />
-    <name value="CDA (R2)" />
-  </mapping>
   <kind value="resource" />
   <abstract value="false" />
   <type value="Consent" />
@@ -5580,10 +5572,8 @@
           <valueString value="PurposeOfUse" />
         </extension>
         <strength value="required" />
-        <description value="What purposes of use are controlled by this exception. If more than one label is specified, operations must have all the specified labels" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Preferences-1" />
-        </valueSetReference>
+        <description value="A code from the SNOMED Clinical Terminology UK coding system which represent the Opt-out purpose." />
+        <valueSetUri value="http://snomed.info/sct" />
       </binding>
       <mapping>
         <identity value="rim" />
@@ -5696,7 +5686,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-PreferenceCodes-1" />
+      <fixedUri value="http://snomed.info/sct" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5780,10 +5770,7 @@
       <type>
         <code value="code" />
       </type>
-      <example>
-        <label value="Opted out of Research Data Sharing" />
-        <valueCode value="RESCH" />
-      </example>
+      <fixedCode value="370856009" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5830,10 +5817,7 @@
       <type>
         <code value="string" />
       </type>
-      <example>
-        <label value="Opted out of Research Data Sharing" />
-        <valueString value="Opted out of Research Data Sharing" />
-      </example>
+      <fixedString value="Limiting access to confidential patient information" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5868,7 +5852,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -10466,16 +10450,15 @@
           <valueString value="PurposeOfUse" />
         </extension>
         <strength value="required" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-Preferences-1" />
-        </valueSetReference>
+        <description value="A code from the SNOMED Clinical Terminology UK coding system which represent the Opt-out purpose." />
+        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Consent.purpose.system">
       <path value="Consent.purpose.system" />
       <short value="Identity of the terminology system." />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-PreferenceCodes-1" />
+      <fixedUri value="http://snomed.info/sct" />
     </element>
     <element id="Consent.purpose.version">
       <path value="Consent.purpose.version" />
@@ -10484,10 +10467,7 @@
     <element id="Consent.purpose.code">
       <path value="Consent.purpose.code" />
       <min value="1" />
-      <example>
-        <label value="Opted out of Research Data Sharing" />
-        <valueCode value="RESCH" />
-      </example>
+      <fixedCode value="370856009" />
       <mustSupport value="true" />
     </element>
     <element id="Consent.purpose.display">
@@ -10496,11 +10476,12 @@
       </extension>
       <path value="Consent.purpose.display" />
       <min value="1" />
-      <example>
-        <label value="Opted out of Research Data Sharing" />
-        <valueString value="Opted out of Research Data Sharing" />
-      </example>
+      <fixedString value="Limiting access to confidential patient information" />
       <mustSupport value="true" />
+    </element>
+    <element id="Consent.purpose.userSelected">
+      <path value="Consent.purpose.userSelected" />
+      <max value="0" />
     </element>
     <element id="Consent.dataPeriod">
       <path value="Consent.dataPeriod" />
