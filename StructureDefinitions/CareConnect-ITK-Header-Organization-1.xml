@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-11-27T17:20:53.898+00:00" />
+    <lastUpdated value="2017-12-07T16:56:08.678+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
-  <version value="0.0.1" />
+  <version value="1.0.0" />
   <name value="CareConnect-ITK-Header-Organization-1" />
   <status value="draft" />
   <date value="2017-11-23" />
@@ -5218,7 +5218,7 @@
       <definition value="Organization that issued/manages the identifier." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.assigner" />
         <min value="0" />
@@ -5348,7 +5348,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -7462,7 +7462,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Need to be able to track the hierarchy of organizations within an organization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Organization.partOf" />
         <min value="0" />
@@ -10627,11 +10627,14 @@
     </element>
     <element id="Organization.identifier:localIdentifier.assigner">
       <path value="Organization.identifier.assigner" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
       </type>
+    </element>
+    <element id="Organization.identifier:localIdentifier.assigner.reference">
+      <path value="Organization.identifier.assigner.reference" />
+      <min value="1" />
     </element>
     <element id="Organization.active">
       <path value="Organization.active" />
@@ -10659,6 +10662,7 @@
     </element>
     <element id="Organization.partOf">
       <path value="Organization.partOf" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
