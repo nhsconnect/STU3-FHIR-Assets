@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="MessageHeader" />
   <meta>
-    <lastUpdated value="2017-12-19T12:15:15.02+00:00" />
+    <lastUpdated value="2017-12-20T08:23:15.285+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="inm" />
@@ -802,7 +802,7 @@
       <comment value="There SHOULD be at least one destination, but in some circumstances, the source system is unaware of any particular destination system." />
       <requirements value="Indicates where message is to be sent for routing purposes.  Allows verification of &quot;am I the intended recipient&quot;." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.destination" />
         <min value="0" />
@@ -2477,7 +2477,7 @@
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="May be used to support audit." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.source.name" />
         <min value="0" />
@@ -2515,7 +2515,7 @@
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Supports audit and possibly interface engine behavior." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.source.software" />
         <min value="0" />
@@ -2553,7 +2553,7 @@
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Supports audit and possibly interface engine behavior." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.source.version" />
         <min value="0" />
@@ -2590,7 +2590,7 @@
       <definition value="An e-mail, phone, website or other contact point to use to resolve issues with message communications." />
       <requirements value="Allows escalation of technical issues." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.source.contact" />
         <min value="0" />
@@ -3154,7 +3154,7 @@
       <comment value="Usually only for the request, but can be used in a response." />
       <requirements value="Need to know for audit/traceback requirements and possibly for authorization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.responsible" />
         <min value="0" />
@@ -3405,7 +3405,7 @@
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Need to be able to track why resources are being changed and report in the audit log/history of the resource.  May affect authorization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.reason" />
         <min value="0" />
@@ -4426,8 +4426,8 @@
       <definition value="The actual data of the message - a reference to the root/focus class of the event." />
       <comment value="The data is defined where the transaction type is defined. The transaction data is always included in the bundle that is the full message.  Only the root resource is specified.  The resources it references should be contained in the bundle but are not also listed here.  Multiple repetitions are allowed to cater for merges and other situations with multiple focal targets." />
       <requirements value="Every message event is about actual data, a single resource, that is identified in the definition of the event, and perhaps some or all linked resources." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="MessageHeader.focus" />
         <min value="0" />
@@ -4716,6 +4716,13 @@
       <path value="MessageHeader.event.display" />
       <min value="1" />
     </element>
+    <element id="MessageHeader.destination">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="MessageDestination" />
+      </extension>
+      <path value="MessageHeader.destination" />
+      <max value="0" />
+    </element>
     <element id="MessageHeader.destination.target">
       <path value="MessageHeader.destination.target" />
       <type>
@@ -4782,6 +4789,22 @@
       <path value="MessageHeader.author.reference" />
       <min value="1" />
     </element>
+    <element id="MessageHeader.source.name">
+      <path value="MessageHeader.source.name" />
+      <max value="0" />
+    </element>
+    <element id="MessageHeader.source.software">
+      <path value="MessageHeader.source.software" />
+      <max value="0" />
+    </element>
+    <element id="MessageHeader.source.version">
+      <path value="MessageHeader.source.version" />
+      <max value="0" />
+    </element>
+    <element id="MessageHeader.source.contact">
+      <path value="MessageHeader.source.contact" />
+      <max value="0" />
+    </element>
     <element id="MessageHeader.source.contact.system">
       <path value="MessageHeader.source.contact.system" />
       <min value="1" />
@@ -4792,6 +4815,7 @@
     </element>
     <element id="MessageHeader.responsible">
       <path value="MessageHeader.responsible" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Practitioner-1" />
@@ -4804,6 +4828,10 @@
     <element id="MessageHeader.responsible.reference">
       <path value="MessageHeader.responsible.reference" />
       <min value="1" />
+    </element>
+    <element id="MessageHeader.reason">
+      <path value="MessageHeader.reason" />
+      <max value="0" />
     </element>
     <element id="MessageHeader.reason.coding.system">
       <path value="MessageHeader.reason.coding.system" />
@@ -4835,6 +4863,11 @@
     <element id="details.reference">
       <path value="MessageHeader.response.details.reference" />
       <min value="1" />
+    </element>
+    <element id="MessageHeader.focus">
+      <path value="MessageHeader.focus" />
+      <min value="1" />
+      <max value="1" />
     </element>
     <element id="MessageHeader.focus.reference">
       <path value="MessageHeader.focus.reference" />
