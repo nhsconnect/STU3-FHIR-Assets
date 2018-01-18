@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-11-24T13:09:42.409+00:00" />
+    <lastUpdated value="2018-01-18T13:48:00.159+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="CareConnect-GPC-Patient-1" />
   <status value="active" />
   <date value="2017-06-05T16:05:38.2594486+01:00" />
@@ -3407,7 +3407,7 @@
         <rules value="openAtEnd" />
       </slicing>
       <short value="A name associated with the patient" />
-      <definition value="A name associated with the individual." />
+      <definition value="A name associated with the individual. There will only be one name with value of 'official'." />
       <comment value="A patient may have multiple names with different uses or applicable periods. For animals, the name is a &quot;HumanName&quot; in the sense that is assigned and used by humans and has the same patterns." />
       <requirements value="Need to be able to track the patient by multiple names. Examples are your official name and a partner name." />
       <min value="1" />
@@ -4005,9 +4005,9 @@
         <map value="./high" />
       </mapping>
     </element>
-    <element id="usual">
+    <element id="Patient.name:official">
       <path value="Patient.name" />
-      <sliceName value="usual" />
+      <sliceName value="official" />
       <short value="A name associated with the patient" />
       <definition value="A name associated with the individual." />
       <comment value="A patient may have multiple names with different uses or applicable periods. For animals, the name is a &quot;HumanName&quot; in the sense that is assigned and used by humans and has the same patterns." />
@@ -4060,7 +4060,7 @@
         <map value=".patient.name" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.id">
+    <element id="Patient.name:official.id">
       <path value="Patient.name.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -4089,7 +4089,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.extension">
+    <element id="Patient.name:official.extension">
       <path value="Patient.name.extension" />
       <slicing>
         <discriminator>
@@ -4138,10 +4138,10 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Patient.name.use">
+    <element id="Patient.name:official.use">
       <path value="Patient.name.use" />
       <short value="usual | official | temp | nickname | anonymous | old | maiden" />
-      <definition value="Identifies the purpose for this name." />
+      <definition value="Identifies the purpose for this name.  Suggested PDS Mapping:&#xD;&#xA;&#xD;&#xA;PDS &gt; FHIR&#xD;&#xA;L (usual (current) name) &gt; official&#xD;&#xA;A (alias) &gt; nickname&#xD;&#xA;PREFERRED &gt; usual&#xD;&#xA;PREVIOUS &gt; old&#xD;&#xA;PREVIOUS-BATHCHELOR &gt; old&#xD;&#xA;PREVIOUS-BIRTH &gt; old&#xD;&#xA;PREVIOUS-MAIDEN &gt; maiden" />
       <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary or old name etc.for a current/permanent one. Applications can assume that a name is current unless it explicitly says that it is temporary or old." />
       <requirements value="Allows the appropriate name for a particular context of use to be selected from among a set of names." />
       <min value="1" />
@@ -4154,7 +4154,7 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="usual" />
+      <fixedCode value="official" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4192,7 +4192,7 @@
         <map value="./NamePurpose" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.text">
+    <element id="Patient.name:official.text">
       <path value="Patient.name.text" />
       <short value="Text representation of the full name" />
       <definition value="A full text representation of the name." />
@@ -4230,7 +4230,7 @@
         <map value="./formatted" />
       </mapping>
     </element>
-    <element id="Patient.name.family">
+    <element id="Patient.name:official.family">
       <path value="Patient.name.family" />
       <short value="Family name (often called 'Surname')" />
       <definition value="The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father." />
@@ -4272,7 +4272,7 @@
         <map value="./FamilyName" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.given">
+    <element id="Patient.name:official.given">
       <path value="Patient.name.given" />
       <short value="Given names (not always 'first'). Includes middle names" />
       <definition value="Given name." />
@@ -4317,7 +4317,7 @@
         <map value="./GivenNames" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.prefix">
+    <element id="Patient.name:official.prefix">
       <path value="Patient.name.prefix" />
       <short value="Parts that come before the name" />
       <definition value="Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name." />
@@ -4359,7 +4359,7 @@
         <map value="./TitleCode" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.suffix">
+    <element id="Patient.name:official.suffix">
       <path value="Patient.name.suffix" />
       <short value="Parts that come after the name" />
       <definition value="Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name." />
@@ -4397,7 +4397,7 @@
         <map value="./part[partType = SFX]" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.period">
+    <element id="Patient.name:official.period">
       <path value="Patient.name.period" />
       <short value="Time period when name was/is in use" />
       <definition value="Indicates the period of time when this name was valid for the named person." />
@@ -4454,7 +4454,7 @@
         <map value="./StartDate and ./EndDate" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.period.id">
+    <element id="Patient.name:official.period.id">
       <path value="Patient.name.period.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -4483,7 +4483,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.period.extension">
+    <element id="Patient.name:official.period.extension">
       <path value="Patient.name.period.extension" />
       <slicing>
         <discriminator>
@@ -4532,7 +4532,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.period.start">
+    <element id="Patient.name:official.period.start">
       <path value="Patient.name.period.start" />
       <short value="Starting time with inclusive boundary" />
       <definition value="The start of the period. The boundary is inclusive." />
@@ -4570,7 +4570,7 @@
         <map value="./low" />
       </mapping>
     </element>
-    <element id="Patient.name:usual.period.end">
+    <element id="Patient.name:official.period.end">
       <path value="Patient.name.period.end" />
       <short value="End time with inclusive boundary, if not ongoing" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
@@ -14578,10 +14578,6 @@
     <element id="Patient.extension:birthPlace">
       <path value="Patient.extension" />
       <sliceName value="birthPlace" />
-      <short value="Birth Place: The registered place of birth of the patient." />
-      <definition value="Birth Place: The registered place of birth of the patient. A sytem may use the address.text if they don't store the birthPlace address in discrete elements." />
-      <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/birthPlace" />
@@ -14672,24 +14668,26 @@
         <ordered value="false" />
         <rules value="openAtEnd" />
       </slicing>
+      <definition value="A name associated with the individual. There will only be one name with value of 'official'." />
       <min value="1" />
     </element>
-    <element id="usual">
+    <element id="Patient.name:official">
       <path value="Patient.name" />
-      <sliceName value="usual" />
+      <sliceName value="official" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="Patient.name.use">
+    <element id="Patient.name:official.use">
       <path value="Patient.name.use" />
+      <definition value="Identifies the purpose for this name.  Suggested PDS Mapping:&#xD;&#xA;&#xD;&#xA;PDS &gt; FHIR&#xD;&#xA;L (usual (current) name) &gt; official&#xD;&#xA;A (alias) &gt; nickname&#xD;&#xA;PREFERRED &gt; usual&#xD;&#xA;PREVIOUS &gt; old&#xD;&#xA;PREVIOUS-BATHCHELOR &gt; old&#xD;&#xA;PREVIOUS-BIRTH &gt; old&#xD;&#xA;PREVIOUS-MAIDEN &gt; maiden" />
       <min value="1" />
-      <fixedCode value="usual" />
+      <fixedCode value="official" />
     </element>
-    <element id="Patient.name.family">
+    <element id="Patient.name:official.family">
       <path value="Patient.name.family" />
       <min value="1" />
     </element>
-    <element id="Patient.name:usual.given">
+    <element id="Patient.name:official.given">
       <path value="Patient.name.given" />
       <mustSupport value="true" />
     </element>
