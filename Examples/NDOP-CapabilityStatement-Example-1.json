@@ -1,0 +1,75 @@
+{
+  "resourceType": "CapabilityStatement",
+  "url": "https://fhir.nhs.uk/STU3/NDOP-CapabilityStatement-1",
+  "version": "1.0.0",
+  "name": "NDOP-CapabilityStatement-1",
+  "status": "draft",
+  "date": "2017-01-24",
+  "publisher": "NHS Digital",
+  "contact": [
+    {
+      "name": "Interoperability Team",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "interoperabilityteam@nhs.net",
+          "use": "work"
+        }
+      ]
+    }
+  ],
+  "description": "capabilityStatement for use with National Data Opt-out",
+  "copyright": "© 2017 NHS Digital",
+  "kind": "requirements",
+  "fhirVersion": "3.0.1",
+  "acceptUnknown": "no",
+  "format": [
+    "application/xml+fhir",
+    "application/json+fhir"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "resource": [
+        {
+          "type": "Consent",
+          "interaction": [
+            {
+              "code": "create",
+              "documentation": "Allows creation of a consent record for NDOP"
+            },
+            {
+              "code": "vread",
+              "documentation": "Allows a version read of a specific patients historic record by vid"
+            },
+            {
+              "code": "update",
+              "documentation": "Allows the update to a patient consent record by id"
+            }
+          ],
+          "versioning": "versioned",
+          "readHistory": true,
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference"
+            },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "Allows the retrieval of a patients consent record by category type"
+            },
+            {
+              "name": "purpose",
+              "type": "token"
+            },
+            {
+              "name": "_id",
+              "type": "token"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
