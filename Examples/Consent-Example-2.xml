@@ -7,41 +7,44 @@
 		<valueCodeableConcept>
 			<coding>
 				<system value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-OptOutSource-1"/>
-				<code value="OP"/>
-				<display value="Online Portal"/>
+				<code value="CC"/>
+				<display value="Contact Centre"/>
 			</coding>
 		</valueCodeableConcept>
 	</extension>
+	<!--Opt-out has been set by a patients proxy who has Power of Attorney-->
 	<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NDOP-Proxy-1">
-				<extension url="role">
-			<valueCodeableConcept>
-				<coding>
-					<system value="https://fhir.nhs.uk/STU3/ValueSet/NDOP-ProxyRole-1"/>
-					<code value="POA"/>
-					<display value="Power of Attorney"/>
-				</coding>
-			</valueCodeableConcept>
-		</extension>
-		<extension url="NIC">
-		<valueString value="12345-C"/>
-		</extension>
+		<valueCodeableConcept>
+			<coding>
+				<system value="https://fhir.nhs.uk/STU3/CodeSystem/NDOP-ProxyRole-1"/>
+				<code value="POA"/>
+				<display value="Power of Attorney"/>
+			</coding>
+		</valueCodeableConcept>
 	</extension>
+	<!--NIC record reference-->
+	<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NDOP-NICReference-1">
+		<valueString value="12345-A"/>
+	</extension>
+	<!--Patient is Opting Out of Data Sharing-->
 	<status value="active"/>
 	<patient>
 		<reference value="https://demographics.spineservices.nhs.uk/STU3/Patient/6105551234"/>
 	</patient>
 	<dateTime value="2017-12-14T11:15:33+00:00"/>
+	<!--Custodian of the consent resource-->
 	<organization>
 		<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
 	</organization>
+	<!--Policy uri to be decided. Example placeholder until then-->
 	<policy>
-		<authority value="https://www.gov.uk/"/>
-		<uri value="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.PDF"/>
+		<authority value="https://www.exampleauthority.nhs.uk"/>
+		<uri value="https://www.exampleauthority.nhs.uk/polciies/NDOP-Policy-Example-v1.0"/>
 	</policy>
+	<!--The consent record is to limit access to the patients data-->
 	<purpose>
 		<system value="http://snomed.info/sct"/>
 		<code value="370856009"/>
 		<display value="Limiting access to confidential patient information"/>
 	</purpose>
 </Consent>
-
