@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="MessageHeader" />
   <meta>
-    <lastUpdated value="2018-01-25T14:25:32.347+00:00" />
+    <lastUpdated value="2018-01-28T16:07:28.934+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-EmergencyCareAttendance-MessageHeader-1" />
   <version value="1.0.0" />
@@ -462,10 +462,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true" />
         </extension>
-        <strength value="example" />
-        <description value="One of the message events defined as part of FHIR." />
+        <strength value="required" />
+        <description value="The type of Child Health Event" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/message-events" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ChildHealthEventType-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -581,7 +581,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -591,6 +591,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -664,7 +665,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -709,7 +710,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -752,7 +753,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -1523,7 +1524,7 @@
       <comment value="Use case is for where a (trusted) sending system is responsible for multiple organizations, and therefore cannot differentiate based on source endpoint / authentication alone." />
       <requirements value="Allows routing beyond just the application level." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.sender" />
         <min value="0" />
@@ -4672,6 +4673,42 @@
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-MessageEventType-1" />
       </type>
     </element>
+    <element id="MessageHeader.event">
+      <path value="MessageHeader.event" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MessageEvent" />
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true" />
+        </extension>
+        <strength value="required" />
+        <description value="The type of Child Health Event" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ChildHealthEventType-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="MessageHeader.event.system">
+      <path value="MessageHeader.event.system" />
+      <min value="1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1" />
+    </element>
+    <element id="MessageHeader.event.code">
+      <path value="MessageHeader.event.code" />
+      <min value="1" />
+    </element>
+    <element id="MessageHeader.event.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MessageHeader.event.display" />
+      <min value="1" />
+    </element>
+    <element id="MessageHeader.event.userSelected">
+      <path value="MessageHeader.event.userSelected" />
+      <max value="0" />
+    </element>
     <element id="MessageHeader.destination">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
         <valueString value="MessageDestination" />
@@ -4682,6 +4719,10 @@
     </element>
     <element id="MessageHeader.receiver">
       <path value="MessageHeader.receiver" />
+      <max value="0" />
+    </element>
+    <element id="MessageHeader.sender">
+      <path value="MessageHeader.sender" />
       <max value="0" />
     </element>
     <element id="MessageHeader.enterer">

@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Flag" />
   <meta>
-    <lastUpdated value="2018-01-26T14:18:04.532+00:00" />
+    <lastUpdated value="2018-01-28T16:00:51.501+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-AllergiesAndAdverseReactions-Flag-1" />
   <version value="1.0.0" />
@@ -554,7 +554,7 @@
       <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary." />
       <requirements value="Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.use" />
         <min value="0" />
@@ -603,7 +603,7 @@
       <comment value="This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage. &#xA;&#xA;Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type." />
       <requirements value="Allows users to make use of identifiers when the identifier system is not known." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.type" />
         <min value="0" />
@@ -1223,7 +1223,7 @@
       <definition value="Time period during which identifier is/was valid for use." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.period" />
         <min value="0" />
@@ -1434,7 +1434,7 @@
       <definition value="Organization that issued/manages the identifier." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.assigner" />
         <min value="0" />
@@ -3051,7 +3051,7 @@
       <definition value="The period of time from the activation of the flag to inactivation of the flag. If the flag is active, the end of the period should be unspecified." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Flag.period" />
         <min value="0" />
@@ -3254,7 +3254,7 @@
       <definition value="This alert is only relevant during the encounter." />
       <comment value="If both Flag.encounter and Flag.period are valued, then Flag.period.start shall not be before Encounter.period.start and Flag.period.end shall not be after Encounter.period.end." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Flag.encounter" />
         <min value="0" />
@@ -3492,7 +3492,7 @@
       <definition value="The person, organization or device that created the flag." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Flag.author" />
         <min value="0" />
@@ -3755,8 +3755,6 @@
     <element id="Flag.extension:allergyIntolerance">
       <path value="Flag.extension" />
       <sliceName value="allergyIntolerance" />
-      <short value="Optional Extensions Element" />
-      <definition value="Optional Extension Element - found in all resources." />
       <min value="1" />
       <max value="1" />
       <type>
@@ -3769,6 +3767,14 @@
       <min value="1" />
       <max value="1" />
     </element>
+    <element id="Flag.identifier.use">
+      <path value="Flag.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Flag.identifier.type">
+      <path value="Flag.identifier.type" />
+      <max value="0" />
+    </element>
     <element id="Flag.identifier.system">
       <path value="Flag.identifier.system" />
       <min value="1" />
@@ -3776,6 +3782,14 @@
     <element id="Flag.identifier.value">
       <path value="Flag.identifier.value" />
       <min value="1" />
+    </element>
+    <element id="Flag.identifier.period">
+      <path value="Flag.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Flag.identifier.assigner">
+      <path value="Flag.identifier.assigner" />
+      <max value="0" />
     </element>
     <element id="Flag.category">
       <path value="Flag.category" />
@@ -3812,8 +3826,13 @@
       <path value="Flag.category.coding.display" />
       <min value="1" />
     </element>
+    <element id="Flag.period">
+      <path value="Flag.period" />
+      <max value="0" />
+    </element>
     <element id="Flag.encounter">
       <path value="Flag.encounter" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1" />
@@ -3821,6 +3840,7 @@
     </element>
     <element id="Flag.author">
       <path value="Flag.author" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />

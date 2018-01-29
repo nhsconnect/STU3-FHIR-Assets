@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="EpisodeOfCare" />
   <meta>
-    <lastUpdated value="2018-01-25T14:42:50.971+00:00" />
+    <lastUpdated value="2018-01-28T16:00:57.767+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-EpisodeOfCare-1" />
   <version value="1.0.0" />
@@ -1681,7 +1681,7 @@
       <short value="Past list of status codes (the current status may be included to cover the start date of the status)" />
       <definition value="The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the resource)." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.statusHistory" />
         <min value="0" />
@@ -2592,7 +2592,7 @@
       <short value="The list of diagnosis relevant to this episode of care" />
       <definition value="The list of diagnosis relevant to this episode of care." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.diagnosis" />
         <min value="0" />
@@ -3887,7 +3887,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -4206,7 +4206,7 @@
       <definition value="Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming referrals." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.referralRequest" />
         <min value="0" />
@@ -4556,7 +4556,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -4673,7 +4673,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <alias value="CareTeam" />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.team" />
         <min value="0" />
@@ -4906,7 +4906,7 @@
       <definition value="The set of accounts that may be used for billing for this EpisodeOfCare." />
       <comment value="The billing system may choose to allocate billable items associated with the EpisodeOfCare to different referenced Accounts based on internal business rules." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.account" />
         <min value="0" />
@@ -5164,6 +5164,10 @@
       <path value="EpisodeOfCare.identifier.assigner" />
       <max value="0" />
     </element>
+    <element id="EpisodeOfCare.statusHistory">
+      <path value="EpisodeOfCare.statusHistory" />
+      <max value="0" />
+    </element>
     <element id="EpisodeOfCare.type">
       <path value="EpisodeOfCare.type" />
       <min value="1" />
@@ -5200,6 +5204,13 @@
       <path value="EpisodeOfCare.type.coding.display" />
       <min value="1" />
     </element>
+    <element id="EpisodeOfCare.diagnosis">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Diagnosis" />
+      </extension>
+      <path value="EpisodeOfCare.diagnosis" />
+      <max value="0" />
+    </element>
     <element id="EpisodeOfCare.patient">
       <path value="EpisodeOfCare.patient" />
       <type>
@@ -5218,6 +5229,10 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Team-Organization-1" />
       </type>
     </element>
+    <element id="EpisodeOfCare.managingOrganization.reference">
+      <path value="EpisodeOfCare.managingOrganization.reference" />
+      <min value="1" />
+    </element>
     <element id="EpisodeOfCare.period">
       <path value="EpisodeOfCare.period" />
       <min value="1" />
@@ -5226,12 +5241,28 @@
       <path value="EpisodeOfCare.period.start" />
       <min value="1" />
     </element>
+    <element id="EpisodeOfCare.referralRequest">
+      <path value="EpisodeOfCare.referralRequest" />
+      <max value="0" />
+    </element>
     <element id="EpisodeOfCare.careManager">
       <path value="EpisodeOfCare.careManager" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
+    </element>
+    <element id="EpisodeOfCare.careManager.reference">
+      <path value="EpisodeOfCare.careManager.reference" />
+      <min value="1" />
+    </element>
+    <element id="EpisodeOfCare.team">
+      <path value="EpisodeOfCare.team" />
+      <max value="0" />
+    </element>
+    <element id="EpisodeOfCare.account">
+      <path value="EpisodeOfCare.account" />
+      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>
