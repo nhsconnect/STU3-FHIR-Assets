@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-12-10T16:21:35.692+00:00" />
+    <lastUpdated value="2018-02-06T11:17:50.26+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1" />
   <version value="1.0.0" />
@@ -805,7 +805,7 @@
       <comment value="There SHOULD be at least one destination, but in some circumstances, the source system is unaware of any particular destination system." />
       <requirements value="Indicates where message is to be sent for routing purposes.  Allows verification of &quot;am I the intended recipient&quot;." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.destination" />
         <min value="0" />
@@ -1280,7 +1280,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Allows routing beyond just the application level." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.receiver" />
         <min value="0" />
@@ -1535,7 +1535,7 @@
       <comment value="Use case is for where a (trusted) sending system is responsible for multiple organizations, and therefore cannot differentiate based on source endpoint / authentication alone." />
       <requirements value="Allows routing beyond just the application level." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.sender" />
         <min value="0" />
@@ -1832,7 +1832,7 @@
       <comment value="Usually only for the request, but can be used in a response." />
       <requirements value="Need to know for audit/traceback requirements and possibly for authorization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.enterer" />
         <min value="0" />
@@ -2079,7 +2079,7 @@
       <comment value="Usually only for the request, but can be used in a response." />
       <requirements value="Need to know for audit/traceback requirements and possibly for authorization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.author" />
         <min value="0" />
@@ -3412,7 +3412,7 @@
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Need to be able to track why resources are being changed and report in the audit log/history of the resource.  May affect authorization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.reason" />
         <min value="0" />
@@ -3941,7 +3941,7 @@
       <short value="If this is a reply to prior message" />
       <definition value="Information about the message that this message is a response to.  Only present if this message is a response." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MessageHeader.response" />
         <min value="0" />
@@ -4672,7 +4672,7 @@
     </element>
   </snapshot>
   <differential>
-    <element>
+    <element id="MessageHeader.extension">
       <path value="MessageHeader.extension" />
       <slicing>
         <discriminator>
@@ -4732,8 +4732,16 @@
         <valueString value="PDS Change of Address" />
       </example>
     </element>
+    <element id="MessageHeader.destination">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="MessageDestination" />
+      </extension>
+      <path value="MessageHeader.destination" />
+      <max value="0" />
+    </element>
     <element id="MessageHeader.receiver">
       <path value="MessageHeader.receiver" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
@@ -4753,6 +4761,7 @@
     </element>
     <element id="MessageHeader.sender">
       <path value="MessageHeader.sender" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
@@ -4771,6 +4780,7 @@
     </element>
     <element id="MessageHeader.enterer">
       <path value="MessageHeader.enterer" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
@@ -4778,6 +4788,7 @@
     </element>
     <element id="MessageHeader.author">
       <path value="MessageHeader.author" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
@@ -4790,6 +4801,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
+    </element>
+    <element id="MessageHeader.reason">
+      <path value="MessageHeader.reason" />
+      <max value="0" />
+    </element>
+    <element id="MessageHeader.response">
+      <path value="MessageHeader.response" />
+      <max value="0" />
     </element>
     <element id="MessageHeader.focus">
       <path value="MessageHeader.focus" />
