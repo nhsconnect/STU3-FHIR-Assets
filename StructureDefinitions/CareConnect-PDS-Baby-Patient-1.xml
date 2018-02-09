@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Patient" />
   <meta>
-    <lastUpdated value="2018-02-09T10:15:20.206+00:00" />
+    <lastUpdated value="2018-02-09T12:42:24.326+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -350,7 +350,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -392,7 +392,7 @@
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="DomainResource.extension" />
@@ -436,7 +436,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -479,7 +479,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -522,7 +522,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -565,7 +565,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -608,7 +608,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -694,7 +694,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -791,8 +791,8 @@
       <short value="An identifier for this patient" />
       <definition value="An identifier for this patient." />
       <requirements value="Patients are almost always assigned specific numerical identifiers." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Patient.identifier" />
         <min value="0" />
@@ -2054,7 +2054,7 @@
       <short value="The patient's NHS number" />
       <definition value="An identifier for this patient." />
       <requirements value="Patients are almost always assigned specific numerical identifiers." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Patient.identifier" />
@@ -3366,7 +3366,7 @@
       <definition value="An identifier for this patient." />
       <requirements value="Patients are almost always assigned specific numerical identifiers." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Patient.identifier" />
         <min value="0" />
@@ -4630,7 +4630,7 @@
       <comment value="Default is true. If a record is inactive, and linked to an active record, then future patient/record updates should occur on the other patient&#xA;&#xA;This element is labeled as a modifier because when the patient record is marked as not active it is not expected to be used/referenced without being changed back to active." />
       <requirements value="Need to be able to mark a patient record as not to be used because it was created in error." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Patient.active" />
         <min value="0" />
@@ -7072,7 +7072,7 @@
       <definition value="The date of birth for the individual." />
       <comment value="At least an estimated year should be provided as a guess if the real DOB is unknown  There is a standard extension &quot;patient-birthTime&quot; available that should be used where Time is required (such as in maternaty/infant care systems)." />
       <requirements value="Age of the individual drives many clinical processes." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Patient.birthDate" />
@@ -7262,8 +7262,9 @@
         </code>
       </type>
     </element>
-    <element id="Patient.deceased[x]">
-      <path value="Patient.deceased[x]" />
+    <element id="Patient.deceased[x]:deceasedDateTime">
+      <path value="Patient.deceasedDateTime" />
+      <sliceName value="deceasedDateTime" />
       <short value="Indicates if the individual is deceased or not" />
       <definition value="Indicates if the individual is deceased or not." />
       <comment value="If there's no value in the instance it means there is no statement on whether or not the individual is deceased. Most systems will interpret the absence of a value as a sign of the person being alive.&#xA;&#xA;This element is labeled as a modifier because once a patient is marked as deceased, the actions that are appropriate to perform on the patient may be significantly different." />
@@ -7275,9 +7276,6 @@
         <min value="0" />
         <max value="1" />
       </base>
-      <type>
-        <code value="boolean" />
-      </type>
       <type>
         <code value="dateTime" />
       </type>
@@ -7314,7 +7312,7 @@
       <definition value="Addresses for the individual." />
       <comment value="Patient may have multiple addresses with different uses or applicable periods." />
       <requirements value="May need to keep track of patient addresses for contacting, billing or reporting requirements and also to help with identification." />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
         <path value="Patient.address" />
@@ -7608,7 +7606,7 @@
       <definition value="This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="home | work | temp | old - purpose of this address." />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
         <path value="Address.line" />
@@ -8133,7 +8131,7 @@
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Most, if not all systems capture it." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Patient.maritalStatus" />
         <min value="0" />
@@ -8157,11 +8155,9 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true" />
         </extension>
-        <strength value="required" />
+        <strength value="extensible" />
         <description value="The domestic partnership status of a person." />
-        <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MaritalStatus-1" />
-        </valueSetReference>
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/marital-status" />
       </binding>
       <mapping>
         <identity value="rim" />
@@ -9181,7 +9177,7 @@
       <comment value="Contact covers all kinds of contact parties: family members, business contacts, guardians, caregivers. Not applicable to register pedigree and family ties beyond use of having contact." />
       <requirements value="Need to track people you can contact about the patient." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Patient.contact" />
         <min value="0" />
@@ -14829,7 +14825,7 @@
       <comment value="This may be the primary care provider (in a GP context), or it may be a patient nominated care manager in a community/disablity setting, or even organization that will provide people to perform the care provider roles.&#xA;&#xA;It is not to be used to record Care Teams, these should be in a CareTeam resource that may be linked to the CarePlan or EpisodeOfCare resources." />
       <alias value="careProvider" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Patient.generalPractitioner" />
         <min value="0" />
@@ -15079,7 +15075,7 @@
       <comment value="There is only one managing organization for a specific patient record. Other organizations will have their own Patient record, and may use the Link property to join the records together (or a Person resource which can include confidence ratings for the association)." />
       <requirements value="Need to know who recognizes this patient record, manages and updates it." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Patient.managingOrganization" />
         <min value="0" />
@@ -15322,7 +15318,7 @@
       <comment value="There is no assumption that linked patient records have mutual links. &#xA;&#xA;This element is labelled as a modifier because it may not be the main Patient resource, and the referenced patient should be used instead of this Patient record. This is when the link.type value is 'replaced-by'." />
       <requirements value="There are multiple usecases: &#xA;&#xA;* Duplicate patient records due to the clerical errors associated with the difficulties of identifying humans consistently, and * Distribution of patient information across multiple servers." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Patient.link" />
         <min value="0" />
@@ -15788,7 +15784,7 @@
     <element id="Patient.extension:registrationDetails">
       <path value="Patient.extension" />
       <sliceName value="registrationDetails" />
-      <max value="1" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-RegistrationDetails-1" />
@@ -15797,6 +15793,7 @@
     <element id="Patient.extension:ethnicCategory">
       <path value="Patient.extension" />
       <sliceName value="ethnicCategory" />
+      <min value="1" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -15806,7 +15803,7 @@
     <element id="Patient.extension:religiousAffiliation">
       <path value="Patient.extension" />
       <sliceName value="religiousAffiliation" />
-      <max value="1" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ReligiousAffiliation-1" />
@@ -15815,7 +15812,7 @@
     <element id="Patient.extension:patient-cadavericDonor">
       <path value="Patient.extension" />
       <sliceName value="patient-cadavericDonor" />
-      <max value="1" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-cadavericDonor" />
@@ -15825,6 +15822,7 @@
       <path value="Patient.extension" />
       <sliceName value="residentialStatus" />
       <short value="The residential status of the patient" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ResidentialStatus-1" />
@@ -15833,6 +15831,7 @@
     <element id="Patient.extension:treatmentCategory">
       <path value="Patient.extension" />
       <sliceName value="treatmentCategory" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-TreatmentCategory-1" />
@@ -15841,6 +15840,7 @@
     <element id="Patient.extension:nhsCommunication">
       <path value="Patient.extension" />
       <sliceName value="nhsCommunication" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSCommunication-1" />
@@ -15857,6 +15857,7 @@
     <element id="Patient.extension:nominatedPharmacy">
       <path value="Patient.extension" />
       <sliceName value="nominatedPharmacy" />
+      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NominatedPharmacy-1" />
@@ -15872,11 +15873,14 @@
         <ordered value="false" />
         <rules value="openAtEnd" />
       </slicing>
+      <min value="1" />
+      <max value="1" />
     </element>
     <element id="Patient.identifier:nhsNumber">
       <path value="Patient.identifier" />
       <sliceName value="nhsNumber" />
       <short value="The patient's NHS number" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Patient.identifier:nhsNumber.extension">
@@ -15932,6 +15936,7 @@
       <path value="Patient.identifier" />
       <sliceName value="localIdentifier" />
       <short value="The patient's other identifiers" />
+      <max value="0" />
     </element>
     <element id="Patient.identifier:localIdentifier.system">
       <path value="Patient.identifier.system" />
@@ -15948,6 +15953,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
+    </element>
+    <element id="Patient.active">
+      <path value="Patient.active" />
+      <max value="0" />
     </element>
     <element id="Patient.name">
       <path value="Patient.name" />
@@ -16007,6 +16016,10 @@
         </valueSetReference>
       </binding>
     </element>
+    <element id="Patient.birthDate">
+      <path value="Patient.birthDate" />
+      <min value="1" />
+    </element>
     <element id="Patient.birthDate.extension">
       <path value="Patient.birthDate.extension" />
       <slicing>
@@ -16025,6 +16038,17 @@
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-birthTime" />
       </type>
     </element>
+    <element id="Patient.deceased[x]:deceasedDateTime">
+      <path value="Patient.deceasedDateTime" />
+      <sliceName value="deceasedDateTime" />
+      <type>
+        <code value="dateTime" />
+      </type>
+    </element>
+    <element id="Patient.address">
+      <path value="Patient.address" />
+      <min value="1" />
+    </element>
     <element id="Patient.address.text">
       <path value="Patient.address.text" />
       <example>
@@ -16034,6 +16058,7 @@
     </element>
     <element id="Patient.address.line">
       <path value="Patient.address.line" />
+      <min value="1" />
       <example>
         <label value="General" />
         <valueString value="42 Grove Street" />
@@ -16073,6 +16098,7 @@
     </element>
     <element id="Patient.maritalStatus">
       <path value="Patient.maritalStatus" />
+      <max value="0" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MaritalStatus" />
@@ -16080,10 +16106,8 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
           <valueBoolean value="true" />
         </extension>
-        <strength value="required" />
-        <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MaritalStatus-1" />
-        </valueSetReference>
+        <strength value="extensible" />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/marital-status" />
       </binding>
     </element>
     <element id="Patient.maritalStatus.coding">
@@ -16127,6 +16151,13 @@
     </element>
     <element id="Patient.photo">
       <path value="Patient.photo" />
+      <max value="0" />
+    </element>
+    <element id="Patient.contact">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Contact" />
+      </extension>
+      <path value="Patient.contact" />
       <max value="0" />
     </element>
     <element id="Patient.contact.relationship.coding.system">
@@ -16252,7 +16283,7 @@
     </element>
     <element id="Patient.generalPractitioner">
       <path value="Patient.generalPractitioner" />
-      <max value="1" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
@@ -16264,10 +16295,15 @@
     </element>
     <element id="Patient.managingOrganization">
       <path value="Patient.managingOrganization" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
+    </element>
+    <element id="Patient.link">
+      <path value="Patient.link" />
+      <max value="0" />
     </element>
     <element id="Patient.link.other">
       <path value="Patient.link.other" />
