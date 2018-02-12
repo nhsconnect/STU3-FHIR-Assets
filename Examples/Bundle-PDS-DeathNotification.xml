@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
 <Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/scratch/stu3/bundle.xsd">
-	<id value="d1f08345-d1b1-4054-b44d-a12d65023ad0"/>
+	<id value="e19b2ec1-6c6b-4278-a0bb-cea2f4ecb917"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
 	</meta>
 	<identifier>
 		<system value="https://tools.ietf.org/html/rfc4122"/>
-		<value value="d1f08345-d1b1-4054-b44d-a12d65023ad0"/>
+		<value value="542a04b8-5ec0-4f02-9dfc-a67a3db15991"/>
 	</identifier>
 	<type value="message"/>
 	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
 	<entry>
-		<fullUrl value="urn:uuid:dffd31aa-dc21-11e7-9296-cec278b6b50a"/>
+		<fullUrl value="urn:uuid:54cbe7a2-0a13-4f22-a073-f15aa7b8b5a5"/>
 		<resource>
 			<MessageHeader>
-				<id value="dffd31aa-dc21-11e7-9296-cec278b6b50a"/>
+				<id value="54cbe7a2-0a13-4f22-a073-f15aa7b8b5a5"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
 				</meta>
@@ -125,7 +125,7 @@
 			</Communication>
 		</resource>
 	</entry>
-	<!--Entry for communication for the Patient demographics.-->
+	<!--Entry for communication for the Patient death-->
 	<entry>
 		<fullUrl value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
 		<resource>
@@ -145,25 +145,17 @@
 						</valueCodeableConcept>
 					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
-				</identifier>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/local-patient-identifier"/>
-					<value value="123456"/>
+					<value value="6101231234"/>
 				</identifier>
 				<name>
-					<family value="DAWKINS"/>
+					<family value="JONES"/>
 					<given value="Jack"/>
 					<period>
-						<start value="2018-02-01"/>
+						<start value="1918-02-01"/>
 					</period>
 				</name>
 				<gender value="male"/>
-				<birthDate value="2017-10-02">
-					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
-						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
-					</extension>
-				</birthDate>
+				<deceasedDateTime value="2017-11-01T15:00:00+00:00"/>
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
@@ -215,31 +207,26 @@
 			</Organization>
 		</resource>
 	</entry>
+	<!--Entry for communication for the event message, with reference to subject-->
 	<entry>
-		<fullUrl value="urn:uuid:1d97d7af-682e-490d-a4cf-7d55990ab0e4"/>
+		<fullUrl value="urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e"/>
 		<resource>
-			<Flag>
-			<id value="1d97d7af-682e-490d-a4cf-7d55990ab0e4"/>
-			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-PDS-Flag-1"/>
-			</meta>
-			<identifier>
-				<system value="urn:ietf:rfc:3986"/>
-				<value value="2454ef04-4434-403d-af78-9812fe2df2b5"/>
-			</identifier>
-			<status value="active"/>
-			<code>
-				<coding >
-					<system value="http://snomed.info/sct"/>
-					<code value="704658004"/>
-					<display value="Child at risk of neglect"/>
-				</coding>
-			</code>
-			<subject>
-				<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-				<display value="DAWKINS, jack"/>
-			</subject>
-			</Flag>
+			<Communication>
+				<id value="3a56ba02-785b-4f34-9282-d7129c8e134e"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/PDS-PersonDeath-Communication-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="5888458b-cb6f-493d-9347-f24725808862"/>
+				</identifier>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+					<display value="JONES, Jack"/>
+				</subject>
+				<sent value="2018-02-08"/>				
+			</Communication>
 		</resource>
 	</entry>
 </Bundle>
