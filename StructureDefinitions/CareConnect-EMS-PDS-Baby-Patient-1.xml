@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Patient" />
   <meta>
-    <lastUpdated value="2018-02-09T12:42:24.326+00:00" />
+    <lastUpdated value="2018-02-12T07:56:56.074+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -3115,8 +3115,8 @@
     </element>
     <element id="Patient.identifier:nhsNumber.assigner">
       <path value="Patient.identifier.assigner" />
-      <short value="Organization that issued id (may be just text)" />
-      <definition value="Organization that issued/manages the identifier." />
+      <short value="A grouping of people or organizations with a common purpose" />
+      <definition value="A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, etc." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
       <max value="0" />
@@ -3127,7 +3127,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3143,6 +3143,41 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <constraint>
+        <key value="dom-2" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
+        <expression value="contained.contained.empty()" />
+        <xpath value="not(parent::f:contained and f:contained)" />
+      </constraint>
+      <constraint>
+        <key value="dom-1" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
+        <expression value="contained.text.empty()" />
+        <xpath value="not(parent::f:contained and f:text)" />
+      </constraint>
+      <constraint>
+        <key value="dom-4" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
+        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
+      </constraint>
+      <constraint>
+        <key value="dom-3" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
+        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
+        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
+      </constraint>
+      <constraint>
+        <key value="org-1" />
+        <severity value="error" />
+        <human value="The organization SHALL at least have a name or an id, and possibly more than one" />
+        <expression value="(identifier.count() + name.count()) &gt; 0" />
+        <xpath value="count(f:identifier | f:name) &gt; 0" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -3164,6 +3199,26 @@
       <mapping>
         <identity value="servd" />
         <map value="./IdentifierIssuingAuthority" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="(also see master files messages)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Organization(classCode=ORG, determinerCode=INST)" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="Organization" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="administrative.group" />
       </mapping>
     </element>
     <element id="Patient.identifier:nhsNumber.assigner.id">
@@ -4391,7 +4446,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7262,7 +7317,7 @@
         </code>
       </type>
     </element>
-    <element id="Patient.deceased[x]:deceasedDateTime">
+    <element id="Patient.deceasedDateTime:deceasedDateTime">
       <path value="Patient.deceasedDateTime" />
       <sliceName value="deceasedDateTime" />
       <short value="Indicates if the individual is deceased or not" />
@@ -11885,7 +11940,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <condition value="pat-1" />
@@ -14833,11 +14888,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -15083,7 +15134,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -15931,6 +15982,10 @@
     <element id="Patient.identifier:nhsNumber.assigner">
       <path value="Patient.identifier.assigner" />
       <max value="0" />
+      <type>
+        <code value="Reference" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
+      </type>
     </element>
     <element id="Patient.identifier:localIdentifier">
       <path value="Patient.identifier" />
@@ -15951,7 +16006,7 @@
       <path value="Patient.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
     </element>
     <element id="Patient.active">
@@ -16038,7 +16093,7 @@
         <profile value="http://hl7.org/fhir/StructureDefinition/patient-birthTime" />
       </type>
     </element>
-    <element id="Patient.deceased[x]:deceasedDateTime">
+    <element id="Patient.deceasedDateTime:deceasedDateTime">
       <path value="Patient.deceasedDateTime" />
       <sliceName value="deceasedDateTime" />
       <type>
@@ -16267,7 +16322,7 @@
       <path value="Patient.contact.organization" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
     </element>
     <element id="Patient.animal">
@@ -16286,11 +16341,7 @@
       <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
     </element>
     <element id="Patient.managingOrganization">
@@ -16298,7 +16349,7 @@
       <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
     </element>
     <element id="Patient.link">
