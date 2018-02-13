@@ -1,0 +1,86 @@
+{
+  "resourceType": "CapabilityStatement",
+  "url": "https://clinicals.spineservices.nhs.uk",
+  "version": "1.0.0",
+  "name": "NDOP-CapabilityStatement-1",
+  "status": "draft",
+  "date": "2017-01-24",
+  "publisher": "NHS Digital",
+  "contact": [
+    {
+      "name": "National Information Centre",
+      "telecom": [
+        {
+          "system": "email",
+          "value": "exeter.helpdesk:nhs.net",
+          "use": "work"
+        }
+      ]
+    }
+  ],
+  "description": "An API for creating and updaing Opt-out preferences within the National Data Opt-out Programme.",
+  "copyright": "Copyright © 2017 NHS Digital",
+  "kind": "instance",
+  "instantiates": [
+    "https://fhir.nhs.uk/STU3/CapabilityStatement/NDOP-CapabilityStatement-1"
+  ],
+  "fhirVersion": "3.0.1",
+  "acceptUnknown": "no",
+  "format": [
+    "application/xml+fhir",
+    "application/json+fhir"
+  ],
+  "implementationGuide": [
+    "TBC"
+  ],
+  "profile": [
+    {
+      "reference": "https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1"
+    }
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "resource": [
+        {
+          "type": "Consent",
+          "profile": {
+            "reference": "https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1",
+            "display": "NDOP-Consent-1 Profile"
+          },
+          "interaction": [
+            {
+              "code": "create"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            }
+          ],
+          "versioning": "versioned",
+          "readHistory": true,
+          "searchParam": [
+            {
+              "name": "patient",
+              "type": "reference"
+            },
+            {
+              "name": "category",
+              "type": "token"
+            },
+            {
+              "name": "purpose",
+              "type": "token"
+            },
+            {
+              "name": "_id",
+              "type": "token"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
