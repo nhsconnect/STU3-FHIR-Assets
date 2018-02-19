@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="Task" />
   <meta>
-    <lastUpdated value="2018-02-12T14:47:30.695+00:00" />
+    <lastUpdated value="2018-02-19T14:43:42.396+00:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-NullifyFailsafeAlert-Task-1" />
   <version value="1.0.0" />
-  <name value="EMS-FailsafeAlert-Task-1" />
+  <name value="EMS-NullifyFailsafeAlert-Task-1" />
   <status value="draft" />
   <date value="2017-11-23T21:27:39.768+00:00" />
   <publisher value="NHS Digital" />
@@ -18,7 +17,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This Task resource has been constrained to represent the action to be taken based on a Failsafe Alert event message." />
+  <description value="This Task resource has been constrained to represent nullification request for a Failsafe Alert event message." />
   <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -319,92 +318,6 @@
       </base>
       <type>
         <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Task.extension:severityLevel">
-      <path value="Task.extension" />
-      <sliceName value="severityLevel" />
-      <short value="The escalation level applicable to a Failsafe Alert" />
-      <definition value="The escalation level applicable to a Failsafe Alert." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="DomainResource.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertSeverityLevel-1" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Task.extension:escalationLevel">
-      <path value="Task.extension" />
-      <sliceName value="escalationLevel" />
-      <short value="The escalation level applicable to a Failsafe Alert" />
-      <definition value="The escalation level applicable to a Failsafe Alert." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="DomainResource.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertEscalationLevel-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4726,7 +4639,7 @@
       <definition value="A name or code (or both) briefly describing what the task involves." />
       <comment value="The title (eg &quot;My Tasks&quot;, &quot;Outstanding Tasks for Patient X&quot;) should go into the code." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Task.code" />
         <min value="0" />
@@ -4748,11 +4661,8 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskCode" />
         </extension>
-        <strength value="required" />
-        <description value="The action required to be taken for the Failsafe Alert" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertActionRequired-1" />
-        </valueSetReference>
+        <strength value="example" />
+        <description value="Codes to identify what the task involves.  These will typically be specific to a particular workflow." />
       </binding>
       <mapping>
         <identity value="rim" />
@@ -5009,7 +4919,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertActionRequired-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlert-ActionRequired-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5261,7 +5171,7 @@
     </element>
     <element id="Task.description">
       <path value="Task.description" />
-      <short value="Human-readable explanation of task" />
+      <short value="Description of why an alert has been nullified" />
       <definition value="A free-text description of what is to be performed." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
@@ -5298,11 +5208,11 @@
     </element>
     <element id="Task.focus">
       <path value="Task.focus" />
-      <short value="What task is acting on" />
+      <short value="Originating Failsafe Alert responsible for the nullification request" />
       <definition value="The request being actioned or the resource being manipulated by this task." />
       <comment value="If multiple resources need to be manipulated, use sub-tasks.  (This ensures that status can be tracked independently for each referenced resource.)." />
       <requirements value="Used to identify the thing to be done." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Task.focus" />
@@ -5311,7 +5221,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5429,7 +5339,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -6255,7 +6165,7 @@
     </element>
     <element id="Task.authoredOn">
       <path value="Task.authoredOn" />
-      <short value="Task Creation Date" />
+      <short value="The date and time the nullification was raised" />
       <definition value="The date and time this task was created." />
       <requirements value="Most often used along with lastUpdated to track duration of task to supporting monitoring and management." />
       <alias value="Created Date" />
@@ -6332,11 +6242,11 @@
     </element>
     <element id="Task.requester">
       <path value="Task.requester" />
-      <short value="Who is asking for task to be done" />
+      <short value="Requester of the nullification of Failsafe Alert" />
       <definition value="The creator of the task." />
       <requirements value="Identifies who created this task.  May be used by access control mechanisms (e.g., to ensure that only the creator can cancel a task)." />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Task.requester" />
         <min value="0" />
@@ -6506,6 +6416,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6752,7 +6666,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6986,7 +6900,7 @@
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Use to distinguish tasks on different activity queues." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Task.performerType" />
         <min value="0" />
@@ -7007,11 +6921,9 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskPerformerType" />
         </extension>
-        <strength value="required" />
-        <description value="The service to action the task for the Failsafe Alert" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertServiceToAction-1" />
-        </valueSetReference>
+        <strength value="preferred" />
+        <description value="The type(s) of task performers allowed" />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/task-performer-type" />
       </binding>
       <mapping>
         <identity value="rim" />
@@ -7268,7 +7180,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertServiceToAction-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlert-ServiceToAction-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -7773,10 +7685,10 @@
     </element>
     <element id="Task.reason">
       <path value="Task.reason" />
-      <short value="Why task is needed" />
+      <short value="Reason for the nullification of the Failsafe Alert" />
       <definition value="A description or code indicating why this task needs to be performed." />
       <comment value="This should only be included if there is no focus or if it differs from the reason indicated on the focus." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.reason" />
@@ -7799,9 +7711,9 @@
           <valueString value="TaskReason" />
         </extension>
         <strength value="required" />
-        <description value="The reason for the Failsafe Alert" />
+        <description value="The reason for the nullification of the Failsafe Alert" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertReason-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-NullifyFailsafeAlertReason-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -8059,7 +7971,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertReason-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-NullifyFailsafeAlertReason-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -8807,10 +8719,10 @@
     </element>
     <element id="Task.restriction">
       <path value="Task.restriction" />
-      <short value="Constraints on fulfillment tasks" />
+      <short value="Period of time during which nullification of the Failsafe Alert applies" />
       <definition value="If the Task.focus is a request resource and the task is seeking fulfillment (i.e is asking for the request to be actioned), this element identifies any limitations on what parts of the referenced request should be actioned." />
       <requirements value="Sometimes when fulfillment is sought, you don't want full fulfillment." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.restriction" />
@@ -8998,7 +8910,7 @@
       <definition value="Over what time-period is fulfillment sought." />
       <comment value="Note that period.high is the due date representing the time by which the task should be completed." />
       <requirements value="E.g. order that authorizes 1 year's services.  Fulfillment is sought for next 3 months." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.restriction.period" />
@@ -9123,7 +9035,7 @@
       <short value="Starting time with inclusive boundary" />
       <definition value="The start of the period. The boundary is inclusive." />
       <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Period.start" />
@@ -11089,38 +11001,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Task.extension">
-      <path value="Task.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Task.extension:severityLevel">
-      <path value="Task.extension" />
-      <sliceName value="severityLevel" />
-      <short value="The escalation level applicable to a Failsafe Alert" />
-      <definition value="The escalation level applicable to a Failsafe Alert." />
-      <min value="1" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertSeverityLevel-1" />
-      </type>
-    </element>
-    <element id="Task.extension:escalationLevel">
-      <path value="Task.extension" />
-      <sliceName value="escalationLevel" />
-      <min value="1" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertEscalationLevel-1" />
-      </type>
-    </element>
     <element id="Task.identifier">
       <path value="Task.identifier" />
       <min value="1" />
@@ -11203,16 +11083,7 @@
     </element>
     <element id="Task.code">
       <path value="Task.code" />
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="TaskCode" />
-        </extension>
-        <strength value="required" />
-        <description value="The action required to be taken for the Failsafe Alert" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertActionRequired-1" />
-        </valueSetReference>
-      </binding>
+      <max value="0" />
     </element>
     <element id="Task.code.coding">
       <path value="Task.code.coding" />
@@ -11221,7 +11092,7 @@
     <element id="Task.code.coding.system">
       <path value="Task.code.coding.system" />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertActionRequired-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlert-ActionRequired-1" />
     </element>
     <element id="Task.code.coding.code">
       <path value="Task.code.coding.code" />
@@ -11244,6 +11115,7 @@
     </element>
     <element id="Task.description">
       <path value="Task.description" />
+      <short value="Description of why an alert has been nullified" />
       <example>
         <label value="Failsafe Example Value" />
         <valueString value="Severity Level: Warning Alert - Escalation Level: Service - Condition ID: 001 - Condition Description: Missing Health Visiting Service - Reason for alert: Individual has a missing association with a Health Visiting Service - Service needed to action: Health Visiting" />
@@ -11251,11 +11123,15 @@
     </element>
     <element id="Task.focus">
       <path value="Task.focus" />
-      <min value="1" />
+      <short value="Originating Failsafe Alert responsible for the nullification request" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
       </type>
+    </element>
+    <element id="Task.focus.reference">
+      <path value="Task.focus.reference" />
+      <min value="1" />
     </element>
     <element id="Task.for">
       <path value="Task.for" />
@@ -11287,6 +11163,7 @@
     </element>
     <element id="Task.authoredOn">
       <path value="Task.authoredOn" />
+      <short value="The date and time the nullification was raised" />
       <min value="1" />
     </element>
     <element id="Task.lastModified">
@@ -11295,10 +11172,22 @@
     </element>
     <element id="Task.requester">
       <path value="Task.requester" />
-      <max value="0" />
+      <short value="Requester of the nullification of Failsafe Alert" />
+      <min value="1" />
     </element>
     <element id="Task.requester.agent">
       <path value="Task.requester.agent" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Practitioner-1" />
+      </type>
+    </element>
+    <element id="Task.requester.onBehalfOf">
+      <path value="Task.requester.onBehalfOf" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
@@ -11307,16 +11196,13 @@
     <element id="Task.performerType">
       <path value="Task.performerType" />
       <short value="The service to action the task for the Failsafe Alert" />
-      <max value="1" />
+      <max value="0" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskPerformerType" />
         </extension>
-        <strength value="required" />
-        <description value="The service to action the task for the Failsafe Alert" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertServiceToAction-1" />
-        </valueSetReference>
+        <strength value="preferred" />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/task-performer-type" />
       </binding>
     </element>
     <element id="Task.performerType.coding">
@@ -11326,7 +11212,7 @@
     <element id="Task.performerType.coding.system">
       <path value="Task.performerType.coding.system" />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertServiceToAction-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlert-ServiceToAction-1" />
     </element>
     <element id="Task.performerType.coding.code">
       <path value="Task.performerType.coding.code" />
@@ -11361,14 +11247,16 @@
     </element>
     <element id="Task.reason">
       <path value="Task.reason" />
+      <short value="Reason for the nullification of the Failsafe Alert" />
+      <min value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskReason" />
         </extension>
         <strength value="required" />
-        <description value="The reason for the Failsafe Alert" />
+        <description value="The reason for the nullification of the Failsafe Alert" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-FailsafeAlertReason-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-NullifyFailsafeAlertReason-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -11379,7 +11267,7 @@
     <element id="Task.reason.coding.system">
       <path value="Task.reason.coding.system" />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertReason-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-NullifyFailsafeAlertReason-1" />
     </element>
     <element id="Task.reason.coding.code">
       <path value="Task.reason.coding.code" />
@@ -11426,9 +11314,22 @@
       <path value="Task.relevantHistory" />
       <max value="0" />
     </element>
+    <element id="Task.restriction">
+      <path value="Task.restriction" />
+      <short value="Period of time during which nullification of the Failsafe Alert applies" />
+      <min value="1" />
+    </element>
     <element id="Task.restriction.repetitions">
       <path value="Task.restriction.repetitions" />
       <max value="0" />
+    </element>
+    <element id="Task.restriction.period">
+      <path value="Task.restriction.period" />
+      <min value="1" />
+    </element>
+    <element id="Task.restriction.period.start">
+      <path value="Task.restriction.period.start" />
+      <min value="1" />
     </element>
     <element id="Task.restriction.recipient">
       <path value="Task.restriction.recipient" />
