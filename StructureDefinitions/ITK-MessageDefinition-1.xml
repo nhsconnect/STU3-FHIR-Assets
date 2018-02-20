@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-01-03T11:41:38.824+00:00" />
+    <lastUpdated value="2018-01-05T13:08:05.497+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-MessageDefinition-1" />
   <version value="1.0.0" />
@@ -557,7 +557,7 @@
       <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary." />
       <requirements value="Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.use" />
         <min value="0" />
@@ -606,7 +606,7 @@
       <comment value="This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage. &#xA;&#xA;Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type." />
       <requirements value="Allows users to make use of identifiers when the identifier system is not known." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.type" />
         <min value="0" />
@@ -1437,7 +1437,7 @@
       <definition value="Organization that issued/manages the identifier." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Identifier.assigner" />
         <min value="0" />
@@ -5106,7 +5106,6 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="ITK003D" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5152,7 +5151,6 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="ITK eDischarge" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5467,7 +5465,7 @@
       <definition value="A profile that reflects constraints for the focal resource (and potentially for related resources)." />
       <comment value="This should be present for most message definitions.  However, if the message focus is only a single resource and there is no need to include referenced resources or otherwise enforce the presence of particular elements, it can be omitted." />
       <requirements value="This profile allows setting boundaries for what content must appear within the message bundle vs. outside based on the declared aggregation constraints on referenced resources on this and related profiles." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="MessageDefinition.focus.profile" />
@@ -5476,7 +5474,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Message-Bundle-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5589,7 +5587,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="1" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -6718,6 +6716,14 @@
       <path value="MessageDefinition.identifier" />
       <min value="1" />
     </element>
+    <element id="MessageDefinition.identifier.use">
+      <path value="MessageDefinition.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="MessageDefinition.identifier.type">
+      <path value="MessageDefinition.identifier.type" />
+      <max value="0" />
+    </element>
     <element id="MessageDefinition.identifier.type.coding.system">
       <path value="MessageDefinition.identifier.type.coding.system" />
       <min value="1" />
@@ -6747,6 +6753,7 @@
     </element>
     <element id="MessageDefinition.identifier.assigner">
       <path value="MessageDefinition.identifier.assigner" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
@@ -6941,7 +6948,6 @@
     <element id="MessageDefinition.event.code">
       <path value="MessageDefinition.event.code" />
       <min value="1" />
-      <fixedCode value="ITK003D" />
     </element>
     <element id="MessageDefinition.event.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -6949,7 +6955,6 @@
       </extension>
       <path value="MessageDefinition.event.display" />
       <min value="1" />
-      <fixedString value="ITK eDischarge" />
     </element>
     <element id="MessageDefinition.event.userSelected">
       <path value="MessageDefinition.event.userSelected" />
@@ -6970,9 +6975,10 @@
     </element>
     <element id="MessageDefinition.focus.profile">
       <path value="MessageDefinition.focus.profile" />
+      <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Message-Bundle-1" />
       </type>
     </element>
     <element>
@@ -6988,6 +6994,7 @@
     <element id="MessageDefinition.focus.profile.extension:bundleAssets">
       <path value="MessageDefinition.focus.profile.extension" />
       <sliceName value="bundleAssets" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-BundledAssets-1" />
@@ -7043,6 +7050,22 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-MessageDefinition-1" />
       </type>
     </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-BusAck-MessageDefinition-1.reference">
+      <path value="MessageDefinition.allowedResponse.message.reference" />
+      <min value="1" />
+      <fixedString value="https://fhir.nhs.uk/STU3/MessageDefinition/ITK-BusAck-MessageDefinition-1" />
+    </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-BusAck-MessageDefinition-1.identifier">
+      <path value="MessageDefinition.allowedResponse.message.identifier" />
+      <max value="0" />
+    </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-BusAck-MessageDefinition-1.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MessageDefinition.allowedResponse.message.display" />
+      <max value="0" />
+    </element>
     <element id="MessageDefinition.allowedResponse.message:ITK-InfAck-MessageDefinition-1">
       <path value="MessageDefinition.allowedResponse.message" />
       <sliceName value="ITK-InfAck-MessageDefinition-1" />
@@ -7051,6 +7074,22 @@
         <profile value="https://fhir.nhs.uk/STU3/MessageDefinition/ITK-InfAck-MessageDefinition-1" />
         <targetProfile value="https://fhir.nhs.uk/STU3/MessageDefinition/ITK-InfAck-MessageDefinition-1" />
       </type>
+    </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-InfAck-MessageDefinition-1.reference">
+      <path value="MessageDefinition.allowedResponse.message.reference" />
+      <min value="1" />
+      <fixedString value="https://fhir.nhs.uk/STU3/MessageDefinition/ITK-InfAck-MessageDefinition-1" />
+    </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-InfAck-MessageDefinition-1.identifier">
+      <path value="MessageDefinition.allowedResponse.message.identifier" />
+      <max value="0" />
+    </element>
+    <element id="MessageDefinition.allowedResponse.message:ITK-InfAck-MessageDefinition-1.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MessageDefinition.allowedResponse.message.display" />
+      <max value="0" />
     </element>
     <element id="MessageDefinition.allowedResponse.situation">
       <path value="MessageDefinition.allowedResponse.situation" />
