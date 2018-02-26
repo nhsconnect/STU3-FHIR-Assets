@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="EpisodeOfCare" />
   <meta>
-    <lastUpdated value="2018-01-29T18:04:42.187+00:00" />
+    <lastUpdated value="2018-02-26T10:02:13.697+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-LookedAfterChild-EpisodeOfCare-1" />
   <version value="1.0.0" />
@@ -2200,7 +2200,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -3767,8 +3767,8 @@
     </element>
     <element id="EpisodeOfCare.managingOrganization">
       <path value="EpisodeOfCare.managingOrganization" />
-      <short value="Organization that assumes care" />
-      <definition value="The organization that has assumed the specific responsibilities for the specified duration." />
+      <short value="Local Authority (Looked After Child)" />
+      <definition value="The local authority that has assumed the specific responsibilities for the specified duration." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
       <max value="1" />
@@ -4001,10 +4001,10 @@
     </element>
     <element id="EpisodeOfCare.period">
       <path value="EpisodeOfCare.period" />
-      <short value="Interval during responsibility is assumed" />
+      <short value="Interval during which Looked After Child responsibility is assumed" />
       <definition value="The interval during which the managing organization assumes the defined responsibility." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="EpisodeOfCare.period" />
@@ -4127,10 +4127,10 @@
     </element>
     <element id="EpisodeOfCare.period.start">
       <path value="EpisodeOfCare.period.start" />
-      <short value="Starting time with inclusive boundary" />
+      <short value="Looked After Child Start Date" />
       <definition value="The start of the period. The boundary is inclusive." />
       <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Period.start" />
@@ -4165,7 +4165,7 @@
     </element>
     <element id="EpisodeOfCare.period.end">
       <path value="EpisodeOfCare.period.end" />
-      <short value="End time with inclusive boundary, if not ongoing" />
+      <short value="Looked After Child End Date" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
       <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
       <min value="0" />
@@ -4441,7 +4441,7 @@
       <definition value="The practitioner that is the care manager/care co-ordinator for this patient." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="EpisodeOfCare.careManager" />
         <min value="0" />
@@ -5187,7 +5187,6 @@
     </element>
     <element id="EpisodeOfCare.type.coding">
       <path value="EpisodeOfCare.type.coding" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="EpisodeOfCare.type.coding.system">
@@ -5225,6 +5224,8 @@
     </element>
     <element id="EpisodeOfCare.managingOrganization">
       <path value="EpisodeOfCare.managingOrganization" />
+      <short value="Local Authority (Looked After Child)" />
+      <definition value="The local authority that has assumed the specific responsibilities for the specified duration." />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Team-Organization-1" />
@@ -5234,12 +5235,27 @@
       <path value="EpisodeOfCare.managingOrganization.reference" />
       <min value="1" />
     </element>
+    <element id="EpisodeOfCare.period">
+      <path value="EpisodeOfCare.period" />
+      <short value="Interval during which Looked After Child responsibility is assumed" />
+      <min value="1" />
+    </element>
+    <element id="EpisodeOfCare.period.start">
+      <path value="EpisodeOfCare.period.start" />
+      <short value="Looked After Child Start Date" />
+      <min value="1" />
+    </element>
+    <element id="EpisodeOfCare.period.end">
+      <path value="EpisodeOfCare.period.end" />
+      <short value="Looked After Child End Date" />
+    </element>
     <element id="EpisodeOfCare.referralRequest">
       <path value="EpisodeOfCare.referralRequest" />
       <max value="0" />
     </element>
     <element id="EpisodeOfCare.careManager">
       <path value="EpisodeOfCare.careManager" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />

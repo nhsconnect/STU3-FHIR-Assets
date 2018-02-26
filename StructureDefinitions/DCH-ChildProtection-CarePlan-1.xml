@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="CarePlan" />
   <meta>
-    <lastUpdated value="2018-01-29T18:05:30.806+00:00" />
+    <lastUpdated value="2018-02-26T09:34:27.252+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ChildProtection-CarePlan-1" />
   <version value="1.0.0" />
@@ -2711,7 +2711,7 @@
     </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
-      <short value="Type of plan" />
+      <short value="Type of care plan" />
       <definition value="Identifies what &quot;kind&quot; of plan this is to support differentiation between multiple co-existing plans; e.g. &quot;Home health&quot;, &quot;psychiatric&quot;, &quot;asthma&quot;, &quot;disease management&quot;, &quot;wellness plan&quot;, etc." />
       <comment value="There may be multiple axis of categorization and one plan may serve multiple purposes.  In some cases, this may be redundant with references to CarePlan.concern." />
       <requirements value="Used for filtering what plan(s) are retrieved and displayed to different types of users." />
@@ -3304,7 +3304,7 @@
     </element>
     <element id="CarePlan.subject">
       <path value="CarePlan.subject" />
-      <short value="Who care plan is for" />
+      <short value="Subject of Child Protection Plan " />
       <definition value="Identifies the patient or group whose intended care is described by the plan." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <alias value="patient" />
@@ -3810,7 +3810,7 @@
     </element>
     <element id="CarePlan.period">
       <path value="CarePlan.period" />
-      <short value="Time period plan covers" />
+      <short value="Time period Child Protection Plan covers" />
       <definition value="Indicates when the plan did (or is intended to) come into effect and end." />
       <comment value="Any activities scheduled as part of the plan should be constrained to the specified period regardless of whether the activities are planned within a single encounter/episode or across multiple encounters/episodes (e.g. the longitudinal management of a chronic condition)." />
       <requirements value="Allows tracking what plan(s) are in effect at a particular time." />
@@ -3950,7 +3950,7 @@
     </element>
     <element id="CarePlan.period.start">
       <path value="CarePlan.period.start" />
-      <short value="Starting time with inclusive boundary" />
+      <short value="Child Protection Plan Start Date" />
       <definition value="The start of the period. The boundary is inclusive." />
       <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
       <min value="1" />
@@ -3988,7 +3988,7 @@
     </element>
     <element id="CarePlan.period.end">
       <path value="CarePlan.period.end" />
-      <short value="End time with inclusive boundary, if not ongoing" />
+      <short value="Child Protection Plan End Date" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
       <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
       <min value="0" />
@@ -4285,8 +4285,8 @@
     </element>
     <element id="CarePlan.careTeam">
       <path value="CarePlan.careTeam" />
-      <short value="Who's involved in plan?" />
-      <definition value="Identifies all people and organizations who are expected to be involved in the care envisioned by this plan." />
+      <short value="Local Authority (Child Protection Plan) " />
+      <definition value="Identifies the local authority involved in the care envisioned by this plan." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Allows representation of care teams, helps scope care plan.  In some cases may be a determiner of access permissions." />
       <min value="0" />
@@ -10957,6 +10957,7 @@
     </element>
     <element id="CarePlan.category">
       <path value="CarePlan.category" />
+      <short value="Type of care plan" />
       <min value="1" />
       <max value="1" />
     </element>
@@ -10989,6 +10990,7 @@
     </element>
     <element id="CarePlan.subject">
       <path value="CarePlan.subject" />
+      <short value="Subject of Child Protection Plan " />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
@@ -11004,11 +11006,17 @@
     </element>
     <element id="CarePlan.period">
       <path value="CarePlan.period" />
+      <short value="Time period Child Protection Plan covers" />
       <min value="1" />
     </element>
     <element id="CarePlan.period.start">
       <path value="CarePlan.period.start" />
+      <short value="Child Protection Plan Start Date" />
       <min value="1" />
+    </element>
+    <element id="CarePlan.period.end">
+      <path value="CarePlan.period.end" />
+      <short value="Child Protection Plan End Date" />
     </element>
     <element id="CarePlan.author">
       <path value="CarePlan.author" />
@@ -11016,6 +11024,8 @@
     </element>
     <element id="CarePlan.careTeam">
       <path value="CarePlan.careTeam" />
+      <short value="Local Authority (Child Protection Plan) " />
+      <definition value="Identifies the local authority involved in the care envisioned by this plan." />
       <max value="1" />
       <type>
         <code value="Reference" />
