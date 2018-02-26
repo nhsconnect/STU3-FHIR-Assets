@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Extension" />
   <meta>
-    <lastUpdated value="2018-01-25T14:22:14.762+00:00" />
+    <lastUpdated value="2018-02-26T14:13:52.597+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-ReferralRequestMethod-1" />
   <version value="1.0.0" />
@@ -200,6 +200,13 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <binding>
+        <strength value="required" />
+        <description value="The form in which a referral is sent and received" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReferralRequestMethod-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -469,13 +476,13 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.version">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.version">
       <path value="Extension.valueCodeableConcept.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -597,14 +604,14 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.userSelected">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.userSelected">
       <path value="Extension.valueCodeableConcept.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -702,6 +709,13 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <description value="The form in which a referral is sent and received" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReferralRequestMethod-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding">
       <path value="Extension.valueCodeableConcept.coding" />
@@ -717,6 +731,14 @@
     <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.system">
       <path value="Extension.valueCodeableConcept.coding.system" />
       <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ReferralRequestMethod-1" />
+    </element>
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.version">
+      <path value="Extension.valueCodeableConcept.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.userSelected">
+      <path value="Extension.valueCodeableConcept.coding.userSelected" />
+      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>
