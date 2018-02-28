@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Questionnaire Response " />
   <meta>
-    <lastUpdated value="2018-02-02T12:00:26.169+00:00" />
+    <lastUpdated value="2018-02-28T13:51:50.966+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-IndividualRequirements-QuestionnaireResponse-1" />
   <version value="1.0.0" />
@@ -4224,7 +4224,7 @@
     <element id="QuestionnaireResponse.item:gPOptOutIndicator">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="gPOptOutIndicator" />
-      <short value="Groups and questions" />
+      <short value="Whether the parent/carer or child declined to register with a NHS GP" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
@@ -4466,7 +4466,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Whether the parent/carer decided NOT to register with a GP" />
+      <fixedString value="GP Opt Out Indicator" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4876,8 +4876,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -4890,41 +4891,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4938,10 +4905,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="required" />
+        <description value="Code indicating the GP Opt Out Indicator" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-GPOptOutIndicator-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -4951,6 +4918,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.item">
@@ -4992,10 +5250,10 @@
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="individualNeedsPersonIndicator" />
-      <short value="Groups and questions" />
+      <short value="An indicator of whether the individual requirement relates to the child or their primary carer" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="QuestionnaireResponse.item" />
@@ -5234,7 +5492,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="An indicator of whether the individual requirement relates to the child or their primary carer" />
+      <fixedString value="Individual Needs Person Indicator" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5644,8 +5902,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -5658,41 +5917,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5706,10 +5931,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="required" />
+        <description value="Code indicating the Individual Needs Person Indicator" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-IndividualNeedsPersonIndicator-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -5719,6 +5944,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-IndividualRequirement-IndividualNeedsPersonIndicator-1" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.item">
@@ -5760,11 +6276,11 @@
     <element id="QuestionnaireResponse.item:communicationSupport">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="communicationSupport" />
-      <short value="Groups and questions" />
-      <definition value="A group or question item from the original questionnaire for which answers are provided." />
+      <short value="Outlines capability and support required in order to provide accessibility" />
+      <definition value="Outlines capability and support required in order to provide accessibility, with regards to disability" />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -6002,7 +6518,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Outlines capability and support required in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Communication Support" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -6260,7 +6776,7 @@
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Communication Support" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -6412,8 +6928,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -6426,41 +6943,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6474,10 +6957,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="extensible" />
+        <description value="Code indicating the Communication Support requirement" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationSupport-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -6487,6 +6970,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.answer.item">
@@ -6528,11 +7302,11 @@
     <element id="QuestionnaireResponse.item:communicationProfessional">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="communicationProfessional" />
-      <short value="Groups and questions" />
-      <definition value="A group or question item from the original questionnaire for which answers are provided." />
+      <short value="Requirement that a communication professional to be present in order to provide accessibility" />
+      <definition value="Requirement that a communication professional to be present in order to provide accessibility, with regards to disability" />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -6770,7 +7544,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Requirement that a communication professional to be present in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires Communication Professional" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -7028,7 +7802,7 @@
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Communication Support" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -7180,8 +7954,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -7194,41 +7969,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7242,8 +7983,8 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="extensible" />
+        <description value="Code indicating the requirement for a Communication Professional " />
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
         </valueSetReference>
@@ -7255,6 +7996,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.answer.item">
@@ -7296,11 +8328,11 @@
     <element id="QuestionnaireResponse.item:specificContactMethod">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="specificContactMethod" />
-      <short value="Groups and questions" />
-      <definition value="A group or question item from the original questionnaire for which answers are provided." />
+      <short value="Requirement for a specific contact method in order to provide accessibility" />
+      <definition value="Requirement for a specific contact method in order to provide accessibility, with regards to disability" />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -7538,7 +8570,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Requirement for a specific contact method in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires Specific Contact Method" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -7796,7 +8828,7 @@
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Contact Method" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -7948,8 +8980,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -7962,41 +8995,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -8010,10 +9009,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
+        <strength value="extensible" />
         <description value="Code indicating the response provided for a question." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationMethod-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -8023,6 +9022,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.answer.item">
@@ -8064,11 +9354,11 @@
     <element id="QuestionnaireResponse.item:specificInformationFormat">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="specificInformationFormat" />
-      <short value="Groups and questions" />
-      <definition value="A group or question item from the original questionnaire for which answers are provided." />
+      <short value="Requires information in a specific format in order to provide accessibility" />
+      <definition value="Requires information in a specific format in order to provide accessibility, with regards to disability" />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -8306,7 +9596,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Requires information in a specific format in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires specific information format" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -8564,7 +9854,7 @@
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Information Format" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -8716,8 +10006,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -8730,41 +10021,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -8778,10 +10035,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="extensible" />
+        <description value="Code indicating the specific Information Format" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationMethod-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -8791,6 +10048,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.answer.item">
@@ -8832,11 +10380,11 @@
     <element id="QuestionnaireResponse.item:mobilityNeeds">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="mobilityNeeds" />
-      <short value="Groups and questions" />
+      <short value="A child's personal physical movement between two spaces that achieves participation and a degree of independence" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -9074,7 +10622,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="A child or their primary carers personal physical movement between two spaces that achieves participation and a degree of independence" />
+      <fixedString value="Mobility Needs" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -9332,7 +10880,7 @@
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Mobility Needs" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -9484,8 +11032,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -9498,41 +11047,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -9546,10 +11061,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="extensible" />
+        <description value="Code indicating the Mobility Needs" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-MobilityNeed-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -9559,6 +11074,297 @@
       <mapping>
         <identity value="rim" />
         <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.answer.item">
@@ -9597,14 +11403,14 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition">
+    <element id="QuestionnaireResponse.item:cognitive">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="cognition" />
-      <short value="Groups and questions" />
+      <sliceName value="cognitive" />
+      <short value="An indicator of cognitive impairment to be considered when communicating" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item" />
         <min value="0" />
@@ -9637,7 +11443,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.id">
+    <element id="QuestionnaireResponse.item:cognitive.id">
       <path value="QuestionnaireResponse.item.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -9666,7 +11472,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.extension">
+    <element id="QuestionnaireResponse.item:cognitive.extension">
       <path value="QuestionnaireResponse.item.extension" />
       <slicing>
         <discriminator>
@@ -9715,7 +11521,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.modifierExtension">
+    <element id="QuestionnaireResponse.item:cognitive.modifierExtension">
       <path value="QuestionnaireResponse.item.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -9759,7 +11565,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.linkId">
+    <element id="QuestionnaireResponse.item:cognitive.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
       <short value="Pointer to specific item from Questionnaire" />
       <definition value="The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource." />
@@ -9793,7 +11599,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].id" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.definition">
+    <element id="QuestionnaireResponse.item:cognitive.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <short value="ElementDefinition - details for the item" />
       <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item." />
@@ -9826,7 +11632,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].code" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.text">
+    <element id="QuestionnaireResponse.item:cognitive.text">
       <path value="QuestionnaireResponse.item.text" />
       <short value="Name for group or question text" />
       <definition value="Text that is displayed above the contents of the group or as the text of the question being answered." />
@@ -9842,7 +11648,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="An indicator of cognitive impairment to be considered when communicating related to the child or their primary carer" />
+      <fixedString value="Cognitive" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -9860,7 +11666,7 @@
         <map value=".text" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject">
+    <element id="QuestionnaireResponse.item:cognitive.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <short value="The subject this group's answers are about" />
       <definition value="More specific subject this section's answers are about, details the subject given in QuestionnaireResponse." />
@@ -9905,7 +11711,7 @@
         <map value=".participation[typeCode=SBJ].role or .outboundRelationship[typeCode=SUBJ].target" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject.id">
+    <element id="QuestionnaireResponse.item:cognitive.subject.id">
       <path value="QuestionnaireResponse.item.subject.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -9934,7 +11740,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject.extension">
+    <element id="QuestionnaireResponse.item:cognitive.subject.extension">
       <path value="QuestionnaireResponse.item.subject.extension" />
       <slicing>
         <discriminator>
@@ -9983,7 +11789,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject.reference">
+    <element id="QuestionnaireResponse.item:cognitive.subject.reference">
       <path value="QuestionnaireResponse.item.subject.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -10017,7 +11823,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject.identifier">
+    <element id="QuestionnaireResponse.item:cognitive.subject.identifier">
       <path value="QuestionnaireResponse.item.subject.identifier" />
       <short value="Logical reference, when literal reference is not known" />
       <definition value="An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference." />
@@ -10062,7 +11868,7 @@
         <map value=".identifier" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject.display">
+    <element id="QuestionnaireResponse.item:cognitive.subject.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -10098,9 +11904,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer">
+    <element id="QuestionnaireResponse.item:cognitive.answer">
       <path value="QuestionnaireResponse.item.answer" />
-      <short value="The response(s) to the question" />
+      <short value="Cognitive" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
       <min value="1" />
@@ -10130,7 +11936,7 @@
         <map value=".value[type=LIST_ANY]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.id">
+    <element id="QuestionnaireResponse.item:cognitive.answer.id">
       <path value="QuestionnaireResponse.item.answer.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -10159,7 +11965,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.extension">
+    <element id="QuestionnaireResponse.item:cognitive.answer.extension">
       <path value="QuestionnaireResponse.item.answer.extension" />
       <slicing>
         <discriminator>
@@ -10208,7 +12014,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.modifierExtension">
+    <element id="QuestionnaireResponse.item:cognitive.answer.modifierExtension">
       <path value="QuestionnaireResponse.item.answer.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -10252,8 +12058,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:cognitive.answer.value[x]:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -10266,41 +12073,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="boolean" />
-      </type>
-      <type>
-        <code value="decimal" />
-      </type>
-      <type>
-        <code value="integer" />
-      </type>
-      <type>
-        <code value="date" />
-      </type>
-      <type>
-        <code value="dateTime" />
-      </type>
-      <type>
-        <code value="time" />
-      </type>
-      <type>
-        <code value="string" />
-      </type>
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Attachment" />
-      </type>
-      <type>
         <code value="Coding" />
-      </type>
-      <type>
-        <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -10314,10 +12087,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
-        <description value="Code indicating the response provided for a question." />
+        <strength value="extensible" />
+        <description value="Code indicating the Cognitive impairment" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-Cognitive-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -10329,7 +12102,298 @@
         <map value=".item" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.item">
+    <element id="QuestionnaireResponse.item:cognitive.answer.value[x]:valueCoding.id">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.value[x]:valueCoding.extension">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="http://snomed.info/sct" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.value[x]:valueCoding.code">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.value[x]:valueCoding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.item.answer.valueCoding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <short value="Nested groups and questions" />
       <definition value="Nested groups and/or questions found within this particular answer." />
@@ -10347,7 +12411,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.item">
+    <element id="QuestionnaireResponse.item:cognitive.item">
       <path value="QuestionnaireResponse.item.item" />
       <short value="Nested questionnaire response items" />
       <definition value="Questions or sub-groups nested beneath a question or group." />
@@ -10458,6 +12522,7 @@
     <element id="QuestionnaireResponse.item:gPOptOutIndicator">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="gPOptOutIndicator" />
+      <short value="Whether the parent/carer or child declined to register with a NHS GP" />
       <max value="1" />
     </element>
     <element id="QuestionnaireResponse.item:gPOptOutIndicator.linkId">
@@ -10471,7 +12536,7 @@
     <element id="QuestionnaireResponse.item:gPOptOutIndicator.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Whether the parent/carer decided NOT to register with a GP" />
+      <fixedString value="GP Opt Out Indicator" />
     </element>
     <element id="QuestionnaireResponse.item:gPOptOutIndicator.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10482,9 +12547,31 @@
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="required" />
+        <description value="Code indicating the GP Opt Out Indicator" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-GPOptOutIndicator-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:gPOptOutIndicator.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10497,6 +12584,8 @@
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="individualNeedsPersonIndicator" />
+      <short value="An indicator of whether the individual requirement relates to the child or their primary carer" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.linkId">
@@ -10510,7 +12599,7 @@
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="An indicator of whether the individual requirement relates to the child or their primary carer" />
+      <fixedString value="Individual Needs Person Indicator" />
     </element>
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10521,9 +12610,35 @@
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="required" />
+        <description value="Code indicating the Individual Needs Person Indicator" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-IndividualNeedsPersonIndicator-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-IndividualRequirement-IndividualNeedsPersonIndicator-1" />
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:individualNeedsPersonIndicator.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10536,7 +12651,8 @@
     <element id="QuestionnaireResponse.item:communicationSupport">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="communicationSupport" />
-      <max value="1" />
+      <short value="Outlines capability and support required in order to provide accessibility" />
+      <definition value="Outlines capability and support required in order to provide accessibility, with regards to disability" />
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
@@ -10549,7 +12665,7 @@
     <element id="QuestionnaireResponse.item:communicationSupport.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Outlines capability and support required in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Communication Support" />
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10557,12 +12673,39 @@
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Communication Support" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:communicationSupport.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <description value="Code indicating the Communication Support requirement" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationSupport-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:communicationSupport.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:communicationSupport.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10575,7 +12718,8 @@
     <element id="QuestionnaireResponse.item:communicationProfessional">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="communicationProfessional" />
-      <max value="1" />
+      <short value="Requirement that a communication professional to be present in order to provide accessibility" />
+      <definition value="Requirement that a communication professional to be present in order to provide accessibility, with regards to disability" />
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
@@ -10584,7 +12728,7 @@
     <element id="QuestionnaireResponse.item:communicationProfessional.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Requirement that a communication professional to be present in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires Communication Professional" />
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10592,12 +12736,36 @@
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Communication Support" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:communicationProfessional.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <description value="Code indicating the requirement for a Communication Professional " />
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:communicationProfessional.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:communicationProfessional.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10610,7 +12778,8 @@
     <element id="QuestionnaireResponse.item:specificContactMethod">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="specificContactMethod" />
-      <max value="1" />
+      <short value="Requirement for a specific contact method in order to provide accessibility" />
+      <definition value="Requirement for a specific contact method in order to provide accessibility, with regards to disability" />
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
@@ -10623,7 +12792,7 @@
     <element id="QuestionnaireResponse.item:specificContactMethod.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Requirement for a specific contact method in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires Specific Contact Method" />
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10631,12 +12800,38 @@
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Contact Method" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:specificContactMethod.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationMethod-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:specificContactMethod.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:specificContactMethod.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10649,7 +12844,8 @@
     <element id="QuestionnaireResponse.item:specificInformationFormat">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="specificInformationFormat" />
-      <max value="1" />
+      <short value="Requires information in a specific format in order to provide accessibility" />
+      <definition value="Requires information in a specific format in order to provide accessibility, with regards to disability" />
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
@@ -10662,7 +12858,7 @@
     <element id="QuestionnaireResponse.item:specificInformationFormat.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Requires information in a specific format in order to provide accessibility, with regards to disability" />
+      <fixedString value="Accessible Information - Requires specific information format" />
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10670,12 +12866,39 @@
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Information Format" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <description value="Code indicating the specific Information Format" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-CommunicationMethod-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:specificInformationFormat.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:specificInformationFormat.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10688,7 +12911,7 @@
     <element id="QuestionnaireResponse.item:mobilityNeeds">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="mobilityNeeds" />
-      <max value="1" />
+      <short value="A child's personal physical movement between two spaces that achieves participation and a degree of independence" />
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
@@ -10701,7 +12924,7 @@
     <element id="QuestionnaireResponse.item:mobilityNeeds.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="A child or their primary carers personal physical movement between two spaces that achieves participation and a degree of independence" />
+      <fixedString value="Mobility Needs" />
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -10709,12 +12932,39 @@
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Mobility Needs" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <description value="Code indicating the Mobility Needs" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-MobilityNeed-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:mobilityNeeds.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
     </element>
     <element id="QuestionnaireResponse.item:mobilityNeeds.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
@@ -10724,42 +12974,69 @@
       <path value="QuestionnaireResponse.item.item" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition">
+    <element id="QuestionnaireResponse.item:cognitive">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="cognition" />
-      <max value="1" />
+      <sliceName value="cognitive" />
+      <short value="An indicator of cognitive impairment to be considered when communicating" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.linkId">
+    <element id="QuestionnaireResponse.item:cognitive.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
       <fixedString value="cognition" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.definition">
+    <element id="QuestionnaireResponse.item:cognitive.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.text">
+    <element id="QuestionnaireResponse.item:cognitive.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="An indicator of cognitive impairment to be considered when communicating related to the child or their primary carer" />
+      <fixedString value="Cognitive" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.subject">
+    <element id="QuestionnaireResponse.item:cognitive.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer">
+    <element id="QuestionnaireResponse.item:cognitive.answer">
       <path value="QuestionnaireResponse.item.answer" />
+      <short value="Cognitive" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.value[x]">
-      <path value="QuestionnaireResponse.item.answer.value[x]" />
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding">
+      <path value="QuestionnaireResponse.item.answer.valueCoding" />
+      <sliceName value="valueCoding" />
       <min value="1" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="extensible" />
+        <description value="Code indicating the Cognitive impairment" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IndividualRequirement-Cognitive-1" />
+        </valueSetReference>
+      </binding>
     </element>
-    <element id="QuestionnaireResponse.item:cognition.answer.item">
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.system">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.version">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.valueCoding:valueCoding.userSelected">
+      <path value="QuestionnaireResponse.item.answer.valueCoding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:cognitive.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:cognition.item">
+    <element id="QuestionnaireResponse.item:cognitive.item">
       <path value="QuestionnaireResponse.item.item" />
       <max value="0" />
     </element>
