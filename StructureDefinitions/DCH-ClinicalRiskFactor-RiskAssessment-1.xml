@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="RiskAssessment" />
   <meta>
-    <lastUpdated value="2018-02-01T18:41:04.79+00:00" />
+    <lastUpdated value="2018-03-01T12:42:41.965+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ClinicalRiskFactor-RiskAssessment-1" />
   <version value="1.0.0" />
@@ -2834,7 +2834,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -2959,13 +2959,56 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="RiskAssessment.code.coding.extension:snomedCTDescriptionID">
+      <path value="RiskAssessment.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="RiskAssessment.code.coding.system">
       <path value="RiskAssessment.code.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -2975,6 +3018,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="http://snomed.info/sct" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3007,7 +3051,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -3048,7 +3092,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -3058,6 +3102,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="886831000000103" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3093,7 +3138,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -3103,6 +3148,7 @@
       <type>
         <code value="string" />
       </type>
+      <fixedString value="Clinical risk assessment (record artifact)" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3136,7 +3182,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -3718,7 +3764,7 @@
       <short value="When was assessment made?" />
       <definition value="The date (and possibly time) the risk assessment was performed." />
       <requirements value="The assessment results lose validity the more time elapses from when they are first made." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="RiskAssessment.occurrence[x]" />
@@ -4545,7 +4591,7 @@
       <definition value="Describes the expected outcome for the subject." />
       <comment value="Multiple repetitions can be used to identify the same type of outcome in different timeframes as well as different types of outcomes." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="RiskAssessment.prediction" />
         <min value="0" />
@@ -5186,7 +5232,7 @@
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." />
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.text" />
@@ -6020,6 +6066,54 @@
       <short value="Type of assessment undertaken in relation to the risk" />
       <min value="1" />
     </element>
+    <element id="RiskAssessment.code.coding">
+      <path value="RiskAssessment.code.coding" />
+      <max value="1" />
+    </element>
+    <element id="RiskAssessment.code.coding.extension">
+      <path value="RiskAssessment.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="RiskAssessment.code.coding.extension:snomedCTDescriptionID">
+      <path value="RiskAssessment.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
+    <element id="RiskAssessment.code.coding.system">
+      <path value="RiskAssessment.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="RiskAssessment.code.coding.version">
+      <path value="RiskAssessment.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="RiskAssessment.code.coding.code">
+      <path value="RiskAssessment.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="886831000000103" />
+    </element>
+    <element id="RiskAssessment.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="RiskAssessment.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Clinical risk assessment (record artifact)" />
+    </element>
+    <element id="RiskAssessment.code.coding.userSelected">
+      <path value="RiskAssessment.code.coding.userSelected" />
+      <max value="0" />
+    </element>
     <element id="RiskAssessment.subject">
       <path value="RiskAssessment.subject" />
       <min value="1" />
@@ -6047,7 +6141,6 @@
     <element id="RiskAssessment.occurrenceDateTime:occurrenceDateTime">
       <path value="RiskAssessment.occurrenceDateTime" />
       <sliceName value="occurrenceDateTime" />
-      <min value="1" />
       <type>
         <code value="dateTime" />
       </type>
@@ -6076,6 +6169,10 @@
       <path value="RiskAssessment.basis" />
       <max value="0" />
     </element>
+    <element id="RiskAssessment.prediction">
+      <path value="RiskAssessment.prediction" />
+      <max value="1" />
+    </element>
     <element id="RiskAssessment.prediction.outcome">
       <path value="RiskAssessment.prediction.outcome" />
       <definition value="Factor that have been shown to be associated with the development of a medical condition being considered as a diagnosis. E.g. being overweight, smoker, no use of sun screen, enzyme deficiency" />
@@ -6083,6 +6180,13 @@
     <element id="RiskAssessment.prediction.outcome.coding">
       <path value="RiskAssessment.prediction.outcome.coding" />
       <max value="1" />
+    </element>
+    <element id="RiskAssessment.prediction.outcome.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="RiskAssessment.prediction.outcome.text" />
+      <min value="1" />
     </element>
     <element id="RiskAssessment.prediction.probability[x]">
       <path value="RiskAssessment.prediction.probability[x]" />
