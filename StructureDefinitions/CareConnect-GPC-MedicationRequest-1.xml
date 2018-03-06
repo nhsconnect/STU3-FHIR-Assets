@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-06T14:49:00.061+00:00" />
+    <lastUpdated value="2018-03-06T16:27:02.944+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
@@ -654,7 +654,7 @@
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Element.extension" />
@@ -679,7 +679,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
-      <mustSupport value="true" />
+      <mustSupport value="false" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6571,6 +6571,7 @@
         <expression value="comparator.empty()" />
         <xpath value="not(exists(f:comparator))" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <mapping>
         <identity value="rim" />
@@ -7765,7 +7766,7 @@
     <element id="MedicationRequest.extension:repeatInformation.extension:numberOfRepeatPrescriptionsIssued">
       <path value="MedicationRequest.extension.extension" />
       <sliceName value="numberOfRepeatPrescriptionsIssued" />
-      <mustSupport value="true" />
+      <mustSupport value="false" />
     </element>
     <element id="MedicationRequest.extension:repeatInformation.extension:authorisationExpiryDate">
       <path value="MedicationRequest.extension.extension" />
@@ -7783,10 +7784,6 @@
     <element id="MedicationRequest.extension:prescriptionType">
       <path value="MedicationRequest.extension" />
       <sliceName value="prescriptionType" />
-      <short value="To record the type of prescription" />
-      <definition value="To record the type of prescription." />
-      <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-PrescriptionType-1" />
@@ -8093,6 +8090,10 @@
     <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
       <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
       <min value="1" />
+    </element>
+    <element id="MedicationRequest.dispenseRequest.quantity">
+      <path value="MedicationRequest.dispenseRequest.quantity" />
+      <mustSupport value="true" />
     </element>
     <element id="MedicationRequest.dispenseRequest.quantity.extension">
       <path value="MedicationRequest.dispenseRequest.quantity.extension" />
