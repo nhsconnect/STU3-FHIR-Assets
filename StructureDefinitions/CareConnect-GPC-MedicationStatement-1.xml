@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-05T14:12:21.633+00:00" />
+    <lastUpdated value="2018-03-06T11:06:06.214+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
@@ -373,49 +373,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="MedicationStatement.extension:repeatInformation">
-      <path value="MedicationStatement.extension" />
-      <sliceName value="repeatInformation" />
-      <short value="Medication repeat information" />
-      <definition value="Medication repeat information." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="DomainResource.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -1781,7 +1739,7 @@
       <definition value="A plan, proposal or order that is fulfilled in whole or in part by this event." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Allows tracing of authorization for the event and tracking whether proposals/recommendations were acted upon." />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
         <path value="MedicationStatement.basedOn" />
@@ -2324,6 +2282,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -3202,6 +3161,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -5371,6 +5331,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -5756,7 +5717,7 @@
       <definition value="Free text dosage instructions e.g. SIG." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Dosage.text" />
@@ -6330,6 +6291,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -11375,15 +11337,7 @@
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatementLastIssueDate-1" />
       </type>
-    </element>
-    <element id="MedicationStatement.extension:repeatInformation">
-      <path value="MedicationStatement.extension" />
-      <sliceName value="repeatInformation" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
-      </type>
+      <mustSupport value="true" />
     </element>
     <element id="MedicationStatement.extension:changeSummary">
       <path value="MedicationStatement.extension" />
@@ -11412,6 +11366,7 @@
     </element>
     <element id="MedicationStatement.basedOn">
       <path value="MedicationStatement.basedOn" />
+      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/CarePlan" />
@@ -11462,6 +11417,7 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="MedicationStatement.medicationReference:medicationReference">
       <path value="MedicationStatement.medicationReference" />
@@ -11477,6 +11433,10 @@
         <strength value="example" />
         <valueSetUri value="http://hl7.org/fhir/ValueSet/medication-codes" />
       </binding>
+    </element>
+    <element id="MedicationStatement.effective[x]">
+      <path value="MedicationStatement.effective[x]" />
+      <mustSupport value="true" />
     </element>
     <element id="MedicationStatement.dateAsserted">
       <path value="MedicationStatement.dateAsserted" />
@@ -11523,6 +11483,10 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Condition-1" />
       </type>
     </element>
+    <element id="MedicationStatement.note">
+      <path value="MedicationStatement.note" />
+      <mustSupport value="true" />
+    </element>
     <element id="MedicationStatement.note.author[x]">
       <path value="MedicationStatement.note.author[x]" />
       <type>
@@ -11540,6 +11504,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+    </element>
+    <element id="MedicationStatement.dosage.text">
+      <path value="MedicationStatement.dosage.text" />
+      <min value="1" />
+    </element>
+    <element id="MedicationStatement.dosage.patientInstruction">
+      <path value="MedicationStatement.dosage.patientInstruction" />
+      <mustSupport value="true" />
     </element>
     <element id="MedicationStatement.dosage.route.coding">
       <path value="MedicationStatement.dosage.route.coding" />
@@ -11577,9 +11549,6 @@
     <element id="MedicationStatement.dosage.route.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="MedicationStatement.dosage.route.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />

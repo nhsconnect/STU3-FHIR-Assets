@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-05T13:14:49.875+00:00" />
+    <lastUpdated value="2018-03-06T09:25:12.69+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pc" />
@@ -422,6 +422,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -1786,7 +1787,7 @@
       <short value="active | inactive | resolved" />
       <definition value="The clinical status of the allergy or intolerance." />
       <comment value="This element is labeled as a modifier because the status contains the codes inactive and resolved that mark the AllergyIntolerance as not currently valid." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="AllergyIntolerance.clinicalStatus" />
@@ -1846,6 +1847,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="unconfirmed" />
       <condition value="ele-1" />
       <condition value="ait-1" />
       <condition value="ait-2" />
@@ -1943,7 +1945,7 @@
       <alias value="Type" />
       <alias value="Reaction Type" />
       <alias value="Class" />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
         <path value="AllergyIntolerance.category" />
@@ -2874,7 +2876,7 @@
       <path value="AllergyIntolerance.assertedDate" />
       <short value="Date record was believed accurate" />
       <definition value="The date on which the existance of the AllergyIntolerance was first asserted or acknowledged." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="AllergyIntolerance.assertedDate" />
@@ -3466,6 +3468,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6996,6 +6999,7 @@
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-AllergyIntoleranceEnd-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="AllergyIntolerance.extension:evidence">
       <path value="AllergyIntolerance.extension" />
@@ -7021,9 +7025,18 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
+    <element id="AllergyIntolerance.clinicalStatus">
+      <path value="AllergyIntolerance.clinicalStatus" />
+      <min value="1" />
+    </element>
     <element id="AllergyIntolerance.verificationStatus">
       <path value="AllergyIntolerance.verificationStatus" />
       <short value="unconfirmed | confirmed" />
+      <fixedCode value="unconfirmed" />
+    </element>
+    <element id="AllergyIntolerance.category">
+      <path value="AllergyIntolerance.category" />
+      <min value="1" />
     </element>
     <element id="AllergyIntolerance.code">
       <path value="AllergyIntolerance.code" />
@@ -7048,6 +7061,10 @@
     <element id="AllergyIntolerance.onset[x]">
       <path value="AllergyIntolerance.onset[x]" />
       <mustSupport value="true" />
+    </element>
+    <element id="AllergyIntolerance.assertedDate">
+      <path value="AllergyIntolerance.assertedDate" />
+      <min value="1" />
     </element>
     <element id="AllergyIntolerance.recorder">
       <path value="AllergyIntolerance.recorder" />
@@ -7074,6 +7091,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+    </element>
+    <element id="AllergyIntolerance.note">
+      <path value="AllergyIntolerance.note" />
+      <mustSupport value="true" />
     </element>
     <element id="AllergyIntolerance.note.author[x]">
       <path value="AllergyIntolerance.note.author[x]" />

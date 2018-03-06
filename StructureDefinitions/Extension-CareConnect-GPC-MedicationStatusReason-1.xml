@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-06T09:15:44.77+00:00" />
+    <lastUpdated value="2018-03-06T14:29:45.505+00:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatusReason-1" />
   <version value="1.0.0" />
-  <name value="Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
+  <name value="Extension-CareConnect-GPC-MedicationStatusReason-1" />
   <status value="active" />
-  <date value="2017-07-17T14:01:26.8429479+01:00" />
-  <publisher value="HL7 UK" />
-  <description value="Indicates the specific repeat information of a medication item." />
+  <date value="2018-03-06T11:24:16.033+00:00" />
+  <description value="To record the reason the medication (plan or order) was stopped and the date this occurred." />
   <copyright value="Copyright © 2016 HL7 UK&#xD;&#xA;&#xD;&#xA;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&#xD;&#xA;&#xD;&#xA;HL7® FHIR® standard Copyright © 2011+ HL7&#xD;&#xA;&#xD;&#xA;The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at&#xD;&#xA;&#xD;&#xA;https://www.hl7.org/fhir/license.html" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
@@ -22,8 +21,8 @@
   <snapshot>
     <element id="Extension">
       <path value="Extension" />
-      <short value="Medication repeat information" />
-      <definition value="Medication repeat information." />
+      <short value="To record the reason the medication (plan or order) was stopped and the date this occurred" />
+      <definition value="To record the reason the medication (plan or order) was stopped and the date this occurred." />
       <min value="0" />
       <max value="1" />
       <base>
@@ -133,15 +132,15 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed">
+    <element id="Extension.extension:statusReason">
       <path value="Extension.extension" />
-      <sliceName value="numberOfRepeatPrescriptionsAllowed" />
-      <short value="Number of repeat prescriptions authorised" />
-      <definition value="Number of repeat prescriptions authorised." />
+      <sliceName value="statusReason" />
+      <short value="Reason for current status" />
+      <definition value="Reason for current status." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Element.extension" />
@@ -175,7 +174,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.id">
+    <element id="Extension.extension:statusReason.id">
       <path value="Extension.extension.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -204,7 +203,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.extension">
+    <element id="Extension.extension:statusReason.extension">
       <path value="Extension.extension.extension" />
       <slicing>
         <discriminator>
@@ -253,7 +252,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.url">
+    <element id="Extension.extension:statusReason.url">
       <path value="Extension.extension.url" />
       <representation value="xmlAttr" />
       <short value="identifies the meaning of the extension" />
@@ -269,7 +268,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="numberOfRepeatPrescriptionsAllowed" />
+      <fixedUri value="statusReason" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -287,198 +286,11 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.valuePositiveInt:valuePositiveInt">
-      <path value="Extension.extension.valuePositiveInt" />
-      <sliceName value="valuePositiveInt" />
-      <short value="Number of issues authorised" />
-      <definition value="Number of issues authorised." />
-      <comment value="A stream of bytes, base64 encoded" />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Extension.value[x]" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="positiveInt" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued">
-      <path value="Extension.extension" />
-      <sliceName value="numberOfRepeatPrescriptionsIssued" />
-      <short value="Number of repeat prescriptions issued" />
-      <definition value="Number of repeat prescriptions issued." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.id">
-      <path value="Extension.extension.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.extension">
-      <path value="Extension.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.url">
-      <path value="Extension.extension.url" />
-      <representation value="xmlAttr" />
-      <short value="identifies the meaning of the extension" />
-      <definition value="Source of the definition for the extension code - a logical name or a URL." />
-      <comment value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Extension.url" />
-        <min value="1" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="uri" />
-      </type>
-      <fixedUri value="numberOfRepeatPrescriptionsIssued" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.valuePositiveInt:valuePositiveInt">
-      <path value="Extension.extension.valuePositiveInt" />
-      <sliceName value="valuePositiveInt" />
-      <short value="Number of issues issued" />
-      <definition value="Number of issues issued." />
+    <element id="Extension.extension:statusReason.value[x]:valueCodeableConcept">
+      <path value="Extension.extension.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="To record the reason the medication (plan or order) was stopped" />
+      <definition value="To record the reason the medication (plan or order) was stopped." />
       <comment value="A stream of bytes, base64 encoded" />
       <min value="0" />
       <max value="1" />
@@ -488,7 +300,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="positiveInt" />
+        <code value="CodeableConcept" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -507,11 +319,11 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate">
+    <element id="Extension.extension:statusChangeDate">
       <path value="Extension.extension" />
-      <sliceName value="authorisationExpiryDate" />
-      <short value="Repeat prescription review date" />
-      <definition value="Repeat prescription review date." />
+      <sliceName value="statusChangeDate" />
+      <short value="To record the date this occurred" />
+      <definition value="To record the date this occurred." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -549,7 +361,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.id">
+    <element id="Extension.extension:statusChangeDate.id">
       <path value="Extension.extension.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -578,7 +390,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.extension">
+    <element id="Extension.extension:statusChangeDate.extension">
       <path value="Extension.extension.extension" />
       <slicing>
         <discriminator>
@@ -627,7 +439,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.url">
+    <element id="Extension.extension:statusChangeDate.url">
       <path value="Extension.extension.url" />
       <representation value="xmlAttr" />
       <short value="identifies the meaning of the extension" />
@@ -643,7 +455,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="authorisationExpiryDate" />
+      <fixedUri value="statusChangeDate" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -661,11 +473,11 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.valueDateTime:valueDateTime">
+    <element id="Extension.extension:statusChangeDate.valueDateTime:valueDateTime">
       <path value="Extension.extension.valueDateTime" />
       <sliceName value="valueDateTime" />
-      <short value="Repeat review date" />
-      <definition value="Repeat review date." />
+      <short value="To record the date this occurred" />
+      <definition value="To record the date this occurred." />
       <comment value="A stream of bytes, base64 encoded" />
       <min value="0" />
       <max value="1" />
@@ -710,7 +522,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatusReason-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -875,8 +687,8 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
-      <short value="Medication repeat information" />
-      <definition value="Medication repeat information." />
+      <short value="To record the reason the medication (plan or order) was stopped and the date this occurred" />
+      <definition value="To record the reason the medication (plan or order) was stopped and the date this occurred." />
       <max value="1" />
     </element>
     <element id="Extension.extension">
@@ -889,70 +701,50 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed">
+    <element id="Extension.extension:statusReason">
       <path value="Extension.extension" />
-      <sliceName value="numberOfRepeatPrescriptionsAllowed" />
-      <short value="Number of repeat prescriptions authorised" />
-      <definition value="Number of repeat prescriptions authorised." />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="numberOfRepeatPrescriptionsAllowed" />
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsAllowed.valuePositiveInt:valuePositiveInt">
-      <path value="Extension.extension.valuePositiveInt" />
-      <sliceName value="valuePositiveInt" />
-      <short value="Number of issues authorised" />
-      <definition value="Number of issues authorised." />
+      <sliceName value="statusReason" />
+      <short value="Reason for current status" />
+      <definition value="Reason for current status." />
       <min value="1" />
-      <type>
-        <code value="positiveInt" />
-      </type>
-    </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued">
-      <path value="Extension.extension" />
-      <sliceName value="numberOfRepeatPrescriptionsIssued" />
-      <short value="Number of repeat prescriptions issued" />
-      <definition value="Number of repeat prescriptions issued." />
       <max value="1" />
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.url">
+    <element id="Extension.extension:statusReason.url">
       <path value="Extension.extension.url" />
-      <fixedUri value="numberOfRepeatPrescriptionsIssued" />
+      <fixedUri value="statusReason" />
     </element>
-    <element id="Extension.extension:numberOfRepeatPrescriptionsIssued.valuePositiveInt:valuePositiveInt">
-      <path value="Extension.extension.valuePositiveInt" />
-      <sliceName value="valuePositiveInt" />
-      <short value="Number of issues issued" />
-      <definition value="Number of issues issued." />
+    <element id="Extension.extension:statusReason.value[x]:valueCodeableConcept">
+      <path value="Extension.extension.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="To record the reason the medication (plan or order) was stopped" />
+      <definition value="To record the reason the medication (plan or order) was stopped." />
       <type>
-        <code value="positiveInt" />
+        <code value="CodeableConcept" />
       </type>
     </element>
-    <element id="Extension.extension:authorisationExpiryDate">
+    <element id="Extension.extension:statusChangeDate">
       <path value="Extension.extension" />
-      <sliceName value="authorisationExpiryDate" />
-      <short value="Repeat prescription review date" />
-      <definition value="Repeat prescription review date." />
+      <sliceName value="statusChangeDate" />
+      <short value="To record the date this occurred" />
+      <definition value="To record the date this occurred." />
       <max value="1" />
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.url">
+    <element id="Extension.extension:statusChangeDate.url">
       <path value="Extension.extension.url" />
-      <fixedUri value="authorisationExpiryDate" />
+      <fixedUri value="statusChangeDate" />
     </element>
-    <element id="Extension.extension:authorisationExpiryDate.valueDateTime:valueDateTime">
+    <element id="Extension.extension:statusChangeDate.valueDateTime:valueDateTime">
       <path value="Extension.extension.valueDateTime" />
       <sliceName value="valueDateTime" />
-      <short value="Repeat review date" />
-      <definition value="Repeat review date." />
+      <short value="To record the date this occurred" />
+      <definition value="To record the date this occurred." />
       <type>
         <code value="dateTime" />
       </type>
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationRepeatInformation-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-MedicationStatusReason-1" />
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
