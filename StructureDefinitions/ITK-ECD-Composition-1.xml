@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Composition" />
   <meta>
-    <lastUpdated value="2018-03-06T11:44:17.905+00:00" />
+    <lastUpdated value="2018-03-07T14:42:03.641+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="sd" />
@@ -9991,7 +9991,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -10000,6 +10000,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergies-List-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -11797,7 +11801,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -12065,7 +12069,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -12107,7 +12111,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -12148,7 +12152,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -12193,7 +12197,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -12236,7 +12240,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -12281,7 +12285,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -12322,7 +12326,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -12330,7 +12334,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -12448,7 +12452,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -14125,7 +14129,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -14393,7 +14397,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -14435,7 +14439,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -14476,7 +14480,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -14521,7 +14525,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -14564,7 +14568,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -14609,7 +14613,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -14650,7 +14654,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -14658,7 +14662,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -14776,7 +14780,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -16453,7 +16457,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -16721,7 +16725,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -16763,7 +16767,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -16804,7 +16808,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -16849,7 +16853,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -16892,7 +16896,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -16937,7 +16941,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -16978,7 +16982,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -16986,7 +16990,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -17104,7 +17108,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -19320,6 +19324,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -21646,7 +21654,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -21655,6 +21663,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -23972,7 +23984,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -23981,6 +23993,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -25777,7 +25793,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -26045,7 +26061,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -26087,7 +26103,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -26128,7 +26144,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -26173,7 +26189,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -26216,7 +26232,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -26261,7 +26277,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -26302,7 +26318,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -26310,7 +26326,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -26428,7 +26444,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -28637,7 +28653,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -28646,6 +28662,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Medication-List-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -30963,7 +30983,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="1" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -30972,6 +30992,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -32768,7 +32792,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -33036,7 +33060,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -33078,7 +33102,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -33119,7 +33143,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -33164,7 +33188,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -33207,7 +33231,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -33252,7 +33276,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -33293,7 +33317,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -33301,7 +33325,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -33419,7 +33443,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -35098,7 +35122,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -35366,7 +35390,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -35408,7 +35432,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -35449,7 +35473,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -35494,7 +35518,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -35537,7 +35561,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -35582,7 +35606,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -35623,7 +35647,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -35631,7 +35655,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -35749,7 +35773,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -37426,7 +37450,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -37694,7 +37718,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -37736,7 +37760,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -37777,7 +37801,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -37822,7 +37846,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -37865,7 +37889,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -37910,7 +37934,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -37951,7 +37975,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -37959,7 +37983,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -38077,7 +38101,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -40297,6 +40321,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
       <constraint>
@@ -42095,7 +42123,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -42363,7 +42391,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -42405,7 +42433,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -42446,7 +42474,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -42491,7 +42519,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -42534,7 +42562,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -42579,7 +42607,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -42620,7 +42648,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -42628,7 +42656,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -42746,7 +42774,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -44419,7 +44447,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -44687,7 +44715,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -44729,7 +44757,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -44770,7 +44798,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -44815,7 +44843,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -44858,7 +44886,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -44903,7 +44931,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -44944,7 +44972,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -44952,7 +44980,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -45070,7 +45098,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -46750,7 +46778,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -47018,7 +47046,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -47060,7 +47088,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -47101,7 +47129,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -47146,7 +47174,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -47189,7 +47217,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -47234,7 +47262,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -47275,7 +47303,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -47283,7 +47311,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -47401,7 +47429,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -49080,7 +49108,7 @@
       <comment value="Applications SHOULD render ordered lists in the order provided, but MAY allow users to re-order based on their own preferences as well. If there is no order specified, the order is unknown, though there may still be some order." />
       <requirements value="Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Composition.section.orderedBy" />
         <min value="0" />
@@ -49348,7 +49376,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -49390,7 +49418,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -49431,7 +49459,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -49476,7 +49504,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -49519,7 +49547,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -49564,7 +49592,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -49605,7 +49633,7 @@
       <definition value="A reference to the actual resource from which the narrative in the section is derived." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Composition.section.entry" />
         <min value="0" />
@@ -49613,7 +49641,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
       <condition value="ele-1" />
       <condition value="cmp-2" />
@@ -49731,7 +49759,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -50878,10 +50906,13 @@
     </element>
     <element id="Composition.section:allergiesAndAdverseReactionsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergies-List-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:allergiesAndAdverseReactionsSection.entry.reference">
@@ -50989,13 +51020,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:attendanceDetailsSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:attendanceDetailsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:attendanceDetailsSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:attendanceDetailsSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -51083,13 +51147,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:clinicalNarrativeSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:clinicalNarrativeSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:clinicalNarrativeSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:clinicalNarrativeSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -51177,13 +51274,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:contactForFurtherInformationSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:contactForFurtherInformationSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:contactForFurtherInformationSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:contactForFurtherInformationSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -51317,6 +51447,10 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:diagnosesSection.entry.reference">
@@ -51457,10 +51591,13 @@
     </element>
     <element id="Composition.section:dischargeDetailsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:dischargeDetailsSection.entry.reference">
@@ -51589,10 +51726,13 @@
     </element>
     <element id="Composition.section:gpPracticeSection.entry">
       <path value="Composition.section.entry" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:gpPracticeSection.entry.reference">
@@ -51693,13 +51833,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:informationAndAdviceGivenSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:informationAndAdviceGivenSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:informationAndAdviceGivenSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -51838,10 +52011,13 @@
     </element>
     <element id="Composition.section:medicationsAndMedicalDevicesSection.entry">
       <path value="Composition.section.entry" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Medication-List-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:medicationsAndMedicalDevicesSection.entry.reference">
@@ -51972,10 +52148,13 @@
     <element id="Composition.section:patientDemographicsSection.entry">
       <path value="Composition.section.entry" />
       <min value="1" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
       </type>
     </element>
     <element id="Composition.section:patientDemographicsSection.entry.reference">
@@ -52076,13 +52255,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:personCompletingRecordSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:personCompletingRecordSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:personCompletingRecordSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:personCompletingRecordSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52178,13 +52390,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:planAndRequestedActionsSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:planAndRequestedActionsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:planAndRequestedActionsSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:planAndRequestedActionsSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52272,13 +52517,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:presentingComplaintsOrIssuesSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:presentingComplaintsOrIssuesSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:presentingComplaintsOrIssuesSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52422,6 +52700,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
     </element>
     <element id="Composition.section:proceduresSection.entry.reference">
       <path value="Composition.section.entry.reference" />
@@ -52530,13 +52812,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:referrerDetailsSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:referrerDetailsSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:referrerDetailsSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:referrerDetailsSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:referrerDetailsSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:referrerDetailsSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:referrerDetailsSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:referrerDetailsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:referrerDetailsSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:referrerDetailsSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52620,13 +52935,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:safeguardingSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:safeguardingSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safeguardingSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:safeguardingSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safeguardingSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safeguardingSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:safeguardingSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:safeguardingSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:safeguardingSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:safeguardingSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52723,13 +53071,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:safetyAlertsSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:safetyAlertsSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safetyAlertsSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:safetyAlertsSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safetyAlertsSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:safetyAlertsSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:safetyAlertsSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:safetyAlertsSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:safetyAlertsSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:safetyAlertsSection.emptyReason">
       <path value="Composition.section.emptyReason" />
@@ -52826,13 +53207,46 @@
       <path value="Composition.section.mode" />
       <max value="0" />
     </element>
-    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy">
-      <path value="Composition.section.orderedBy" />
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.coding.system">
+      <path value="Composition.section.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.coding.version">
+      <path value="Composition.section.orderedBy.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.coding.code">
+      <path value="Composition.section.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.coding.userSelected">
+      <path value="Composition.section.orderedBy.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.orderedBy.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.orderedBy.text" />
       <max value="0" />
     </element>
     <element id="Composition.section:seniorReviewingClinicianSection.entry">
       <path value="Composition.section.entry" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Attachment-Binary-1" />
+      </type>
+    </element>
+    <element id="Composition.section:seniorReviewingClinicianSection.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
     </element>
     <element id="Composition.section:seniorReviewingClinicianSection.emptyReason">
       <path value="Composition.section.emptyReason" />
