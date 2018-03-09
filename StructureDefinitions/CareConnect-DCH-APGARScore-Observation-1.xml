@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-<meta>
-    <lastUpdated value="2018-02-03T16:27:50.576+00:00" />
+  <meta>
+    <lastUpdated value="2018-03-09T14:43:06.024+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="oo" />
@@ -2982,8 +2982,8 @@
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
-      <short value="The APGAR Score being recorded" />
-      <definition value="Describes what was observed. Sometimes this is called the observation &quot;name&quot;." />
+      <short value="The APGAR Score represented which may be at 1, 5 or 10 minutes after delivery" />
+      <definition value="The APGAR Score represented which may be at 1, 5 or 10 minutes after delivery" />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation." />
       <alias value="Name" />
@@ -3010,10 +3010,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationCode" />
         </extension>
-        <strength value="example" />
-        <description value="Codes identifying names of simple observations." />
+        <strength value="required" />
+        <description value="The APGAR Score observable entity in use" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-APGARScoreObservation-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -3137,19 +3137,11 @@
     </element>
     <element id="Observation.code.coding">
       <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -3168,13 +3160,6 @@
         <xpath value="@value|f:*|h:div" />
       </constraint>
       <isSummary value="true" />
-      <binding>
-        <strength value="required" />
-        <description value="The APGAR Score observable entity in use" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-APGARScoreObservation-1" />
-        </valueSetReference>
-      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -3288,7 +3273,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -3331,7 +3316,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -3372,7 +3357,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -3417,7 +3402,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -3460,396 +3445,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Coding.userSelected" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="boolean" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="Sometimes implied by being first" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CD.codingRationale" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT">
-      <path value="Observation.code.coding" />
-      <sliceName value="snomedCT" />
-      <short value="Code defined by a terminology system" />
-      <definition value="A reference to a code defined by a terminology system." />
-      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="CodeableConcept.coding" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Coding" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="CE/CNE/CWE subset one of the sets of component 1-3 or 4-6" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding rdfs:subClassOf dt:CDCoding" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1-8, C*E.10-22" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="union(., ./translation)" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.id">
-      <path value="Observation.code.coding.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.extension">
-      <path value="Observation.code.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="Observation.code.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.system">
-      <path value="Observation.code.coding.system" />
-      <short value="Identity of the terminology system" />
-      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
-      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
-      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.system" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="uri" />
-      </type>
-      <fixedUri value="http://snomed.info/sct" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.3" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystem" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.version">
-      <path value="Observation.code.coding.version" />
-      <short value="Version of the system - if relevant" />
-      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
-      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
-      <min value="0" />
       <max value="0" />
-      <base>
-        <path value="Coding.version" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.7" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystemVersion" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.code">
-      <path value="Observation.code.coding.code" />
-      <short value="Symbol in syntax defined by the system" />
-      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.code" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./code" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Observation.code.coding.display" />
-      <short value="Representation defined by the system" />
-      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.display" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.2 - but note this is not well followed" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV.displayName" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
-      </mapping>
-    </element>
-    <element id="Observation.code.coding:snomedCT.userSelected">
-      <path value="Observation.code.coding.userSelected" />
-      <short value="If this coding was chosen directly by the user" />
-      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
-      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
-      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
-      <min value="0" />
-      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -3894,7 +3490,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -3944,7 +3540,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Baby-Patient-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4196,7 +3792,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Birth-Encounter-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4526,8 +4122,8 @@
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="May give a degree of confidence in the observation and also indicates where follow-up questions should be directed." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="0" />
       <base>
         <path value="Observation.performer" />
         <min value="0" />
@@ -4535,7 +4131,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4771,13 +4367,14 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]" />
-      <short value="Actual result" />
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.valueQuantity" />
+      <sliceName value="valueQuantity" />
+      <short value="Numeric value for APGAR Score" />
       <definition value="The information determined as a result of making the observation, if the information has a simple value." />
       <comment value="Normally, an observation will have either a single value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueBoolean, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;'value' + the type name&quot; with a capital on the first letter of the type).&#xD;&#xD;&#xD;If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.    For further discussion and examples see the  [notes section](observation.html#notes) below." />
       <requirements value="An observation exists to have a value, though it may not if it is in error, or if it represents a group of observations." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Observation.value[x]" />
@@ -4786,9 +4383,6 @@
       </base>
       <type>
         <code value="Quantity" />
-      </type>
-      <type>
-        <code value="Range" />
       </type>
       <condition value="ele-1" />
       <condition value="obs-7" />
@@ -4838,6 +4432,292 @@
       <mapping>
         <identity value="sct-attr" />
         <map value="363714003 |Interprets|" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.id">
+      <path value="Observation.valueQuantity.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.extension">
+      <path value="Observation.valueQuantity.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.value">
+      <path value="Observation.valueQuantity.value" />
+      <short value="Numeric value for APGAR Score" />
+      <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value." />
+      <comment value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)." />
+      <requirements value="Precision is handled implicitly in almost all cases of measurement." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Quantity.value" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="decimal" />
+      </type>
+      <minValueDecimal value="0" />
+      <maxValueDecimal value="10" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="SN.2  / CQ - N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.comparator">
+      <path value="Observation.valueQuantity.comparator" />
+      <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value" />
+      <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value." />
+      <comment value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value." />
+      <requirements value="Need a framework for handling measures where the value is &lt;5ug/L or &gt;400mg/L due to the limitations of measuring methodology." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Quantity.comparator" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <meaningWhenMissing value="If there is no comparator, then there is no modification of the value" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuantityComparator" />
+        </extension>
+        <strength value="required" />
+        <description value="How the Quantity should be understood and represented." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/quantity-comparator" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="SN.1  / CQ.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL properties" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.unit">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Observation.valueQuantity.unit" />
+      <short value="Unit representation" />
+      <definition value="A human-readable form of the unit." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Quantity.unit" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="(see OBX.6 etc.) / CQ.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="PQ.unit" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.valueQuantity.system" />
+      <short value="System that defines coded unit form" />
+      <definition value="The identification of the system that provides the coded form of the unit." />
+      <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
+      <requirements value="Need to know the system that defines the coded form of the unit." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Quantity.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="qty-3" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="(see OBX.6 etc.) / CQ.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CO.codeSystem, PQ.translation.codeSystem" />
+      </mapping>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.valueQuantity.code" />
+      <short value="Coded form of the unit" />
+      <definition value="A computer processable form of the unit in some unit representation system." />
+      <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
+      <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Quantity.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="(see OBX.6 etc.) / CQ.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="PQ.code, MO.currency, PQ.translation.code" />
       </mapping>
     </element>
     <element id="Observation.dataAbsentReason">
@@ -13890,20 +13770,12 @@
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
-      <short value="The APGAR Score being recorded" />
-    </element>
-    <element id="Observation.code.coding">
-      <path value="Observation.code.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
-      <max value="1" />
+      <short value="The APGAR Score represented which may be at 1, 5 or 10 minutes after delivery" />
+      <definition value="The APGAR Score represented which may be at 1, 5 or 10 minutes after delivery" />
       <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationCode" />
+        </extension>
         <strength value="required" />
         <description value="The APGAR Score observable entity in use" />
         <valueSetReference>
@@ -13911,59 +13783,48 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Observation.code.coding.system">
-      <path value="Observation.code.coding.system" />
-      <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Observation.code.coding:snomedCT">
+    <element id="Observation.code.coding">
       <path value="Observation.code.coding" />
-      <sliceName value="snomedCT" />
+      <min value="1" />
       <max value="1" />
     </element>
-    <element id="Observation.code.coding:snomedCT.extension">
-      <path value="Observation.code.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Observation.code.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="Observation.code.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-    </element>
-    <element id="Observation.code.coding:snomedCT.system">
+    <element id="Observation.code.coding.system">
       <path value="Observation.code.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
     </element>
-    <element id="Observation.code.coding:snomedCT.version">
+    <element id="Observation.code.coding.version">
       <path value="Observation.code.coding.version" />
       <max value="0" />
     </element>
-    <element id="Observation.code.coding:snomedCT.code">
+    <element id="Observation.code.coding.code">
       <path value="Observation.code.coding.code" />
       <min value="1" />
     </element>
-    <element id="Observation.code.coding:snomedCT.display">
+    <element id="Observation.code.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Observation.code.coding.display" />
       <min value="1" />
     </element>
+    <element id="Observation.code.coding.userSelected">
+      <path value="Observation.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Observation.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Observation.code.text" />
+      <max value="0" />
+    </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Baby-Patient-1" />
       </type>
     </element>
     <element id="Observation.subject.reference">
@@ -13975,7 +13836,7 @@
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Birth-Encounter-1" />
       </type>
     </element>
     <element id="Observation.context.reference">
@@ -13996,25 +13857,50 @@
     </element>
     <element id="Observation.performer">
       <path value="Observation.performer" />
-      <min value="1" />
-      <max value="1" />
+      <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
     </element>
     <element id="Observation.performer.reference">
       <path value="Observation.performer.reference" />
       <min value="1" />
     </element>
-    <element id="Observation.value[x]">
-      <path value="Observation.value[x]" />
+    <element id="Observation.value[x]:valueQuantity">
+      <path value="Observation.valueQuantity" />
+      <sliceName value="valueQuantity" />
+      <short value="Numeric value for APGAR Score" />
+      <min value="1" />
       <type>
         <code value="Quantity" />
       </type>
-      <type>
-        <code value="Range" />
-      </type>
+    </element>
+    <element id="Observation.value[x]:valueQuantity.value">
+      <path value="Observation.valueQuantity.value" />
+      <short value="Numeric value for APGAR Score" />
+      <min value="1" />
+      <minValueDecimal value="0" />
+      <maxValueDecimal value="10" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.comparator">
+      <path value="Observation.valueQuantity.comparator" />
+      <max value="0" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.unit">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Observation.valueQuantity.unit" />
+      <max value="0" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.system">
+      <path value="Observation.valueQuantity.system" />
+      <max value="0" />
+    </element>
+    <element id="Observation.value[x]:valueQuantity.code">
+      <path value="Observation.valueQuantity.code" />
+      <max value="0" />
     </element>
     <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason" />
