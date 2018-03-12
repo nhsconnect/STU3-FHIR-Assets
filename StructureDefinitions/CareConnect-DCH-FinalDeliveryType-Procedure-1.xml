@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-12T14:03:20.128+00:00" />
+    <lastUpdated value="2018-03-12T11:29:24.317+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pc" />
   </extension>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-NeonatalResuscitationMethod-Procedure-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-FinalDeliveryType-Procedure-1" />
   <version value="1.0.0" />
-  <name value="CareConnect-DCH-NeonatalResuscitationMethod-Procedure-1" />
+  <name value="CareConnect-DCH-FinalDeliveryType-Procedure-1" />
   <status value="draft" />
   <date value="2018-02-01" />
   <publisher value="NHS Digital" />
@@ -20,7 +20,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An action that is or was performed on a patient, with further constraints applied to represent the details of neonatal resuscitation measures required." />
+  <description value="An action that is or was performed on a patient, with further constraints applied to represent the final method for delivering baby during a Delivery event. " />
   <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -237,9 +237,9 @@
           <valueString value="ProcedureCode" />
         </extension>
         <strength value="required" />
-        <description value="The neonatal resuscitation measure performed" />
+        <description value="The final method for delivering baby" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-NeonatalResuscitationMethod-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-FinalDeliveryType-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -261,6 +261,9 @@
     <element id="Procedure.code.coding.extension:snomedCTDescriptionID">
       <path value="Procedure.code.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <min value="0" />
       <max value="0" />
       <type>
         <code value="Extension" />
@@ -287,6 +290,10 @@
       <path value="Procedure.code.coding.display" />
       <min value="1" />
     </element>
+    <element id="Procedure.code.coding.userSelected">
+      <path value="Procedure.code.coding.userSelected" />
+      <max value="0" />
+    </element>
     <element id="Procedure.code.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
@@ -298,7 +305,7 @@
       <path value="Procedure.subject" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Baby-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Mother-Patient-1" />
       </type>
     </element>
     <element id="Procedure.subject.reference">
@@ -310,10 +317,10 @@
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Birth-Encounter-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Delivery-Encounter-1" />
       </type>
     </element>
-    <element id="Procedure.context.reference">
+    <element id="context.reference">
       <path value="Procedure.context.reference" />
       <min value="1" />
     </element>

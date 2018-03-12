@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-12T10:22:34.47+00:00" />
+    <lastUpdated value="2018-03-12T13:44:51.393+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="oo" />
   </extension>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PutToBreastIndicator-Observation-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-IdenticalTwinIndicator-Observation-1" />
   <version value="1.0.0" />
-  <name value="CareConnect-DCH-PutToBreastIndicator-Observation-1" />
+  <name value="CareConnect-DCH-IdenticalTwinIndicator-Observation-1" />
   <status value="draft" />
   <date value="2018-02-01" />
   <publisher value="NHS Digital" />
@@ -20,7 +20,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="The Observation resource is used for tracking the current and historical observations that have been made for a patient, with further contraints applied to represent an observation as to whether or not the baby was put to breast after delivery." />
+  <description value="The Observation resource is used for tracking the current and historical observations that have been made for a patient, with further constraints applied to represent whether or not the baby is an identical twin." />
   <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -132,15 +132,14 @@
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
-      <short value="Whether or not the baby was put to breast after delivery" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationCode" />
         </extension>
         <strength value="required" />
-        <description value="Whether or not the baby was put to breast after delivery" />
+        <description value="Whether or not the baby is an identical twin" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-PutToBreastIndicator-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-IdenticalTwinIndicator-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -148,6 +147,28 @@
       <path value="Observation.code.coding" />
       <min value="1" />
       <max value="1" />
+    </element>
+    <element id="Observation.code.coding.extension">
+      <path value="Observation.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding.extension:snomedCTDescriptionID">
+      <path value="Observation.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <min value="0" />
+      <max value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
     </element>
     <element id="Observation.code.coding.system">
       <path value="Observation.code.coding.system" />
@@ -221,7 +242,7 @@
       <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
       </type>
     </element>
     <element id="Observation.performer.reference">
@@ -231,6 +252,12 @@
     <element id="Observation.value[x]">
       <path value="Observation.value[x]" />
       <max value="0" />
+      <type>
+        <code value="Quantity" />
+      </type>
+      <type>
+        <code value="Range" />
+      </type>
     </element>
     <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason" />
