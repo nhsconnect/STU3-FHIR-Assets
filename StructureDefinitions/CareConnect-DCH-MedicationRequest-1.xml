@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-02-01T14:56:30.76+00:00" />
+    <lastUpdated value="2018-03-15T11:57:54.661+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
@@ -345,16 +345,16 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="MedicationRequest.extension:supplyType">
+    <element id="MedicationRequest.extension:repeatInformation">
       <path value="MedicationRequest.extension" />
-      <sliceName value="supplyType" />
+      <sliceName value="repeatInformation" />
       <short value="Additional Content defined by implementations" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -362,7 +362,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationSupplyType-1" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationRepeatInformation-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -388,16 +388,16 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="MedicationRequest.extension:flag">
+    <element id="MedicationRequest.extension:statusReason">
       <path value="MedicationRequest.extension" />
-      <sliceName value="flag" />
-      <short value="Associated medication" />
-      <definition value="Associated medication." />
+      <sliceName value="statusReason" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="1" />
-      <max value="*" />
+      <min value="0" />
+      <max value="0" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -405,7 +405,50 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-DCH-MedicationFlag-1" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationStatusReason-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.extension:prescriptionType">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="prescriptionType" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-PrescriptionType-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3504,7 +3547,7 @@
       <short value="active | on-hold | cancelled | completed | entered-in-error | stopped | draft | unknown" />
       <definition value="A code specifying the current state of the order.  Generally this will be active or completed state." />
       <comment value="This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="MedicationRequest.status" />
@@ -3570,6 +3613,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="order" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4336,7 +4380,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="MedicationRequest.medication[x]:medicationReference.reference">
+    <element id="medicationReference:medicationReference.reference">
       <path value="MedicationRequest.medicationReference.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -5551,7 +5595,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="MedicationRequest.requester.agent.reference">
+    <element id="agent.reference">
       <path value="MedicationRequest.requester.agent.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -5673,7 +5717,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Practitioners and Devices can be associated with multiple organizations. This element indicates which organization they were acting on behalf of when authoring the request." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="MedicationRequest.requester.onBehalfOf" />
         <min value="0" />
@@ -6156,7 +6200,7 @@
       <short value="Reason or indication for writing the prescription" />
       <definition value="The reason or the indication for ordering the medication." />
       <comment value="This could be a diagnosis code. If a full condition record exists or additional detail is needed, use reasonReference." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="MedicationRequest.reasonCode" />
@@ -6306,7 +6350,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -6947,7 +6991,7 @@
       <definition value="Extra information about the prescription that could not be conveyed by the other attributes." />
       <comment value="For systems that do not have structured annotations, they can simply communicate a single annotation with no author or time.  This element may need to be included in narrative because of the potential for modifying information.  *Annotations SHOULD NOT* be used to communicate &quot;modifying&quot; information that could be computable. (This is a SHOULD because enforcing user behavior is nearly impossible)." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="MedicationRequest.note" />
         <min value="0" />
@@ -7204,7 +7248,7 @@
       <short value="How the medication should be taken" />
       <definition value="Indicates how the medication is to be used by the patient." />
       <comment value="There are examples where a medication request may include the option of an oral dose or an Intravenous or Intramuscular dose.  For example, &quot;Ondansetron 8mg orally or IV twice a day as needed for nausea&quot; or &quot;Compazine® (prochlorperazine) 5-10mg PO or 25mg PR bid prn nausea or vomiting&quot;.  In these cases, two medication requests would be created that could be grouped together.  The decision on which dose and route of administration to use is based on the patient's condition at the time the dose is needed." />
-      <min value="1" />
+      <min value="0" />
       <max value="*" />
       <base>
         <path value="MedicationRequest.dosageInstruction" />
@@ -7324,7 +7368,7 @@
       <comment value="32 bit number; for values larger than this, use decimal" />
       <requirements value="If the sequence number of multiple Dosages is the same, then it is implied that the instructions are to be treated as concurrent.  If the sequence number is different, then the Dosages are intended to be sequential." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Dosage.sequence" />
         <min value="0" />
@@ -7357,7 +7401,7 @@
       <definition value="Free text dosage instructions e.g. SIG." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Dosage.text" />
@@ -7534,7 +7578,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -8311,7 +8355,7 @@
       <definition value="Instructions in terms that are understood by the patient or consumer." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Dosage.patientInstruction" />
         <min value="0" />
@@ -8344,7 +8388,7 @@
       <definition value="When medication should be administered." />
       <comment value="This attribute may not always be populated while the Dosage.text is expected to be populated.  If both are populated, then the Dosage.text should reflect the content of the Dosage.timing." />
       <requirements value="The timing schedule for giving the medication to the patient. The Schedule data type allows many different expressions. For example: &quot;Every 8 hours&quot;; &quot;Three times a day&quot;; &quot;1/2 an hour before breakfast for 10 days from 23-Dec 2011:&quot;; &quot;15 Oct 2013, 17 Oct 2013 and 1 Nov 2013&quot;.  Sometimes, a rate can imply duration when expressed as total volume / duration (e.g.  500mL/2 hours implies a duration of 2 hours).  However, when rate doesn't imply duration (e.g. 250mL/hour), then the timing.repeat.duration is needed to convey the infuse over time period." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Dosage.timing" />
@@ -8496,7 +8540,7 @@
       <short value="When the event is to occur" />
       <definition value="A set of rules that describe when the event is scheduled." />
       <requirements value="Many timing schedules are determined by regular repetitions." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Timing.repeat" />
@@ -8668,8 +8712,8 @@
     <element id="MedicationRequest.dosageInstruction.timing.repeat.bounds[x]:boundsPeriod">
       <path value="MedicationRequest.dosageInstruction.timing.repeat.boundsPeriod" />
       <sliceName value="boundsPeriod" />
-      <short value="Length/Range of lengths, or (Start and/or end) limits" />
-      <definition value="Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule." />
+      <short value="The period during which the medication course should be taken" />
+      <definition value="Outer bounds for start and/or end limits of the timing schedule." />
       <comment value="The context of use may frequently define what kind of quantity this is and therefore what kind of units can be used. The context of use may also restrict the values for the comparator." />
       <min value="0" />
       <max value="1" />
@@ -9153,7 +9197,7 @@
       <comment value="When more than one event is listed, the event is tied to the union of the specified events." />
       <requirements value="Timings are frequently determined by occurrences such as waking, eating and sleep." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Timing.repeat.when" />
         <min value="0" />
@@ -9745,21 +9789,19 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" />
       </mapping>
     </element>
-    <element id="MedicationRequest.dosageInstruction.asNeeded[x]">
-      <path value="MedicationRequest.dosageInstruction.asNeeded[x]" />
-      <short value="Take &quot;as needed&quot; (for x)" />
-      <definition value="Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept)." />
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept" />
+      <sliceName value="asNeededCodeableConcept" />
+      <short value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
+      <definition value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
       <comment value="Can express &quot;as needed&quot; without a reason by setting the Boolean = True.  In this case the CodeableConcept is not populated.  Or you can express &quot;as needed&quot; with a reason by including the CodeableConcept.  In this case the Boolean is assumed to be True.  If you set the Boolean to False, then the dose is given according to the schedule and is not &quot;prn&quot; or &quot;as needed&quot;." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Dosage.asNeeded[x]" />
         <min value="0" />
         <max value="1" />
       </base>
-      <type>
-        <code value="boolean" />
-      </type>
       <type>
         <code value="CodeableConcept" />
       </type>
@@ -9776,10 +9818,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationAsNeededReason" />
         </extension>
-        <strength value="example" />
-        <description value="A coded concept identifying the precondition that should be met or evaluated prior to consuming or administering a medication dose.  For example &quot;pain&quot;, &quot;30 minutes prior to sexual intercourse&quot;, &quot;on flare-up&quot; etc." />
+        <strength value="required" />
+        <description value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/medication-as-needed-reason" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-DoseDirectionDuration-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -9791,6 +9833,481 @@
         <map value=".outboundRelationship[typeCode=PRCN].target[classCode=OBS, moodCode=EVN, code=&quot;as needed&quot;].value=boolean or codable concept" />
       </mapping>
     </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept.id">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept.extension">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding" />
+      <short value="Code defined by a terminology system" />
+      <definition value="A reference to a code defined by a terminology system." />
+      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
+      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="CodeableConcept.coding" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="The dose direction duration" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-DoseDirectionDuration-1" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE subset one of the sets of component 1-3 or 4-6" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding rdfs:subClassOf dt:CDCoding" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1-8, C*E.10-22" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="union(., ./translation)" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept.coding.id">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept.coding.extension">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.system">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-DoseDirectionDuration-1" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.version">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.code">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.userSelected">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
+      </mapping>
+    </element>
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.text" />
+      <short value="Plain text representation of the concept" />
+      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." />
+      <comment value="Very often the text is the same as a displayName of one of the codings." />
+      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="CodeableConcept.text" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.9. But note many systems use C*E.2 for this" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" />
+      </mapping>
+    </element>
     <element id="MedicationRequest.dosageInstruction.site">
       <path value="MedicationRequest.dosageInstruction.site" />
       <short value="Body site to administer to" />
@@ -9798,7 +10315,7 @@
       <comment value="If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both." />
       <requirements value="A coded specification of the anatomic site where the medication first enters the body." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Dosage.site" />
         <min value="0" />
@@ -10321,7 +10838,7 @@
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="A code specifying the route or physiological path of administration of a therapeutic agent into or onto a patient's body." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Dosage.route" />
         <min value="0" />
@@ -10450,20 +10967,12 @@
     </element>
     <element id="MedicationRequest.dosageInstruction.route.coding">
       <path value="MedicationRequest.dosageInstruction.route.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -10481,6 +10990,13 @@
         <xpath value="@value|f:*|h:div" />
       </constraint>
       <isSummary value="true" />
+      <binding>
+        <strength value="preferred" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -10594,7 +11110,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -10604,6 +11120,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="http://snomed.info/sct" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10636,7 +11153,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -10677,7 +11194,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -10722,7 +11239,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -10765,403 +11282,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Coding.userSelected" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="boolean" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="Sometimes implied by being first" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CD.codingRationale" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT">
-      <path value="MedicationRequest.dosageInstruction.route.coding" />
-      <sliceName value="snomedCT" />
-      <short value="Code defined by a terminology system" />
-      <definition value="A reference to a code defined by a terminology system." />
-      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="CodeableConcept.coding" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Coding" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <binding>
-        <strength value="preferred" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
-        <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="CE/CNE/CWE subset one of the sets of component 1-3 or 4-6" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding rdfs:subClassOf dt:CDCoding" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1-8, C*E.10-22" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="union(., ./translation)" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.id">
-      <path value="MedicationRequest.dosageInstruction.route.coding.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension">
-      <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.system">
-      <path value="MedicationRequest.dosageInstruction.route.coding.system" />
-      <short value="Identity of the terminology system" />
-      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
-      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
-      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.system" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="uri" />
-      </type>
-      <fixedUri value="http://snomed.info/sct" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.3" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystem" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.version">
-      <path value="MedicationRequest.dosageInstruction.route.coding.version" />
-      <short value="Version of the system - if relevant" />
-      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
-      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
-      <min value="0" />
       <max value="0" />
-      <base>
-        <path value="Coding.version" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.7" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystemVersion" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.code">
-      <path value="MedicationRequest.dosageInstruction.route.coding.code" />
-      <short value="Symbol in syntax defined by the system" />
-      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.code" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./code" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="MedicationRequest.dosageInstruction.route.coding.display" />
-      <short value="Representation defined by the system" />
-      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.display" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.2 - but note this is not well followed" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV.displayName" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.userSelected">
-      <path value="MedicationRequest.dosageInstruction.route.coding.userSelected" />
-      <short value="If this coding was chosen directly by the user" />
-      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
-      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
-      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
-      <min value="0" />
-      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -11206,7 +11327,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -11377,14 +11498,6 @@
     </element>
     <element id="MedicationRequest.dosageInstruction.method.coding">
       <path value="MedicationRequest.dosageInstruction.method.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
@@ -11686,402 +11799,6 @@
       </mapping>
     </element>
     <element id="MedicationRequest.dosageInstruction.method.coding.userSelected">
-      <path value="MedicationRequest.dosageInstruction.method.coding.userSelected" />
-      <short value="If this coding was chosen directly by the user" />
-      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
-      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
-      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Coding.userSelected" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="boolean" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="Sometimes implied by being first" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CD.codingRationale" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT">
-      <path value="MedicationRequest.dosageInstruction.method.coding" />
-      <sliceName value="snomedCT" />
-      <short value="Code defined by a terminology system" />
-      <definition value="A reference to a code defined by a terminology system." />
-      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
-      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="CodeableConcept.coding" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Coding" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <binding>
-        <strength value="preferred" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing method." />
-        <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="CE/CNE/CWE subset one of the sets of component 1-3 or 4-6" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding rdfs:subClassOf dt:CDCoding" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1-8, C*E.10-22" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="union(., ./translation)" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.id">
-      <path value="MedicationRequest.dosageInstruction.method.coding.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension">
-      <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.system">
-      <path value="MedicationRequest.dosageInstruction.method.coding.system" />
-      <short value="Identity of the terminology system" />
-      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
-      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
-      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.system" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="uri" />
-      </type>
-      <fixedUri value="http://snomed.info/sct" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.3" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystem" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.version">
-      <path value="MedicationRequest.dosageInstruction.method.coding.version" />
-      <short value="Version of the system - if relevant" />
-      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
-      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
-      <min value="0" />
-      <max value="0" />
-      <base>
-        <path value="Coding.version" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.7" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./codeSystemVersion" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.code">
-      <path value="MedicationRequest.dosageInstruction.method.coding.code" />
-      <short value="Symbol in syntax defined by the system" />
-      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.code" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.1" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="./code" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="MedicationRequest.dosageInstruction.method.coding.display" />
-      <short value="Representation defined by the system" />
-      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Coding.display" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="C*E.2 - but note this is not well followed" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CV.displayName" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
-      </mapping>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.userSelected">
       <path value="MedicationRequest.dosageInstruction.method.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
@@ -14044,7 +13761,7 @@
       <short value="Starting time with inclusive boundary" />
       <definition value="The start of the period. The boundary is inclusive." />
       <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Period.start" />
@@ -14347,7 +14064,7 @@
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value." />
       <comment value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)." />
       <requirements value="Precision is handled implicitly in almost all cases of measurement." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.value" />
@@ -14438,7 +14155,7 @@
       <definition value="A human-readable form of the unit." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.unit" />
@@ -14476,7 +14193,7 @@
       <definition value="The identification of the system that provides the coded form of the unit." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="Need to know the system that defines the coded form of the unit." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.system" />
@@ -14515,7 +14232,7 @@
       <definition value="A computer processable form of the unit in some unit representation system." />
       <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
       <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.code" />
@@ -16360,7 +16077,7 @@
       <definition value="Links to Provenance records for past versions of this resource or fulfilling request or event resources that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the resource." />
       <comment value="This may not include provenances for all versions of the request – only those deemed “relevant” or important. This SHALL NOT include the Provenance associated with this current version of the resource. (If that provenance is deemed to be a “relevant” change, it will need to be added as part of a later update. Until then, it can be queried directly as the Provenance that points to this version using _revinclude All Provenances should have some historical version of this Request as their subject.)." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="MedicationRequest.eventHistory" />
         <min value="0" />
@@ -16607,25 +16324,31 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="MedicationRequest.extension:supplyType">
+    <element id="MedicationRequest.extension:repeatInformation">
       <path value="MedicationRequest.extension" />
-      <sliceName value="supplyType" />
-      <min value="1" />
-      <max value="1" />
+      <sliceName value="repeatInformation" />
+      <max value="0" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationSupplyType-1" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationRepeatInformation-1" />
       </type>
     </element>
-    <element id="MedicationRequest.extension:flag">
+    <element id="MedicationRequest.extension:statusReason">
       <path value="MedicationRequest.extension" />
-      <sliceName value="flag" />
-      <short value="Associated medication" />
-      <definition value="Associated medication." />
-      <min value="1" />
+      <sliceName value="statusReason" />
+      <max value="0" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-DCH-MedicationFlag-1" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationStatusReason-1" />
+      </type>
+    </element>
+    <element id="MedicationRequest.extension:prescriptionType">
+      <path value="MedicationRequest.extension" />
+      <sliceName value="prescriptionType" />
+      <max value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-PrescriptionType-1" />
       </type>
     </element>
     <element id="MedicationRequest.identifier">
@@ -16696,9 +16419,9 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
     </element>
-    <element id="MedicationRequest.status">
-      <path value="MedicationRequest.status" />
-      <min value="1" />
+    <element id="MedicationRequest.intent">
+      <path value="MedicationRequest.intent" />
+      <fixedCode value="order" />
     </element>
     <element id="MedicationRequest.category">
       <path value="MedicationRequest.category" />
@@ -16723,7 +16446,7 @@
         <valueSetUri value="http://hl7.org/fhir/ValueSet/medication-codes" />
       </binding>
     </element>
-    <element id="MedicationRequest.medication[x]:medicationReference.reference">
+    <element id="medicationReference:medicationReference.reference">
       <path value="MedicationRequest.medicationReference.reference" />
       <min value="1" />
     </element>
@@ -16769,12 +16492,13 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
     </element>
-    <element id="MedicationRequest.requester.agent.reference">
+    <element id="agent.reference">
       <path value="MedicationRequest.requester.agent.reference" />
       <min value="1" />
     </element>
     <element id="MedicationRequest.requester.onBehalfOf">
       <path value="MedicationRequest.requester.onBehalfOf" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1" />
@@ -16790,8 +16514,11 @@
     </element>
     <element id="MedicationRequest.reasonCode">
       <path value="MedicationRequest.reasonCode" />
-      <min value="1" />
       <max value="1" />
+    </element>
+    <element id="MedicationRequest.reasonCode.coding">
+      <path value="MedicationRequest.reasonCode.coding" />
+      <max value="0" />
     </element>
     <element id="MedicationRequest.reasonReference">
       <path value="MedicationRequest.reasonReference" />
@@ -16804,10 +16531,6 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
       </type>
-    </element>
-    <element id="MedicationRequest.note">
-      <path value="MedicationRequest.note" />
-      <max value="0" />
     </element>
     <element id="MedicationRequest.note.author[x]">
       <path value="MedicationRequest.note.author[x]" />
@@ -16827,18 +16550,6 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
     </element>
-    <element id="MedicationRequest.dosageInstruction">
-      <path value="MedicationRequest.dosageInstruction" />
-      <min value="1" />
-    </element>
-    <element id="MedicationRequest.dosageInstruction.sequence">
-      <path value="MedicationRequest.dosageInstruction.sequence" />
-      <max value="0" />
-    </element>
-    <element id="MedicationRequest.dosageInstruction.text">
-      <path value="MedicationRequest.dosageInstruction.text" />
-      <min value="1" />
-    </element>
     <element id="MedicationRequest.dosageInstruction.additionalInstruction">
       <path value="MedicationRequest.dosageInstruction.additionalInstruction" />
       <max value="1" />
@@ -16853,6 +16564,7 @@
         <ordered value="false" />
         <rules value="open" />
       </slicing>
+      <max value="0" />
     </element>
     <element id="MedicationRequest.dosageInstruction.additionalInstruction.coding:snomedCT">
       <path value="MedicationRequest.dosageInstruction.additionalInstruction.coding" />
@@ -16897,21 +16609,19 @@
       <path value="MedicationRequest.dosageInstruction.additionalInstruction.coding.display" />
       <min value="1" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.timing">
-      <path value="MedicationRequest.dosageInstruction.timing" />
-      <min value="1" />
+    <element id="MedicationRequest.dosageInstruction.patientInstruction">
+      <path value="MedicationRequest.dosageInstruction.patientInstruction" />
+      <max value="0" />
     </element>
     <element id="MedicationRequest.dosageInstruction.timing.event">
       <path value="MedicationRequest.dosageInstruction.timing.event" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.timing.repeat">
-      <path value="MedicationRequest.dosageInstruction.timing.repeat" />
-      <min value="1" />
-    </element>
     <element id="MedicationRequest.dosageInstruction.timing.repeat.bounds[x]:boundsPeriod">
       <path value="MedicationRequest.dosageInstruction.timing.repeat.boundsPeriod" />
       <sliceName value="boundsPeriod" />
+      <short value="The period during which the medication course should be taken" />
+      <definition value="Outer bounds for start and/or end limits of the timing schedule." />
       <type>
         <code value="Period" />
       </type>
@@ -16964,6 +16674,10 @@
       <path value="MedicationRequest.dosageInstruction.timing.repeat.timeOfDay" />
       <max value="0" />
     </element>
+    <element id="MedicationRequest.dosageInstruction.timing.repeat.when">
+      <path value="MedicationRequest.dosageInstruction.timing.repeat.when" />
+      <max value="0" />
+    </element>
     <element id="MedicationRequest.dosageInstruction.timing.repeat.offset">
       <path value="MedicationRequest.dosageInstruction.timing.repeat.offset" />
       <max value="0" />
@@ -16972,139 +16686,110 @@
       <path value="MedicationRequest.dosageInstruction.timing.code" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.asNeeded[x]">
-      <path value="MedicationRequest.dosageInstruction.asNeeded[x]" />
+    <element id="MedicationRequest.dosageInstruction.asNeeded[x]:asNeededCodeableConcept">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept" />
+      <sliceName value="asNeededCodeableConcept" />
+      <short value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
+      <definition value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationAsNeededReason" />
+        </extension>
+        <strength value="required" />
+        <description value="Indicates the precondition for taking the Medication, i.e. the dose direction duration" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-DoseDirectionDuration-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="The dose direction duration" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-DoseDirectionDuration-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.system">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.system" />
+      <min value="1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-DoseDirectionDuration-1" />
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.version">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.version" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.route">
-      <path value="MedicationRequest.dosageInstruction.route" />
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.code">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="asNeededCodeableConcept:asNeededCodeableConcept.coding.userSelected">
+      <path value="MedicationRequest.dosageInstruction.asNeededCodeableConcept.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.site">
+      <path value="MedicationRequest.dosageInstruction.site" />
       <max value="0" />
     </element>
     <element id="MedicationRequest.dosageInstruction.route.coding">
       <path value="MedicationRequest.dosageInstruction.route.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT">
-      <path value="MedicationRequest.dosageInstruction.route.coding" />
-      <sliceName value="snomedCT" />
+      <min value="1" />
       <max value="1" />
       <binding>
         <strength value="preferred" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration" />
         <valueSetReference>
           <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
     </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension">
-      <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="MedicationRequest.dosageInstruction.route.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.system">
+    <element id="MedicationRequest.dosageInstruction.route.coding.system">
       <path value="MedicationRequest.dosageInstruction.route.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.version">
+    <element id="MedicationRequest.dosageInstruction.route.coding.version">
       <path value="MedicationRequest.dosageInstruction.route.coding.version" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.code">
+    <element id="MedicationRequest.dosageInstruction.route.coding.code">
       <path value="MedicationRequest.dosageInstruction.route.coding.code" />
       <min value="1" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.route.coding:snomedCT.display">
+    <element id="MedicationRequest.dosageInstruction.route.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="MedicationRequest.dosageInstruction.route.coding.display" />
       <min value="1" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.method">
-      <path value="MedicationRequest.dosageInstruction.method" />
+    <element id="MedicationRequest.dosageInstruction.route.coding.userSelected">
+      <path value="MedicationRequest.dosageInstruction.route.coding.userSelected" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding">
-      <path value="MedicationRequest.dosageInstruction.method.coding" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="system" />
-        </discriminator>
-        <ordered value="false" />
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT">
-      <path value="MedicationRequest.dosageInstruction.method.coding" />
-      <sliceName value="snomedCT" />
-      <max value="1" />
-      <binding>
-        <strength value="preferred" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing method." />
-        <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageMethod-1" />
-        </valueSetReference>
-      </binding>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension">
-      <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.extension:snomedCTDescriptionID">
-      <path value="MedicationRequest.dosageInstruction.method.coding.extension" />
-      <sliceName value="snomedCTDescriptionID" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
-      </type>
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.system">
-      <path value="MedicationRequest.dosageInstruction.method.coding.system" />
-      <min value="1" />
-      <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.version">
-      <path value="MedicationRequest.dosageInstruction.method.coding.version" />
-      <max value="0" />
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.code">
-      <path value="MedicationRequest.dosageInstruction.method.coding.code" />
-      <min value="1" />
-    </element>
-    <element id="MedicationRequest.dosageInstruction.method.coding:snomedCT.display">
+    <element id="MedicationRequest.dosageInstruction.route.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
-      <path value="MedicationRequest.dosageInstruction.method.coding.display" />
-      <min value="1" />
+      <path value="MedicationRequest.dosageInstruction.route.text" />
+      <max value="0" />
+    </element>
+    <element id="MedicationRequest.dosageInstruction.method">
+      <path value="MedicationRequest.dosageInstruction.method" />
+      <max value="0" />
     </element>
     <element id="MedicationRequest.dosageInstruction.dose[x]">
       <path value="MedicationRequest.dosageInstruction.dose[x]" />
@@ -17130,10 +16815,6 @@
       <path value="MedicationRequest.dispenseRequest" />
       <max value="0" />
     </element>
-    <element id="MedicationRequest.dispenseRequest.validityPeriod.start">
-      <path value="MedicationRequest.dispenseRequest.validityPeriod.start" />
-      <min value="1" />
-    </element>
     <element id="MedicationRequest.dispenseRequest.quantity.extension">
       <path value="MedicationRequest.dispenseRequest.quantity.extension" />
       <slicing>
@@ -17152,25 +16833,6 @@
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-MedicationQuantityText-1" />
       </type>
-    </element>
-    <element id="MedicationRequest.dispenseRequest.quantity.value">
-      <path value="MedicationRequest.dispenseRequest.quantity.value" />
-      <min value="1" />
-    </element>
-    <element id="MedicationRequest.dispenseRequest.quantity.unit">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="MedicationRequest.dispenseRequest.quantity.unit" />
-      <min value="1" />
-    </element>
-    <element id="MedicationRequest.dispenseRequest.quantity.system">
-      <path value="MedicationRequest.dispenseRequest.quantity.system" />
-      <min value="1" />
-    </element>
-    <element id="MedicationRequest.dispenseRequest.quantity.code">
-      <path value="MedicationRequest.dispenseRequest.quantity.code" />
-      <min value="1" />
     </element>
     <element id="MedicationRequest.dispenseRequest.expectedSupplyDuration.value">
       <path value="MedicationRequest.dispenseRequest.expectedSupplyDuration.value" />
@@ -17217,10 +16879,6 @@
     </element>
     <element id="MedicationRequest.detectedIssue">
       <path value="MedicationRequest.detectedIssue" />
-      <max value="0" />
-    </element>
-    <element id="MedicationRequest.eventHistory">
-      <path value="MedicationRequest.eventHistory" />
       <max value="0" />
     </element>
   </differential>
