@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="PractitionerRole" />
   <meta>
-    <lastUpdated value="2018-02-19T14:55:15.774+00:00" />
+    <lastUpdated value="2018-03-16T13:13:21.57+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
   </extension>
-  <url value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-EMS-PractitionerRole-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-PractitionerRole-1" />
   <version value="1.0.0" />
   <name value="CareConnect-EMS-PractitionerRole-1" />
   <status value="draft" />
@@ -1424,7 +1423,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1663,7 +1662,7 @@
       <comment value="Default is true. &#xD;&#xD;If the practitioner is not in use by one organization, then it should mark the period on the PractitonerRole with an end date (even if they are active) as they may be active in another role." />
       <requirements value="Need to be able to mark a practitioner record as not to be used because it was created in error." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="PractitionerRole.active" />
         <min value="0" />
@@ -1706,7 +1705,7 @@
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <requirements value="Even after the agencies is revoked, the fact that it existed must still be recorded." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="PractitionerRole.period" />
         <min value="0" />
@@ -2043,7 +2042,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -2405,7 +2404,7 @@
       <definition value="Roles which this practitioner is authorized to perform for the organization." />
       <comment value="A person may have more than one role. At least one role is required." />
       <requirements value="Need to know what authority the practitioner has - what can they do?" />
-      <min value="1" />
+      <min value="0" />
       <max value="*" />
       <base>
         <path value="PractitionerRole.code" />
@@ -4253,7 +4252,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5973,16 +5972,8 @@
       <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
-    </element>
-    <element id="PractitionerRole.active">
-      <path value="PractitionerRole.active" />
-      <max value="0" />
-    </element>
-    <element id="PractitionerRole.period">
-      <path value="PractitionerRole.period" />
-      <max value="0" />
     </element>
     <element id="PractitionerRole.practitioner">
       <path value="PractitionerRole.practitioner" />
@@ -5991,6 +5982,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Practitioner-1" />
       </type>
+    </element>
+    <element id="PractitionerRole.practitioner.reference">
+      <path value="PractitionerRole.practitioner.reference" />
+      <min value="1" />
     </element>
     <element id="PractitionerRole.organization">
       <path value="PractitionerRole.organization" />
@@ -6009,7 +6004,6 @@
         <ordered value="false" />
         <rules value="openAtEnd" />
       </slicing>
-      <min value="1" />
     </element>
     <element id="PractitionerRole.code:sdsJobRoleName">
       <path value="PractitionerRole.code" />
@@ -6059,6 +6053,13 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1" />
+      </type>
+    </element>
+    <element id="PractitionerRole.healthcareService">
+      <path value="PractitionerRole.healthcareService" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1" />
       </type>
     </element>
   </differential>

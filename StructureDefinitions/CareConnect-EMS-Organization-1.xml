@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="Organization" />
   <meta>
-    <lastUpdated value="2018-02-12T07:29:48.606+00:00" />
+    <lastUpdated value="2018-03-16T12:59:43.555+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -397,8 +396,8 @@
     <element id="Organization.extension:organization-period">
       <path value="Organization.extension" />
       <sliceName value="organization-period" />
-      <short value="The date range that this organization should be considered available" />
-      <definition value="The date range that this organization should be considered available." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -2791,7 +2790,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4056,7 +4055,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5608,7 +5607,7 @@
       <comment value="Organizations can be corporations, wards, sections, clinical teams, government departments, etc. Note that code is generally a classifier of the type of organization; in many applications, codes are used to identity a particular organization (say, ward) as opposed to another of the same type - these are identifiers, not codes&#xA;&#xA;When considering if multiple types are appropriate, you should evaluate if child organizations would be a more appropriate use of the concept, as different types likely are in different sub-areas of the organization. This is most likely to be used where type values have orthogonal values, such as a religious, academic and medical center.&#xA;&#xA;We expect that some jurisdictions will profile this optionality to be a single cardinality." />
       <requirements value="Need to be able to track the kind of organization that this is - different organization types have different uses." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Organization.type" />
         <min value="0" />
@@ -6142,7 +6141,7 @@
       <definition value="A name associated with the organization." />
       <comment value="If the name of an organization changes, consider putting the old name in the alias column so that it can still be located through searches." />
       <requirements value="Need to use the name as the label of the organization." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Organization.name" />
@@ -10689,6 +10688,10 @@
     <element id="Organization.identifier:odsOrganisationCode.assigner">
       <path value="Organization.identifier.assigner" />
       <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
+      </type>
     </element>
     <element id="Organization.identifier:odsSiteCode">
       <path value="Organization.identifier" />
@@ -10721,6 +10724,10 @@
     <element id="Organization.identifier:odsSiteCode.assigner">
       <path value="Organization.identifier.assigner" />
       <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
+      </type>
     </element>
     <element id="Organization.identifier:localIdentifier">
       <path value="Organization.identifier" />
@@ -10742,14 +10749,6 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
-    </element>
-    <element id="Organization.type">
-      <path value="Organization.type" />
-      <max value="1" />
-    </element>
-    <element id="Organization.name">
-      <path value="Organization.name" />
-      <min value="1" />
     </element>
     <element id="Organization.address.state">
       <path value="Organization.address.state" />
