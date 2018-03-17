@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-02-12T14:42:23.499+00:00" />
+    <lastUpdated value="2018-03-17T18:52:19.565+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1" />
   <version value="1.0.0" />
@@ -5073,8 +5073,8 @@
       <short value="Message sender" />
       <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Communication.sender" />
         <min value="0" />
@@ -5082,19 +5082,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-      </type>
-      <type>
-        <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
@@ -6279,6 +6267,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventErrorResolution-Task-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-NullifyFailsafeAlert-Task-1" />
+      </type>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -6859,22 +6855,10 @@
     </element>
     <element id="Communication.sender">
       <path value="Communication.sender" />
-      <max value="0" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-      </type>
+      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
@@ -6895,7 +6879,7 @@
       <max value="1" />
     </element>
     <element id="Communication.payload.content[x]:contentReference">
-      <path value="Communication.payload.content[x]" />
+      <path value="Communication.payload.contentReference" />
       <sliceName value="contentReference" />
       <type>
         <code value="Reference" />
@@ -6909,9 +6893,17 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventErrorResolution-Task-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-NullifyFailsafeAlert-Task-1" />
+      </type>
     </element>
     <element id="Communication.payload.content[x]:contentReference.reference">
-      <path value="Communication.payload.content[x].reference" />
+      <path value="Communication.payload.contentReference.reference" />
       <min value="1" />
     </element>
     <element id="Communication.note">
