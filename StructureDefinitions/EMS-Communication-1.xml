@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-17T18:52:19.565+00:00" />
+    <lastUpdated value="2018-03-18T12:09:47.857+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1" />
   <version value="1.0.0" />
@@ -5002,7 +5002,7 @@
       <path value="Communication.sent" />
       <short value="When sent" />
       <definition value="The time when this communication was sent." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Communication.sent" />
@@ -5073,7 +5073,7 @@
       <short value="Message sender" />
       <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Communication.sender" />
@@ -5203,7 +5203,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -6845,17 +6845,12 @@
       <path value="Communication.context" />
       <max value="0" />
     </element>
-    <element id="Communication.sent">
-      <path value="Communication.sent" />
-      <min value="1" />
-    </element>
     <element id="Communication.received">
       <path value="Communication.received" />
       <max value="0" />
     </element>
     <element id="Communication.sender">
       <path value="Communication.sender" />
-      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
@@ -6864,6 +6859,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1" />
       </type>
+    </element>
+    <element id="Communication.sender.reference">
+      <path value="Communication.sender.reference" />
+      <min value="1" />
     </element>
     <element id="Communication.reasonCode">
       <path value="Communication.reasonCode" />
@@ -6879,7 +6878,7 @@
       <max value="1" />
     </element>
     <element id="Communication.payload.content[x]:contentReference">
-      <path value="Communication.payload.contentReference" />
+      <path value="Communication.payload.content[x]" />
       <sliceName value="contentReference" />
       <type>
         <code value="Reference" />
@@ -6903,7 +6902,7 @@
       </type>
     </element>
     <element id="Communication.payload.content[x]:contentReference.reference">
-      <path value="Communication.payload.contentReference.reference" />
+      <path value="Communication.payload.content[x].reference" />
       <min value="1" />
     </element>
     <element id="Communication.note">

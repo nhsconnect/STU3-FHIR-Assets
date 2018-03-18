@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-17T18:52:12.192+00:00" />
+    <lastUpdated value="2018-03-18T12:10:11.724+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventErrorResolution-Task-1" />
   <version value="1.0.0" />
@@ -6150,7 +6150,7 @@
       <definition value="The date and time this task was created." />
       <requirements value="Most often used along with lastUpdated to track duration of task to supporting monitoring and management." />
       <alias value="Created Date" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.authoredOn" />
@@ -6193,7 +6193,7 @@
       <requirements value="Used along with history to track task activity and time in a particular task state.  This enables monitoring and management." />
       <alias value="Update Date" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Task.lastModified" />
         <min value="0" />
@@ -6227,7 +6227,7 @@
       <definition value="The creator of the task." />
       <requirements value="Identifies who created this task.  May be used by access control mechanisms (e.g., to ensure that only the creator can cancel a task)." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Task.requester" />
         <min value="0" />
@@ -9353,8 +9353,8 @@
       <comment value="Information indicating the error level applicable to the event message identified and the corresponding line number." />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
-      <min value="1" />
-      <max value="*" />
+      <min value="3" />
+      <max value="3" />
       <base>
         <path value="Task.input" />
         <min value="0" />
@@ -13281,6 +13281,18 @@
       <path value="Task.executionPeriod" />
       <max value="0" />
     </element>
+    <element id="Task.authoredOn">
+      <path value="Task.authoredOn" />
+      <min value="1" />
+    </element>
+    <element id="Task.lastModified">
+      <path value="Task.lastModified" />
+      <max value="0" />
+    </element>
+    <element id="Task.requester">
+      <path value="Task.requester" />
+      <max value="0" />
+    </element>
     <element id="Task.requester.agent">
       <path value="Task.requester.agent" />
       <type>
@@ -13381,7 +13393,8 @@
         <rules value="closed" />
       </slicing>
       <comment value="Information indicating the error level applicable to the event message identified and the corresponding line number." />
-      <min value="1" />
+      <min value="3" />
+      <max value="3" />
     </element>
     <element id="Task.input.type.coding">
       <path value="Task.input.type.coding" />
