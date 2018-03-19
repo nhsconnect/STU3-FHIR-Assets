@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-15T13:58:46.866+00:00" />
+    <lastUpdated value="2018-03-19T09:43:22.397+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="oo" />
@@ -2682,13 +2682,13 @@
     <element id="Observation.category.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Observation.category.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -4133,7 +4133,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4530,6 +4530,10 @@
       <type>
         <code value="decimal" />
       </type>
+      <example>
+        <label value="DCH Example Value" />
+        <valueDecimal value="19" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4552,13 +4556,13 @@
         <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value" />
       </mapping>
     </element>
-    <element id="Observation.value[x]:valueQuantity.comparator">
+    <element id="Observation.valueQuantity:valueQuantity.comparator">
       <path value="Observation.valueQuantity.comparator" />
       <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value" />
       <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value." />
       <comment value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value." />
       <requirements value="Need a framework for handling measures where the value is &lt;5ug/L or &gt;400mg/L due to the limitations of measuring methodology." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.comparator" />
@@ -4569,6 +4573,7 @@
         <code value="code" />
       </type>
       <meaningWhenMissing value="If there is no comparator, then there is no modification of the value" />
+      <fixedCode value="=" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4650,7 +4655,7 @@
       <definition value="The identification of the system that provides the coded form of the unit." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="Need to know the system that defines the coded form of the unit." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.system" />
@@ -4690,7 +4695,7 @@
       <definition value="A computer processable form of the unit in some unit representation system." />
       <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
       <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.code" />
@@ -6462,13 +6467,13 @@
     <element id="Observation.bodySite.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Observation.bodySite.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -7385,13 +7390,13 @@
     <element id="Observation.method.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Observation.method.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -12197,13 +12202,13 @@
     <element id="Observation.component.code.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Observation.component.code.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -13858,7 +13863,7 @@
       <max value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
     </element>
     <element id="Observation.performer.reference">
@@ -13877,6 +13882,15 @@
     <element id="Observation.valueQuantity:valueQuantity.value">
       <path value="Observation.valueQuantity.value" />
       <min value="1" />
+      <example>
+        <label value="DCH Example Value" />
+        <valueDecimal value="19" />
+      </example>
+    </element>
+    <element id="Observation.valueQuantity:valueQuantity.comparator">
+      <path value="Observation.valueQuantity.comparator" />
+      <min value="1" />
+      <fixedCode value="=" />
     </element>
     <element id="Observation.valueQuantity:valueQuantity.unit">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -13887,10 +13901,12 @@
     </element>
     <element id="Observation.valueQuantity:valueQuantity.system">
       <path value="Observation.valueQuantity.system" />
+      <min value="1" />
       <fixedUri value="http://unitsofmeasure.org" />
     </element>
     <element id="Observation.valueQuantity:valueQuantity.code">
       <path value="Observation.valueQuantity.code" />
+      <min value="1" />
       <fixedCode value="%" />
     </element>
     <element id="Observation.dataAbsentReason">
