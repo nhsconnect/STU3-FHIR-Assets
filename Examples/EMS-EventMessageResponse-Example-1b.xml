@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3/bundle.xsd">
+	<id value="7b8db10c-d7c8-438a-985a-afd1c11a7842"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
+	</meta>
+	<identifier>
+		<system value="https://tools.ietf.org/html/rfc4122"/>
+		<value value="7b8db10c-d7c8-438a-985a-afd1c11a7842"/>
+	</identifier>
+	<type value="message"/>
+	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
+	<entry>
+		<fullUrl value="urn:uuid:aabbbab3-fc16-45d8-8e1c-434f9d458180"/>
+		<resource>
+			<MessageHeader>
+				<id value="aabbbab3-fc16-45d8-8e1c-434f9d458180"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1"/>
+					<code value="EMS01"/>
+					<display value="EMS Event Message Rejection"/>
+				</event>
+				<timestamp value="2018-02-01T10:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+					<display value="NHS DIGITAL"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:3092d94e-4ef0-4343-b2c7-d99aaf470ee6"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<!--Entry for responsible/publishing organization i.e. NHS Digital-->
+	<entry>
+		<fullUrl value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+		<resource>
+			<Organization>
+				<id value="b834d806-c076-11e7-abc4-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="X26"/>
+				</identifier>
+				<name value="NHS DIGITAL"/>
+				<address>
+					<line value="1 TREVELYAN SQUARE"/>
+					<line value="BOAR LANE"/>
+					<city value="LEEDS"/>
+					<district value="WEST YORKSHIRE"/>
+					<postalCode value="LS1 6AE"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<!--Entry for service type within the Organization i.e. National Events Management-->
+	<entry>
+		<fullUrl value="urn:uuid:81387254-e6b4-4d0d-9c03-00e2920b3395"/>
+		<resource>
+			<HealthcareService>
+				<id value="81387254-e6b4-4d0d-9c03-00e2920b3395"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-HealthcareService-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="81387254-e6b4-4d0d-9c03-00e2920b3395"/>
+				</identifier>
+				<providedBy>
+					<reference value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+					<display value="NHS DIGITAL"/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1"/>
+						<code value="EMS"/>
+						<display value="National Events Management Service"/>
+					</coding>
+				</type>
+			</HealthcareService>
+		</resource>
+	</entry>
+	<!--Entry for communication for the event message, with reference to subject and payload-->
+	<entry>
+		<fullUrl value="urn:uuid:3092d94e-4ef0-4343-b2c7-d99aaf470ee6"/>
+		<resource>
+			<Communication>
+				<id value="3092d94e-4ef0-4343-b2c7-d99aaf470ee6"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-Communication-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="3092d94e-4ef0-4343-b2c7-d99aaf470ee6"/>
+				</identifier>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:41a7740c-1d7e-4fe8-bac5-5d757adbae03"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<payload>
+					<contentReference>
+						<reference value="urn:uuid:a6c9c75c-43f5-430b-84ea-f80ab944903b"/>
+					</contentReference>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
+	<!--Entry for the Patient who is the subject of the Event Message containing the error.-->
+	<entry>
+		<fullUrl value="urn:uuid:41a7740c-1d7e-4fe8-bac5-5d757adbae03"/>
+		<resource>
+			<Patient>
+				<id value="41a7740c-1d7e-4fe8-bac5-5d757adbae03"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"/>
+				</meta>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
+				<name>
+					<use value="usual"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
+				</name>
+				<gender value="male"/>
+				<birthDate value="2017-10-02">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="LEEDS"/>
+					<postalCode value="LS17 7DF"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+	<!--Entry for task with content of the Event Error Resolution.-->
+	<entry>
+		<fullUrl value="urn:uuid:a6c9c75c-43f5-430b-84ea-f80ab944903b"/>
+		<resource>
+			<Task>
+				<id value="a6c9c75c-43f5-430b-84ea-f80ab944903b"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventMessageResponse-Task-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="a6c9c75c-43f5-430b-84ea-f80ab944903b"/>
+				</identifier>
+				<status value="requested"/>
+				<intent value="order"/>
+				<authoredOn value="2018-02-01T10:00:00+00:00"/>
+				<reason>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseCode-1"/>
+						<code value="R00"/>
+						<display value="Message success"/>
+					</coding>
+				</reason>
+				<input>
+					<type>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1"/>
+							<code value="001"/>
+							<display value="Response Level"/>
+						</coding>
+					</type>
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseLevel-1"/>
+							<code value="001"/>
+							<display value="Success"/>
+						</coding>
+					</valueCodeableConcept>
+				</input>
+								<input>
+					<type>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1"/>
+							<code value="002"/>
+							<display value="Message ID"/>
+						</coding>
+					</type>
+					<valueId value="bd855a1e-6e48-4de0-8600-7e99aac74a9e"/>
+				</input>
+			</Task>
+		</resource>
+	</entry>
+</Bundle>
