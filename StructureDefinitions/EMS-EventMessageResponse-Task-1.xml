@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-21T18:34:18.557+00:00" />
+    <lastUpdated value="2018-03-21T19:07:39.218+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventMessageResponse-Task-1" />
   <version value="1.0.0" />
@@ -10171,7 +10171,7 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="responseLevel" />
-      <short value="Response level applicable" />
+      <short value="Response level applicable to the event message" />
       <definition value="Indication of the response level" />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
@@ -10326,7 +10326,7 @@
     </element>
     <element id="Task.input:responseLevel.type">
       <path value="Task.input.type" />
-      <short value="Label for the input" />
+      <short value="Input item " />
       <definition value="A code or description indicating how the input is intended to be used as part of the task execution." />
       <comment value="If referencing a BPMN workflow or Protocol, the &quot;system&quot; is the URL for the workflow definition and the code is the &quot;name&quot; of the required input." />
       <requirements value="Inputs are named to enable task automation to bind data and pass it from one task to the next." />
@@ -10354,7 +10354,7 @@
           <valueString value="TaskInputParameterType" />
         </extension>
         <strength value="required" />
-        <description value="The input value relevant to the event message response" />
+        <description value="The input item relevant to the event message response" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
         </valueSetReference>
@@ -10853,7 +10853,7 @@
     <element id="Task.input:responseLevel.value[x]:valueCodeableConcept">
       <path value="Task.input.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
-      <short value="Indication that the task relates to the rejection of an event error message" />
+      <short value="Indication that the response relates to the success or rejection of an event message" />
       <definition value="The value of the input parameter as a basic type." />
       <comment value="A stream of bytes, base64 encoded" />
       <min value="1" />
@@ -11364,11 +11364,11 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="messageID" />
-      <short value="Information used to perform task" />
+      <short value="Message ID of the event message subject to the Event Message Response" />
       <definition value="Additional information that may be needed in the execution of the task." />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.input" />
@@ -11519,7 +11519,7 @@
     </element>
     <element id="Task.input:messageID.type">
       <path value="Task.input.type" />
-      <short value="Label for the input" />
+      <short value="Input item " />
       <definition value="A code or description indicating how the input is intended to be used as part of the task execution." />
       <comment value="If referencing a BPMN workflow or Protocol, the &quot;system&quot; is the URL for the workflow definition and the code is the &quot;name&quot; of the required input." />
       <requirements value="Inputs are named to enable task automation to bind data and pass it from one task to the next." />
@@ -11546,8 +11546,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskInputParameterType" />
         </extension>
-        <strength value="example" />
-        <description value="Codes to identify types of input parameters.  These will typically be specific to a particular workflow.  E.g. &quot;Comparison source&quot;, &quot;Applicable consent&quot;, &quot;Concommitent Medications&quot;, etc." />
+        <strength value="required" />
+        <description value="The input item relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -12079,7 +12082,7 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="lineNumber" />
-      <short value="Information used to perform task" />
+      <short value="Line number of error present in a rejected event message" />
       <definition value="Additional information that may be needed in the execution of the task." />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
@@ -12234,7 +12237,7 @@
     </element>
     <element id="Task.input:lineNumber.type">
       <path value="Task.input.type" />
-      <short value="Label for the input" />
+      <short value="Input item " />
       <definition value="A code or description indicating how the input is intended to be used as part of the task execution." />
       <comment value="If referencing a BPMN workflow or Protocol, the &quot;system&quot; is the URL for the workflow definition and the code is the &quot;name&quot; of the required input." />
       <requirements value="Inputs are named to enable task automation to bind data and pass it from one task to the next." />
@@ -12261,8 +12264,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskInputParameterType" />
         </extension>
-        <strength value="example" />
-        <description value="Codes to identify types of input parameters.  These will typically be specific to a particular workflow.  E.g. &quot;Comparison source&quot;, &quot;Applicable consent&quot;, &quot;Concommitent Medications&quot;, etc." />
+        <strength value="required" />
+        <description value="The input item relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -13905,19 +13911,20 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="responseLevel" />
-      <short value="Response level applicable" />
+      <short value="Response level applicable to the event message" />
       <definition value="Indication of the response level" />
       <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.input:responseLevel.type">
       <path value="Task.input.type" />
+      <short value="Input item " />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskInputParameterType" />
         </extension>
         <strength value="required" />
-        <description value="The input value relevant to the event message response" />
+        <description value="The input item relevant to the event message response" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
         </valueSetReference>
@@ -13964,7 +13971,7 @@
     <element id="Task.input:responseLevel.value[x]:valueCodeableConcept">
       <path value="Task.input.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
-      <short value="Indication that the task relates to the rejection of an event error message" />
+      <short value="Indication that the response relates to the success or rejection of an event message" />
       <type>
         <code value="CodeableConcept" />
       </type>
@@ -14018,7 +14025,23 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="messageID" />
+      <short value="Message ID of the event message subject to the Event Message Response" />
+      <min value="1" />
       <max value="1" />
+    </element>
+    <element id="Task.input:messageID.type">
+      <path value="Task.input.type" />
+      <short value="Input item " />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="TaskInputParameterType" />
+        </extension>
+        <strength value="required" />
+        <description value="The input item relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Task.input:messageID.type.coding">
       <path value="Task.input.type.coding" />
@@ -14072,7 +14095,22 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="lineNumber" />
+      <short value="Line number of error present in a rejected event message" />
       <max value="1" />
+    </element>
+    <element id="Task.input:lineNumber.type">
+      <path value="Task.input.type" />
+      <short value="Input item " />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="TaskInputParameterType" />
+        </extension>
+        <strength value="required" />
+        <description value="The input item relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Task.input:lineNumber.type.coding">
       <path value="Task.input.type.coding" />
