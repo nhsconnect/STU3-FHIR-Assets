@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-21T17:50:59.521+00:00" />
+    <lastUpdated value="2018-03-21T18:34:18.557+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventMessageResponse-Task-1" />
   <version value="1.0.0" />
@@ -10165,14 +10165,14 @@
         <map value="???" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel">
+    <element id="Task.input:responseLevel">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
         <valueString value="Parameter" />
       </extension>
       <path value="Task.input" />
-      <sliceName value="errorLevel" />
-      <short value="Error level applicable" />
-      <definition value="Indication of the error level. Rejection = fails validation and is returned to the publisher and is not forwarded on." />
+      <sliceName value="responseLevel" />
+      <short value="Response level applicable" />
+      <definition value="Indication of the response level" />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
       <min value="1" />
@@ -10202,7 +10202,7 @@
         <map value="???" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.id">
+    <element id="Task.input:responseLevel.id">
       <path value="Task.input.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -10231,7 +10231,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.extension">
+    <element id="Task.input:responseLevel.extension">
       <path value="Task.input.extension" />
       <slicing>
         <discriminator>
@@ -10280,7 +10280,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.modifierExtension">
+    <element id="Task.input:responseLevel.modifierExtension">
       <path value="Task.input.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -10324,7 +10324,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type">
+    <element id="Task.input:responseLevel.type">
       <path value="Task.input.type" />
       <short value="Label for the input" />
       <definition value="A code or description indicating how the input is intended to be used as part of the task execution." />
@@ -10353,8 +10353,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskInputParameterType" />
         </extension>
-        <strength value="example" />
-        <description value="Codes to identify types of input parameters.  These will typically be specific to a particular workflow.  E.g. &quot;Comparison source&quot;, &quot;Applicable consent&quot;, &quot;Concommitent Medications&quot;, etc." />
+        <strength value="required" />
+        <description value="The input value relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -10377,7 +10380,7 @@
         <map value="???" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.id">
+    <element id="Task.input:responseLevel.type.id">
       <path value="Task.input.type.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -10406,7 +10409,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.extension">
+    <element id="Task.input:responseLevel.type.extension">
       <path value="Task.input.type.extension" />
       <slicing>
         <discriminator>
@@ -10455,7 +10458,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding">
+    <element id="Task.input:responseLevel.type.coding">
       <path value="Task.input.type.coding" />
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
@@ -10509,7 +10512,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.id">
+    <element id="Task.input:responseLevel.type.coding.id">
       <path value="Task.input.type.coding.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -10538,7 +10541,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.extension">
+    <element id="Task.input:responseLevel.type.coding.extension">
       <path value="Task.input.type.coding.extension" />
       <slicing>
         <discriminator>
@@ -10587,7 +10590,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.system">
+    <element id="Task.input:responseLevel.type.coding.system">
       <path value="Task.input.type.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
@@ -10603,7 +10606,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventErrorInput-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10630,7 +10633,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.version">
+    <element id="Task.input:responseLevel.type.coding.version">
       <path value="Task.input.type.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
@@ -10671,7 +10674,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.code">
+    <element id="Task.input:responseLevel.type.coding.code">
       <path value="Task.input.type.coding.code" />
       <short value="Symbol in syntax defined by the system" />
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
@@ -10714,7 +10717,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.display">
+    <element id="Task.input:responseLevel.type.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -10733,7 +10736,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Error Level" />
+      <fixedString value="Response Level" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10760,7 +10763,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.coding.userSelected">
+    <element id="Task.input:responseLevel.type.coding.userSelected">
       <path value="Task.input.type.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
@@ -10802,7 +10805,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.type.text">
+    <element id="Task.input:responseLevel.type.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -10847,9 +10850,9 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" />
       </mapping>
     </element>
-    <element id="Task.input:errorLevel.valueString:valueString">
-      <path value="Task.input.valueString" />
-      <sliceName value="valueString" />
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept">
+      <path value="Task.input.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
       <short value="Indication that the task relates to the rejection of an event error message" />
       <definition value="The value of the input parameter as a basic type." />
       <comment value="A stream of bytes, base64 encoded" />
@@ -10861,9 +10864,48 @@
         <max value="1" />
       </base>
       <type>
+        <code value="CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <strength value="required" />
+        <description value="The event message response level" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseLevel-1" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="???" />
+      </mapping>
+    </element>
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept.id">
+      <path value="Task.input.valueCodeableConcept.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
         <code value="string" />
       </type>
-      <fixedString value="Rejection" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10876,9 +10918,444 @@
         <identity value="rim" />
         <map value="n/a" />
       </mapping>
+    </element>
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept.extension">
+      <path value="Task.input.valueCodeableConcept.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
       <mapping>
         <identity value="rim" />
-        <map value="???" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding">
+      <path value="Task.input.valueCodeableConcept.coding" />
+      <short value="Code defined by a terminology system" />
+      <definition value="A reference to a code defined by a terminology system." />
+      <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
+      <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="CodeableConcept.coding" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE subset one of the sets of component 1-3 or 4-6" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding rdfs:subClassOf dt:CDCoding" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1-8, C*E.10-22" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="union(., ./translation)" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
+      </mapping>
+    </element>
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept.coding.id">
+      <path value="Task.input.valueCodeableConcept.coding.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept.coding.extension">
+      <path value="Task.input.valueCodeableConcept.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.system">
+      <path value="Task.input.valueCodeableConcept.coding.system" />
+      <short value="Identity of the terminology system" />
+      <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
+      <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
+      <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseLevel-1" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystem" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.version">
+      <path value="Task.input.valueCodeableConcept.coding.version" />
+      <short value="Version of the system - if relevant" />
+      <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
+      <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.version" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.7" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./codeSystemVersion" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.code">
+      <path value="Task.input.valueCodeableConcept.coding.code" />
+      <short value="Symbol in syntax defined by the system" />
+      <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to refer to a particular code in the system." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.code" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./code" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Task.input.valueCodeableConcept.coding.display" />
+      <short value="Representation defined by the system" />
+      <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Coding.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.2 - but note this is not well followed" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CV.displayName" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.userSelected">
+      <path value="Task.input.valueCodeableConcept.coding.userSelected" />
+      <short value="If this coding was chosen directly by the user" />
+      <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
+      <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
+      <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Coding.userSelected" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="Sometimes implied by being first" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD.codingRationale" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
+      </mapping>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Task.input.valueCodeableConcept.text" />
+      <short value="Plain text representation of the concept" />
+      <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." />
+      <comment value="Very often the text is the same as a displayName of one of the codings." />
+      <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="CodeableConcept.text" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="C*E.9. But note many systems use C*E.2 for this" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./originalText[mediaType/code=&quot;text/plain&quot;]/data" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" />
       </mapping>
     </element>
     <element id="Task.input:messageID">
@@ -10891,7 +11368,7 @@
       <definition value="Additional information that may be needed in the execution of the task." />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Task.input" />
@@ -11606,7 +12083,7 @@
       <definition value="Additional information that may be needed in the execution of the task." />
       <requirements value="Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows." />
       <alias value="Supporting Information" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Task.input" />
@@ -13422,63 +13899,118 @@
       <path value="Task.input.type.text" />
       <max value="0" />
     </element>
-    <element id="Task.input:errorLevel">
+    <element id="Task.input:responseLevel">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
         <valueString value="Parameter" />
       </extension>
       <path value="Task.input" />
-      <sliceName value="errorLevel" />
-      <short value="Error level applicable" />
-      <definition value="Indication of the error level. Rejection = fails validation and is returned to the publisher and is not forwarded on." />
+      <sliceName value="responseLevel" />
+      <short value="Response level applicable" />
+      <definition value="Indication of the response level" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="Task.input:errorLevel.type.coding">
+    <element id="Task.input:responseLevel.type">
+      <path value="Task.input.type" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="TaskInputParameterType" />
+        </extension>
+        <strength value="required" />
+        <description value="The input value relevant to the event message response" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseInput-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Task.input:responseLevel.type.coding">
       <path value="Task.input.type.coding" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="Task.input:errorLevel.type.coding.system">
+    <element id="Task.input:responseLevel.type.coding.system">
       <path value="Task.input.type.coding.system" />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventErrorInput-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1" />
     </element>
-    <element id="Task.input:errorLevel.type.coding.version">
+    <element id="Task.input:responseLevel.type.coding.version">
       <path value="Task.input.type.coding.version" />
       <max value="0" />
     </element>
-    <element id="Task.input:errorLevel.type.coding.code">
+    <element id="Task.input:responseLevel.type.coding.code">
       <path value="Task.input.type.coding.code" />
       <min value="1" />
       <fixedCode value="001" />
     </element>
-    <element id="Task.input:errorLevel.type.coding.display">
+    <element id="Task.input:responseLevel.type.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Task.input.type.coding.display" />
       <min value="1" />
-      <fixedString value="Error Level" />
+      <fixedString value="Response Level" />
     </element>
-    <element id="Task.input:errorLevel.type.coding.userSelected">
+    <element id="Task.input:responseLevel.type.coding.userSelected">
       <path value="Task.input.type.coding.userSelected" />
       <max value="0" />
     </element>
-    <element id="Task.input:errorLevel.type.text">
+    <element id="Task.input:responseLevel.type.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Task.input.type.text" />
       <max value="0" />
     </element>
-    <element id="Task.input:errorLevel.valueString:valueString">
-      <path value="Task.input.valueString" />
-      <sliceName value="valueString" />
+    <element id="Task.input:responseLevel.value[x]:valueCodeableConcept">
+      <path value="Task.input.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
       <short value="Indication that the task relates to the rejection of an event error message" />
       <type>
-        <code value="string" />
+        <code value="CodeableConcept" />
       </type>
-      <fixedString value="Rejection" />
+      <binding>
+        <strength value="required" />
+        <description value="The event message response level" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-EventMessageResponseLevel-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding">
+      <path value="Task.input.valueCodeableConcept.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.system">
+      <path value="Task.input.valueCodeableConcept.coding.system" />
+      <min value="1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseLevel-1" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.version">
+      <path value="Task.input.valueCodeableConcept.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.code">
+      <path value="Task.input.valueCodeableConcept.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Task.input.valueCodeableConcept.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.coding.userSelected">
+      <path value="Task.input.valueCodeableConcept.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="valueCodeableConcept:valueCodeableConcept.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Task.input.valueCodeableConcept.text" />
+      <max value="0" />
     </element>
     <element id="Task.input:messageID">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
@@ -13486,7 +14018,6 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="messageID" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.input:messageID.type.coding">
@@ -13541,7 +14072,6 @@
       </extension>
       <path value="Task.input" />
       <sliceName value="lineNumber" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.input:lineNumber.type.coding">
