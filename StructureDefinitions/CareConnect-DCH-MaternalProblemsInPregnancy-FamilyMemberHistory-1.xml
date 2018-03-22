@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-05T12:05:09.354+00:00" />
+    <lastUpdated value="2018-03-22T09:42:07.46+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pc" />
@@ -2940,7 +2940,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="FamilialRelationship" />
         </extension>
-        <strength value="example" />
+        <strength value="required" />
         <description value="The nature of the relationship between the patient and the related person being described in the family member history." />
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember" />
@@ -3051,7 +3051,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -3402,7 +3402,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -4888,7 +4888,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ConditionCode" />
         </extension>
-        <strength value="required" />
+        <strength value="extensible" />
         <description value="Code indicating the maternal medical conditions or infectious diseases arising in pregnancy" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-MaternalProblemsInPregnancy-FamilyHistory-1" />
@@ -4999,7 +4999,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -5131,7 +5131,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -5215,7 +5215,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -5260,7 +5260,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -5348,7 +5348,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -6717,8 +6717,18 @@
       <path value="FamilyMemberHistory.name" />
       <max value="0" />
     </element>
+    <element id="FamilyMemberHistory.relationship">
+      <path value="FamilyMemberHistory.relationship" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="FamilialRelationship" />
+        </extension>
+        <strength value="required" />
+      </binding>
+    </element>
     <element id="FamilyMemberHistory.relationship.coding">
       <path value="FamilyMemberHistory.relationship.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="FamilyMemberHistory.relationship.coding.system">
@@ -6745,6 +6755,13 @@
     </element>
     <element id="FamilyMemberHistory.relationship.coding.userSelected">
       <path value="FamilyMemberHistory.relationship.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="FamilyMemberHistory.relationship.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="FamilyMemberHistory.relationship.text" />
       <max value="0" />
     </element>
     <element id="FamilyMemberHistory.gender">
@@ -6834,7 +6851,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ConditionCode" />
         </extension>
-        <strength value="required" />
+        <strength value="extensible" />
         <description value="Code indicating the maternal medical conditions or infectious diseases arising in pregnancy" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-MaternalProblemsInPregnancy-FamilyHistory-1" />
@@ -6843,18 +6860,38 @@
     </element>
     <element id="FamilyMemberHistory.condition.code.coding">
       <path value="FamilyMemberHistory.condition.code.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="FamilyMemberHistory.condition.code.coding.system">
       <path value="FamilyMemberHistory.condition.code.coding.system" />
+      <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
     </element>
     <element id="FamilyMemberHistory.condition.code.coding.version">
       <path value="FamilyMemberHistory.condition.code.coding.version" />
       <max value="0" />
     </element>
+    <element id="FamilyMemberHistory.condition.code.coding.code">
+      <path value="FamilyMemberHistory.condition.code.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="FamilyMemberHistory.condition.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="FamilyMemberHistory.condition.code.coding.display" />
+      <min value="1" />
+    </element>
     <element id="FamilyMemberHistory.condition.code.coding.userSelected">
       <path value="FamilyMemberHistory.condition.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="FamilyMemberHistory.condition.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="FamilyMemberHistory.condition.code.text" />
       <max value="0" />
     </element>
     <element id="FamilyMemberHistory.condition.outcome">
