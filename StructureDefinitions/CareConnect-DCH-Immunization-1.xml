@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-26T09:49:37.371+01:00" />
+    <lastUpdated value="2018-03-26T12:02:07.49+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pher" />
@@ -5266,7 +5266,7 @@
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value." />
       <comment value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)." />
       <requirements value="Precision is handled implicitly in almost all cases of measurement." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.value" />
@@ -5357,7 +5357,7 @@
       <definition value="A human-readable form of the unit." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.unit" />
@@ -5395,7 +5395,7 @@
       <definition value="The identification of the system that provides the coded form of the unit." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="Need to know the system that defines the coded form of the unit." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.system" />
@@ -5434,7 +5434,7 @@
       <definition value="A computer processable form of the unit in some unit representation system." />
       <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
       <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Quantity.code" />
@@ -11056,6 +11056,25 @@
       </extension>
       <path value="Immunization.route.text" />
       <max value="0" />
+    </element>
+    <element id="Immunization.doseQuantity.value">
+      <path value="Immunization.doseQuantity.value" />
+      <min value="1" />
+    </element>
+    <element id="Immunization.doseQuantity.unit">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Immunization.doseQuantity.unit" />
+      <min value="1" />
+    </element>
+    <element id="Immunization.doseQuantity.system">
+      <path value="Immunization.doseQuantity.system" />
+      <min value="1" />
+    </element>
+    <element id="Immunization.doseQuantity.code">
+      <path value="Immunization.doseQuantity.code" />
+      <min value="1" />
     </element>
     <element id="Immunization.practitioner">
       <path value="Immunization.practitioner" />
