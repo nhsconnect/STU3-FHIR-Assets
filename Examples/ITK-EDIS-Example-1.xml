@@ -19,18 +19,6 @@
     <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-EDIS-Composition-1"/>
     </meta>
-    <!-- Information Recipient 1 - the patient's community nurse -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:8ece9986-9af0-4882-b0cf-23a96ea7b509"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 2 - the patient's GP -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:5e414a77-d394-4248-a631-00e45ddb64a0"/>
-     </valueReference>
-    </extension>
     <!-- Extension to carry details of the Correspondence Care Setting Type. -->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
      <valueCodeableConcept>
@@ -69,8 +57,6 @@
      <reference value="urn:uuid:6239b7a7-380d-46ff-a1c5-7abc4e68f8bc"/>
     </author>
     <title value="Discharge summary"/>
-    <!--The code specifying the level of confidentiality of the Composition.-->
-    <confidentiality value="V"/>
     <!--Identifies the organization responsible for ongoing maintenance of and access to the composition/document information.-->
     <custodian>
      <reference value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
@@ -89,7 +75,7 @@
      </code>
      <!--A human-readable narrative that contains the attested content of the section-->
      <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -103,24 +89,16 @@
          </tr>
          <tr>
           <th>Source of admission</th>
-          <td>Usual place of residence</td>
+          <td>NHS other Hospital Provider - Ward for general Patients or the younger physically disabled or A and E department</td>
          </tr>
          <tr>
           <th>Date/time of admission</th>
           <td>12-Feb-2015 09:00</td>
          </tr>
-         </tbody>
+        </tbody>
        </table>
       </div>
      </text>
-     <!--Specifies the order applied to the items in the section entries-->
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to the encounter resource where information for this section can be found-->
      <entry>
       <reference value="urn:uuid:4f36b35a-ad18-4ea9-a3fb-c893f709e88a"/>
@@ -141,7 +119,7 @@
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
-          <tr>
+         <tr>
           <th>Causative agent</th>
           <td>Penicillin</td>
          </tr>
@@ -149,17 +127,14 @@
           <th>Reaction details</th>
           <td>Description of reaction: Rash. No swelling/anaphylaxis</td>
          </tr>
+         <tr>
+          <th>Date recorded</th>
+          <td>12 January 2012</td>
+         </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to Allergies List as the source of information for this section-->
      <entry>
       <reference value="urn:uuid:95e8f8d0-dfc3-4c72-a9dc-7ba1ccd1fab4"/>
@@ -176,7 +151,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -200,7 +175,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -242,27 +217,28 @@
          </tr>
          <tr>
           <th>Comment</th>
-          <td>Chest pain onset date/time: 2015-02-12 08:00</td>
+          <td>Chest pain onset date/time 12 February 2015 08:00. Asserted by patient.</td>
          </tr>
          <tr>
           <th>Diagnosis name</th>
           <td>ACS</td>
          </tr>
          <tr>
-         <th>Diagnosis name</th>
+          <th>Comment</th>
+          <td>Asserted date 12 February 2015 by Mr Abacus.</td>
+         </tr>
+         <tr>
+          <th>Diagnosis name</th>
           <td>ECG: inferior ischaemia</td>
+         </tr>
+         <tr>
+          <th>Comment</th>
+          <td>Asserted date 12 February 2015 by Dr. Amanda Smith</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <entry>
       <reference value="urn:uuid:8197e5be-1483-48e6-bf30-842f5184d4cf"/>
      </entry>
@@ -284,13 +260,21 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
           <th>Discharging consultant</th>
           <td>Dr Paul Rastall</td>
+         </tr>
+         <tr>
+          <th>Discharging specialty/department</th>
+          <td>Cardiology</td>
+         </tr>
+          <tr>
+          <th>Discharge location</th>
+          <td>Cramer ward</td>
          </tr>
          <tr>
           <th>Date/time of discharge</th>
@@ -308,20 +292,17 @@
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--Reference to the Encounter entry as the source of information for this section-->
+     <!--Reference to the Encounter entry as a source of information for this section-->
      <entry>
       <reference value="urn:uuid:4f36b35a-ad18-4ea9-a3fb-c893f709e88a"/>
      </entry>
+      <!--Reference to the Practitioner entry as a source of information for this section-->
+     <entry>
+      <reference value="urn:uuid:6239b7a7-380d-46ff-a1c5-7abc4e68f8bc"/>
+     </entry>
     </section>
-<!--Distribution list-->
-<section>
+    <!--Distribution list-->
+    <section>
      <title value="Distribution list"/>
      <code>
       <coding>
@@ -337,32 +318,51 @@
         <tbody>
          <tr>
           <th>Name</th>
-          <td>Mrs Angela Jones</td>
+          <td>
+           <p>Mrs Angela Jones</p>
+           <p>Role: Community Nurse</p>
+           <p>Organisation: Leeds Community Healthcare NHS Trust</p>
+          </td>
          </tr>
          <tr>
           <th>Name</th>
-          <td>Dr John Lorenzo</td>
+          <td>
+           <p>Dr John Lorenzo</p>
+           <p>Role: GP</p>
+           <p>Organisation: MGP Medical Centre</p>
+          </td>
+         </tr>
+         <tr>
+          <th>Name</th>
+          <td>
+           <p>Mrs. Joy Smith</p>
+           <p>Role: Patient's next of kin</p>
+          </td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--Reference to the recipient entries as the source of information for this section-->
+     <!--Reference to the practitioner entries as recipients of information-->
      <entry>
       <reference value="urn:uuid:8ece9986-9af0-4882-b0cf-23a96ea7b509"/>
      </entry>
-       <entry>
+     <entry>
       <reference value="urn:uuid:5e414a77-d394-4248-a631-00e45ddb64a0"/>
      </entry>
+      <!--Reference to the related person entry as a recipient of information-->
+      <entry>
+      <reference value="urn:uuid:a1b3f01d-a302-4c4a-92b7-82c1c98d5e14"/>
+     </entry>
+       <!--Reference to the organisation entries relevant to this section-->
+      <entry>
+      <reference value="urn:uuid:f9f24f89-646b-4a19-a6b1-cabfa3b612e1"/>
+     </entry>
+       <entry>
+      <reference value="urn:uuid:acd640c9-5ff9-41ae-9ef3-07a1d5667140"/>
+     </entry>
     </section>
-<!-- GP Practice-->
+    <!-- GP Practice-->
     <section>
      <title value="GP practice"/>
      <code>
@@ -373,7 +373,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -389,13 +389,6 @@
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to the Organisation entry as the source of information for this section-->
      <entry>
       <reference value="urn:uuid:f9f24f89-646b-4a19-a6b1-cabfa3b612e1"/>
@@ -412,7 +405,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -437,7 +430,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -462,7 +455,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table>
         <tbody>
@@ -513,15 +506,31 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
+        <tr>
+          <th>Mental capacity assessment</th>
+          <td>Assessment not undertaken</td>
+         </tr>
          <tr>
           <th>Advance decision to refuse treatment (ADRT)</th>
-          <td>Declines blood products - patient is a Jehovah's witness</td>
+          <td>None</td>
          </tr>
-        </tbody>
+         <tr>
+          <th>Lasting power of attorney  for personal welfare  or court-appointed deputy (or equivalent)</th>
+          <td>No LPA in existence</td>
+         </tr>
+         <tr>
+          <th>Organ and tissue donation</th>
+          <td>No consent to organ/tissue donation</td>
+         </tr>
+          <tr>
+          <th>Safeguarding issues</th>
+          <td>None apparent</td>
+         </tr>
+       </tbody>
        </table>
       </div>
      </text>
@@ -546,7 +555,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <td>Medication name: Ramipril</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: One 2.5mg tablet once a day.</td> 
+          <td>Dose directions description: One 2.5mg tablet once a day.</td>
          </tr>
          <tr>
           <th>Medication change</th>
@@ -556,12 +565,12 @@ LUCs						0.2			x10*9/L			&lt; 0.4
        </table>
        <table width="100%">
         <tbody>
-        <tr>
+         <tr>
           <th>Medication item</th>
           <td>Medication name: Omeprazole</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: One 20mg tablet once a day or as needed.</td> 
+          <td>Dose directions description: One 20mg tablet once a day or as needed.</td>
          </tr>
          <tr>
           <th>Medication change</th>
@@ -576,7 +585,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <td>Medication name: Aspirin</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: Take one 75mg tablet once a day.</td> 
+          <td>Dose directions description: Take one 75mg tablet once a day.</td>
          </tr>
          <tr>
           <th>Medication change</th>
@@ -586,12 +595,12 @@ LUCs						0.2			x10*9/L			&lt; 0.4
        </table>
        <table width="100%">
         <tbody>
-        <tr>
+         <tr>
           <th>Medication item</th>
           <td>Medication name: Clopidogrel</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: Take one 75mg tablet daily for one year then stop.</td> 
+          <td>Dose directions description: Take one 75mg tablet daily for one year then stop.</td>
          </tr>
          <tr>
           <th>Medication change</th>
@@ -606,7 +615,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <td>Medication name: Simvastatin</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: Take one 40mg tablet once a day.</td> 
+          <td>Dose directions description: Take one 40mg tablet once a day.</td>
          </tr>
          <tr>
           <th>Medication change</th>
@@ -616,14 +625,14 @@ LUCs						0.2			x10*9/L			&lt; 0.4
        </table>
        <table width="100%">
         <tbody>
-        <tr>
+         <tr>
           <th>Medication item</th>
           <td>Medication name: Bisoprolol</td>
           <td>Form: Tablets</td>
           <td>Route: Oral</td>
-          <td>Dose directions description: Take one 5mg tablet daily.</td> 
+          <td>Dose directions description: Take one 5mg tablet daily.</td>
          </tr>
-          <tr>
+         <tr>
           <th>Course details</th>
           <td>Comment/recommendation: Uptitrate according to BP and HR</td>
          </tr>
@@ -631,17 +640,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <th>Medication change</th>
           <td>Status: Continued</td>
          </tr>
-         </tbody>
+        </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to medication list-->
      <entry>
       <reference value="urn:uuid:d0710501-2e32-4cbd-bd63-a14354bbcd0f"/>
@@ -658,7 +660,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -668,12 +670,16 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           bearing a similarity to the illness of the mother of the patient. 
           The patient is worried about the impact of their illness on their ability to work and drive.</td>
          </tr>
+         <tr>
+         <th>Advance statement</th>
+          <td>None</td>
+          </tr>
         </tbody>
        </table>
       </div>
      </text>
     </section>
-       <!-- Patient demographics-->
+    <!-- Patient demographics-->
     <section>
      <title value="Patient demographics"/>
      <code>
@@ -684,7 +690,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -692,34 +698,43 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <th>Patient name</th>
           <td>Mr. Richard Smith</td>
          </tr>
-           <tr>
+         <tr>
+          <th>Patient preferred name</th>
+          <td>Richard Smith</td>
+         </tr>
+         <tr>
           <th>Date of birth</th>
           <td>1 January 1957</td>
          </tr>
+         <tr>
+          <th>Gender</th>
+          <td>1 Male</td>
+         </tr>
+         <tr>
+          <th>NHS number</th>
+          <td>135 246 5790</td>
+         </tr>
           <tr>
+          <th>Other identifier</th>
+          <td>None</td>
+         </tr>
+         <tr>
           <th>Patient address</th>
           <td>21, Grove Street, Overtown, Leeds LS21 1PF</td>
          </tr>
-          <tr>
+         <tr>
           <th>Relevant contacts</th>
-          <td>Joy Smith (Patient's wife)</td>
+          <td>Name: Joy Smith <p>Relationship: Next of kin</p><p>Contact details: Tel. 0712345678 Email. mrssmith@mymail.com</p></td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--reference to further information carried in the patient resource-->
      <entry>
-       <reference value="urn:uuid:31686b67-9f20-4644-9a54-193d2f91de57"/>
+      <reference value="urn:uuid:31686b67-9f20-4644-9a54-193d2f91de57"/>
      </entry>
-    </section> 
+    </section>
     <!--Person completing record-->
     <section>
      <title value="Person completing record"/>
@@ -741,7 +756,11 @@ LUCs						0.2			x10*9/L			&lt; 0.4
          </tr>
          <tr>
           <th>Role</th>
-          <td>On call Dr/Consultant</td>
+          <td>Consultant</td>
+         </tr>
+          <tr>
+          <th>Grade</th>
+          <td>Not given</td>
          </tr>
          <tr>
           <th>Specialty</th>
@@ -761,14 +780,25 @@ LUCs						0.2			x10*9/L			&lt; 0.4
          </tr>
          <tr>
           <th>Organisation</th>
-          <td><p>ODS code: RR8</p><p>Name: Leeds Teaching Hospitals NHS Trust,</p><p>Address: St James's University Hospital,</p><p>Beckett St.,</p>Leeds LS9 7TF</td>
+          <td>
+           <p>ODS code: RR8</p>
+           <p>Name: Leeds Teaching Hospitals NHS Trust,</p>
+           <p>Address: St James's University Hospital,</p>
+           <p>Beckett St.,</p>Leeds LS9 7TF</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
+      <!--reference to practitioner and organisation entries-->
+     <entry>
+      <reference value="urn:uuid:6239b7a7-380d-46ff-a1c5-7abc4e68f8bc"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:12bba528-a08a-448b-946b-7e8008044025"/>
+     </entry>
     </section>
-<!--Plan and requested actions-->
+    <!--Plan and requested actions-->
     <section>
      <title value="Plan and requested actions"/>
      <code>
@@ -779,7 +809,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -790,6 +820,14 @@ LUCs						0.2			x10*9/L			&lt; 0.4
            <p>Status: Requested</p>
           </td>
          </tr>
+         <tr>
+          <th>Actions for patient or their carer</th>
+          <td>Patient to attend community follow up after discharge.</td>
+         </tr>
+           <tr>
+          <th>Agreed with patient or legitimate patient representative</th>
+          <td>Patient agreed to avoid driving for one week on discharge.</td>
+         </tr>       
         </tbody>
        </table>
       </div>
@@ -812,27 +850,20 @@ LUCs						0.2			x10*9/L			&lt; 0.4
         <tbody>
          <tr>
           <th>Procedure name</th>
-          <td>Coronary Angiogram with stent to right coronary artery (RCA).</td>
+          <td>Fluoroscopic angiography of coronary artery and insertion of stent.<p>Anatomical site: Right coronary artery structure</p><p>Comments: Performed by Mr. Abacus, 12 February 2015.</p></td>
          </tr>
          <tr>
           <th>Procedure name</th>
-          <td>Electrocardiographic monitoring</td>
+          <td>Electrocardiographic monitoring<p>Anatomical site: Heart structure</p><p>Comments: Performed by Dr. Amanda Smith, 12 February 2015.</p></td>
          </tr>
          <tr>
           <th>Procedure name</th>
-          <td>Taking patient vital signs assessment</td>
+          <td>Taking patient vital signs assessment<p>Comments: Performed by Dr. Amanda Smith, 12 February 2015.</p></td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--reference to further information carried in the procedure resources-->
      <entry>
       <reference value="urn:uuid:6ea2da97-73e2-4507-b7a5-f7c0325021a9"/>
@@ -855,7 +886,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -868,7 +899,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </div>
      </text>
     </section>
-<!--Safety alerts-->
+    <!--Safety alerts-->
     <section>
      <title value="Safety alerts"/>
      <code>
@@ -879,7 +910,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -891,12 +922,16 @@ LUCs						0.2			x10*9/L			&lt; 0.4
           <th>Risks to others</th>
           <td>None</td>
          </tr>
+         <tr>
+          <th>Risk from others</th>
+          <td>None</td>
+         </tr>
         </tbody>
        </table>
       </div>
      </text>
     </section>
-<!--Social context -->
+    <!--Social context -->
     <section>
      <title value="Social context"/>
      <code>
@@ -907,7 +942,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -935,8 +970,26 @@ LUCs						0.2			x10*9/L			&lt; 0.4
    <Encounter>
     <id value="4f36b35a-ad18-4ea9-a3fb-c893f709e88a"/>
     <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1"/>
+     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1"/>
     </meta>
+     <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-AdmissionMethod-1">
+     <valueCodeableConcept>
+      <coding>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-AdmissionMethod-1"/>
+       <code value="21"/>
+       <display value="Accident and emergency or dental casualty department of the Health Care Provider"/>
+      </coding>
+     </valueCodeableConcept>
+    </extension>
+    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DischargeMethod-1">
+     <valueCodeableConcept>
+      <coding>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeMethod-1"/>
+       <code value="1"/>
+       <display value="Patient discharged on clinical advice or with clinical consent"/>
+      </coding>
+     </valueCodeableConcept>
+    </extension>
     <identifier>
      <system value="https://tools.ietf.org/html/rfc4122"/>
      <value value="13c73015-d8fa-4844-8d68-4f856883eca8"/>
@@ -1044,17 +1097,17 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <!--From where patient was admitted-->
      <admitSource>
       <coding>
-       <system value="http://hl7.org/fhir/admit-source"/>
-       <code value="emd"/>
-       <display value="From accident/emergency department"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SourceOfAdmission-1"/>
+       <code value="51"/>
+       <display value="NHS other Hospital Provider - Ward for general Patients or the younger physically disabled or A and E department"/>
       </coding>
      </admitSource>
      <!--	Category or kind of location after discharge-->
      <dischargeDisposition>
       <coding>
-       <system value="http://hl7.org/fhir/discharge-disposition"/>
-       <code value="home"/>
-       <display value="Home"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1"/>
+       <code value="19"/>
+       <display value="Usual place of residence unless listed below, for example, a private dwelling whether owner occupied or owned by Local Authority, housing association or other landlord. This includes wardened accommodation but not residential accommodation where health care is provided. It also includes Patients with no fixed abode."/>
       </coding>
      </dischargeDisposition>
     </hospitalization>
@@ -1235,10 +1288,10 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1"/>
     </meta>
     <status value="active"/>
-     <medicationReference>
+    <medicationReference>
      <reference value="urn:uuid:bcfd0324-f07e-45dd-9c33-65758f0b87e9"/>
     </medicationReference>
-   <subject>
+    <subject>
      <reference value="urn:uuid:31686b67-9f20-4644-9a54-193d2f91de57"/>
     </subject>
     <taken value="y"/>
@@ -1348,9 +1401,9 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <patientInstruction value="Take one 75mg tablet daily for one year then stop."/>
      <timing>
       <repeat>
-      <duration value="1"/>
-      <durationMax value="1"/>
-      <durationUnit value="a"/>
+       <duration value="1"/>
+       <durationMax value="1"/>
+       <durationUnit value="a"/>
        <frequency value="1"/>
        <period value="1"/>
        <periodUnit value="d"/>
@@ -1520,7 +1573,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
    </Medication>
   </resource>
  </entry>
-<!-- Medication example 2-->
+ <!-- Medication example 2-->
  <entry>
   <fullUrl value="urn:uuid:bcfd0324-f07e-45dd-9c33-65758f0b87e9"/>
   <resource>
@@ -1589,8 +1642,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-     <code value="320000009"/>
-     <display value="Simvastatin 40mg tablets"/>
+      <code value="320000009"/>
+      <display value="Simvastatin 40mg tablets"/>
      </coding>
     </code>
    </Medication>
@@ -1608,7 +1661,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-        <code value="318590006"/>
+      <code value="318590006"/>
       <display value="Bisoprolol 5mg tablets"/>
      </coding>
     </code>
@@ -2220,13 +2273,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       <reference value="urn:uuid:732e11d1-327d-4d32-8259-febd74841d6c"/>
      </actor>
     </performer>
-    <bodySite>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="80891009"/>
-      <display value="Heart structure"/>
-     </coding>
-    </bodySite>
    </Procedure>
   </resource>
  </entry>
@@ -2248,79 +2294,8 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       </coding>
      </valueCodeableConcept>
     </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ReligiousAffiliation-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="80587008"/>
-       <display value="Jehovah's Witness, follower of religion"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
     <extension url="http://hl7.org/fhir/StructureDefinition/patient-cadavericDonor">
      <valueBoolean value="false"/>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ResidentialStatus-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ResidentialStatus-1"/>
-       <code value="H"/>
-       <display value="UK Resident"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-TreatmentCategory-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-TreatmentCategory-1"/>
-       <code value="8"/>
-       <display value="Not applicable"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSCommunication-1">
-     <extension url="language">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-HumanLanguage-1"/>
-        <code value="en"/>
-        <display value="English"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="preferred">
-      <valueBoolean value="true"/>
-     </extension>
-     <extension url="modeOfCommunication">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
-        <code value="ESP"/>
-        <display value="Expressed spoken"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="modeOfCommunication">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
-        <code value="RWR"/>
-        <display value="Received written"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="communicationProficiency">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityProficiency-1"/>
-        <code value="E"/>
-        <display value="Excellent"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="interpreterRequired">
-      <valueBoolean value="false"/>
-     </extension>
     </extension>
     <identifier>
      <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
@@ -2336,7 +2311,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <value value="135 246 5790"/>
     </identifier>
     <active value="true"/>
-     <name>
+    <name>
      <use value="official"/>
      <family value="Smith"/>
      <given value="Richard"/>
@@ -2587,6 +2562,13 @@ LUCs						0.2			x10*9/L			&lt; 0.4
       <display value="Consultant"/>
      </coding>
     </code>
+     <specialty>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="394579002"/>
+      <display value="Cardiology"/>
+     </coding>
+    </specialty>
    </PractitionerRole>
   </resource>
  </entry>
