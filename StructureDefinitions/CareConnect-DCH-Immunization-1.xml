@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-24T13:49:03.278+00:00" />
+    <lastUpdated value="2018-03-26T09:49:37.371+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pher" />
@@ -1994,7 +1994,7 @@
     </element>
     <element id="Immunization.vaccineCode.coding">
       <path value="Immunization.vaccineCode.coding" />
-      <short value="Code defined by a terminology system" />
+      <short value="A code from the SNOMED Clinical Terminology UK coding system that describes a vaccine product from the VMP/ AMP subsets from the dm+d terminology" />
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
@@ -6810,7 +6810,7 @@
       <definition value="Reasons why a vaccine was administered." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.explanation.reason" />
         <min value="0" />
@@ -8523,7 +8523,7 @@
       <definition value="Contains the description about the protocol under which the vaccine was administered." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.description" />
         <min value="0" />
@@ -8555,7 +8555,7 @@
       <definition value="Indicates the authority who published the protocol.  E.g. ACIP." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.authority" />
         <min value="0" />
@@ -8792,7 +8792,7 @@
       <definition value="One possible path to achieve presumed immunity against a disease - within the context of an authority." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.series" />
         <min value="0" />
@@ -8824,7 +8824,7 @@
       <definition value="The recommended number of doses to achieve immunity." />
       <comment value="32 bit number; for values larger than this, use decimal" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.seriesDoses" />
         <min value="0" />
@@ -10295,7 +10295,7 @@
       <definition value="Provides an explanation as to why an immunization event should or should not count against the protocol." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.doseStatusReason" />
         <min value="0" />
@@ -10884,6 +10884,7 @@
     </element>
     <element id="Immunization.vaccineCode.coding">
       <path value="Immunization.vaccineCode.coding" />
+      <short value="A code from the SNOMED Clinical Terminology UK coding system that describes a vaccine product from the VMP/ AMP subsets from the dm+d terminology" />
       <min value="1" />
       <max value="1" />
     </element>
@@ -11103,7 +11104,7 @@
     </element>
     <element id="Immunization.explanation.reason">
       <path value="Immunization.explanation.reason" />
-      <max value="0" />
+      <max value="1" />
     </element>
     <element id="Immunization.explanation.reasonNotGiven">
       <path value="Immunization.explanation.reasonNotGiven" />
@@ -11170,25 +11171,12 @@
       <path value="Immunization.vaccinationProtocol" />
       <max value="1" />
     </element>
-    <element id="Immunization.vaccinationProtocol.description">
-      <path value="Immunization.vaccinationProtocol.description" />
-      <max value="0" />
-    </element>
     <element id="Immunization.vaccinationProtocol.authority">
       <path value="Immunization.vaccinationProtocol.authority" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
-    </element>
-    <element id="Immunization.vaccinationProtocol.series">
-      <path value="Immunization.vaccinationProtocol.series" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.vaccinationProtocol.seriesDoses">
-      <path value="Immunization.vaccinationProtocol.seriesDoses" />
-      <max value="0" />
     </element>
     <element id="Immunization.vaccinationProtocol.targetDisease.coding">
       <path value="Immunization.vaccinationProtocol.targetDisease.coding" />
@@ -11258,10 +11246,6 @@
       </extension>
       <path value="Immunization.vaccinationProtocol.doseStatus.coding.display" />
       <min value="1" />
-    </element>
-    <element id="Immunization.vaccinationProtocol.doseStatusReason">
-      <path value="Immunization.vaccinationProtocol.doseStatusReason" />
-      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>
