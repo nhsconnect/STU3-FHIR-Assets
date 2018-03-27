@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-30T14:16:20.167+00:00" />
+    <lastUpdated value="2018-01-25T10:27:50.146+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NDOP-OptOutSource-1" />
   <version value="1.0.0" />
@@ -18,7 +18,7 @@
     </telecom>
   </contact>
   <description value="Extension for Consent to capture the source of the opt-out e.g online portal, telephone, etc.." />
-  <copyright value="© 2017 NHS Digital" />
+  <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
@@ -181,7 +181,7 @@
       <short value="Value of extension" />
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
       <comment value="A stream of bytes, base64 encoded" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Extension.value[x]" />
@@ -299,7 +299,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -425,7 +425,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.system">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.system">
       <path value="Extension.valueCodeableConcept.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
@@ -467,7 +467,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.version">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.version">
       <path value="Extension.valueCodeableConcept.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
@@ -508,7 +508,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.code">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.code">
       <path value="Extension.valueCodeableConcept.coding.code" />
       <short value="Symbol in syntax defined by the system" />
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
@@ -524,6 +524,10 @@
       <type>
         <code value="code" />
       </type>
+      <example>
+        <label value="Opt-out Source Code" />
+        <valueCode value="OP" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -550,7 +554,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.display">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -569,6 +573,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="Opt-out Source Description" />
+        <valueString value="Online Portal" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -695,10 +703,9 @@
       <path value="Extension.url" />
       <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NDOP-OptOutSource-1" />
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept">
       <path value="Extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
-      <min value="1" />
       <type>
         <code value="CodeableConcept" />
       </type>
@@ -710,29 +717,36 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding">
       <path value="Extension.valueCodeableConcept.coding" />
-      <min value="1" />
       <max value="1" />
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.system">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.system">
       <path value="Extension.valueCodeableConcept.coding.system" />
       <min value="1" />
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.version">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.version">
       <path value="Extension.valueCodeableConcept.coding.version" />
       <max value="0" />
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.code">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.code">
       <path value="Extension.valueCodeableConcept.coding.code" />
       <min value="1" />
+      <example>
+        <label value="Opt-out Source Code" />
+        <valueCode value="OP" />
+      </example>
     </element>
-    <element id="Extension.value[x]:valueCodeableConcept.coding.display">
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Extension.valueCodeableConcept.coding.display" />
       <min value="1" />
+      <example>
+        <label value="Opt-out Source Description" />
+        <valueString value="Online Portal" />
+      </example>
     </element>
   </differential>
 </StructureDefinition>
