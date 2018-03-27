@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<!--Admission to A and E-->
 <Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
-	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
+	<id value="97be8432-5a9a-4c71-a083-b337323b8d6d"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
 		<entry>
-		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
+		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 		<resource>
 			<MessageHeader>
-				<id value="85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
+				<id value="9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
 				</meta>
@@ -25,179 +26,199 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="Allergies and Adverse Reactions"/>
-					<display value="Allergies and Adverse Reactions"/>
+					<code value="CH002"/>
+					<display value="Admission Details"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
 					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+					<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 				</focus>
 			</MessageHeader>
 		</resource>
 	</entry>
-<!--Responsible org-->
+	
+<!--Responsible org (A and E)-->
 	<entry>
-		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
-				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="A83627"/>
+					<value value="RR8"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
+				<address>
+					<line value="LEEDS GENERAL INFIRMARY"/>
+					<line value="GREAT GEORGE STREET "/>
+					<city value="LEEDS"/>
+					<district value="WEST YORKSHIRE"/>
+					<postalCode value="LS1 3EX"/>
+				</address>
 			</Organization>
 		</resource>
 	</entry>
-<!--Healthcare service used e.g GP, trust, etc..-->
+	
+	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
 				<id value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
 					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				</identifier>
 				<providedBy>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
 				</providedBy>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="M03"/>
-						<display value="General Medical Practitioner"/>
-					</coding>
-				</type>
 				<specialty>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
-						<code value="600"/>
-						<display value="GENERAL MEDICAL PRACTICE"/>
+						<code value="180"/>
+						<display value="ACCIDENT &amp; EMERGENCY"/>
 					</coding>
 				</specialty>
 				<location>
 					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 				</location>
-				
 			</HealthcareService>
 		</resource>
 	</entry>
-<!--Who the patient (child) is-->
+	
+	<!-- Patient-->
 	<entry>
 		<fullUrl value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 		<resource>
 			<Patient>
 				<id value="7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Patient-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Baby-Patient-1"/>
 				</meta>
 				<identifier>
-					<extension url="https://fhir.hl7.org.uk/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
 						<valueCodeableConcept>
 							<coding>
-								<system value="https://fhir.hl7.org.uk/CareConnect-NHSNumberVerificationStatus-1"/>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
 								<code value="01"/>
 								<display value="Number present and verified"/>
 							</coding>
 						</valueCodeableConcept>
 					</extension>
+					<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
+						<valueAddress>
+							<city value="LEEDS"/>
+							<district value="West Yorkshire"/>
+							<country value="UK"/>
+						</valueAddress>
+					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="6101231234"/>
+					<value value="9912003888"/>
+				</identifier>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/local-patient-identifier"/>
+					<value value="123456"/>
 				</identifier>
 				<name>
-					<use value="usual"/>
-					<family value="Dawkins"/>
-					<given value="Sally"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
 				</name>
-				<gender value="female"/>
-				<birthDate value="1980-01-07"/>
+				<birthDate value="2017-10-02">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="LEEDS"/>
+					<postalCode value="LS17 7DF"/>
+				</address>
+				<multipleBirthInteger value="1"/>
 			</Patient>
 		</resource>
 	</entry>
-<!--Physical location of Admission-->
-<entry>
-	<fullUrl value="urn:uuid:be79ee7a-b93d-4cfc-ba88-dedf08813464"/>
-	<resource>
-		<Location>
-			<physicalType>
-				<coding>
-					<system value="http://hl7.org/fhir/location-physical-type"/>
-					<code value="Wi"/>
-					<display value="Wing"/>
-				</coding>
-			</physicalType>
-		</Location>
-	</resource>
-</entry>
+	
 <!--Encounter details-->
 	<entry>
-		<fullUrl value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+		<fullUrl value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 		<resource>
 			<Encounter>
-				<id value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				<id value="1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+					<value value="af71a415-ae02-4159-914b-8b78c499fb1d"/>
 				</identifier>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/DCH-ChildHealthEventType-1"/>
-						<code value="Admission Details"/>
-						<display value="Admission Details"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
-				<participant>
-					<type>
-						<coding>
-							<system value="http://hl7.org/fhir/v3/ParticipationType"/>
-							<code value="PPRF"/>
-							<display value="primary performer"/>
-						</coding>
-					</type>
-					<individual>
-						<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-						<display value="JONES, Bob (Dr.)"/>
-					</individual>
-				</participant>
 				<period>
-					<start value="2012-01-29T09:00:00"/>
+					<start value="2018-01-29T09:00:00"/>
 				</period>
 				<location>
 					<location>
-						<reference value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<reference value="urn:uuid:02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
+	
+	<!-- Accompanied Person-->
+		<entry>
+		<fullUrl value="urn:uuid:8d67390e-0e51-42ea-a609-b7da2be07c7a"/>
+			<resource>
+				<RelatedPerson>
+				<id value="8d67390e-0e51-42ea-a609-b7da2be07c7a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<patient>
+					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+				</patient>
+				<relationship>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/ValueSet/DCH-PersonRelationshipType-1"/>
+						<code value="MTH"/>
+						<display value="mother"/>
+					</coding>
+				</relationship>
+				<name>
+					<family value="Dawkins"/>
+					<given value="Sally"/>
+				</name>
+				<gender value="female"/>
+				<birthDate value="1973-10-12"/>
+				</RelatedPerson>
+			</resource>	
+		</entry>
+		
 <!--Practitioner from Encounter-->
 	<entry>
 		<fullUrl value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
@@ -209,52 +230,32 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
+					<value value="PT2469"/>
 				</identifier>
 				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
+					<family value="McCoy"/>
+					<given value="Leonard"/>
 					<prefix value="Dr."/>
 				</name>
 			</Practitioner>
 		</resource>
 	</entry>
-<!--Location where event took place-->
+	
+<!--Location where event took place (A&E Site)-->
 	<entry>
-		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+		<fullUrl value="urn:uuid:02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 		<resource>
 			<Location>
-				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				<id value="02692f55-56cf-4dda-8ef5-e9ec13f6bd99"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="B86022"/>
+					<value value="RR8A1"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
-				<managingOrganization>
-					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-				</managingOrganization>
 			</Location>
 		</resource>
 	</entry>
-	<!--Managing Org (CCG)-->
-	<entry>
-		<fullUrl value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-		<resource>
-			<Organization>
-					<id value="b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<meta>
-						<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-					</meta>
-					<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="00D"/>
-				</identifier>
-				<name value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-			</Organization>
-		</resource>
-	</entry>
+	
 </Bundle>
