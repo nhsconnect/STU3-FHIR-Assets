@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CapabilityStatement xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/Scratch/SchemasSTU3/capabilitystatement.xsd">
-	<url value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-CapabilityStatement-1"/>
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+	<url value="https://fhir.nhs.uk/STU3/CapabilityStatement/NDOP-CapabilityStatement-1"/>
 	<version value="1.0.0"/>
 	<name value="NDOP-CapabilityStatement-1"/>
 	<status value="draft"/>
-	<date value="2017-11-02"/>
+	<date value="2017-01-24"/>
 	<publisher value="NHS Digital"/>
 	<contact >
 		<name value="Interoperability Team"/>
@@ -14,49 +14,43 @@
 			<use value="work"/>
 		</telecom>
 	</contact>
-	<copyright value="© 2017 NHS Digital"/>
+	<description value="An API for creating and updaing Opt-out preferences within the National Data Opt-out Programme."/>
+	<copyright value="Copyright © 2017 NHS Digital"/>
 	<kind value="requirements"/>
 	<fhirVersion value="3.0.1"/>
 	<acceptUnknown value="no"/>
 	<format value="application/xml+fhir"/>
 	<format value="application/json+fhir"/>
+	<implementationGuide value="TBC"/>
+	<profile>
+		<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1"/>
+	</profile>
 	<rest>
 		<mode value="server"/>
 		<resource>
 			<type value="Consent"/>
+			<profile>
+				<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1"/>
+				<display value="NDOP-Consent-1 Profile"/>
+			</profile>
 			<interaction>
-			<extension url="http://hl7.org/fhir/StructureDefinition/conformance-expectation">
-				<valueCode value="SHALL"/>
-			</extension>
 				<code value="create"/>
-				<documentation value="Allows creation of a consent record for NDOP"/>
 			</interaction>
 			<interaction>
-			<extension url="http://hl7.org/fhir/StructureDefinition/conformance-expectation">
-				<valueCode value="SHALL"/>
-			</extension>
 				<code value="vread"/>
-				<documentation value="Allows a version read of a specific patients historic record by vid"/>
 			</interaction>
 			<interaction>
-			<extension url="http://hl7.org/fhir/StructureDefinition/conformance-expectation">
-				<valueCode value="SHALL"/>
-			</extension>
 				<code value="update"/>
-				<documentation value="Allows the update to a patient consent record by id"/>
 			</interaction>
 			<versioning value="versioned"/>
 			<readHistory value="true"/>
-			<conditionalCreate value="true"/>
-			<conditionalUpdate value="true"/>
-				<searchParam>
+			<searchParam>
 				<name value="patient"/>
 				<type value="reference"/>
 			</searchParam>
 			<searchParam>
 				<name value="category"/>
 				<type value="token"/>
-				<documentation value="Allows the retrieval of a patients consent record by NDOP category type"/>
 			</searchParam>
 			<searchParam>
 				<name value="purpose"/>
