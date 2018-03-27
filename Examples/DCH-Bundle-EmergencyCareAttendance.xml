@@ -73,7 +73,7 @@
 			<HealthcareService>
 				<id value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
@@ -81,20 +81,20 @@
 				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="M03"/>
-						<display value="General Medical Practitioner"/>
+						<code value="M02"/>
+						<display value="Consultant"/>
 					</coding>
 				</type>
 				<specialty>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
-						<code value="600"/>
-						<display value="GENERAL MEDICAL PRACTICE"/>
+						<code value="180"/>
+						<display value="ACCIDENT &amp; EMERGENCY"/>
 					</coding>
 				</specialty>
 				<location>
@@ -175,8 +175,8 @@
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="940151000000102"/>
-						<display value="Blood spot isovaleric acidaemia screening test"/>
+						<code value="68793005"/>
+						<display value="Serologic test"/>
 					</coding>
 				</code>
 				<subject>
@@ -185,23 +185,11 @@
 				<context>
 					<reference value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
 				</context>
-				<outcome>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="951741000000109"/>
-						<display value="Condition not suspected"/>
-					</coding>
-				</outcome>
-				<report>
-					<reference value="urn:uuid:6686a40a-22bc-4396-a0f0-f134c894b01c"/>
-				</report>
 			</Procedure>
 		</resource>
 	</entry>
-
 	
-	
-	<!-- Encounter details-->
+	<!-- Emergency Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
 		<resource>
@@ -210,51 +198,86 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
+				<extension url="https://fhir.nhs.net/STU3/StructureDefinition/Extension-CareConnect-DCH-EmergencyCareDischargeStatus-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1066311000000101"/>
+							<display value="Left care setting after initial assessment"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
 					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
 				</identifier>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/DCH-ChildHealthEventType-1"/>
-						<code value="Physical Examination"/>
-						<display value="Physical Examination"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
-				<participant>
-					<type>
-						<coding>
-							<system value="http://hl7.org/fhir/v3/ParticipationType"/>
-							<code value="PPRF"/>
-							<display value="primary performer"/>
-						</coding>
-					</type>
-					<individual>
-						<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-						<display value="JONES, Bob (Dr.)"/>
-					</individual>
-				</participant>
 				<period>
-					<start value="2012-01-29T09:00:00"/>
+					<start value="2018-03-23T09:00:00"/>
+					<end value="2018-03-23T15:00:00"/>
 				</period>
+				<reason>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="95320005"/>
+						<display value="Disorder of skin"/>
+					</coding>
+				</reason>
+				<hospitalization>
+					<dischargeDisposition>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="306689006"/>
+							<display value="Discharge to home (procedure)"/>
+						</coding>
+					</dischargeDisposition>
+				</hospitalization>
 				<location>
 					<location>
 						<reference value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<display value="ACCIDENT &amp; EMERGENCY LGI"/>
 					</location>
 				</location>
-				<serviceProvider>
-					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
-				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
+	
+<!-- Accompanied Person-->
+		<entry>
+			<resource>
+				<RelatedPerson>
+				<id value="e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<patient>
+					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+				</patient>
+				<relationship>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/ValueSet/DCH-PersonRelationshipType-1"/>
+						<code value="MTH"/>
+						<display value="mother"/>
+					</coding>
+				</relationship>
+				<name>
+					<family value="Dawkins"/>
+					<given value="Sally"/>
+				</name>
+				<gender value="female"/>
+				<birthDate value="1973-10-12"/>
+				</RelatedPerson>
+			</resource>	
+		</entry>
+	
 	<!--Practitioner from Encounter-->
 	<entry>
 		<fullUrl value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
@@ -269,8 +292,8 @@
 					<value value="PT2468"/>
 				</identifier>
 				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
+					<family value="Strange"/>
+					<given value="Stephen"/>
 					<prefix value="Dr."/>
 				</name>
 				<telecom>
@@ -291,12 +314,12 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="B86022"/>
+					<value value="RR8A1"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
+				<name value="ACCIDENT &amp; EMERGENCY LGI"/>
 				<managingOrganization>
 					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
+					<display value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
 				</managingOrganization>
 			</Location>
 		</resource>
@@ -312,29 +335,12 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="00D"/>
+					<value value="RR8"/>
 				</identifier>
-				<name value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
+				<name value="LEEDS TEACHING HOSPITALS NHS TRUST"/>
 			</Organization>
 		</resource>
 	</entry>
 	
-	<!--Vaccination Manufacurer-->
-	<entry>
-		<fullUrl value="urn:uuid:5e6665c1-15a3-4bd3-8f1c-275d4c925cb2"/>
-		<resource>
-			<Organization>
-				<id value="5e6665c1-15a3-4bd3-8f1c-275d4c925cb2"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="8HP26"/>
-				</identifier>
-				<name value="GLAXOSMITHKLINE"/>
-			</Organization>
-		</resource>
-	</entry>
 	
 </Bundle>
