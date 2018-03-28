@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-15T13:10:50.529+00:00" />
+    <lastUpdated value="2018-03-28T14:11:38.285+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -429,8 +429,8 @@
     <element id="Patient.extension:patient-cadavericDonor">
       <path value="Patient.extension" />
       <sliceName value="patient-cadavericDonor" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="Flag indicating whether the patient authorized the donation of body parts after death" />
+      <definition value="Flag indicating whether the patient authorized the donation of body parts after death." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -601,13 +601,13 @@
     <element id="Patient.extension:birthPlace">
       <path value="Patient.extension" />
       <sliceName value="birthPlace" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="Birth Place: The registered place of birth of the patient." />
+      <definition value="Birth Place: The registered place of birth of the patient. A sytem may use the address.text if they don't store the birthPlace address in discrete elements." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -5442,7 +5442,7 @@
         <strength value="required" />
         <description value="The use of a human name" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/name-use" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-NameUse-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -6044,7 +6044,7 @@
         <strength value="required" />
         <description value="The use of a human name" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/name-use" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-NameUse-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -7192,13 +7192,13 @@
     <element id="Patient.birthDate.extension:patient-birthTime">
       <path value="Patient.birthDate.extension" />
       <sliceName value="patient-birthTime" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="The time of day that the Patient was born. This includes the date to ensure that the timezone information can be communicated effectively." />
+      <definition value="The time of day that the Patient was born. This includes the date to ensure that the timezone information can be communicated effectively." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="1" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -15971,6 +15971,15 @@
       <path value="Patient.name.use" />
       <min value="1" />
       <fixedCode value="official" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="NameUse" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-NameUse-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Patient.name:official.family">
       <path value="Patient.name.family" />
@@ -15983,6 +15992,15 @@
     <element id="Patient.name:other.use">
       <path value="Patient.name.use" />
       <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="NameUse" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-NameUse-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Patient.telecom.system">
       <path value="Patient.telecom.system" />

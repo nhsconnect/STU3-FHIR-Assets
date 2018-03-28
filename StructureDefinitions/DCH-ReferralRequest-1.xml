@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-24T19:05:04.423+00:00" />
+    <lastUpdated value="2018-03-28T18:24:21.116+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ReferralRequest-1" />
   <version value="1.0.0" />
@@ -3798,7 +3798,7 @@
       <definition value="An indication of the type of referral (or where applicable the type of transfer of care) request." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="ReferralRequest.type" />
         <min value="0" />
@@ -4351,7 +4351,7 @@
         <strength value="required" />
         <description value="Codes indicating the relative priority of the referral." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/request-priority" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-RequestPriority-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -8480,6 +8480,22 @@
     <element id="ReferralRequest.intent">
       <path value="ReferralRequest.intent" />
       <fixedCode value="proposal" />
+    </element>
+    <element id="ReferralRequest.type">
+      <path value="ReferralRequest.type" />
+      <max value="0" />
+    </element>
+    <element id="ReferralRequest.priority">
+      <path value="ReferralRequest.priority" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ReferralPriority" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-RequestPriority-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="ReferralRequest.serviceRequested">
       <path value="ReferralRequest.serviceRequested" />
