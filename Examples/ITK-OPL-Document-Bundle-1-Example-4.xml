@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/GitHubRepo/ITK-FHIR-Outpatient-Letter/schemas/bundle.xsd">
  <id value="56cda0f0-d663-482c-944d-0ff8bf804d46"/>
  <meta>
   <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
@@ -19,19 +19,7 @@
     <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-OPL-Composition-1"/>
     </meta>
-    <!-- Information Recipient 1 - the patient-->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 2 - the patient's GP -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:137bc838-e3ab-4eb2-99e9-32b0c02e70eb"/>
-     </valueReference>
-    </extension>
-    <!-- Care Setting Type -->
+    <!-- Extension to carry details of the Correspondence Care Setting Type. -->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
      <valueCodeableConcept>
       <coding>
@@ -56,6 +44,7 @@
     <subject>
      <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
     </subject>
+    <!--Reference to the clinical encounter or type of care this documentation is associated with.-->
     <encounter>
      <reference value="urn:uuid:a7b5ce52-314f-4b82-a131-6ab90d435d30"/>
     </encounter>
@@ -66,12 +55,46 @@
      <reference value="urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc"/>
     </author>
     <title value="Outpatient letter"/>
-    <!--The code specifying the level of confidentiality of the Composition.-->
-    <confidentiality value="V"/>
     <!--Identifies the organization responsible for ongoing maintenance of and access to the composition/document information.-->
     <custodian>
      <reference value="urn:uuid:2fc51c08-3de9-4557-bc0e-9738be9fa99c"/>
     </custodian>
+    <!--Allergies and adverse reactions-->
+    <section>
+     <title value="Allergies and adverse reactions"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="886921000000105"/>
+       <display value="Allergies and adverse reactions"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Causative agent</th>
+          <td>Amoxicillin</td>
+         </tr>
+         <tr>
+          <th>Reaction details</th>
+          <td>
+           <p>Description of reaction: Ms. Critchard has an allergic reaction to Amoxicillin, which presents as an urticarial rash in the form of a generalized severe rash.</p>
+           <p>Type of reaction: Allergic</p>
+           <p>Probability of recurrence: She first experienced a reaction aged 12 and probability of recurrence is likely.</p>
+           <p>Date first experienced: 12 March 1976</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <entry>
+      <reference value="urn:uuid:627bd799-7a86-40bd-a931-d8526b412fa5"/>
+     </entry>
+    </section>
     <!--Attendance details section-->
     <section>
      <title value="Attendance details"/>
@@ -83,7 +106,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -92,8 +115,8 @@
           </td>
          </tr>
          <tr>
-          <th>Date of appointment/contact</th>
-          <td>01 May 2017</td>
+          <th>Date and time of contact</th>
+          <td>01 May 2017 09:00</td>
          </tr>
          <tr>
           <th>Contact type</th>
@@ -108,6 +131,14 @@
           <td>Dr. Ruth Jones (Consultant Gastroenterologist)</td>
          </tr>
          <tr>
+          <th>Specialty</th>
+          <td>Gastroenterology</td>
+         </tr>
+         <tr>
+          <th>Service</th>
+          <td>Gastroenterology service</td>
+         </tr>
+         <tr>
           <th>Seen by</th>
           <td>
            <p>Dr. Ruth Jones</p>
@@ -116,55 +147,38 @@
           </td>
          </tr>
          <tr>
-          <th>Service</th>
-          <td>Gastroenterology</td>
+          <th>Care professionals present</th>
+          <td>Mrs. N Bryant (IBD Specialist Nurse)</td>
          </tr>
          <tr>
           <th>Outcome of patient attendance</th>
           <td>Appointment to be made at a later date</td>
          </tr>
-         <tr>
-          <th>Care professionals present</th>
-          <td>Mrs. N Bryant (IBD Specialist Nurse)</td>
-         </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <entry>
-      <reference value="urn:uuid:a7b5ce52-314f-4b82-a131-6ab90d435d30"/>
-     </entry>
     </section>
-    <!--Referrer details-->
+    <!--Clinical summary-->
     <section>
-     <title value="Referrer details"/>
+     <title value="Clinical summary"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
-       <code value="1052891000000108"/>
-       <display value="Referrer details"/>
+       <code value="887181000000106"/>
+       <display value="Clinical summary"/>
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>Referrer Name</th>
-          <td>
-           <p>Dr. C. O'Reilly</p>
-           <p>Role: GP</p>
-           <p>Tel: (01234) 956412</p>
-           <p>Organisation: Canvas Health Centre, 27 Acacia Road, BM9 6PM</p>
-          </td>
+          <th>Clinical Summary</th>
+         </tr>
+         <tr>
+          <td>Findings are suggestive of IBD. Rigid sigmoidoscopy looks like UC. 5ASA treatment commenced today pending further investigation.</td>
          </tr>
         </tbody>
        </table>
@@ -187,24 +201,17 @@
        <table>
         <tbody>
          <tr>
-          <th>Diagnosis/symptom</th>
+          <th>Diagnosis name</th>
           <td>Proctitis</td>
          </tr>
          <tr>
-          <th>Diagnosis/symptom</th>
+          <th>Diagnosis name</th>
           <td>Dyspepsia</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <entry>
       <reference value="urn:uuid:50141d4f-fe5a-4616-ab9e-9b0366333ea0"/>
      </entry>
@@ -212,14 +219,14 @@
       <reference value="urn:uuid:7ec3effa-da14-47c7-881f-0b04903861c6"/>
      </entry>
     </section>
-    <!--Problems and issues-->
+    <!--Distribution list-->
     <section>
-     <title value="Problems and issues"/>
+     <title value="Distribution list"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
-       <code value="887151000000100"/>
-       <display value="Problems and issues"/>
+       <code value="887261000000109"/>
+       <display value="Distribution list"/>
       </coding>
      </code>
      <text>
@@ -228,191 +235,49 @@
        <table width="100%">
         <tbody>
          <tr>
-          <th>Problems and issues</th>
-          <td>
-           <p>Bloody diarrhoea</p>
-           <p>Weight loss</p>
-          </td>
+          <th>Name</th>
+          <td>Dr C O'Reilly</td>
+         </tr>
+         <tr>
+          <th>Role</th>
+          <td>GP</td>
+         </tr>
+         <tr>
+          <th>Organisation</th>
+          <td>Canvas Health Centre - Organisation ID: A111111</td>
+         </tr>
+         <tr>
+          <th>Relationship to subject</th>
+          <td>GP</td>
          </tr>
         </tbody>
        </table>
-      </div>
-     </text>
-    </section>
-    <!--History-->
-    <section>
-     <title value="History"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="717121000000105"/>
-       <display value="History"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>History</th>
+          <th>Name</th>
+          <td>Agatha Critchard</td>
          </tr>
          <tr>
-          <td>Ms. Critchard presents with ongoing symptoms of bloody diarrhoea, weight loss, and abdominal discomfort that are unresponsive to treatment. She has a 2 month history of bloody diarrhoea. Her bowels open 5-6 per day with 1-2 nocturnal episodes. Ms. Critchard has experienced weight loss of 1 stone over the same period. She experiences a crampy left iliac fossa pain intermittently. <br/>She has no history of travel, unwell contacts or previous similar symptoms. She has longstanding mild dyspepsia for which she takes antacid as necessary. It has never been investigated.</td>
+          <th>Role</th>
+          <td>Patient</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--References to supporting Condition/Observations resources-->
+     <!--Reference to the practitioner entry as recipient of information-->
      <entry>
-      <reference value="urn:uuid:0547e6bf-7205-4f78-82ef-99c69ac34def"/>
+      <reference value="urn:uuid:137bc838-e3ab-4eb2-99e9-32b0c02e70eb"/>
      </entry>
+     <!--Reference to the patient entry as recipient of information-->
      <entry>
-      <reference value="urn:uuid:163c7e94-eb55-40fe-a9d3-5245b4e33541"/>
-     </entry>
-     <entry>
-      <reference value="urn:uuid:75117a4d-8f9c-4d3a-be57-c55d59b993e8"/>
-     </entry>
-     <entry>
-      <reference value="urn:uuid:ed66558d-d668-453a-95fe-067fffa4cbd2"/>
-     </entry>
-     <entry>
-      <reference value="urn:uuid:dadd9c9d-74f8-45e0-90dc-6ff8c91b8651"/>
-     </entry>
-     <entry>
-      <reference value="urn:uuid:90d887ab-7db4-4235-bada-3ae2e31f8c74"/>
-     </entry>
-    </section>
-    <!--Family history-->
-    <section>
-     <title value="Family history"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887111000000104"/>
-       <display value="Family history"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Family history</th>
-         </tr>
-         <tr>
-          <td>Ms. Critchard has no family history of I.B.D. </td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-    </section>
-    <!--Social context-->
-    <section>
-     <title value="Social context"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887051000000101"/>
-       <display value="Social context"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Household composition</th>
-          <td>Ms. Critchard lives with her boyfriend.</td>
-         </tr>
-         <tr>
-          <th>Occupational history</th>
-          <td>Ms. Critchard works as a Baker.</td>
-         </tr>
-         <tr>
-          <th>Smoking</th>
-          <td>She is an ex-smoker, stopped 2 years.</td>
-         </tr>
-         <tr>
-          <th>Alcohol intake</th>
-          <td>She consumed 10-14 units of alcohol per week.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--References to supporting Observation resources-->
-     <entry>
-      <reference value="urn:uuid:654ca509-6dbf-497c-8f6f-02dd46cc5946"/>
-     </entry>
-    </section>
-    <!--Allergies and adverse reactions-->
-    <section>
-     <title value="Allergies and adverse reactions"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="886921000000105"/>
-       <display value="Allergies and adverse reactions"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Allergy/adverse reaction</th>
-          <td>Allergy to Amoxicillin</td>
-         </tr>
-         <tr>
-          <th>Causative agent</th>
-          <td>Amoxicillin</td>
-         </tr>
-         <tr>
-          <th>Reaction details</th>
-          <td>Description of reaction:<br/>Ms. Critchard has an allergic reaction to Amoxicillin, which presents as an urticarial rash in the form of a generalized severe </td>
-         </tr>
-         <tr>
-          <th>Probability of recurrence</th>
-          <td>She first experienced a reaction aged 12 and probability of recurrence is likely.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <entry>
-      <reference value="urn:uuid:627bd799-7a86-40bd-a931-d8526b412fa5"/>
+      <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
      </entry>
     </section>
     <!--Examination findings-->
     <section>
-     <title value="Examination findings"/>
+     <title value="Examination finding"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
@@ -435,13 +300,6 @@
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Supporting Observation/Condition resources-->
      <entry>
       <reference value="urn:uuid:10e3e7dc-2df4-49af-92f7-e3050ad0c06b"/>
@@ -453,6 +311,115 @@
       <reference value="urn:uuid:3459f067-793b-4afb-bc23-cbe3cac4243f"/>
      </entry>
     </section>
+    <!--Family history-->
+    <section>
+     <title value="Family history"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887111000000104"/>
+       <display value="Family history"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Family history</th>
+         </tr>
+         <tr>
+          <td>Ms. Critchard has no family history of I.B.D. </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!-- GP Practice-->
+    <section>
+     <title value="GP practice"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="886711000000101"/>
+       <display value="GP practice details"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>GP practice identifier</th>
+          <td>A111111</td>
+         </tr>
+         <tr>
+          <th>GP name</th>
+          <td>Dr C O'Reilly</td>
+         </tr>
+         <tr>
+          <th>GP practice details</th>
+          <td>Canvas Health Centre, 27, Acacia Road, BM9 6PM</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--Reference to the Organisation entry as the source of information for this section-->
+     <entry>
+      <reference value="urn:uuid:00e2ec13-891d-4335-b383-5bb6043331db"/>
+     </entry>
+    </section>
+    <!--History-->
+    <section>
+     <title value="History"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="717121000000105"/>
+       <display value="History"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>History</th>
+         </tr>
+         <tr>
+          <th>Presenting complaints or issue</th>
+          <td>Ms. Critchard presents with ongoing symptoms of bloody diarrhoea, weight loss, and abdominal discomfort that are unresponsive to treatment. She has a 2 month history of bloody diarrhoea. Her bowels open 5-6 per day with 1-2 nocturnal episodes. Ms. Critchard has experienced weight loss of 1 stone over the same period. She experiences a crampy left iliac fossa pain intermittently. <br/>She has no history of travel, unwell contacts or previous similar symptoms. She has longstanding mild dyspepsia for which she takes antacid as necessary. It has never been investigated.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--References to supporting Condition/Observations resources-->
+     <entry>
+      <reference value="urn:uuid:0547e6bf-7205-4f78-82ef-99c69ac34def"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:163c7e94-eb55-40fe-a9d3-5245b4e33541"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:75117a4d-8f9c-4d3a-be57-c55d59b993e8"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:ed66558d-d668-453a-95fe-067fffa4cbd2"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:dadd9c9d-74f8-45e0-90dc-6ff8c91b8651"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:90d887ab-7db4-4235-bada-3ae2e31f8c74"/>
+     </entry>
+    </section>
+    <!--Individual requirements - information not provided-->
     <!--Investigation results-->
     <section>
      <title value="Investigation results"/>
@@ -464,7 +431,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -478,108 +445,8 @@
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--Supporting Procedure resources-->
-     <entry>
-      <reference value="urn:uuid:6089964b-ca35-4067-a9ff-d954e3694ed5"/>
-     </entry>
     </section>
-    <!--Procedure-->
-    <section>
-     <title value="Procedures"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887171000000109"/>
-       <display value="Procedures"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Procedure</th>
-         </tr>
-         <tr>
-          <td>A Rigid sigmoidoscopy was performed to the limit of view at 20cm. It showed inflamed and ulcerated mucosa with contact bleeding to about 15cm. Proximally appears to improve.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--Supporting Procedure resource(s)-->
-     <entry>
-      <reference value="urn:uuid:c3f61107-b238-43a0-b176-207b4fff9801"/>
-     </entry>
-    </section>
-    <!--Clinical summary-->
-    <section>
-     <title value="Clinical summary"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887181000000106"/>
-       <display value="Clinical summary"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Clinical Summary</th>
-         </tr>
-         <tr>
-          <td>Findings are suggestive of IBD. Rigid sigmoidoscopy looks like UC. 5ASA treatment commenced today pending further investigation.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-    </section>
-    <!--Plan and requested actions-->
-    <section>
-     <title value="Plan and requested actions"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887201000000105"/>
-       <display value="Plan and requested actions"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Plan and requested actions for healthcare professionals</th>
-         </tr>
-         <tr>
-          <td>A flexible sigmoidoscopy has been Requested on an urgent basis by Ruth Jones on 01/05/17. FBC, U and E, LFT and CRP are to be measured, the patient was provided with a form at the appointment. 
-										Stool MC and S plus C. diff are to be taken, the patient was given forms and collections points at the appointment.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-    </section>
+    <!--Legal information section - information not given-->
     <!--Medication-->
     <section>
      <title value="Medications and medical devices"/>
@@ -596,48 +463,93 @@
        <table width="100%">
         <tbody>
          <tr>
-          <td colspan="2" style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter are included)</td>
+          <td style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter are included)</td>
+         </tr>
+        </tbody>
+       </table>
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Medication item</th>
+          <td>Medication name: Asacol</td>
+          <td>Route: Oral</td>
+          <td>Dose directions description: To be taken orally once a day as 3x800mg tablets.</td>
          </tr>
          <tr>
-          <th>Medication name</th>
-          <td>Asacol</td>
-         </tr>
-         <tr>
-          <th>Route</th>
-          <td>Oral</td>
-         </tr>
-         <tr>
-          <th>Dose</th>
-          <td>3x800mg tablets</td>
-         </tr>
-         <tr>
-          <th>Medication frequency</th>
-          <td>Once a day as 3x800mg tablets. A 14xday course was prescribed in clinic.</td>
-         </tr>
-         <tr>
-          <th>Reason for medication</th>
-          <td>It is expected that this will aid symptom management.</td>
-         </tr>
-         <tr>
-          <th>Medication recommendations</th>
-          <td>A 14xday course was prescribed in clinic, please renew in 2xweeks time.</td>
+          <th>Medication change</th>
+          <td>Status: Added</td>
+          <td colspan="2">Comment: A 14xday course was prescribed in clinic, please renew in 2xweeks time. It is expected that this will aid symptom management.</td>
          </tr>
         </tbody>
        </table>
        <br/>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <entry>
       <reference value="urn:uuid:cef7f8d5-78e3-4866-89f1-62470d6fd636"/>
      </entry>
     </section>
+    <!-- Patient demographics-->
+    <section>
+     <title value="Patient demographics"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="886731000000109"/>
+       <display value="Patient demographics"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Patient name</th>
+          <td>Ms. Agatha Critchard</td>
+         </tr>
+         <tr>
+          <th>Patient preferred name</th>
+          <td>Agatha Critchard</td>
+         </tr>
+         <tr>
+          <th>Date of birth</th>
+          <td>1 February 1964</td>
+         </tr>
+         <tr>
+          <th>Gender</th>
+          <td>2 Female</td>
+         </tr>
+         <tr>
+          <th>NHS number</th>
+          <td>124 356 7890</td>
+         </tr>
+         <tr>
+          <th>Other identifier</th>
+          <td>TL89765</td>
+         </tr>
+         <tr>
+          <th>Patient address</th>
+          <td>30, Acacia Road, BM9 6PL</td>
+         </tr>
+         <tr>
+          <th>Patient email address</th>
+          <td>frances@delatour.net</td>
+         </tr>
+         <tr>
+          <th>Patient telephone number</th>
+          <td>077 1234 7777</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--reference to further information carried in the patient resource-->
+     <entry>
+      <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
+     </entry>
+    </section>
+    <!-- Person completing record-->
     <section>
      <title value="Person completing record"/>
      <code>
@@ -661,6 +573,10 @@
           <td>Consultant Gastroenterologist</td>
          </tr>
          <tr>
+          <th>Grade</th>
+          <td>Not given</td>
+         </tr>
+         <tr>
           <th>Specialty</th>
           <td>Gastroenterology</td>
          </tr>
@@ -680,6 +596,162 @@
        </table>
       </div>
      </text>
+     <!--reference to practitioner entry-->
+     <entry>
+      <reference value="urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc"/>
+     </entry>
+    </section>
+    <!--Plan and requested actions-->
+    <section>
+     <title value="Plan and requested actions"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887201000000105"/>
+       <display value="Plan and requested actions"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Actions for healthcare professionals</th>
+          <td>A flexible sigmoidoscopy has been requested on an urgent basis by Ruth Jones on 01/05/17. FBC, U and E, LFT and CRP are to be measured, the patient was provided with a form at the appointment. 
+										Stool MC and S plus C. diff are to be taken, the patient was given forms and collection points at the appointment.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!--Problems and issues-->
+    <section>
+     <title value="Problems and issues"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887151000000100"/>
+       <display value="Problems and issues"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Problems and issues</th>
+          <td>
+           <p>Bloody diarrhoea</p>
+           <p>Weight loss</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!--Procedures-->
+    <section>
+     <title value="Procedures"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887171000000109"/>
+       <display value="Procedures"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Procedure name</th>
+          <td>Rigid sigmoidoscopy<p>Comment: A Rigid sigmoidoscopy was performed to the limit of view at 20cm. It showed inflamed and ulcerated mucosa with contact bleeding to about 15cm. Proximally appears to improve. Performed by Ruth Jones, 1 May 2017.</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--Supporting Procedure resource(s)-->
+     <entry>
+      <reference value="urn:uuid:c3f61107-b238-43a0-b176-207b4fff9801"/>
+     </entry>
+    </section>
+    <!--Referrer details-->
+    <section>
+     <title value="Referrer details"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="1052891000000108"/>
+       <display value="Referrer details"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Referrer Name</th>
+          <td>
+           <p>Name: Dr. C. O'Reilly</p>
+           <p>Role: GP</p>
+           <p>Grade: Not given</p>
+           <p>Organisation: Canvas Health Centre, 27 Acacia Road, BM9 6PM</p>
+           <p>Contact details: Tel (01234) 956412</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!--Safety alerts section - information not given-->
+    <!--Social context-->
+    <section>
+     <title value="Social context"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887051000000101"/>
+       <display value="Social context"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Household composition</th>
+          <td>Ms. Critchard lives with her boyfriend.</td>
+         </tr>
+         <tr>
+          <th>Occupational history</th>
+          <td>Ms. Critchard works as a Baker.</td>
+         </tr>
+         <tr>
+          <th>Smoking</th>
+          <td>She is an ex-smoker, stopped 2 years.</td>
+         </tr>
+         <tr>
+          <th>Alcohol intake</th>
+          <td>She consumes 10-14 units of alcohol per week.</td>
+         </tr>
+         <tr>
+          <th>Drug/substance use</th>
+          <td>None reported.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
     </section>
    </Composition>
   </resource>
@@ -691,8 +763,17 @@
    <Encounter>
     <id value="a7b5ce52-314f-4b82-a131-6ab90d435d30"/>
     <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1"/>
+     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1"/>
     </meta>
+    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-OutcomeOfAttendance-1">
+     <valueCodeableConcept>
+      <coding>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-OutcomeOfAttendance-1"/>
+       <code value="3"/>
+       <display value="Appointment to be made at a later date"/>
+      </coding>
+     </valueCodeableConcept>
+    </extension>
     <identifier>
      <system value="https://tools.ietf.org/html/rfc4122"/>
      <value value="85e88b9f-c6be-4d09-ae48-f4fa6687903d"/>
@@ -711,6 +792,7 @@
       <display value="Outpatient Clinic Attendance"/>
      </coding>
     </type>
+    <!--Reference to the patient as the subject of the Encounter-->
     <subject>
      <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
     </subject>
@@ -764,9 +846,9 @@
      </admitSource>
      <dischargeDisposition>
       <coding>
-       <system value="http://hl7.org/fhir/discharge-disposition"/>
-       <code value="home"/>
-       <display value="Home"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1"/>
+       <code value="19"/>
+       <display value="Usual place of residence unless listed below, for example, a private dwelling whether owner occupied or owned by Local Authority, housing association or other landlord. This includes wardened accommodation but not residential accommodation where health care is provided. It also includes Patients with no fixed abode."/>
       </coding>
      </dischargeDisposition>
     </hospitalization>
@@ -856,8 +938,8 @@
      <manifestation>
       <coding>
        <system value="http://snomed.info/sct"/>
-       <code value="247472004"/>
-       <display value="Urticarial rash"/>
+       <code value="200892002"/>
+       <display value="Generalised skin eruption caused by drug and medicament"/>
       </coding>
      </manifestation>
     </reaction>
@@ -920,7 +1002,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -962,7 +1044,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -1004,7 +1086,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="complaint"/>
       <display value="Complaint"/>
      </coding>
@@ -1046,7 +1128,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="finding"/>
       <display value="Finding"/>
      </coding>
@@ -1088,7 +1170,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="finding"/>
       <display value="Finding"/>
      </coding>
@@ -1130,7 +1212,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="finding"/>
       <display value="Finding"/>
      </coding>
@@ -1172,7 +1254,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="finding"/>
       <display value="Finding"/>
      </coding>
@@ -1214,7 +1296,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="finding"/>
       <display value="Finding"/>
      </coding>
@@ -1359,46 +1441,6 @@
    </Observation>
   </resource>
  </entry>
- <!--observation 4-->
- <entry>
-  <fullUrl value="urn:uuid:654ca509-6dbf-497c-8f6f-02dd46cc5946"/>
-  <resource>
-   <Observation>
-    <id value="654ca509-6dbf-497c-8f6f-02dd46cc5946"/>
-    <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-OccupationalHistory-Observation-1"/>
-    </meta>
-    <identifier>
-     <system value="https://tools.ietf.org/html/rfc4122"/>
-     <value value="0de2f40d-a62b-45c7-9267-9904e16d28bc"/>
-    </identifier>
-    <status value="final"/>
-    <code>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="14679004"/>
-      <display value="Occupation"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
-    </subject>
-    <effectivePeriod>
-     <start value="2013-05-01"/>
-    </effectivePeriod>
-    <performer>
-     <reference value="urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc"/>
-    </performer>
-    <valueCodeableConcept>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="308241004"/>
-      <display value="Baker"/>
-     </coding>
-    </valueCodeableConcept>
-   </Observation>
-  </resource>
- </entry>
  <!--Procedure example 1-->
  <entry>
   <fullUrl value="urn:uuid:c3f61107-b238-43a0-b176-207b4fff9801"/>
@@ -1446,51 +1488,8 @@
       <code value="415767003"/>
       <display value="Ulcerated mucosa of colon"/>
      </coding>
+     <text value="Procedure showed inflamed and ulcerated mucosa with contact bleeding to about 15cm. Proximally appears to improve."/>
     </outcome>
-   </Procedure>
-  </resource>
- </entry>
- <!--Procedure example 2-->
- <entry>
-  <fullUrl value="urn:uuid:6089964b-ca35-4067-a9ff-d954e3694ed5"/>
-  <resource>
-   <Procedure>
-    <id value="6089964b-ca35-4067-a9ff-d954e3694ed5"/>
-    <meta>
-     <!--Identifies the profile being used-->
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1"/>
-    </meta>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1">
-     <valueDateTime value="2017-05-01"/>
-    </extension>
-    <identifier>
-     <system value="https://tools.ietf.org/html/rfc4122"/>
-     <value value="6b0b7066-c31d-48f7-ae3c-9f616728429b"/>
-    </identifier>
-    <status value="completed"/>
-    <code>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="444006004"/>
-      <display value="Quantitative measurement of calprotectin in stool specimen"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:29995d4a-1ba7-404d-b161-86670848675b"/>
-    </subject>
-    <performedDateTime value="2017-05-01"/>
-    <performer>
-     <actor>
-      <reference value="urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc"/>
-     </actor>
-    </performer>
-    <!--Reference to the condition which is the reason why this procedure has been performed-->
-    <reasonReference>
-     <reference value="urn:uuid:50141d4f-fe5a-4616-ab9e-9b0366333ea0"/>
-    </reasonReference>
-    <reasonReference>
-     <reference value="urn:uuid:0547e6bf-7205-4f78-82ef-99c69ac34def"/>
-    </reasonReference>
    </Procedure>
   </resource>
  </entry>
@@ -1523,8 +1522,8 @@
      <flag>
       <coding>
        <system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-       <code value="09"/>
-       <display value="Active"/>
+       <code value="04"/>
+       <display value="Addition"/>
       </coding>
      </flag>
      <item>
@@ -1622,27 +1621,9 @@
     <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EthnicCategory-1">
      <valueCodeableConcept>
       <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-EthnicCategory-1"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-EthnicCategory-1"/>
        <code value="CA"/>
        <display value="English"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ResidentialStatus-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ResidentialStatus-1"/>
-       <code value="H"/>
-       <display value="UK Resident"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-TreatmentCategory-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-TreatmentCategory-1"/>
-       <code value="8"/>
-       <display value="Not applicable"/>
       </coding>
      </valueCodeableConcept>
     </extension>
@@ -1650,7 +1631,7 @@
      <extension url="language">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-HumanLanguage-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-HumanLanguage-1"/>
         <code value="en"/>
         <display value="English"/>
        </coding>
@@ -1662,7 +1643,7 @@
      <extension url="modeOfCommunication">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityMode-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
         <code value="ESP"/>
         <display value="Expressed spoken"/>
        </coding>
@@ -1671,7 +1652,7 @@
      <extension url="modeOfCommunication">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityMode-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
         <code value="RWR"/>
         <display value="Received written"/>
        </coding>
@@ -1680,7 +1661,7 @@
      <extension url="communicationProficiency">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityProficiency-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityProficiency-1"/>
         <code value="E"/>
         <display value="Excellent"/>
        </coding>
@@ -1694,14 +1675,14 @@
      <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
         <code value="01"/>
         <display value="Number present and verified"/>
        </coding>
       </valueCodeableConcept>
      </extension>
      <system value="https://fhir.nhs.uk/Id/nhs-number"/>
-     <value value="124356789"/>
+     <value value="124 356 7890"/>
     </identifier>
     <identifier>
      <system value="https://fhir.nhs.uk/Id/local-patient-identifier"/>
@@ -1714,7 +1695,7 @@
      <given value="Agatha"/>
      <prefix value="Ms"/>
     </name>
-     <name>
+    <name>
      <use value="official"/>
      <family value="Critchard"/>
      <given value="Agatha"/>
@@ -1839,7 +1820,7 @@
     </organization>
     <code>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
       <code value="R0260"/>
       <display value="General Medical Practitioner"/>
      </coding>

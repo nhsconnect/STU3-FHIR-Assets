@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/GitHubRepo/ITK-FHIR-Outpatient-Letter/schemas/bundle.xsd">
  <id value="6191cc21-cb11-4d99-8cb2-2afe1c7e9d2f"/>
  <meta>
   <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
@@ -19,37 +19,7 @@
     <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-OPL-Composition-1"/>
     </meta>
-    <!-- Information Recipient 1 patient's GP -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:598a5239-fc65-46ed-94b2-9357ae08f6ef"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 2 - patient's mother-->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:2e1a0589-6c62-4592-84f2-8f845049d378"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 3 - patient's father-->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:b6e1c220-5c50-4b9a-aec1-8a96927b44d9"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 4 patient's Consultant orthopaedic physician -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:4e42a3ef-6ba8-4fc4-954b-792e21539d32"/>
-     </valueReference>
-    </extension>
-    <!-- Information Recipient 5 patient's Epilepsy nurse -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-InformationRecipient-1">
-     <valueReference>
-      <reference value="urn:uuid:9ef45ff1-d75c-4595-8812-1be366210688"/>
-     </valueReference>
-    </extension>
-    <!-- Care Setting Type -->
+    <!-- Extension to carry details of the Correspondence Care Setting Type. -->
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
      <valueCodeableConcept>
       <coding>
@@ -84,11 +54,37 @@
      <reference value="urn:uuid:7ed1b03c-47f9-43c8-8dd2-675819cd8aee"/>
     </author>
     <title value="Outpatient letter"/>
-    <!--The code specifying the level of confidentiality of the Composition.-->
-    <confidentiality value="V"/>
     <custodian>
      <reference value="urn:uuid:f725c91c-e4c2-43f2-b92e-0cba8deb9687"/>
     </custodian>
+    <!--Allergies and adverse reactions-->
+    <section>
+     <title value="Allergies and adverse reactions"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="886921000000105"/>
+       <display value="Allergies and adverse reactions"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Causative agent</th>
+          <td>No known drug allergies or adverse reactions</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--Reference to Allergies list-->
+     <entry>
+      <reference value="urn:uuid:c9219ccf-707d-4d78-99d3-800ff0d7c57c"/>
+     </entry>
+    </section>
     <!--Attendance details section-->
     <section>
      <title value="Attendance details"/>
@@ -100,7 +96,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -109,7 +105,7 @@
           </td>
          </tr>
          <tr>
-          <th>Date of appointment/contact</th>
+          <th>Date and time of contact</th>
           <td>01/05/2017</td>
          </tr>
          <tr>
@@ -122,7 +118,15 @@
          </tr>
          <tr>
           <th>Responsible healthcare professional</th>
-          <td>Dr. Arnold Rimmer</td>
+          <td>Dr. Arnold Rimmer (Consultant Paediatrician)</td>
+         </tr>
+         <tr>
+          <th>Specialty</th>
+          <td>Community paediatric service</td>
+         </tr>
+         <tr>
+          <th>Service</th>
+          <td>Community child health service</td>
          </tr>
          <tr>
           <th>Seen by</th>
@@ -151,17 +155,63 @@
        </table>
       </div>
      </text>
-     <orderedBy>
+    </section>
+    <!--Clinical summary-->
+    <section>
+     <title value="Clinical summary"/>
+     <code>
       <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
+       <system value="http://snomed.info/sct"/>
+       <code value="887181000000106"/>
+       <display value="Clinical summary"/>
       </coding>
-     </orderedBy>
-     <!--Reference to Encounter resource-->
-     <entry>
-      <reference value="urn:uuid:4f36b35a-ad18-4ea9-a3fb-c893f709e88a"/>
-     </entry>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Clinical Summary</th>
+         </tr>
+         <tr>
+          <td>
+           <p>Mary attended today for a scheduled review of tonic-clonic seizures and gastro-oesophageal reflux.</p>
+           <p>Mary has been well. However she is now having on average four tonic-clonic seizures a day. Her mother has had to give her rectal diazepam on two occasions but she has not needed to go to hospital. She had a PEG inserted in April 2017 and her reflux has reduced considerably since then. She has increasing spasticity of right hip and more frequent tonic-clonic convulsions.</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <section>
+     <title value="Clinical review of systems"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887121000000105"/>
+       <display value="Review of systems"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Clinical review of systems</th>
+         </tr>
+         <tr>
+          <td>
+           <p style="text-decoration:underline">Neurodevelopmental assessment</p>
+           <p>Mary can now sit unsupported for about 30 seconds. When lying prone she can draw her knees up underneath her but does not make any attempts to move. In clinic she was able to complete the circle and square form board but cannot do them reversed. She can say 10 words with meaning and her mother feels she can understand far more. She is able to finger feed and will drink from a cup if it is held for her. She is becoming more sociable and has a lovely smile.</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
     </section>
     <!--Diagnoses-->
     <section>
@@ -179,40 +229,33 @@
        <table>
         <tbody>
          <tr>
-          <th>Diagnosis/symptom</th>
+          <th>Diagnosis name</th>
           <td>Tonic-clonic seizures</td>
          </tr>
-          <tr>
-          <th>Diagnosis/symptom</th>
+         <tr>
+          <th>Diagnosis name</th>
           <td>Gastro-oesophageal reflux</td>
          </tr>
-          <tr>
-          <th>Diagnosis/symptom</th>
+         <tr>
+          <th>Diagnosis name</th>
           <td>Spastic quadriplegia secondary to birth asphyxia</td>
          </tr>
-          <tr>
-          <th>Diagnosis/symptom</th>
+         <tr>
+          <th>Diagnosis name</th>
           <td>Cortical visual impairment</td>
          </tr>
-          <tr>
-          <th>Diagnosis/symptom</th>
+         <tr>
+          <th>Diagnosis name</th>
           <td>Bilateral convergent squint</td>
          </tr>
-          <tr>
-          <th>Diagnosis/symptom</th>
+         <tr>
+          <th>Diagnosis name</th>
           <td>General learning difficulties</td>
          </tr>
-          </tbody>
+        </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to Condition resources-->
      <entry>
       <reference value="urn:uuid:8de990a9-8df5-492d-9e32-6516dccd8b07"/>
@@ -233,14 +276,14 @@
       <reference value="urn:uuid:153c3f48-9823-41ea-8b08-7db1c65181b6"/>
      </entry>
     </section>
-    <!--Problems and issues-->
+    <!--Distribution list-->
     <section>
-     <title value="Problems and issues"/>
+     <title value="Distribution list"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
-       <code value="887151000000100"/>
-       <display value="Problems and issues"/>
+       <code value="887261000000109"/>
+       <display value="Distribution list"/>
       </coding>
      </code>
      <text>
@@ -249,139 +292,110 @@
        <table width="100%">
         <tbody>
          <tr>
-          <th>Problems and issues</th>
-          <td>
-           <p>Increased tonic-clonic convulsions</p>
-           <p>Problems with transport to school</p>
-           <p>Increasingly tight right hip</p>
-          </td>
+          <th>Name</th>
+          <td>Sally Jones</td>
+         </tr>
+         <tr>
+          <th>Relationship to subject</th>
+          <td>Patient's mother</td>
          </tr>
         </tbody>
        </table>
-      </div>
-     </text>
-    </section>
-    <!--Clinical summary-->
-    <section>
-     <title value="Clinical summary"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887181000000106"/>
-       <display value="Clinical summary"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>Clinical Summary</th>
+          <th>Name</th>
+          <td>Ian Jones</td>
          </tr>
          <tr>
-          <td>
-           <p>Mary attended today for a scheduled review of tonic-clonic seizures and gastro-oesophageal reflux.</p>
-           <p>Mary has been well. However she is now having on average four tonic-clonic seizures a day. Her mother has had to give her rectal diazepam on two occasions but she has not needed to go to hospital. She had a PEG inserted in April 2017 and her reflux has reduced considerably since then. She has increasing spasticity of right hip and more frequent tonic-clonic convulsions.</p>
-          </td>
+          <th>Relationship to subject</th>
+          <td>Patient's father</td>
          </tr>
         </tbody>
        </table>
-      </div>
-     </text>
-    </section>
-    <!--Allergies and adverse reactions-->
-    <section>
-     <title value="Allergies and adverse reactions"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="886921000000105"/>
-       <display value="Allergies and adverse reactions"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>Allergy/adverse reaction</th>
-          <td>No known allergies or adverse reactions</td>
+          <th>Name</th>
+          <td>Dr C O'Reilly</td>
+         </tr>
+         <tr>
+          <th>Role</th>
+          <td>GP</td>
+         </tr>
+         <tr>
+          <th>Organisation</th>
+          <td>Canvas Health Centre - Organisation ID: A111111</td>
+         </tr>
+         <tr>
+          <th>Relationship to subject</th>
+          <td>GP</td>
+         </tr>
+        </tbody>
+       </table>
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Name</th>
+          <td>Dr Charlotte Worth</td>
+         </tr>
+         <tr>
+          <th>Role</th>
+          <td>Consultant Orthopaedic physician</td>
+         </tr>
+         <tr>
+          <th>Organisation</th>
+          <td>St. Crispin's Hospital - Organisation ID: RX0000</td>
+         </tr>
+         <tr>
+          <th>Relationship to subject</th>
+          <td>Patient's consultant</td>
+         </tr>
+        </tbody>
+       </table>
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Name</th>
+          <td>Philip Brown</td>
+         </tr>
+         <tr>
+          <th>Role</th>
+          <td>Epilepsy nurse</td>
+         </tr>
+         <tr>
+          <th>Organisation</th>
+          <td>St. Crispin's Hospital - Organisation ID: RX0000</td>
+         </tr>
+         <tr>
+          <th>Relationship to subject</th>
+          <td>Patient's Epilepsy nurse</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
-     <!--Reference to Allergies list-->
+     <!--Reference to the practitioner entries as recipients of information-->
      <entry>
-      <reference value="urn:uuid:c9219ccf-707d-4d78-99d3-800ff0d7c57c"/>
+      <reference value="urn:uuid:598a5239-fc65-46ed-94b2-9357ae08f6ef"/>
      </entry>
-    </section>
-    <!--Social context-->
-    <section>
-     <title value="Social context"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887051000000101"/>
-       <display value="Social context"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Educational history</th>
-         </tr>
-         <tr>
-          <td>Mary started at Greenacre School in September. She enjoys it and the teachers are pleased with her progress.  Her mother has been bringing her to school by car but this is becoming an increasing problem as due to recent changes at work she now has to start at 8:30 AM. Unfortunately Mary is not eligible for free school transport until she is five years old. The home-school liaison teacher is trying to come to an agreement with the local authority to enable Mary to use school transport.  The teacher for visual impairment has seen her in school and recommended that she use large print books and a magnifying glass.</td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
-    </section>
-    <section>
-     <title value="Clinical review of systems"/>
-     <code>
-      <coding>
-       <system value="http://snomed.info/sct"/>
-       <code value="887121000000105"/>
-       <display value="Review of systems"/>
-      </coding>
-     </code>
-     <text>
-      <status value="generated"/>
-      <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="100%">
-        <tbody>
-         <tr>
-          <th>Clinical review of systems</th>
-         </tr>
-         <tr>
-          <td>
-           <p style="text-decoration:underline">Neurodevelopmental assessment</p>
-           <p>Mary can now sit unsupported for about 30 seconds. When lying prone she can draw her knees up underneath her but does not make any attempts to move. In clinic she was able to complete the circle and square form board but cannot do them reversed. She can say 10 words with meaning and her mother feels she can understand far more. She is able to finger feed and will drink from a cup if it is held for her. She is becoming more sociable and has a lovely smile.</p>
-          </td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </text>
+     <entry>
+      <reference value="urn:uuid:4e42a3ef-6ba8-4fc4-954b-792e21539d32"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:9ef45ff1-d75c-4595-8812-1be366210688"/>
+     </entry>
+     <!--Reference to the related person entries as recipients of information-->
+     <entry>
+      <reference value="urn:uuid:2e1a0589-6c62-4592-84f2-8f845049d378"/>
+     </entry>
+     <entry>
+      <reference value="urn:uuid:b6e1c220-5c50-4b9a-aec1-8a96927b44d9"/>
+     </entry>
     </section>
     <!--Examination findings-->
     <section>
-     <title value="Examination findings"/>
+     <title value="Examination finding"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
@@ -402,13 +416,6 @@
        </table>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to Observations-->
      <entry>
       <reference value="urn:uuid:ac04d4bc-1827-4c91-afa0-dd6e3c1f69e2"/>
@@ -423,47 +430,46 @@
       <reference value="urn:uuid:c6476727-0eb2-4881-9ddd-5fe4fb36ea42"/>
      </entry>
     </section>
-    <!--Plan and requested actions-->
+    <!-- GP Practice-->
     <section>
-     <title value="Plan and requested actions"/>
+     <title value="GP practice"/>
      <code>
       <coding>
        <system value="http://snomed.info/sct"/>
-       <code value="887201000000105"/>
-       <display value="Plan and requested actions"/>
+       <code value="886711000000101"/>
+       <display value="GP practice details"/>
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>Actions for patient or their carer</th>
-          <td>Mrs. Jones to contact epilepsy nurse on 01226 730000 if she has and concerns regarding convulsions and medical change.</td>
+          <th>GP practice identifier</th>
+          <td>A111111</td>
          </tr>
          <tr>
-          <th>Actions for healthcare professionals</th>
-          <td>
-           <p>Request to orthopaedics for early appointment for advice on deteriorating right hip</p>
-           <p>Person responsible: Dr. Arnold Rimmer, Community Paediatrician 01/05/17</p>
-           <p>Status: Requested</p>
-           <br/>
-           <p>Letter of support to education regarding school transport</p>
-           <p>Person responsible: Dr. Arnold Rimmer, Community Paediatrician 01/05/17</p>
-           <p>Status: Requested</p>
-           <br/>
-           <p>Review medication with Sally's mother by telephone in two weeks.</p>
-           <p>Person responsible: Phil Brown, Epilepsy nurse</p>
-           <p>Status: Planned</p>
-           <br/>
-          </td>
+          <th>GP name</th>
+          <td>Dr C O'Reilly</td>
+         </tr>
+         <tr>
+          <th>GP practice details</th>
+          <td>Canvas Health Centre, 27, Acacia Road, BM9 6PM</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
+     <!--Reference to the Organisation entry as the source of information for this section-->
+     <entry>
+      <reference value="urn:uuid:48feca8e-92e9-45c1-afcf-1b4aabe72d0b"/>
+     </entry>
     </section>
+    <!-- History section information not provided-->
+    <!-- Information and advice given section information not provided-->
+    <!-- Investigation results section information not provided-->
+    <!-- Legal information section information not provided-->
     <!--Medication and medical devices-->
     <section>
      <title value="Medications and medical devices"/>
@@ -477,64 +483,103 @@
      <text>
       <status value="generated"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-       <table width="55%">
+       <table width="100%">
         <tbody>
          <tr>
-          <td colspan="2" style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter are included)</td>
+          <td style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter are included)</td>
+         </tr>
+        </tbody>
+       </table>
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Medication item</th>
+          <td>Medication name: Lamotrigine</td>
+          <td>Form: Dispersible tablets</td>
+          <td>Route: Via gastrostomy</td>
+          <td>Dose directions description: To be taken via gastrostomy at 10mg twice a day. Total dose daily quantity: 20mg</td>
          </tr>
          <tr>
-          <th>Medication name</th>
-          <td>Lamotrigine</td>
-         </tr>
-         <tr>
-          <th>Medication form</th>
-          <td>Dispersible tablets</td>
-         </tr>
-         <tr>
-          <th>Route</th>
-          <td>Via gastrostomy</td>
-         </tr>
-         <tr>
-          <th>Dose</th>
-          <td>10mg</td>
-         </tr>
-         <tr>
-          <th>Medication frequency</th>
-          <td>Twice a day</td>
+          <th>Course details</th>
+          <td colspan="4">Comment/recommendation: 14-day prescription provided, please provide a new prescription on parent's request.</td>
          </tr>
          <tr>
           <th>Medication change</th>
-          <td>Medication amended - Increase to 10mg twice daily. Date of change: 01/05/17</td>
-         </tr>
-         <tr>
-          <th>Reason for medication change</th>
-          <td>Increasing tonic-clonic convulsions</td>
-         </tr>
-         <tr>
-          <th>Medication recommendations</th>
-          <td>14-day prescription provided, please provide a new prescription on parent's request.</td>
-         </tr>
-         <tr>
-          <th>Total dose daily quantity</th>
-          <td>20mg</td>
+          <td>Status: Amended</td>
+          <td>Indication: Medication changed due to increasing tonic-clonic convulsions</td>
+          <td colspan="2">Comment: Medication amended - Increase to 10mg twice daily. Date of change: 01/05/17.</td>
          </tr>
         </tbody>
        </table>
        <br/>
       </div>
      </text>
-     <orderedBy>
-      <coding>
-       <system value="http://hl7.org/fhir/list-order"/>
-       <code value="system"/>
-       <display value="Sorted by System"/>
-      </coding>
-     </orderedBy>
      <!--Reference to Medication list-->
      <entry>
       <reference value="urn:uuid:fed28a5f-233b-4800-ac0a-0929f1b5d3be"/>
      </entry>
     </section>
+    <!-- Patient demographics-->
+    <section>
+     <title value="Patient demographics"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="886731000000109"/>
+       <display value="Patient demographics"/>
+      </coding>
+     </code>
+     <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Patient name</th>
+          <td>Miss Mary Jones</td>
+         </tr>
+         <tr>
+          <th>Patient preferred name</th>
+          <td>Mary Jones</td>
+         </tr>
+         <tr>
+          <th>Date of birth</th>
+          <td>1 February 2013</td>
+         </tr>
+         <tr>
+          <th>Gender</th>
+          <td>2 Female</td>
+         </tr>
+         <tr>
+          <th>NHS number</th>
+          <td>124 352 3190</td>
+         </tr>
+         <tr>
+          <th>Other identifier</th>
+          <td>TL56945</td>
+         </tr>
+         <tr>
+          <th>Patient address</th>
+          <td>31 Acacia Road, BM9 6PL</td>
+         </tr>
+         <tr>
+          <th>Relevant contacts</th>
+          <td>Sally Jones (Patient's mother) Email: sally@jones.net Tel: 077 1234 7777</td>
+         </tr>
+         <tr>
+          <th>Educational establishment</th>
+          <td>Greenacre School, Donaldstown DO5 6AA</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+     <!--reference to further information carried in the patient resource-->
+     <entry>
+      <reference value="urn:uuid:6c66c32f-655a-4b9c-9bb7-5ae31fc93010"/>
+     </entry>
+    </section>
+    <!--Person completing record section-->
     <section>
      <title value="Person completing record"/>
      <code>
@@ -558,6 +603,10 @@
           <td>Consultant Community Paediatrician</td>
          </tr>
          <tr>
+          <th>Grade</th>
+          <td>Not given</td>
+         </tr>
+         <tr>
           <th>Specialty</th>
           <td>Paediatrics</td>
          </tr>
@@ -577,6 +626,137 @@
        </table>
       </div>
      </text>
+     <!--reference to practitioner entry-->
+     <entry>
+      <reference value="urn:uuid:7ed1b03c-47f9-43c8-8dd2-675819cd8aee"/>
+     </entry>
+    </section>
+    <!--Plan and requested actions-->
+    <section>
+     <title value="Plan and requested actions"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887201000000105"/>
+       <display value="Plan and requested actions"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Actions for healthcare professionals</th>
+          <td>
+           <p>Request to orthopaedics for early appointment for advice on deteriorating right hip</p>
+           <p>Person responsible: Dr. Arnold Rimmer, Community Paediatrician 01/05/17</p>
+           <p>Status: Requested</p>
+           <br/>
+           <p>Letter of support to education regarding school transport</p>
+           <p>Person responsible: Dr. Arnold Rimmer, Community Paediatrician 01/05/17</p>
+           <p>Status: Requested</p>
+           <br/>
+           <p>Review medication with Sally's mother by telephone in two weeks.</p>
+           <p>Person responsible: Phil Brown, Epilepsy nurse</p>
+           <p>Status: Planned</p>
+           <br/>
+          </td>
+         </tr>
+         <tr>
+          <th>Actions for patient or their carer</th>
+          <td>Mrs. Jones to contact epilepsy nurse on 01226 730000 if she has and concerns regarding convulsions and medical change.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!--Problems and issues-->
+    <section>
+     <title value="Problems and issues"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887151000000100"/>
+       <display value="Problems and issues"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Problems and issues</th>
+          <td>
+           <p>Increased tonic-clonic convulsions</p>
+           <p>Problems with transport to school</p>
+           <p>Increasingly tight right hip</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!--Procedures section - no procedures given-->
+    <!--Referrer details-->
+    <section>
+     <title value="Referrer details"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="1052891000000108"/>
+       <display value="Referrer details"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Referrer Name</th>
+          <td>
+           <p>Name: Dr. C. O'Reilly</p>
+           <p>Role: GP</p>
+           <p>Grade: Not given</p>
+           <p>Organisation: Canvas Health Centre, 27 Acacia Road, BM9 6PM</p>
+           <p>Contact details: Tel (01234) 956412</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
+    </section>
+    <!-- Safety alerts section - no information given-->
+    <!--Social context-->
+    <section>
+     <title value="Social context"/>
+     <code>
+      <coding>
+       <system value="http://snomed.info/sct"/>
+       <code value="887051000000101"/>
+       <display value="Social context"/>
+      </coding>
+     </code>
+     <text>
+      <status value="additional"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+       <table width="100%">
+        <tbody>
+         <tr>
+          <th>Educational history</th>
+         </tr>
+         <tr>
+          <td>Mary started at Greenacre School in September. She enjoys it and the teachers are pleased with her progress.  Her mother has been bringing her to school by car but this is becoming an increasing problem as due to recent changes at work she now has to start at 8:30 AM. Unfortunately Mary is not eligible for free school transport until she is five years old. The home-school liaison teacher is trying to come to an agreement with the local authority to enable Mary to use school transport.  The teacher for visual impairment has seen her in school and recommended that she use large print books and a magnifying glass.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </text>
     </section>
    </Composition>
   </resource>
@@ -588,8 +768,17 @@
    <Encounter>
     <id value="4f36b35a-ad18-4ea9-a3fb-c893f709e88a"/>
     <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1"/>
+     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1"/>
     </meta>
+    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-OutcomeOfAttendance-1">
+     <valueCodeableConcept>
+      <coding>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-OutcomeOfAttendance-1"/>
+       <code value="3"/>
+       <display value="Appointment to be made at a later date"/>
+      </coding>
+     </valueCodeableConcept>
+    </extension>
     <identifier>
      <system value="https://tools.ietf.org/html/rfc4122"/>
      <value value="13c73015-d8fa-4844-8d68-4f856883eca8"/>
@@ -676,9 +865,9 @@
     <hospitalization>
      <dischargeDisposition>
       <coding>
-       <system value="http://hl7.org/fhir/discharge-disposition"/>
-       <code value="home"/>
-       <display value="Home"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1"/>
+       <code value="19"/>
+       <display value="Usual place of residence unless listed below, for example, a private dwelling whether owner occupied or owned by Local Authority, housing association or other landlord. This includes wardened accommodation but not residential accommodation where health care is provided. It also includes Patients with no fixed abode."/>
       </coding>
      </dischargeDisposition>
     </hospitalization>
@@ -772,7 +961,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -814,7 +1003,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -856,7 +1045,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -898,7 +1087,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -940,7 +1129,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -982,7 +1171,7 @@
     <verificationStatus value="confirmed"/>
     <category>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ConditionCategory-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
       <code value="diagnosis"/>
       <display value="Diagnosis"/>
      </coding>
@@ -1036,8 +1225,8 @@
      <flag>
       <coding>
        <system value="https://fhir.nhs.uk/medication-list-flag-code-1"/>
-       <code value="09"/>
-       <display value="Active"/>
+       <code value="02"/>
+       <display value="Amendment"/>
       </coding>
      </flag>
      <item>
@@ -1292,27 +1481,9 @@
     <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EthnicCategory-1">
      <valueCodeableConcept>
       <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-EthnicCategory-1"/>
+       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-EthnicCategory-1"/>
        <code value="CA"/>
        <display value="English"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ResidentialStatus-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-ResidentialStatus-1"/>
-       <code value="H"/>
-       <display value="UK Resident"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-TreatmentCategory-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CareConnect-TreatmentCategory-1"/>
-       <code value="8"/>
-       <display value="Not applicable"/>
       </coding>
      </valueCodeableConcept>
     </extension>
@@ -1320,7 +1491,7 @@
      <extension url="language">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-HumanLanguage-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-HumanLanguage-1"/>
         <code value="en"/>
         <display value="English"/>
        </coding>
@@ -1332,7 +1503,7 @@
      <extension url="modeOfCommunication">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityMode-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
         <code value="ESP"/>
         <display value="Expressed spoken"/>
        </coding>
@@ -1341,7 +1512,7 @@
      <extension url="modeOfCommunication">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityMode-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
         <code value="RSP"/>
         <display value="Received spoken"/>
        </coding>
@@ -1350,7 +1521,7 @@
      <extension url="communicationProficiency">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-LanguageAbilityProficiency-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityProficiency-1"/>
         <code value="P"/>
         <display value="Poor"/>
        </coding>
@@ -1364,14 +1535,14 @@
      <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
       <valueCodeableConcept>
        <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
         <code value="01"/>
         <display value="Number present and verified"/>
        </coding>
       </valueCodeableConcept>
      </extension>
      <system value="https://fhir.nhs.uk/Id/nhs-number"/>
-     <value value="124352319"/>
+     <value value="124 352 3190"/>
     </identifier>
     <identifier>
      <system value="https://fhir.nhs.uk/Id/local-patient-identifier"/>
@@ -1728,7 +1899,7 @@
     </organization>
     <code>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
       <code value="R0260"/>
       <display value="General Medical Practitioner"/>
      </coding>
@@ -1783,7 +1954,7 @@
     </organization>
     <code>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
       <code value="R0600"/>
       <display value="Specialist Nurse Practitioner"/>
      </coding>
@@ -1811,7 +1982,7 @@
     </practitioner>
     <code>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
       <code value="R0950"/>
       <display value="Occupational Therapist"/>
      </coding>
@@ -1832,7 +2003,7 @@
     </practitioner>
     <code>
      <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CareConnect-SDSJobRoleName-1"/>
+      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
       <code value="R1480"/>
       <display value="Healthcare Assistant"/>
      </coding>
