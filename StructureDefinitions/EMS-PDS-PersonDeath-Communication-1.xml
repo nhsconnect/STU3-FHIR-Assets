@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-16T11:20:00.948+00:00" />
+    <lastUpdated value="2018-03-29T13:22:42.648+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-PDS-PersonDeath-Communication-1" />
   <version value="1.0.0" />
@@ -17,7 +17,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="This Communication resource has been constrained to represent the information communicated as part of a PDS Person Death event message." />
+  <description value="This Communication resource has been constrained to represent the information communicated as part of a PDS Person Death event message, to support the Events Management Service project." />
   <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -339,11 +339,11 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Communication.extension:deathCauseComment">
+    <element id="Communication.extension:deathCauseInformation">
       <path value="Communication.extension" />
-      <sliceName value="deathCauseComment" />
-      <short value="Free text information on the cause of death of the person" />
-      <definition value="Free text information on the cause of death of the person." />
+      <sliceName value="deathCauseInformation" />
+      <short value="Information on the cause of death of the person" />
+      <definition value="information on the cause of death of the person" />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -356,50 +356,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseComment-1" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Communication.extension:deathCauseIdentificationMethod">
-      <path value="Communication.extension" />
-      <sliceName value="deathCauseIdentificationMethod" />
-      <short value="The source of information from which the cause of death was established" />
-      <definition value="Whether the death notification is formal or informal." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="DomainResource.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseIdentificationMethod-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCause-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -522,7 +479,7 @@
       <path value="Communication.identifier" />
       <short value="Unique identifier" />
       <definition value="Identifiers associated with this Communication that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation)." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Communication.identifier" />
@@ -6661,22 +6618,16 @@
         <rules value="open" />
       </slicing>
     </element>
-    <element id="Communication.extension:deathCauseComment">
+    <element id="Communication.extension:deathCauseInformation">
       <path value="Communication.extension" />
-      <sliceName value="deathCauseComment" />
+      <sliceName value="deathCauseInformation" />
+      <short value="Information on the cause of death of the person" />
+      <definition value="information on the cause of death of the person" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseComment-1" />
-      </type>
-    </element>
-    <element id="Communication.extension:deathCauseIdentificationMethod">
-      <path value="Communication.extension" />
-      <sliceName value="deathCauseIdentificationMethod" />
-      <max value="1" />
-      <type>
-        <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseIdentificationMethod-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCause-1" />
       </type>
     </element>
     <element id="Communication.extension:deathLocationType">
@@ -6690,7 +6641,6 @@
     </element>
     <element id="Communication.identifier">
       <path value="Communication.identifier" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Communication.identifier.system">

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/scratch/stu3/bundle.xsd">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3//bundle.xsd">
 	<id value="e19b2ec1-6c6b-4278-a0bb-cea2f4ecb917"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
 	</meta>
-	<identifier>
-		<system value="https://tools.ietf.org/html/rfc4122"/>
-		<value value="542a04b8-5ec0-4f02-9dfc-a67a3db15991"/>
-	</identifier>
 	<type value="message"/>
 	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
 	<entry>
@@ -42,7 +38,7 @@
 					<display value="NHS DIGITAL"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:833a9a73-8f86-4f04-9a68-362052b7dca6"/>
+					<reference value="urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e"/>
 				</focus>
 			</MessageHeader>
 		</resource>
@@ -80,10 +76,6 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
 				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="82346449-5b24-4460-8bc5-65765750addc"/>
-				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:786f6800-4a71-4b75-83c6-9aa6b27baf9a"/>
 					<display value="NHS DIGITAL"/>
@@ -100,63 +92,29 @@
 	</entry>
 	<!--Entry for communication for the event message, with reference to subject and payload-->
 	<entry>
-		<fullUrl value="urn:uuid:833a9a73-8f86-4f04-9a68-362052b7dca6"/>
+		<fullUrl value="urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e"/>
 		<resource>
 			<Communication>
-				<id value="833a9a73-8f86-4f04-9a68-362052b7dca6"/>
+				<id value="3a56ba02-785b-4f34-9282-d7129c8e134e"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"/>
 				</meta>
-				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathNotificationStatus-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathNotificationStatus-1"/>
-							<code value="2"/>
-							<display value="Formal - death notice received from Registrar of Deaths"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
-				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseComment-1">
-					<valueString value="Died of natural causes"/>
-				</extension>
-				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCauseIdentificationMethod-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathCauseIdentificationMethod-1"/>
-							<code value="1"/>
-							<display value="Death certificate"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
-				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathLocationType-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathLocationType-1"/>
-							<code value="10"/>
-							<display value="Hospital"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="87f1e085-a6cd-4725-8e39-7e10f685299c"/>
-				</identifier>
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+					<display value="JONES, Jack"/>
 				</subject>
-				<sent value="2018-02-01"/>
+				<sent value="2018-02-08"/>
 				<payload>
-					<contentReference>
+				<contentReference>
 						<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
-						<display value="DAWKINS, Jack"/>
+						<display value="JONES, Jack"/>
 					</contentReference>
 				</payload>
 			</Communication>
 		</resource>
 	</entry>
-	<!--Entry for communication for the Patient death-->
+	<!--Entry for Patient-->
 	<entry>
 		<fullUrl value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
 		<resource>
@@ -165,6 +123,15 @@
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
 				</meta>
+				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DeathNotificationStatus-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DeathNotificationStatus-1"/>
+							<code value="2"/>
+							<display value="Formal - death notice received from Registrar of Deaths"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
 				<identifier>
 					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
 						<valueCodeableConcept>
@@ -240,23 +207,42 @@
 	</entry>
 	<!--Entry for PDS death notification communication for the event message, with reference to subject-->
 	<entry>
-		<fullUrl value="urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e"/>
+		<fullUrl value="urn:uuid:833a9a73-8f86-4f04-9a68-362052b7dca6"/>
 		<resource>
 			<Communication>
-				<id value="3a56ba02-785b-4f34-9282-d7129c8e134e"/>
+				<id value="833a9a73-8f86-4f04-9a68-362052b7dca6"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/PDS-PersonDeath-Communication-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-PDS-PersonDeath-Communication-1"/>
 				</meta>
-				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="5888458b-cb6f-493d-9347-f24725808862"/>
-				</identifier>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCause-1">
+					<extension url="deathCauseComment">
+						<valueString value="Died of natural causes"/>
+					</extension>
+					<extension url="deathCauseIdentificationMethod">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathCauseIdentificationMethod-1"/>
+								<code value="1"/>
+								<display value="Death certificate"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+				</extension>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathLocationType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathLocationType-1"/>
+							<code value="10"/>
+							<display value="Hospital"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
 				<status value="completed"/>
 				<subject>
 					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
 					<display value="JONES, Jack"/>
 				</subject>
-				<sent value="2018-02-08"/>
+				<sent value="2018-02-01"/>
 			</Communication>
 		</resource>
 	</entry>
