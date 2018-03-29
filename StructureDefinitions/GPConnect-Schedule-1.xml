@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-26T09:28:25.036+01:00" />
+    <lastUpdated value="2018-02-22T10:36:57.378+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Schedule-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="GPConnect-Schedule-1" />
-  <status value="draft" />
+  <status value="active" />
   <date value="2017-10-23T14:08:25.701+01:00" />
   <publisher value="NHS Digital" />
   <contact>
@@ -328,6 +328,94 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Schedule.extension:practitionerRole">
+      <path value="Schedule.extension" />
+      <sliceName value="practitionerRole" />
+      <short value="An extension to record the role of the Practitioner of a scheduled Appointment" />
+      <definition value="An extension to record the role of the Practitioner of a scheduled Appointment." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-GPConnect-PractitionerRole-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Schedule.extension:deliveryChannel">
+      <path value="Schedule.extension" />
+      <sliceName value="deliveryChannel" />
+      <short value="An extension to record the delivery channel of a scheduled Appointment" />
+      <definition value="An extension to record the delivery channel of a scheduled Appointment." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-GPConnect-DeliveryChannel-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -1112,6 +1200,10 @@
         <label value="General" />
         <valueUri value="http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri" />
       </example>
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-schedule-identifier" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1646,7 +1738,7 @@
       <definition value="Whether this schedule record is in active use, or should not be used (such as was entered in error)." />
       <comment value="This element is labeled as a modifier because it may be used to mark that the resource was created in error." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Schedule.active" />
         <min value="0" />
@@ -1681,7 +1773,7 @@
       <definition value="A broad categorisation of the service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Schedule.serviceCategory" />
         <min value="0" />
@@ -2202,7 +2294,7 @@
       <definition value="The specific service that is to be performed during this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Schedule.serviceType" />
         <min value="0" />
@@ -2727,7 +2819,7 @@
       <definition value="The specialty of a practitioner that would be required to perform the service requested in this appointment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Schedule.specialty" />
         <min value="0" />
@@ -3257,31 +3349,11 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
-      </type>
-      <type>
-        <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
       </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-PractitionerRole-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Device-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3750,6 +3822,42 @@
     </element>
   </snapshot>
   <differential>
+    <element id="Schedule.extension">
+      <path value="Schedule.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Schedule.extension:practitionerRole">
+      <path value="Schedule.extension" />
+      <sliceName value="practitionerRole" />
+      <short value="An extension to record the role of the Practitioner of a scheduled Appointment" />
+      <definition value="An extension to record the role of the Practitioner of a scheduled Appointment." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-GPConnect-PractitionerRole-1" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Schedule.extension:deliveryChannel">
+      <path value="Schedule.extension" />
+      <sliceName value="deliveryChannel" />
+      <short value="An extension to record the delivery channel of a scheduled Appointment" />
+      <definition value="An extension to record the delivery channel of a scheduled Appointment." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-GPConnect-DeliveryChannel-1" />
+      </type>
+      <mustSupport value="true" />
+    </element>
     <element id="Schedule.identifier.use">
       <path value="Schedule.identifier.use" />
       <max value="0" />
@@ -3761,6 +3869,10 @@
     <element id="Schedule.identifier.system">
       <path value="Schedule.identifier.system" />
       <min value="1" />
+      <example>
+        <label value="General" />
+        <valueUri value="https://fhir.nhs.uk/Id/gpconnect-schedule-identifier" />
+      </example>
     </element>
     <element id="Schedule.identifier.value">
       <path value="Schedule.identifier.value" />
@@ -3774,16 +3886,24 @@
       <path value="Schedule.identifier.assigner" />
       <max value="0" />
     </element>
+    <element id="Schedule.active">
+      <path value="Schedule.active" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.serviceCategory">
+      <path value="Schedule.serviceCategory" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.serviceType">
+      <path value="Schedule.serviceType" />
+      <max value="0" />
+    </element>
+    <element id="Schedule.specialty">
+      <path value="Schedule.specialty" />
+      <max value="1" />
+    </element>
     <element id="Schedule.actor">
       <path value="Schedule.actor" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/HealthcareService" />
-      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Location-1" />
@@ -3791,18 +3911,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-PractitionerRole-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/GPConnect-Device-1" />
       </type>
     </element>
     <element id="Schedule.planningHorizon.start">

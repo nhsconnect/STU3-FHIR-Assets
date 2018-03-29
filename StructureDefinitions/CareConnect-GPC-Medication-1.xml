@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-10-16T14:16:26.021+01:00" />
+    <lastUpdated value="2018-03-06T11:02:48.591+00:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
@@ -9,7 +9,7 @@
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1" />
   <version value="1.0.0" />
   <name value="CareConnect-GPC-Medication-1" />
-  <status value="draft" />
+  <status value="active" />
   <date value="2017-07-07T13:45:22.5627823+01:00" />
   <publisher value="HL7 UK" />
   <description value="This Medication Resource is primarily used for the identification and definition of a medication." />
@@ -386,7 +386,7 @@
       <short value="Codes that identify this medication" />
       <definition value="A code (or set of codes) that specify this medication, or a textual description if no code is available. Usage note: This could be a standard medication code such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or local formulary code, optionally with translations to other code systems." />
       <comment value="Depending on the context of use, the code that was actually selected by the user (prescriber, dispenser, etc.) will have the coding.userSelected set to true.  As described in the coding datatype: &quot;A coding may be marked as a &quot;userSelected&quot; if a user selected the particular coded value in a user interface (e.g. the user selects an item in a pick-list). If a user selected coding exists, it is the preferred choice for performing translations etc." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Medication.code" />
@@ -409,10 +409,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationFormalRepresentation" />
         </extension>
-        <strength value="example" />
-        <description value="A coded concept that defines the type of a medication" />
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication from the VTM/VMP/VMPP/AMP/AMPP subsets from the dm+d terminology" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/medication-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationCode-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -633,6 +633,49 @@
       </base>
       <type>
         <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Medication.code.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1286,7 +1329,7 @@
     </element>
     <element id="Medication.form">
       <path value="Medication.form" />
-      <short value="powder | tablets | capsule +" />
+      <short value="Codes that describe a medication dose form" />
       <definition value="Describes the form of the item.  Powder; tablets; capsule." />
       <comment value="When Medication is referenced from MedicationRequest, this is the ordered form.  When Medication is referenced within MedicationDispense, this is the dispensed form.  When Medication is referenced within MedicationAdministration, this is administered form." />
       <min value="0" />
@@ -1311,10 +1354,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="MedicationForm" />
         </extension>
-        <strength value="example" />
-        <description value="A coded concept defining the form of a medication" />
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication dose form" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/medication-form-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationForm-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -1531,6 +1574,49 @@
       </base>
       <type>
         <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Medication.form.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.form.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4784,11 +4870,75 @@
     </element>
   </snapshot>
   <differential>
+    <element id="Medication.code">
+      <path value="Medication.code" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationFormalRepresentation" />
+        </extension>
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication from the VTM/VMP/VMPP/AMP/AMPP subsets from the dm+d terminology" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationCode-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Medication.code.coding.extension">
+      <path value="Medication.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Medication.code.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
     <element id="Medication.manufacturer">
       <path value="Medication.manufacturer" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
+      </type>
+    </element>
+    <element id="Medication.form">
+      <path value="Medication.form" />
+      <short value="Codes that describe a medication dose form" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationForm" />
+        </extension>
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication dose form" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationForm-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Medication.form.coding.extension">
+      <path value="Medication.form.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Medication.form.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.form.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
       </type>
     </element>
     <element id="Medication.ingredient.item[x]">
