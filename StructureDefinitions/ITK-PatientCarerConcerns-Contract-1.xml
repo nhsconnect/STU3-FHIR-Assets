@@ -1,15 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="Contract" />
   <meta>
-    <lastUpdated value="2017-11-08T16:39:45.937+00:00" />
+    <lastUpdated value="2017-10-24T10:54:59.952+01:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-LPoA-Contract-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-PatientCarerConcerns-Contract-1" />
   <version value="0.0.1" />
-  <name value="ITK-LPoA-Contract-1" />
-  <title value="Lasting Power of Attorney Contract" />
+  <name value="ITK-PatientCarerConcerns-Contract-1" />
+  <title value="ITK Patient or Carer Concerns Contract" />
   <status value="draft" />
-  <date value="2017-10-19T12:44:21.537+01:00" />
+  <date value="2017-10-19T13:23:51.93+01:00" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -19,9 +18,9 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="An NHS Digital profile for recording the Lasting Power of Attorney details." />
-  <purpose value="An NHS Digital profile for recording the Lasting Power of Attorney details." />
-  <copyright value="Copyright © 2017 Health and Social Care Information Centre.  NHS Digital is the trading name of the Health and Social Care Information Centre." />
+  <description value="This Contract resource is constrained to carry the written requests and preferences made by a person with capacity conveying their wishes, beliefs and values for their future care should they lose capacity. " />
+  <purpose value="A Contract resource is constrained to carry the written requests and preferences made by a person with capacity conveying their wishes, beliefs and values for their future care should they lose capacity. " />
+  <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -411,7 +410,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -523,7 +521,7 @@
       <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary." />
       <requirements value="Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.use" />
         <min value="0" />
@@ -572,7 +570,7 @@
       <comment value="This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage. &#xA;&#xA;Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type." />
       <requirements value="Allows users to make use of identifiers when the identifier system is not known." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.type" />
         <min value="0" />
@@ -844,7 +842,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -927,7 +925,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -972,7 +970,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -1101,8 +1099,8 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Identifier.system" />
         <min value="0" />
@@ -1168,7 +1166,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -1193,7 +1190,7 @@
       <definition value="Time period during which identifier is/was valid for use." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.period" />
         <min value="0" />
@@ -1404,7 +1401,7 @@
       <definition value="Organization that issued/manages the identifier." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.assigner" />
         <min value="0" />
@@ -1412,7 +1409,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1534,7 +1531,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -1668,7 +1665,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isModifier value="true" />
       <isSummary value="true" />
       <binding>
@@ -1712,7 +1708,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -1761,7 +1756,6 @@
         <expression value="start.empty() or end.empty() or (start &lt;= end)" />
         <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -1882,7 +1876,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -1922,7 +1915,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -1970,7 +1962,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -2071,7 +2062,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Contract.subject.reference">
+    <element id="subject.reference">
       <path value="Contract.subject.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -2095,7 +2086,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -2202,7 +2192,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-LPoA-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-PatientCarerConcerns-Observation-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -2219,7 +2209,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -2316,7 +2305,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Contract.topic.reference">
+    <element id="topic.reference">
       <path value="Contract.topic.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -2340,7 +2329,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -2446,7 +2434,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -2559,7 +2547,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -2797,7 +2785,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -2936,7 +2924,7 @@
           <valueString value="ContractType" />
         </extension>
         <strength value="required" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system which represent the type of contract." />
+        <description value="Code taken from SNOMED CT to represent an Advance statement" />
         <valueSetUri value="http://snomed.info/sct" />
       </binding>
       <mapping>
@@ -3062,7 +3050,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -3196,7 +3183,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -3272,7 +3258,7 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="826541000000102" />
+      <fixedCode value="1064491000000109" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3281,7 +3267,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -3319,7 +3304,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Power of attorney and legal guardianship record" />
+      <fixedString value="Advance statement" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3328,7 +3313,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -3416,7 +3400,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -4617,7 +4600,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -6399,7 +6382,7 @@
       <comment value="Several agents may be associated (i.e. has some responsibility for an activity) with an activity and vice-versa.&#xD;For example, in cases of actions initiated by one user for other users, or in events that involve more than one user, hardware device, software, or system process. However, only one user may be the initiator/requestor for the event." />
       <requirements value="An agent can be a person, an organization, software, device, or other entities that may be ascribed responsibility." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.agent" />
         <min value="0" />
@@ -6557,6 +6540,10 @@
       </base>
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Contract" />
+      </type>
+      <type>
+        <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
       </type>
       <type>
@@ -6569,27 +6556,23 @@
       </type>
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+      </type>
+      <type>
+        <code value="Reference" />
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-LPoA-Contract-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6606,7 +6589,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6707,7 +6689,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -7087,7 +7069,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -7170,7 +7152,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -7215,7 +7197,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -7348,7 +7330,7 @@
       <comment value="Signers who are principal parties to the contract are bound by the Contract.activity related to the Contract.topic, and the Contract.term(s), which either extend or restrict the overall action on the topic by, for example, stipulating specific policies or obligations constraining actions, action reason, or agents with respect to some or all of the topic.&#xD;For example, specifying how policies or obligations shall constrain actions and action reasons permitted or denied on all or a subset of the Contract.topic (e.g., all or a portion of property being transferred by the contract), agents (e.g., who can resell, assign interests, or alter the property being transferred by the contract), actions, and action reasons; or with respect to Contract.terms, stipulating, extending, or limiting the Contract.period of applicability or valuation of items under consideration." />
       <requirements value="The Contract.signer applies a signature to the Contract.binding referenced resource, which is the documentation that is the legal &quot;source of truth&quot;. The Contract.signer may delegate, such as a legally recognized personal representative, or have a delegate assigned e.g., by a court of law, to actually sign the Contract, such as a trustee in the case of incompetence." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.signer" />
         <min value="0" />
@@ -7515,7 +7497,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <mustSupport value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ContractSignerType" />
@@ -7851,19 +7832,19 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7880,7 +7861,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -7977,7 +7957,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -8588,23 +8568,23 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -8638,23 +8618,23 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -11915,7 +11895,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -11998,7 +11978,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -12043,7 +12023,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -12172,7 +12152,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -12217,7 +12197,7 @@
       <short value="The value that is unique" />
       <definition value="The portion of the identifier typically relevant to the user and which is unique within the context of the system." />
       <comment value="If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.  The value's primary purpose is computational mapping.  As a result, it may be normalized for comparison purposes (e.g. removing non-significant whitespace, dashes, etc.)  A value formatted for human display can be conveyed using the [Rendered Value extension](extension-rendered-value.html)." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Identifier.value" />
@@ -12482,7 +12462,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -12599,12 +12579,12 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Contract.term.identifier.assigner.reference">
+    <element id="assigner.reference">
       <path value="Contract.term.identifier.assigner.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -12752,7 +12732,7 @@
       <definition value="Relevant time or time-period when this Contract Provision is applicable." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Contract.term.applies" />
         <min value="0" />
@@ -12955,7 +12935,7 @@
       <definition value="Type of Contract Provision such as specific requirements, purposes for actions, obligations, prohibitions, e.g. life time maximum benefit." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Contract.term.type" />
         <min value="0" />
@@ -13476,7 +13456,7 @@
       <definition value="Subtype of this Contract Provision, e.g. life time maximum payment for a contract term for specific valued item, e.g. disability payment." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Contract.term.subType" />
         <min value="0" />
@@ -13998,7 +13978,7 @@
       <comment value="The Contract.term.topic, as a Contract Resource subpart, is handled in the same manner as the Contract Resource as discussed above." />
       <requirements value="A contract term topic is typically about a portion of the contract topic which has additional or specialized rights, privileges, obligations, restrictions, and prohibitions that are binding on any grantor and grantee parties upon the execution of the contract. &#xD;Contract.term.topic may be described in more detail in the [0..*] Contract.term.valuedItem @[0..1] Contract.term.valuedItem [x] Definition: Specific type of Contract Provision Valued Item that may be priced. CodeableConcept|Reference(Any) [See Contract.topic Requirements for further elaboration on this requirement.]." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.topic" />
         <min value="0" />
@@ -14236,7 +14216,7 @@
       <definition value="Action stipulated by this Contract Provision." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.action" />
         <min value="0" />
@@ -14757,7 +14737,7 @@
       <definition value="Reason or purpose for the action stipulated by this Contract Provision." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.actionReason" />
         <min value="0" />
@@ -15278,7 +15258,7 @@
       <definition value="A set of security labels that define which terms are controlled by this condition." />
       <comment value="Codes may be defined very casually in enumerations or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.securityLabel" />
         <min value="0" />
@@ -15630,7 +15610,7 @@
       <comment value="Several agents may be associated (i.e. has some responsibility for an activity) with an activity and vice-versa.&#xD;For example, in cases of actions initiated by one user for other users, or in events that involve more than one user, hardware device, software, or system process. However, only one user may be the initiator/requestor for the event." />
       <requirements value="An agent can be a person, an organization, software, device, or other entities that may be ascribed responsibility." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.agent" />
         <min value="0" />
@@ -16573,7 +16553,7 @@
       <short value="Human readable Contract term text" />
       <definition value="Human readable form of this Contract Provision." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Contract.term.text" />
@@ -16604,7 +16584,7 @@
       <short value="Contract Term Valued Item List" />
       <definition value="Contract Provision Valued Item List." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.valuedItem" />
         <min value="0" />
@@ -19172,7 +19152,7 @@
       <short value="Nested Contract Term Group" />
       <definition value="Nested group of Contract Provisions." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Contract.term.group" />
         <min value="0" />
@@ -19215,7 +19195,6 @@
         <expression value="data.empty() or contentType.exists()" />
         <xpath value="not(exists(f:data)) or exists(f:contentType)" />
       </constraint>
-      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -19385,8 +19364,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Contract.friendly.content[x]">
-      <path value="Contract.friendly.content[x]" />
+    <element id="Contract.friendly.content[x]:contentAttachment">
+      <path value="Contract.friendly.contentAttachment" />
+      <sliceName value="contentAttachment" />
       <short value="Easily comprehended representation of this Contract" />
       <definition value="Human readable rendering of this Contract in a format and representation intended to enhance comprehension and ensure understandability." />
       <comment value="When providing a summary view (for example with Observation.value[x]) Attachment should be represented with a brief display text such as &quot;Attachment&quot;." />
@@ -19399,18 +19379,6 @@
       </base>
       <type>
         <code value="Attachment" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Composition" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -19596,8 +19564,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Contract.legal.content[x]">
-      <path value="Contract.legal.content[x]" />
+    <element id="Contract.legal.content[x]:contentAttachment">
+      <path value="Contract.legal.contentAttachment" />
+      <sliceName value="contentAttachment" />
       <short value="Contract Legal Text" />
       <definition value="Contract legal text in human renderable form." />
       <comment value="When providing a summary view (for example with Observation.value[x]) Attachment should be represented with a brief display text such as &quot;Attachment&quot;." />
@@ -19610,18 +19579,6 @@
       </base>
       <type>
         <code value="Attachment" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Composition" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -19860,56 +19817,47 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Contract.identifier">
-      <path value="Contract.identifier" />
-      <mustSupport value="true" />
+    <element id="Contract.identifier.type.coding.system">
+      <path value="Contract.identifier.type.coding.system" />
+      <min value="1" />
     </element>
-    <element id="Contract.identifier.use">
-      <path value="Contract.identifier.use" />
-      <max value="0" />
+    <element id="Contract.identifier.type.coding.code">
+      <path value="Contract.identifier.type.coding.code" />
+      <min value="1" />
     </element>
-    <element id="Contract.identifier.type">
-      <path value="Contract.identifier.type" />
-      <max value="0" />
+    <element id="Contract.identifier.type.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Contract.identifier.type.coding.display" />
+      <min value="1" />
     </element>
     <element id="Contract.identifier.system">
       <path value="Contract.identifier.system" />
-      <max value="0" />
+      <min value="1" />
     </element>
     <element id="Contract.identifier.value">
       <path value="Contract.identifier.value" />
       <min value="1" />
-      <mustSupport value="true" />
-    </element>
-    <element id="Contract.identifier.period">
-      <path value="Contract.identifier.period" />
-      <max value="0" />
     </element>
     <element id="Contract.identifier.assigner">
       <path value="Contract.identifier.assigner" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="Contract.identifier.assigner.reference">
+      <path value="Contract.identifier.assigner.reference" />
+      <min value="1" />
     </element>
     <element id="Contract.status">
       <path value="Contract.status" />
       <fixedCode value="executed" />
-      <mustSupport value="true" />
-    </element>
-    <element id="Contract.issued">
-      <path value="Contract.issued" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.applies">
       <path value="Contract.applies" />
       <min value="1" />
-      <mustSupport value="true" />
-    </element>
-    <element id="Contract.applies.start">
-      <path value="Contract.applies.start" />
-      <mustSupport value="true" />
-    </element>
-    <element id="Contract.applies.end">
-      <path value="Contract.applies.end" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.subject">
       <path value="Contract.subject" />
@@ -19919,34 +19867,42 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
-      <mustSupport value="true" />
     </element>
-    <element id="Contract.subject.reference">
+    <element id="subject.reference">
       <path value="Contract.subject.reference" />
       <min value="1" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.topic">
       <path value="Contract.topic" />
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-LPoA-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-PatientCarerConcerns-Observation-1" />
       </type>
-      <mustSupport value="true" />
     </element>
-    <element id="Contract.topic.reference">
+    <element id="topic.reference">
       <path value="Contract.topic.reference" />
       <min value="1" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.authority">
       <path value="Contract.authority" />
       <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="Contract.authority.reference">
+      <path value="Contract.authority.reference" />
+      <min value="1" />
     </element>
     <element id="Contract.domain">
       <path value="Contract.domain" />
       <max value="0" />
+    </element>
+    <element id="Contract.domain.reference">
+      <path value="Contract.domain.reference" />
+      <min value="1" />
     </element>
     <element id="Contract.type">
       <path value="Contract.type" />
@@ -19956,7 +19912,7 @@
           <valueString value="ContractType" />
         </extension>
         <strength value="required" />
-        <description value="A code from the SNOMED Clinical Terminology UK coding system which represent the type of contract." />
+        <description value="Code taken from SNOMED CT to represent an Advance statement" />
         <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
@@ -19964,13 +19920,11 @@
       <path value="Contract.type.coding" />
       <min value="1" />
       <max value="1" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.type.coding.system">
       <path value="Contract.type.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.type.coding.version">
       <path value="Contract.type.coding.version" />
@@ -19979,8 +19933,7 @@
     <element id="Contract.type.coding.code">
       <path value="Contract.type.coding.code" />
       <min value="1" />
-      <fixedCode value="826541000000102" />
-      <mustSupport value="true" />
+      <fixedCode value="1064491000000109" />
     </element>
     <element id="Contract.type.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -19988,8 +19941,7 @@
       </extension>
       <path value="Contract.type.coding.display" />
       <min value="1" />
-      <fixedString value="Power of attorney and legal guardianship record" />
-      <mustSupport value="true" />
+      <fixedString value="Advance statement" />
     </element>
     <element id="Contract.type.coding.userSelected">
       <path value="Contract.type.coding.userSelected" />
@@ -20001,7 +19953,6 @@
       </extension>
       <path value="Contract.type.text" />
       <max value="0" />
-      <mustSupport value="true" />
     </element>
     <element id="Contract.subType">
       <path value="Contract.subType" />
@@ -20015,10 +19966,6 @@
       <path value="Contract.actionReason" />
       <max value="0" />
     </element>
-    <element id="Contract.actionReason.coding">
-      <path value="Contract.actionReason.coding" />
-      <max value="1" />
-    </element>
     <element id="Contract.decisionType">
       <path value="Contract.decisionType" />
       <max value="0" />
@@ -20031,121 +19978,42 @@
       <path value="Contract.securityLabel" />
       <max value="0" />
     </element>
-    <element id="Contract.agent.actor">
-      <path value="Contract.agent.actor" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Location" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-LPoA-Contract-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <mustSupport value="true" />
+    <element id="Contract.agent">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Agent" />
+      </extension>
+      <path value="Contract.agent" />
+      <max value="0" />
     </element>
-    <element id="Contract.signer.type">
-      <path value="Contract.signer.type" />
-      <mustSupport value="true" />
+    <element id="Contract.agent.actor.reference">
+      <path value="Contract.agent.actor.reference" />
+      <min value="1" />
     </element>
-    <element id="Contract.signer.party">
-      <path value="Contract.signer.party" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <mustSupport value="true" />
+    <element id="Contract.agent.role.coding.system">
+      <path value="Contract.agent.role.coding.system" />
+      <min value="1" />
     </element>
-    <element id="Contract.signer.signature.who[x]">
-      <path value="Contract.signer.signature.who[x]" />
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
-      </type>
+    <element id="Contract.agent.role.coding.code">
+      <path value="Contract.agent.role.coding.code" />
+      <min value="1" />
     </element>
-    <element id="Contract.signer.signature.onBehalfOf[x]">
-      <path value="Contract.signer.signature.onBehalfOf[x]" />
-      <type>
-        <code value="uri" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
-      </type>
+    <element id="Contract.agent.role.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Contract.agent.role.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Contract.signer">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Signatory" />
+      </extension>
+      <path value="Contract.signer" />
+      <max value="0" />
+    </element>
+    <element id="Contract.signer.party.reference">
+      <path value="Contract.signer.party.reference" />
+      <min value="1" />
     </element>
     <element id="Contract.valuedItem">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
@@ -20161,13 +20029,96 @@
       <path value="Contract.term" />
       <max value="0" />
     </element>
+    <element id="Contract.term.identifier.type.coding.system">
+      <path value="Contract.term.identifier.type.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.identifier.type.coding.code">
+      <path value="Contract.term.identifier.type.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.identifier.type.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Contract.term.identifier.type.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.identifier.system">
+      <path value="Contract.term.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.identifier.value">
+      <path value="Contract.term.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.identifier.assigner">
+      <path value="Contract.term.identifier.assigner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="assigner.reference">
+      <path value="Contract.term.identifier.assigner.reference" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.applies">
+      <path value="Contract.term.applies" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.type">
+      <path value="Contract.term.type" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.subType">
+      <path value="Contract.term.subType" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.topic">
+      <path value="Contract.term.topic" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.action">
+      <path value="Contract.term.action" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.actionReason">
+      <path value="Contract.term.actionReason" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.securityLabel">
+      <path value="Contract.term.securityLabel" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.agent">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="TermAgent" />
+      </extension>
+      <path value="Contract.term.agent" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.text">
+      <path value="Contract.term.text" />
+      <min value="1" />
+    </element>
+    <element id="Contract.term.valuedItem">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="TermValuedItem" />
+      </extension>
+      <path value="Contract.term.valuedItem" />
+      <max value="0" />
+    </element>
+    <element id="Contract.term.group">
+      <path value="Contract.term.group" />
+      <max value="0" />
+    </element>
     <element id="Contract.binding[x]:bindingAttachment">
       <path value="Contract.bindingAttachment" />
       <sliceName value="bindingAttachment" />
       <type>
         <code value="Attachment" />
       </type>
-      <mustSupport value="true" />
     </element>
     <element id="Contract.friendly">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
@@ -20176,12 +20127,26 @@
       <path value="Contract.friendly" />
       <max value="0" />
     </element>
+    <element id="Contract.friendly.content[x]:contentAttachment">
+      <path value="Contract.friendly.contentAttachment" />
+      <sliceName value="contentAttachment" />
+      <type>
+        <code value="Attachment" />
+      </type>
+    </element>
     <element id="Contract.legal">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
         <valueString value="LegalLanguage" />
       </extension>
       <path value="Contract.legal" />
       <max value="0" />
+    </element>
+    <element id="Contract.legal.content[x]:contentAttachment">
+      <path value="Contract.legal.contentAttachment" />
+      <sliceName value="contentAttachment" />
+      <type>
+        <code value="Attachment" />
+      </type>
     </element>
     <element id="Contract.rule">
       <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
