@@ -26,16 +26,16 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="Allergies and Adverse Reactions"/>
-					<display value="Allergies and Adverse Reactions"/>
+					<code value="CH008"/>
+					<display value="Conditions / Diagnoses"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -43,30 +43,30 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible org-->
+<!--Responsible for message content (Birth)-->
 	<entry>
-		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
-				<id value="48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="X26"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="NHS DIGITAL"/>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				<address>
-					<line value="1 TREVELYAN SQUARE"/>
-					<line value="BOAR LANE"/>
-					<city value="LEEDS"/>
-					<district value="WEST YORKSHIRE"/>
-					<postalCode value="LS1 6AE"/>
+					<line value="NORTH ROAD"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH1 5TW"/>
 				</address>
 			</Organization>
 		</resource>
 	</entry>
+	
 	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
@@ -74,26 +74,30 @@
 			<HealthcareService>
 				<id value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
 					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				</identifier>
 				<providedBy>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
 				</providedBy>
-				<type>
+				<specialty>
 					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="M03"/>
-						<display value="General Medical Practitioner"/>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
+						<code value="180"/>
+						<display value="ACCIDENT &amp; EMERGENCY"/>
 					</coding>
-				</type>
+				</specialty>
+				<location>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				</location>
 			</HealthcareService>
 		</resource>
 	</entry>
+	
 	<!--Who the patient (child) is-->
 	<entry>
 		<fullUrl value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
@@ -113,13 +117,6 @@
 							</coding>
 						</valueCodeableConcept>
 					</extension>
-					<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
-						<valueAddress>
-							<city value="LEEDS"/>
-							<district value="West Yorkshire"/>
-							<country value="UK"/>
-						</valueAddress>
-					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
 					<value value="9912003888"/>
 				</identifier>
@@ -131,11 +128,11 @@
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
 					<period>
-						<start value="2018-02-01"/>
+						<start value="2017-10-12"/>
 					</period>
 				</name>
 				<gender value="male"/>
-				<birthDate value="2017-10-02">
+				<birthDate value="2017-10-12">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
 					</extension>
@@ -143,36 +140,29 @@
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
-					<city value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<city value="DURHAM"/>
+					<postalCode value="DH1 2TF"/>
 				</address>
 			</Patient>
 		</resource>
 	</entry>
 	<!--Encounter details-->
 	<entry>
-		<fullUrl value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+		<fullUrl value="urn:12779557-9033-4213-876f-69a670cdf35d"/>
 		<resource>
 			<Encounter>
-				<id value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+					<value value="94ef4041-42f0-4e7a-946e-18e908d43404"/>
 				</identifier>
 				<status value="finished"/>
-				<type>
-					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-						<code value="Conditions or Diagnoses"/>
-						<display value="Conditions or Diagnoses"/>
-					</coding>
-				</type>
 				<subject>
 					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
-					<display value="SAXTON, Sarah Marie"/>
+					<display value="DWKINS, Jack"/>
 				</subject>
 				<participant>
 					<type>
@@ -184,7 +174,7 @@
 					</type>
 					<individual>
 						<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-						<display value="JONES, Bob (Dr.)"/>
+						<display value="McCoy, Leonard (Dr.)"/>
 					</individual>
 				</participant>
 				<period>
@@ -192,13 +182,13 @@
 				</period>
 				<location>
 					<location>
-						<reference value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+						<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 					</location>
 				</location>
 				<serviceProvider>
 					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
@@ -210,24 +200,20 @@
 			<Condition>
 			<id value="12a254e5-deb6-4efd-9bb1-36d286115819"/>
 			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-FetalDiagnosis-Condition-1"/>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Diagnosis-Condition-1"/>
 			</meta>
-			<identifier>
-				<system value="TODO"/>
-				<value value="TODO"/>
-			</identifier>
 			<category>
 				<coding>
-					<system value="TODO"/>
-					<code value="TODO"/>
-					<display value="TODO"/>
+					<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
+					<code value="diagnosis"/>
+					<display value="Diagnosis"/>
 				</coding>
 			</category>
 			<code>
 				<coding>
 					<system value="http://snomed.info/sct"/>
-					<code value="TODO"/>
-					<display value="TODO"/>
+					<code value="195967001"/>
+					<display value="Asthma (disorder)"/>
 				</coding>
 			</code>
 			<subject>
@@ -239,35 +225,41 @@
 			</Condition>		
 		</resource>
 	</entry>
-	<!--Review this. Condition seems light on content.-->
+	
+	
+<!--Condition/Diagnoses. Needs review due to problem codes not being suitable.-->
 	<entry>
-		<fullUrl value="urn:uuid:a9732444-54a4-4eaf-a1f8-9324f8e70f11"/>
+		<fullUrl value="urn:uuid:f74658b4-f667-4385-9b6f-7c4305b4f743"/>
 		<resource>
 			<Condition>
-			<id value="a9732444-54a4-4eaf-a1f8-9324f8e70f11"/>
+			<id value="12a254e5-deb6-4efd-9bb1-36d286115819"/>
 			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Condition-1"/>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Diagnosis-Condition-1"/>
 			</meta>
-			<identifier>
-				<system value="TODO"/>
-				<value value="TODO"/>
-			</identifier>
+			<category>
+				<coding>
+					<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
+					<code value="problem"/>
+					<display value="Problem"/>
+				</coding>
+			</category>
+			<code>
+				<coding>
+					<system value="http://snomed.info/sct"/>
+					<code value="413350009"/>
+					<display value="Finding with explicit context (situation)"/>
+				</coding>
+			</code>
 			<subject>
 				<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 			</subject>
-			<onsetDateTime value="2018-02-01"/>
-			<stage>
-				<summary>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="TODO"/>
-						<display value="TODO"/>
-					</coding>
-				</summary>
-			</stage>
+			<context>
+				<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
+			</context>
 			</Condition>		
 		</resource>
 	</entry>
+	
 	<!--Practitioner from Encounter-->
 	<entry>
 		<fullUrl value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
@@ -282,13 +274,14 @@
 					<value value="PT2468"/>
 				</identifier>
 				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
+					<family value="McCoy"/>
+					<given value="Leonard"/>
 					<prefix value="Dr."/>
 				</name>
 			</Practitioner>
 		</resource>
 	</entry>
+	
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
@@ -300,31 +293,11 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="B86022"/>
+					<value value="RX3EP"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
-				<managingOrganization>
-					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-				</managingOrganization>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 			</Location>
 		</resource>
 	</entry>
-	<!--Managing Org (CCG)-->
-	<entry>
-		<fullUrl value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-		<resource>
-			<Organization>
-				<id value="b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="00D"/>
-				</identifier>
-				<name value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-			</Organization>
-		</resource>
-	</entry>
+
 </Bundle>

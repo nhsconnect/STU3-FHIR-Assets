@@ -26,16 +26,16 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="Allergies and Adverse Reactions"/>
-					<display value="Allergies and Adverse Reactions"/>
+					<code value="CH010"/>
+					<display value="Early Years Progress"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -43,26 +43,26 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible org-->
+	<!--Responsible Org (MessageHeader.responsible)-->
 	<entry>
-		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 		<resource>
 			<Organization>
-				<id value="48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="X26"/>
+					<value value="B86022"/>
 				</identifier>
-				<name value="NHS DIGITAL"/>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 				<address>
-					<line value="1 TREVELYAN SQUARE"/>
-					<line value="BOAR LANE"/>
-					<city value="LEEDS"/>
-					<district value="WEST YORKSHIRE"/>
-					<postalCode value="LS1 6AE"/>
+					<line value="FRONT STREET"/>
+					<line value="SOUTH HETTON"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH6 2TF"/>
 				</address>
 			</Organization>
 		</resource>
@@ -82,8 +82,9 @@
 				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</providedBy>
+				<!--***This should be a service not a professional e.g General Medical Practice not General Medical Practitioner***-->
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
@@ -94,14 +95,15 @@
 			</HealthcareService>
 		</resource>
 	</entry>
-	<!--Who the patient (child) is-->
+	
+		<!-- Patient-->
 	<entry>
 		<fullUrl value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 		<resource>
 			<Patient>
 				<id value="7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 				<meta>
-					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Baby-Patient-1"/>
 				</meta>
 				<identifier>
 					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
@@ -130,11 +132,7 @@
 				<name>
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
-					<period>
-						<start value="2018-02-01"/>
-					</period>
 				</name>
-				<gender value="male"/>
 				<birthDate value="2017-10-02">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
@@ -143,12 +141,14 @@
 				<address>
 					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
-					<city value="LEEDS"/>
-					<postalCode value="LS17 7DF"/>
+					<city value="DURHAM"/>
+					<postalCode value="DH1 2TF"/>
 				</address>
+				<multipleBirthInteger value="1"/>
 			</Patient>
 		</resource>
 	</entry>
+	
 	<!--Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
@@ -166,8 +166,8 @@
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-						<code value="Development Skills"/>
-						<display value="Development Skills"/>
+						<code value="Early Years Progress"/>
+						<display value="Early Years Progress"/>
 					</coding>
 				</type>
 				<subject>
@@ -203,54 +203,73 @@
 			</Encounter>
 		</resource>
 	</entry>
-<!--Development Skills-->
+	<!--Early Years Progress-->
 	<entry>
-		<fullUrl value="urn:uuid:f74658b4-f667-4385-9b6f-7c4305b4f743"/>
+		<fullUrl value="urn:uuid:7071ad47-fa74-4ec6-872a-5b0eded5f88e"/>
 		<resource>
-			<Condition>
-			<id value="12a254e5-deb6-4efd-9bb1-36d286115819"/>
+			<QuestionnaireResponse>
+			<id value="7071ad47-fa74-4ec6-872a-5b0eded5f88e"/>
 			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-DevelopmentalSkill-Condition-1"/>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-EducationalHistory-QuestionnaireResponse-1"/>
 			</meta>
 			<identifier>
-				<system value="TODO"/>
-				<value value="TODO"/>
+				<system value="urn:ietf:rfc:3986"/>
+				<value value="1c2f0e80-1a84-4b42-906d-27628616978b"/>
 			</identifier>
-			<category>
-				<coding>
-					<system value="TODO"/>
-					<code value="TODO"/>
-					<display value="TODO"/>
-				</coding>
-			</category>
-			<code>
-				<coding>
-					<system value="http://snomed.info/sct"/>
-					<code value="TODO"/>
-					<display value="TODO"/>
-				</coding>
-			</code>
+			<status value="completed"/>
 			<subject>
-				<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+				<reference value="7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 			</subject>
 			<context>
-				<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
+				<reference value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
 			</context>
-			<onsetDateTime value="2018-02-01"/>
-			<assertedDate value="2018-02-01"/>
-			<stage>
-				<summary>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="TODO"/>
-						<display value="TODO"/>
-					</coding>
-				</summary>
-			</stage>
-			</Condition>		
+			<item>
+				<linkId value="parentalConsent"/>
+				<text value="Parental Consent"/>
+				<answer>
+					<valueBoolean value="true"/>
+				</answer>
+			</item>
+			<item>
+				<linkId value="communicationAndLanguage"/>
+				<text value="Communication And Language"/>
+				<answer>
+					<valueString value="Jacks showing all the signs of communicating with others"/>
+				</answer>
+			</item>
+			<item>
+				<linkId value="physicalDevelopment"/>
+				<text value="Physical Development"/>
+				<answer>
+					<valueString value="Jack is grabbing hold of items"/>
+				</answer>
+			</item>
+			<item>
+				<linkId value="personalSocialEmotionalDevelopment"/>
+				<text value="Personal, Social and Emotional Development"/>
+				<answer>
+					<valueString value="Jacks showing all the signs of personal, social and emotional development"/>
+				</answer>
+			</item>
+			<item>
+				<linkId value="areasOfConcern"/>
+				<text value="Any Areas of Concern"/>
+				<answer>
+					<valueString value="No areas of concern have been identified"/>
+				</answer>
+			</item>
+			<item>
+				<linkId value="supportedRequestedOrProvided"/>
+				<text value="Type of Support Requested/Provided"/>
+				<answer>
+					<valueString value="No support required at present"/>
+				</answer>
+			</item>
+			</QuestionnaireResponse>
 		</resource>
 	</entry>
-	<!--Practitioner from Encounter-->
+	
+<!--Practitioner from Encounter-->
 	<entry>
 		<fullUrl value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
 		<resource>
@@ -264,8 +283,8 @@
 					<value value="PT2468"/>
 				</identifier>
 				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
+					<family value="Strange"/>
+					<given value="Stephen"/>
 					<prefix value="Dr."/>
 				</name>
 			</Practitioner>
@@ -282,31 +301,10 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="B86022"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
-				<managingOrganization>
-					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-				</managingOrganization>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 			</Location>
-		</resource>
-	</entry>
-	<!--Managing Org (CCG)-->
-	<entry>
-		<fullUrl value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-		<resource>
-			<Organization>
-				<id value="b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="00D"/>
-				</identifier>
-				<name value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-			</Organization>
 		</resource>
 	</entry>
 </Bundle>
