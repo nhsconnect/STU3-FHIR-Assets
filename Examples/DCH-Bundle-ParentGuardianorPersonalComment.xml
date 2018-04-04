@@ -24,18 +24,18 @@
 						</coding>
 					</valueCodeableConcept>
 				</extension>
-				<event>
+			<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="Allergies and Adverse Reactions"/>
-					<display value="Allergies and Adverse Reactions"/>
+					<code value="CH022"/>
+					<display value="Parent Guardian or Personal Comment"/>
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -43,20 +43,27 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible org-->
+	<!--Responsible Org (MessageHeader.responsible)-->
 	<entry>
-		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 		<resource>
 			<Organization>
-				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
 					<value value="A83627"/>
 				</identifier>
 				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<address>
+					<line value="FRONT STREET"/>
+					<line value="SOUTH HETTON"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH6 2TF"/>
+				</address>
 			</Organization>
 		</resource>
 	</entry>
@@ -65,65 +72,83 @@
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
-				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+				<id value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/DCH-HealthcareService-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="b97f051a-875b-411c-87cd-fd3911776f29"/>
+					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				</identifier>
 				<providedBy>
-					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="NHS Trust Site MATERNITY"/>
-				</providedBy>	
-				<specialty>
+					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
+				</providedBy>
+				<!--***This should be a service not a professional e.g General Medical Practice not General Medical Practitioner***-->
+				<type>
 					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
-						<code value="560"/>
-						<display value="MIDWIFE EPISODE"/>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
+						<code value="N03"/>
+						<display value="Health Visitor"/>
 					</coding>
-				</specialty>			
-				<location>
-					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="NHS Trust Site MATERNITY"/>
-				</location>
+				</type>
 			</HealthcareService>
 		</resource>
 	</entry>
-	<!--Who the patient is-->
+	
+		<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 		<resource>
 			<Patient>
 				<id value="7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Patient-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
 				</meta>
 				<identifier>
-					<extension url="https://fhir.hl7.org.uk/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
 						<valueCodeableConcept>
 							<coding>
-								<system value="https://fhir.hl7.org.uk/CareConnect-NHSNumberVerificationStatus-1"/>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
 								<code value="01"/>
 								<display value="Number present and verified"/>
 							</coding>
 						</valueCodeableConcept>
 					</extension>
+					<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
+						<valueAddress>
+							<city value="DURHAM"/>
+							<district value="West Yorkshire"/>
+							<country value="UK"/>
+						</valueAddress>
+					</extension>
 					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="6101231234"/>
+					<value value="9912003888"/>
 				</identifier>
 				<name>
-					<use value="usual"/>
-					<family value="Dawkins"/>
+					<family value="DAWKINS"/>
 					<given value="Jack"/>
+					<period>
+						<start value="2018-02-01"/>
+					</period>
 				</name>
-				<gender value="female"/>
-				<birthDate value="1980-01-07"/>
+				<gender value="male"/>
+				<birthDate value="2017-10-12">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="DURHAM"/>
+					<postalCode value="LS17 7DF"/>
+				</address>
 			</Patient>
 		</resource>
 	</entry>
-	<!--Parent, Guardian or Personal Comment-->
+	
+		<!--Parent, Guardian or Personal Comment-->
 	<entry>
 		<fullUrl value="urn:uuid:872c7730-1690-4e72-9434-0794dafa6ea9"/>
 		<resource>
@@ -155,23 +180,23 @@
 	</entry>
 	<!--Encounter details-->
 	<entry>
-		<fullUrl value="urn:uuid:a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+		<fullUrl value="urn:uuid:6f616c92-afad-4d11-94b6-eb1f9fbf75c1"/>
 		<resource>
 			<Encounter>
-				<id value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				<id value="6f616c92-afad-4d11-94b6-eb1f9fbf75c1"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+					<value value="64cfd953-06d9-4d47-b69d-7af055d3e5d7"/>
 				</identifier>
 				<status value="finished"/>
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-						<code value="Parent Guardian or Personal Comment"/>
-						<display value="Parent Guardian or Personal Comment"/>
+						<code value="Feeding Status"/>
+						<display value="Feeding Status"/>
 					</coding>
 				</type>
 				<subject>
@@ -188,7 +213,7 @@
 					</type>
 					<individual>
 						<reference value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-						<display value="JONES, Bob (Dr.)"/>
+						<display value="EMMANUEL, Gladys"/>
 					</individual>
 				</participant>
 				<period>
@@ -197,12 +222,12 @@
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="NHS Trust Site MATERNITY"/>
+						<display value="SILVERDALE FAMILY PRACTICE"/>
 					</location>
 				</location>
 				<serviceProvider>
 					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-					<display value="NHS Trust Site MATERNITY"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
@@ -221,13 +246,14 @@
 					<value value="PT2468"/>
 				</identifier>
 				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
+					<family value="Emmanuel"/>
+					<given value="Gladys"/>
 					<prefix value="Dr."/>
 				</name>
 			</Practitioner>
 		</resource>
 	</entry>
+	
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
@@ -239,31 +265,10 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="RXPAN"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="NHS Trust Site MATERNITY"/>
-				<managingOrganization>
-					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS Trust COUNTY DURHAM AND DARLINGTON NHS FOUNDATION TRUST"/>
-				</managingOrganization>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 			</Location>
-		</resource>
-	</entry>
-	<!--Managing Org (CCG)-->
-	<entry>
-		<fullUrl value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-		<resource>
-			<Organization>
-				<id value="b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-				<meta>
-					<profile value="https://fhir.hl7.org.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="RXP"/>
-				</identifier>
-				<name value="NHS Trust COUNTY DURHAM AND DARLINGTON NHS FOUNDATION TRUST"/>
-			</Organization>
 		</resource>
 	</entry>
 </Bundle>
