@@ -1,0 +1,3593 @@
+<html xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fhir="http://hl7.org/fhir" xmlns="http://hl7.org/fhir">
+   <head>
+      <title>FHIR Renderer</title><style type="text/css">
+						body { color: #000000; font-size: 12pt; line-height: normal; font-family: Verdana, Arial, sans-serif; margin: 10px; }
+						h1 { font-size: 14pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px;}
+						h2 { font-size: 12pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h3 { font-size: 10pt; font-weight: bold; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h4 { font-size: 10pt; font-weight: bold; text-decoration: underline; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h5 { font-size: 10pt; font-weight: normal; text-decoration: underline;  color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						h6 { font-size: 10pt; font-weight: normal; color: #000000; margin-top: 5px; margin-bottom: 15px; }
+						table { border: 0px solid #000000; table-layout: fixed; text-align: left; width: 100%;}
+						th.default {padding: 3px; color: #000000; background-color: #eeeeee; text-align: left;}
+						th {padding: 3px;}
+						td {padding: 3px;}
+						/*Banner styles*/
+						div.banner {margin-bottom: 30px; border: 1px solid #000000; background-color: #eeeeee;}
+						div.banner TABLE {border: 1px solid black; background-color: #ffffff; margin-bottom: 5px; }
+						div.banner TD {background-color: #eeeeee; vertical-align: top; padding: 3px; font-weight: normal; font-size: 12pt;}
+						div.banner TH {background-color: #dddddd; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner TABLE P {margin: 0;}
+						div.banner-partial-cream {margin-bottom: 30px; border: 1px solid #000000; background-color: #ffffee; padding-left: 5px;}
+						div.banner-partial-cream TABLE {border: 0px; background-color: #ffffee;}
+						div.banner-partial-cream TD {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-cream TH {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: normal; font-style:italic; font-size: 12pt;}
+						div.banner-partial-cream TABLE P {margin: 0;}
+						div.banner-partial-violet {margin-bottom: 30px; border: 1px solid #000000; background-color: #eeeeff; padding-left: 5px;}
+						div.banner-partial-violet TABLE {border: 0px; background-color: #eeeeff; }
+						div.banner-partial-violet TD {background-color: #eeeeff; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-violet TH {background-color: #ffffee; vertical-align: top; padding: 3px; font-weight: normal; font-style:italic; font-size: 12pt;}
+						div.banner-partial-violet TABLE P {margin: 0;}
+						div.banner-partial-gray {margin-bottom: 30px; border: 0px solid #000000; background-color: #ffffff; padding-left: 5px;}
+						div.banner-partial-gray TABLE {border: 1px solid black; background-color: #ffffff; margin-bottom: 5px; }
+						div.banner-partial-gray TD {background-color: #eeeeee; vertical-align: top; padding: 3px; font-weight: normal; font-size: 12pt;}
+						div.banner-partial-gray TH {background-color: #dddddd; vertical-align: top; padding: 3px; font-weight: bold; font-size: 12pt;}
+						div.banner-partial-gray TABLE P {margin: 0; }
+						.label {font-style:italic; font-weight: normal;}
+						.bold {font-weight: bold;}
+						.bold-italic {font-style:italic; font-weight: bold;}
+						
+						/******************** CONFIG OPTIONS FOR RENDERING - START ********************/
+						/************************************************************************************************/
+						/* The FHIR Renderer has two options to either display the Full resource with all elements or a Partial resource with chosen elements,
+							to hide a particular view then un-comment the statement to hide, e.g. un-comment display:none so it will not display that particular view. */
+						#bundledetails-full {display: none;}
+						#full-resources {display: none;}
+						//#partial-resources {display: none;}
+						/**********************************************************************************************/
+						/******************** CONFIG OPTIONS FOR RENDERING - END ********************/
+				</style></head>
+   <body>
+      <div id="bundledetails-full">
+         <div id="bundledetails">
+            <h2>Bundle Details</h2> Bundle id: 56cda0f0-d663-482c-944d-0ff8bf804d46<br></br>Type: document<br></br>Full Url: urn:uuid:17e783b1-8fe0-4846-957e-e3ada2559762 urn:uuid:a7b5ce52-314f-4b82-a131-6ab90d435d30
+            urn:uuid:627bd799-7a86-40bd-a931-d8526b412fa5 urn:uuid:bae93050-79ec-45c6-9e3e-023593b06641
+            urn:uuid:61be6900-bc3c-4a28-96dc-746381b7c1be urn:uuid:50141d4f-fe5a-4616-ab9e-9b0366333ea0
+            urn:uuid:7ec3effa-da14-47c7-881f-0b04903861c6 urn:uuid:0547e6bf-7205-4f78-82ef-99c69ac34def
+            urn:uuid:163c7e94-eb55-40fe-a9d3-5245b4e33541 urn:uuid:75117a4d-8f9c-4d3a-be57-c55d59b993e8
+            urn:uuid:10e3e7dc-2df4-49af-92f7-e3050ad0c06b urn:uuid:3459f067-793b-4afb-bc23-cbe3cac4243f
+            urn:uuid:c96f3f4a-c11c-4606-8d45-70f487910fe7 urn:uuid:ed66558d-d668-453a-95fe-067fffa4cbd2
+            urn:uuid:dadd9c9d-74f8-45e0-90dc-6ff8c91b8651 urn:uuid:90d887ab-7db4-4235-bada-3ae2e31f8c74
+            urn:uuid:c3f61107-b238-43a0-b176-207b4fff9801 urn:uuid:cef7f8d5-78e3-4866-89f1-62470d6fd636
+            urn:uuid:11baa8fd-b670-47d1-ab3a-183488af5c6e urn:uuid:253e4091-84c2-4c76-abfb-60b9c2ebd475
+            urn:uuid:29995d4a-1ba7-404d-b161-86670848675b urn:uuid:8ece9986-9af0-4882-b0cf-23a96ea7b509
+            urn:uuid:137bc838-e3ab-4eb2-99e9-32b0c02e70eb urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc
+            urn:uuid:2b103117-a783-4a66-a0de-f308cd6b63cf urn:uuid:ce3c48a6-3a26-4821-aa78-2d290e332629
+            urn:uuid:0e1087cc-7138-4bd1-8d19-99dd73fead99 urn:uuid:00e2ec13-891d-4335-b383-5bb6043331db
+            urn:uuid:2fc51c08-3de9-4557-bc0e-9738be9fa99c urn:uuid:3e31975f-1460-4fc0-8beb-b26191d1c152
+            urn:uuid:01bb1ccc-577b-4a4a-9fb0-9c8fe9f21fa3<br></br><br></br></div>
+      </div>
+      <div id="partial-resources">
+         <h1>Patient Demographics</h1>
+         <div id="patient-header-partial" class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Patient name</th>
+                     <th>Date of birth</th>
+                     <th>Gender</th>
+                     <th>Ethnicity:</th>
+                     <th>Identifier</th>
+                  </tr>
+                  <tr>
+                     <td><span class="label">(usual)</span>&nbsp;Critchard, Agatha
+                        (Ms)
+                        <br></br><span class="label">(official)</span>&nbsp;Critchard, Agatha
+                        (Ms)
+                        <br></br></td>
+                     <td>01-Feb-1964</td>
+                     <td>female</td>
+                     <td>English</td>
+                     <td><span class="label">Number present and verified</span><br></br>124 356 7890<br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <p></p>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><span class="label">Home address</span></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>30 Acacia Road</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>BM9 6PL</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><span class="label">Mobile phone: </span>077 1234 7777<br></br><span class="label">Home email: </span>frances@delatour.net<br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="clinical-document-partial" class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Document Created</span></td>
+                     <td>01-May-2017 16:42</td>
+                  </tr>
+                  <tr>
+                     <td><span class="label">Document Owner</span></td>
+                     <td>St Crispin's Hospital</td>
+                  </tr>
+                  <tr>
+                     <td><span class="label">Authored By</span></td>
+                     <td>Jones, Ruth
+                        (Dr)
+                        
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-violet">
+            <h2>Encounter Summary</h2>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Type </span></td>
+                     <td>Outpatient Clinic Attendance</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Time </span></td>
+                     <td>01-May-2017 09:00 to 01-May-2017 09:45</td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Encounter Disposition </span></td>
+                     <td>Usual place of residence unless listed below, for example, a private dwelling whether
+                        owner occupied or owned by Local Authority, housing association or other landlord.
+                        This includes wardened accommodation but not residential accommodation where health
+                        care is provided. It also includes Patients with no fixed abode.
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="label">Care Setting Type </span></td>
+                     <td>Gastroenterology service</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="bold">Other participant(s) in this document</span></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="banner-partial-gray">
+            <p>
+               <h1>Allergies and adverse reactions</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Causative agent</th>
+                              
+                              <td>Amoxicillin</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Reaction details</th>
+                              
+                              <td>
+                                 
+                                 <p>Description of reaction: Ms. Critchard has an allergic reaction to Amoxicillin, which
+                                    presents as an urticarial rash in the form of a generalized severe rash.
+                                 </p>
+                                 
+                                 <p>Type of reaction: Allergic</p>
+                                 
+                                 <p>Probability of recurrence: She first experienced a reaction aged 12 and probability
+                                    of recurrence is likely.
+                                 </p>
+                                 
+                                 <p>Date first experienced: 12 March 1976</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Attendance details</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <td colspan="2" style="width:100%">Dear Dr. O'Reilly, <br></br>Thank you for referring Ms. Critchard to the gastroenterology outpatient clinic.<br></br>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date and time of contact</th>
+                              
+                              <td>01 May 2017 09:00</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Contact type</th>
+                              
+                              <td>First attendance face to face</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Consultation method</th>
+                              
+                              <td>Face-to-face</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Responsible healthcare professional</th>
+                              
+                              <td>Dr. Ruth Jones (Consultant Gastroenterologist)</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Specialty</th>
+                              
+                              <td>Gastroenterology</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Service</th>
+                              
+                              <td>Gastroenterology service</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Seen by</th>
+                              
+                              <td>
+                                 
+                                 <p>Dr. Ruth Jones</p>
+                                 
+                                 <p>Role: Consultant Gastroenterologist</p>
+                                 
+                                 <p>Tel: (01234) 562170</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Care professionals present</th>
+                              
+                              <td>Mrs. N Bryant (IBD Specialist Nurse)</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Outcome of patient attendance</th>
+                              
+                              <td>Appointment to be made at a later date</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Clinical summary</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Clinical Summary</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Findings are suggestive of IBD. Rigid sigmoidoscopy looks like UC. 5ASA treatment
+                                 commenced today pending further investigation.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Diagnoses</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table>
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Diagnosis name</th>
+                              
+                              <td>Proctitis</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Diagnosis name</th>
+                              
+                              <td>Dyspepsia</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Distribution list</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Dr C O'Reilly</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>GP</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Organisation</th>
+                              
+                              <td>Canvas Health Centre - Organisation ID: A111111</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Relationship to subject</th>
+                              
+                              <td>GP</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>Patient</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Examination finding</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Examination findings</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>The abdomen was found to be soft but mainly tender in the left iliac fossa. There
+                                 was no guarding or rebound and bowel sounds normal.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Family history</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Family history</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Ms. Critchard has no family history of I.B.D. </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>GP practice</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>GP practice identifier</th>
+                              
+                              <td>A111111</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>GP name</th>
+                              
+                              <td>Dr C O'Reilly</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>GP practice details</th>
+                              
+                              <td>Canvas Health Centre, 27, Acacia Road, BM9 6PM</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>History</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>History</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Presenting complaints or issue</th>
+                              
+                              <td>Ms. Critchard presents with ongoing symptoms of bloody diarrhoea, weight loss, and
+                                 abdominal discomfort that are unresponsive to treatment. She has a 2 month history
+                                 of bloody diarrhoea. Her bowels open 5-6 per day with 1-2 nocturnal episodes. Ms.
+                                 Critchard has experienced weight loss of 1 stone over the same period. She experiences
+                                 a crampy left iliac fossa pain intermittently. <br></br>She has no history of travel, unwell contacts or previous similar symptoms. She has
+                                 longstanding mild dyspepsia for which she takes antacid as necessary. It has never
+                                 been investigated.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Investigation results</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Investigation result</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Facael calprotein levels were 247mcg/g faeces (normal 50)</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Medications and medical devices</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <td style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter
+                                 are included)
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Medication item</th>
+                              
+                              <td>Medication name: Asacol</td>
+                              
+                              <td>Route: Oral</td>
+                              
+                              <td>Dose directions description: To be taken orally once a day as 3x800mg tablets.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Medication change</th>
+                              
+                              <td>Status: Added</td>
+                              
+                              <td colspan="2">Comment: A 14xday course was prescribed in clinic, please renew in 2xweeks time. It
+                                 is expected that this will aid symptom management.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     <br></br>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Patient demographics</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Patient name</th>
+                              
+                              <td>Ms. Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient preferred name</th>
+                              
+                              <td>Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date of birth</th>
+                              
+                              <td>1 February 1964</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Gender</th>
+                              
+                              <td>2 Female</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>NHS number</th>
+                              
+                              <td>124 356 7890</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Other identifier</th>
+                              
+                              <td>TL89765</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient address</th>
+                              
+                              <td>30, Acacia Road, BM9 6PL</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient email address</th>
+                              
+                              <td>frances@delatour.net</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient telephone number</th>
+                              
+                              <td>077 1234 7777</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Person completing record</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Dr. Ruth Jones</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>Consultant Gastroenterologist</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Grade</th>
+                              
+                              <td>Not given</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Specialty</th>
+                              
+                              <td>Gastroenterology</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Professional identifier</th>
+                              
+                              <td>6775555</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date and time completed</th>
+                              
+                              <td>01 May 2017 16:42</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Contact details</th>
+                              
+                              <td>Tel: (01234) 562170</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Plan and requested actions</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Actions for healthcare professionals</th>
+                              
+                              <td>A flexible sigmoidoscopy has been requested on an urgent basis by Ruth Jones on 01/05/17.
+                                 FBC, U and E, LFT and CRP are to be measured, the patient was provided with a form
+                                 at the appointment. 
+                                 										Stool MC and S plus C. diff are to be taken, the patient was given forms
+                                 and collection points at the appointment.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Problems and issues</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Problems and issues</th>
+                              
+                              <td>
+                                 
+                                 <p>Bloody diarrhoea</p>
+                                 
+                                 <p>Weight loss</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Procedures</h1>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Procedure name</th>
+                              
+                              <td>Rigid sigmoidoscopy
+                                 <p>Comment: A Rigid sigmoidoscopy was performed to the limit of view at 20cm. It showed
+                                    inflamed and ulcerated mucosa with contact bleeding to about 15cm. Proximally appears
+                                    to improve. Performed by Ruth Jones, 1 May 2017.
+                                 </p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Referrer details</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Referrer Name</th>
+                              
+                              <td>
+                                 
+                                 <p>Name: Dr. C. O'Reilly</p>
+                                 
+                                 <p>Role: GP</p>
+                                 
+                                 <p>Grade: Not given</p>
+                                 
+                                 <p>Organisation: Canvas Health Centre, 27 Acacia Road, BM9 6PM</p>
+                                 
+                                 <p>Contact details: Tel (01234) 956412</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <h1>Social context</h1>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Household composition</th>
+                              
+                              <td>Ms. Critchard lives with her boyfriend.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Occupational history</th>
+                              
+                              <td>Ms. Critchard works as a Baker.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Smoking</th>
+                              
+                              <td>She is an ex-smoker, stopped 2 years.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Alcohol intake</th>
+                              
+                              <td>She consumes 10-14 units of alcohol per week.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Drug/substance use</th>
+                              
+                              <td>None reported.</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text>
+               <hr></hr>
+               <hr></hr>
+            </p>
+         </div>
+         <h1>Distribution list</h1>
+         <div class="banner-partial-cream">
+            <table>
+               <tbody>
+                  <tr>
+                     <th><span class="label">Recipient name</span></th>
+                     <th><span class="label">Job role</span></th>
+                     <th><span class="label">Phone</span></th>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div id="full-resources">
+         <div id="patient-full" class="banner">
+            <h1>Patient Demographics</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Name: </strong></th>
+                     <th><strong>Family: </strong></th>
+                     <th><strong>Given: </strong></th>
+                     <th><strong>Prefix: </strong></th>
+                     <th><strong>Suffix: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>usual official</td>
+                     <td></td>
+                     <td>Critchard<br></br>Critchard<br></br></td>
+                     <td>Agatha<br></br>Agatha<br></br></td>
+                     <td>Ms<br></br>Ms<br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Date of Birth: </strong><br></br>1964-02-01
+                     </td>
+                     <td><strong>Gender: </strong><br></br>female
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr></tr>
+                  <tr></tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Deceased DateTime: </strong><br></br></td>
+                     <td><strong>Deceased Boolean: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><strong>Address: </strong><br></br>home
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>30 Acacia Road</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>BM9 6PL</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><strong>System: </strong>phone<br></br><strong>Value: </strong>077 1234 7777<br></br><strong>Use: </strong>mobile<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br><strong>System: </strong>email<br></br><strong>Value: </strong>frances@delatour.net<br></br><strong>Use: </strong>home<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>maritalStatus system: </strong><br></br></td>
+                     <td><strong>maritalStatus version: </strong><br></br></td>
+                     <td><strong>maritalStatus code: </strong><br></br></td>
+                     <td><strong>maritalStatus display: </strong><br></br></td>
+                     <td><strong>maritalStatus userselected: </strong><br></br></td>
+                     <td><strong>maritalStatus text: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>multipleBirthBoolean: </strong><br></br></td>
+                     <td><strong>multipleBirthInteger: </strong><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Photo contentType: </strong></th>
+                     <th><strong>Photo language: </strong></th>
+                     <th><strong>Photo data: </strong></th>
+                     <th><strong>Photo url: </strong></th>
+                     <th><strong>Photo size: </strong></th>
+                     <th><strong>Photo hash: </strong></th>
+                     <th><strong>Photo title: </strong></th>
+                     <th><strong>Photo creation: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Communication</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>System:</strong></th>
+                     <th><strong>Code:</strong></th>
+                     <th><strong>Display:</strong></th>
+                     <th><strong>Text:</strong></th>
+                     <th><strong>Preferred:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Care Provider</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Reference:</strong></th>
+                     <th><strong>Display:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Managing Organization</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Reference:</th>
+                     <th>Display:</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Link</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Other reference:</strong></th>
+                     <th><strong>Type:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="practitioner" class="banner">
+            <h1>Practitioner</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>6775555</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://fhir.nhs.uk/Id/local-practitioner-identifier</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Name: </strong></th>
+                     <th><strong>Family: </strong></th>
+                     <th><strong>Given: </strong></th>
+                     <th><strong>Prefix: </strong></th>
+                     <th><strong>Suffix: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>usual</td>
+                     <td></td>
+                     <td>Bryant<br></br>O`Reilly<br></br>Jones<br></br></td>
+                     <td>N<br></br>C<br></br>Ruth<br></br></td>
+                     <td>Mrs<br></br>Dr<br></br>Dr<br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><strong>Address: </strong><br></br></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>Canvas Health Centre</td>
+                              </tr>
+                              <tr>
+                                 <td>27, Acacia Road</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>BM9 6PM</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td>
+                        <table>
+                           <tbody>
+                              <tr>
+                                 <td><strong>Address: </strong><br></br></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>Gastroenterology Department</td>
+                              </tr>
+                              <tr>
+                                 <td>St. Crispin's Hospital</td>
+                              </tr>
+                              <tr>
+                                 <td>Donaldstown</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td>DO5 7TP</td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </td>
+                     <td><strong>System: </strong>phone<br></br><strong>Value: </strong>01234 956412<br></br><strong>Use: </strong>work<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br><strong>System: </strong>phone<br></br><strong>Value: </strong>01234 562170<br></br><strong>Use: </strong>work<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br><strong>System: </strong>email<br></br><strong>Value: </strong>gd@stcrispins.nhs.uk<br></br><strong>Use: </strong>work<br></br><strong>Rank: </strong><br></br><strong>Period Start: </strong><br></br><strong>Period End: </strong><br></br><br></br></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Active: </strong></td>
+                     <td><strong>Gender: </strong></td>
+                     <td><strong>Date of Birth: </strong></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Photo contentType: </strong></th>
+                     <th><strong>Photo language: </strong></th>
+                     <th><strong>Photo data: </strong></th>
+                     <th><strong>Photo url: </strong></th>
+                     <th><strong>Photo size: </strong></th>
+                     <th><strong>Photo hash: </strong></th>
+                     <th><strong>Photo title: </strong></th>
+                     <th><strong>Photo creation: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <hr></hr><strong>Qualification</strong><strong>Communication</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>System:</strong></th>
+                     <th><strong>Code:</strong></th>
+                     <th><strong>Display:</strong></th>
+                     <th><strong>Text:</strong></th>
+                     <th><strong>Preferred:</strong></th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="compositionheader" class="banner">
+            <h1>Composition Header</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Id: </strong></th>
+                     <th><strong>Identifier system: </strong></th>
+                     <th><strong>Identifier value: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>17e783b1-8fe0-4846-957e-e3ada2559762</td>
+                     <td></td>
+                     <td>88f3e08a-4f29-4132-80dd-ce41a2efb2da</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Date: </strong></th>
+                     <th><strong>Type coding system: </strong></th>
+                     <th>Type coding code: </th>
+                  </tr>
+                  <tr>
+                     <td>2017-05-01T16:42:00+00:00</td>
+                     <td>http://snomed.info/sct</td>
+                     <td>823681000000100</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Type text:</strong></th>
+                     <th><strong>Title: </strong></th>
+                     <th><strong>Status: </strong></th>
+                     <th><strong>Confidentiality: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>Outpatient letter</td>
+                     <td>final</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Class coding system:</strong></th>
+                     <th><strong>Class coding code: </strong></th>
+                     <th><strong>Class coding display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Subject display: </strong></th>
+                     <th><strong>Subject reference: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>urn:uuid:29995d4a-1ba7-404d-b161-86670848675b</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>author reference</th>
+                     <th>author display</th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>attester mode</th>
+                     <th>attester time</th>
+                     <th>attester reference</th>
+                     <th>attester display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Custodian reference: </strong></th>
+                     <th><strong>Custodian display: </strong></th>
+                     <th><strong>Encounter: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:2fc51c08-3de9-4557-bc0e-9738be9fa99c</td>
+                     <td></td>
+                     <td>urn:uuid:a7b5ce52-314f-4b82-a131-6ab90d435d30</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>event system</th>
+                     <th>event code</th>
+                     <th>event display</th>
+                     <th>event period start</th>
+                     <th>event period end</th>
+                     <th>event detail reference</th>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="compsections" class="banner">
+            <h1>Composition Sections</h1>
+            <p>
+               <table>
+                  <tbody>
+                     <tr>
+                        <th>Title</th>
+                        <th>Code - System/Code/Display</th>
+                        <th>Mode</th>
+                        <th>OrderedBy - System/Code/Display</th>
+                        <th>Entry</th>
+                        <th>emptyReason - System/Code/Display</th>
+                     </tr>
+                     <tr>
+                        <td>Allergies and adverse reactions</td>
+                        <td>http://snomed.info/sct<br></br>886921000000105<br></br>Allergies and adverse reactions
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:627bd799-7a86-40bd-a931-d8526b412fa5<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Attendance details</td>
+                        <td>http://snomed.info/sct<br></br>1077881000000105<br></br>Attendance details
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Clinical summary</td>
+                        <td>http://snomed.info/sct<br></br>887181000000106<br></br>Clinical summary
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Diagnoses</td>
+                        <td>http://snomed.info/sct<br></br>887161000000102<br></br>Diagnoses
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:50141d4f-fe5a-4616-ab9e-9b0366333ea0<br></br>urn:uuid:7ec3effa-da14-47c7-881f-0b04903861c6<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Distribution list</td>
+                        <td>http://snomed.info/sct<br></br>887261000000109<br></br>Distribution list
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:137bc838-e3ab-4eb2-99e9-32b0c02e70eb<br></br>urn:uuid:29995d4a-1ba7-404d-b161-86670848675b<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Examination finding</td>
+                        <td>http://snomed.info/sct<br></br>715851000000102<br></br>Examination findings
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:10e3e7dc-2df4-49af-92f7-e3050ad0c06b<br></br>urn:uuid:c96f3f4a-c11c-4606-8d45-70f487910fe7<br></br>urn:uuid:3459f067-793b-4afb-bc23-cbe3cac4243f<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Family history</td>
+                        <td>http://snomed.info/sct<br></br>887111000000104<br></br>Family history
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>GP practice</td>
+                        <td>http://snomed.info/sct<br></br>886711000000101<br></br>GP practice details
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:00e2ec13-891d-4335-b383-5bb6043331db<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>History</td>
+                        <td>http://snomed.info/sct<br></br>717121000000105<br></br>History
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:0547e6bf-7205-4f78-82ef-99c69ac34def<br></br>urn:uuid:163c7e94-eb55-40fe-a9d3-5245b4e33541<br></br>urn:uuid:75117a4d-8f9c-4d3a-be57-c55d59b993e8<br></br>urn:uuid:ed66558d-d668-453a-95fe-067fffa4cbd2<br></br>urn:uuid:dadd9c9d-74f8-45e0-90dc-6ff8c91b8651<br></br>urn:uuid:90d887ab-7db4-4235-bada-3ae2e31f8c74<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Investigation results</td>
+                        <td>http://snomed.info/sct<br></br>1082101000000102<br></br>Investigation results
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Medications and medical devices</td>
+                        <td>http://snomed.info/sct<br></br>933361000000108<br></br>Medications and medical devices
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:cef7f8d5-78e3-4866-89f1-62470d6fd636<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Patient demographics</td>
+                        <td>http://snomed.info/sct<br></br>886731000000109<br></br>Patient demographics
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:29995d4a-1ba7-404d-b161-86670848675b<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Person completing record</td>
+                        <td>http://snomed.info/sct<br></br>887231000000104<br></br>Person completing record
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Plan and requested actions</td>
+                        <td>http://snomed.info/sct<br></br>887201000000105<br></br>Plan and requested actions
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Problems and issues</td>
+                        <td>http://snomed.info/sct<br></br>887151000000100<br></br>Problems and issues
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Procedures</td>
+                        <td>http://snomed.info/sct<br></br>887171000000109<br></br>Procedures
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td>urn:uuid:c3f61107-b238-43a0-b176-207b4fff9801<br></br></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Referrer details</td>
+                        <td>http://snomed.info/sct<br></br>1052891000000108<br></br>Referrer details
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                     <tr>
+                        <td>Social context</td>
+                        <td>http://snomed.info/sct<br></br>887051000000101<br></br>Social context
+                        </td>
+                        <td><br></br></td>
+                        <td><br></br><br></br></td>
+                        <td></td>
+                        <td><br></br><br></br></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                     </tr>
+                     <hr></hr>
+                  </tbody>
+               </table>
+               <hr></hr>
+               <table>
+                  <tbody>
+                     <tr>
+                        <th>Title</th>
+                        <th>Code - System/Code/Display</th>
+                        <th>Mode</th>
+                        <th>OrderedBy - System/Code/Display</th>
+                        <th>Entry</th>
+                        <th>emptyReason - System/Code/Display</th>
+                     </tr>
+                  </tbody>
+               </table>
+            </p>
+         </div>
+         <hr></hr>
+         <div class="banner-partial-gray">
+            <p>
+               <h2>Allergies and adverse reactions</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Causative agent</th>
+                              
+                              <td>Amoxicillin</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Reaction details</th>
+                              
+                              <td>
+                                 
+                                 <p>Description of reaction: Ms. Critchard has an allergic reaction to Amoxicillin, which
+                                    presents as an urticarial rash in the form of a generalized severe rash.
+                                 </p>
+                                 
+                                 <p>Type of reaction: Allergic</p>
+                                 
+                                 <p>Probability of recurrence: She first experienced a reaction aged 12 and probability
+                                    of recurrence is likely.
+                                 </p>
+                                 
+                                 <p>Date first experienced: 12 March 1976</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Attendance details</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <td colspan="2" style="width:100%">Dear Dr. O'Reilly, <br></br>Thank you for referring Ms. Critchard to the gastroenterology outpatient clinic.<br></br>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date and time of contact</th>
+                              
+                              <td>01 May 2017 09:00</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Contact type</th>
+                              
+                              <td>First attendance face to face</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Consultation method</th>
+                              
+                              <td>Face-to-face</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Responsible healthcare professional</th>
+                              
+                              <td>Dr. Ruth Jones (Consultant Gastroenterologist)</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Specialty</th>
+                              
+                              <td>Gastroenterology</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Service</th>
+                              
+                              <td>Gastroenterology service</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Seen by</th>
+                              
+                              <td>
+                                 
+                                 <p>Dr. Ruth Jones</p>
+                                 
+                                 <p>Role: Consultant Gastroenterologist</p>
+                                 
+                                 <p>Tel: (01234) 562170</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Care professionals present</th>
+                              
+                              <td>Mrs. N Bryant (IBD Specialist Nurse)</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Outcome of patient attendance</th>
+                              
+                              <td>Appointment to be made at a later date</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Clinical summary</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Clinical Summary</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Findings are suggestive of IBD. Rigid sigmoidoscopy looks like UC. 5ASA treatment
+                                 commenced today pending further investigation.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Diagnoses</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table>
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Diagnosis name</th>
+                              
+                              <td>Proctitis</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Diagnosis name</th>
+                              
+                              <td>Dyspepsia</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Distribution list</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Dr C O'Reilly</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>GP</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Organisation</th>
+                              
+                              <td>Canvas Health Centre - Organisation ID: A111111</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Relationship to subject</th>
+                              
+                              <td>GP</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>Patient</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Examination finding</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Examination findings</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>The abdomen was found to be soft but mainly tender in the left iliac fossa. There
+                                 was no guarding or rebound and bowel sounds normal.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Family history</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Family history</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Ms. Critchard has no family history of I.B.D. </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>GP practice</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>GP practice identifier</th>
+                              
+                              <td>A111111</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>GP name</th>
+                              
+                              <td>Dr C O'Reilly</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>GP practice details</th>
+                              
+                              <td>Canvas Health Centre, 27, Acacia Road, BM9 6PM</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>History</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>History</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Presenting complaints or issue</th>
+                              
+                              <td>Ms. Critchard presents with ongoing symptoms of bloody diarrhoea, weight loss, and
+                                 abdominal discomfort that are unresponsive to treatment. She has a 2 month history
+                                 of bloody diarrhoea. Her bowels open 5-6 per day with 1-2 nocturnal episodes. Ms.
+                                 Critchard has experienced weight loss of 1 stone over the same period. She experiences
+                                 a crampy left iliac fossa pain intermittently. <br></br>She has no history of travel, unwell contacts or previous similar symptoms. She has
+                                 longstanding mild dyspepsia for which she takes antacid as necessary. It has never
+                                 been investigated.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Investigation results</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Investigation result</th>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <td>Facael calprotein levels were 247mcg/g faeces (normal 50)</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Medications and medical devices</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <td style="width:100%">(only changes to medications and medical devices as a result of the outpatient encounter
+                                 are included)
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Medication item</th>
+                              
+                              <td>Medication name: Asacol</td>
+                              
+                              <td>Route: Oral</td>
+                              
+                              <td>Dose directions description: To be taken orally once a day as 3x800mg tablets.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Medication change</th>
+                              
+                              <td>Status: Added</td>
+                              
+                              <td colspan="2">Comment: A 14xday course was prescribed in clinic, please renew in 2xweeks time. It
+                                 is expected that this will aid symptom management.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     <br></br>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Patient demographics</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Patient name</th>
+                              
+                              <td>Ms. Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient preferred name</th>
+                              
+                              <td>Agatha Critchard</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date of birth</th>
+                              
+                              <td>1 February 1964</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Gender</th>
+                              
+                              <td>2 Female</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>NHS number</th>
+                              
+                              <td>124 356 7890</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Other identifier</th>
+                              
+                              <td>TL89765</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient address</th>
+                              
+                              <td>30, Acacia Road, BM9 6PL</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient email address</th>
+                              
+                              <td>frances@delatour.net</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Patient telephone number</th>
+                              
+                              <td>077 1234 7777</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Person completing record</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Name</th>
+                              
+                              <td>Dr. Ruth Jones</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Role</th>
+                              
+                              <td>Consultant Gastroenterologist</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Grade</th>
+                              
+                              <td>Not given</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Specialty</th>
+                              
+                              <td>Gastroenterology</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Professional identifier</th>
+                              
+                              <td>6775555</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Date and time completed</th>
+                              
+                              <td>01 May 2017 16:42</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Contact details</th>
+                              
+                              <td>Tel: (01234) 562170</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Plan and requested actions</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Actions for healthcare professionals</th>
+                              
+                              <td>A flexible sigmoidoscopy has been requested on an urgent basis by Ruth Jones on 01/05/17.
+                                 FBC, U and E, LFT and CRP are to be measured, the patient was provided with a form
+                                 at the appointment. 
+                                 										Stool MC and S plus C. diff are to be taken, the patient was given forms
+                                 and collection points at the appointment.
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Problems and issues</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Problems and issues</th>
+                              
+                              <td>
+                                 
+                                 <p>Bloody diarrhoea</p>
+                                 
+                                 <p>Weight loss</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Procedures</h2>
+               <text>
+                  
+                  <status value="generated"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Procedure name</th>
+                              
+                              <td>Rigid sigmoidoscopy
+                                 <p>Comment: A Rigid sigmoidoscopy was performed to the limit of view at 20cm. It showed
+                                    inflamed and ulcerated mucosa with contact bleeding to about 15cm. Proximally appears
+                                    to improve. Performed by Ruth Jones, 1 May 2017.
+                                 </p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Referrer details</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Referrer Name</th>
+                              
+                              <td>
+                                 
+                                 <p>Name: Dr. C. O'Reilly</p>
+                                 
+                                 <p>Role: GP</p>
+                                 
+                                 <p>Grade: Not given</p>
+                                 
+                                 <p>Organisation: Canvas Health Centre, 27 Acacia Road, BM9 6PM</p>
+                                 
+                                 <p>Contact details: Tel (01234) 956412</p>
+                                 
+                              </td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><h2>Social context</h2>
+               <text>
+                  
+                  <status value="additional"></status>
+                  
+                  <div xmlns="http://www.w3.org/1999/xhtml">
+                     
+                     <table width="100%">
+                        
+                        <tbody>
+                           
+                           <tr>
+                              
+                              <th>Household composition</th>
+                              
+                              <td>Ms. Critchard lives with her boyfriend.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Occupational history</th>
+                              
+                              <td>Ms. Critchard works as a Baker.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Smoking</th>
+                              
+                              <td>She is an ex-smoker, stopped 2 years.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Alcohol intake</th>
+                              
+                              <td>She consumes 10-14 units of alcohol per week.</td>
+                              
+                           </tr>
+                           
+                           <tr>
+                              
+                              <th>Drug/substance use</th>
+                              
+                              <td>None reported.</td>
+                              
+                           </tr>
+                           
+                        </tbody>
+                        
+                     </table>
+                     
+                  </div>
+                  
+               </text><br></br><hr></hr>
+            </p>
+         </div>
+         <div id="encounter" class="banner">
+            <h1>Encounter</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>85e88b9f-c6be-4d09-ae48-f4fa6687903d</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://tools.ietf.org/html/rfc4122</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Status</strong></th>
+                     <th><strong>Class</strong></th>
+                  </tr>
+                  <tr>
+                     <td>finished</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Status History: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Type System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://snomed.info/sct</td>
+                     <td></td>
+                     <td>163381000000105</td>
+                     <td>Outpatient Clinic Attendance</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Priority System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Patient Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>episodeOfCare Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>incomingReferral Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Participant</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Type Code/Display: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Individual Reference: </strong></th>
+                     <th><strong>Individual Display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td> / <br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td> / <br></br></td>
+                     <td></td>
+                     <td></td>
+                     <td>urn:uuid:8ece9986-9af0-4882-b0cf-23a96ea7b509</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Appointment Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Period Start: </th>
+                     <th>Period End: </th>
+                  </tr>
+                  <tr>
+                     <td>2017-05-01T09:00:00+00:00</td>
+                     <td>2017-05-01T09:45:00+00:00</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Length Value: </th>
+                     <th>Comparator: </th>
+                     <th>Unit: </th>
+                     <th>System: </th>
+                     <th>Code: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Reason System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Indication Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Hospitalization</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>preAdmissionIdentifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Origin Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>admitSource System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://hl7.org/fhir/admit-source</td>
+                     <td></td>
+                     <td>gp</td>
+                     <td>General Practitioner referral</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>admittingDiagnosis Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>reAdmission System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dietPreference System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>specialCourtesy System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>specialArrangement System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Destination Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dischargeDisposition System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1</td>
+                     <td></td>
+                     <td>19</td>
+                     <td>Usual place of residence unless listed below, for example, a private dwelling whether
+                        owner occupied or owned by Local Authority, housing association or other landlord.
+                        This includes wardened accommodation but not residential accommodation where health
+                        care is provided. It also includes Patients with no fixed abode.
+                     </td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>dischargeDiagnosis Reference</th>
+                     <th>Display</th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>Location</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>Reference: </strong></th>
+                     <th><strong>Display: </strong></th>
+                     <th><strong>Status: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:01bb1ccc-577b-4a4a-9fb0-9c8fe9f21fa3</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>serviceProvider Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>partOf Reference: </th>
+                     <th>Display: </th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div id="observation" class="banner">
+            <h1>Observation</h1>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Identifier: </strong></th>
+                     <th><strong>Use: </strong></th>
+                     <th><strong>Type: </strong></th>
+                     <th><strong>System: </strong></th>
+                     <th><strong>Period Start: </strong></th>
+                     <th><strong>Period End: </strong></th>
+                     <th><strong>Assigner: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>a42d25cc-ca2e-41b6-b53b-03d75415ad5e</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://tools.ietf.org/html/rfc4122</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>c90bfe38-8f7a-4909-8168-1c0b02c16029</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://tools.ietf.org/html/rfc4122</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>62479076-8b52-459a-b4c2-c9b5f72bfae3</td>
+                     <td></td>
+                     <td></td>
+                     <td>https://tools.ietf.org/html/rfc4122</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Status: </strong></th>
+                     <th><strong>Subject Reference: </strong></th>
+                     <th><strong>Subject Display: </strong></th>
+                     <th><strong>Encounter Reference: </strong></th>
+                     <th><strong>Encounter Display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>final final final</td>
+                     <td>urn:uuid:29995d4a-1ba7-404d-b161-86670848675b urn:uuid:29995d4a-1ba7-404d-b161-86670848675b
+                        urn:uuid:29995d4a-1ba7-404d-b161-86670848675b
+                     </td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Category System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://snomed.info/sct http://snomed.info/sct http://snomed.info/sct</td>
+                     <td></td>
+                     <td>363806002 249521002 443846001</td>
+                     <td>Weight loss (amount) Frequency of bowel action Detail of history of travel</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>effectiveDateTime: </strong></th>
+                     <th><strong>effectivePeriod Start: </strong></th>
+                     <th><strong>effectivePeriod End: </strong></th>
+                     <th><strong>Issued: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>2017-05-01 2017-05-01 2017-05-01</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Performer reference: </strong></th>
+                     <th><strong>Display: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>urn:uuid:c945c0a4-d63b-4cda-9299-12fe20524adc</td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>valueQuantity</strong><table>
+               <tbody>
+                  <tr>
+                     <th><strong>value: </strong></th>
+                     <th><strong>comparator: </strong></th>
+                     <th><strong>unit: </strong></th>
+                     <th><strong>system: </strong></th>
+                     <th><strong>code: </strong></th>
+                  </tr>
+                  <tr>
+                     <td>14</td>
+                     <td></td>
+                     <td>lbs</td>
+                     <td>http://unitsofmeasure.org</td>
+                     <td>[lb_av]</td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>valueCodeableConcept</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td>http://snomed.info/sct</td>
+                     <td></td>
+                     <td>260413007</td>
+                     <td>None</td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>valueString</th>
+                     <th>valueRange low</th>
+                     <th>valueRange high</th>
+                     <th>valueRatio numerator</th>
+                     <th>valueRatio denominator</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>valueSampledData</strong><table>
+               <tbody>
+                  <tr>
+                     <th>origin</th>
+                     <th>period</th>
+                     <th>factor</th>
+                     <th>lowerLimit</th>
+                     <th>upperLimit</th>
+                     <th>dimensions</th>
+                     <th>data</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>valueAttachment</strong><table>
+               <tbody>
+                  <tr>
+                     <th>contentType</th>
+                     <th>language</th>
+                     <th>data</th>
+                     <th>url</th>
+                     <th>size</th>
+                     <th>hash</th>
+                     <th>title</th>
+                     <th>creation</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th>valueTime</th>
+                     <th>valueDateTime</th>
+                     <th>valuePeriod start</th>
+                     <th>valuePeriod end</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>dataAbsentReason</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>interpretation</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <td><strong>Comments: </strong></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>bodySite</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>method</strong><table>
+               <tbody>
+                  <tr>
+                     <th>Code System</th>
+                     <th>Version</th>
+                     <th>Code</th>
+                     <th>Display</th>
+                     <th>userSelected</th>
+                     <th>Text</th>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Specimen reference: </strong></th>
+                     <th><strong>Display: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr>
+            <table>
+               <tbody>
+                  <tr>
+                     <th><strong>Device reference: </strong></th>
+                     <th><strong>Display: </strong></th>
+                  </tr>
+               </tbody>
+            </table>
+            <hr></hr><strong>referenceRange</strong><hr></hr>
+            <hr></hr><strong>Component</strong></div>
+         <div id="medicationstatement" class="banner">
+            <h1>Medication Statement</h1>
+         </div>
+         <div id="allergyintolerance" class="banner">
+            <h1>Allergy Intolerance</h1>
+         </div>
+      </div>
+   </body>
+</html>
