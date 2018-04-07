@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-04-06T22:55:47.508+01:00" />
+    <lastUpdated value="2018-04-07T00:16:03.146+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -12,6 +12,14 @@
   <status value="draft" />
   <date value="2017-11-23" />
   <publisher value="NHS Digital" />
+  <contact>
+    <name value="Interoperability Team" />
+    <telecom>
+      <system value="email" />
+      <value value="interoperabilityteam@nhs.net" />
+      <use value="work" />
+    </telecom>
+  </contact>
   <description value="This profile carries details of the practitioner for which the information in the payload should be directed to." />
   <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
@@ -4230,8 +4238,8 @@
     <element id="Practitioner.identifier:localIdentifier">
       <path value="Practitioner.identifier" />
       <sliceName value="localIdentifier" />
-      <short value="The local identifier for the person" />
-      <definition value="The local identifier for the person." />
+      <short value="The local identifier for the person in this role." />
+      <definition value="The local identifier for the person in this role." />
       <requirements value="Often, specific identities are assigned for the agent." />
       <min value="0" />
       <max value="1" />
@@ -7489,7 +7497,9 @@
         </extension>
         <strength value="required" />
         <description value="The gender of a person used for administrative purposes." />
-        <valueSetUri value="http://hl7.org/fhir/ValueSet/administrative-gender" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-AdministrativeGender-1" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -9187,7 +9197,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -10165,7 +10175,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -10945,6 +10955,8 @@
     <element id="Practitioner.extension:nhsCommunication">
       <path value="Practitioner.extension" />
       <sliceName value="nhsCommunication" />
+      <short value="NHS communication preferences for a resource" />
+      <definition value="Communication preferences including a list of Languages which may be used for communication" />
       <max value="0" />
       <type>
         <code value="Extension" />
@@ -11028,8 +11040,8 @@
     <element id="Practitioner.identifier:localIdentifier">
       <path value="Practitioner.identifier" />
       <sliceName value="localIdentifier" />
-      <short value="The local identifier for the person" />
-      <definition value="The local identifier for the person." />
+      <short value="The local identifier for the person in this role." />
+      <definition value="The local identifier for the person in this role." />
       <max value="1" />
     </element>
     <element id="Practitioner.identifier:localIdentifier.system">
@@ -11083,7 +11095,9 @@
           <valueBoolean value="true" />
         </extension>
         <strength value="required" />
-        <valueSetUri value="http://hl7.org/fhir/ValueSet/administrative-gender" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-AdministrativeGender-1" />
+        </valueSetReference>
       </binding>
     </element>
     <element id="Practitioner.birthDate">
@@ -11103,14 +11117,14 @@
       <path value="Practitioner.qualification.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
     </element>
     <element id="Practitioner.qualification.issuer">
       <path value="Practitioner.qualification.issuer" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Header-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
     </element>
     <element id="Practitioner.communication">
