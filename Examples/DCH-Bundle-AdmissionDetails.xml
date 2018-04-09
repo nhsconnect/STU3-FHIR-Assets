@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<!--Admission to A and E-->
 <Bundle xmlns="http://hl7.org/fhir">
 	<id value="f14bbabb-0592-4b58-96b1-93dbb6631106"/>
 	<meta>
@@ -51,7 +50,7 @@
 			<Organization>
 				<id value="e04e172e-db43-4ff3-a30a-9d574f693d96"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-DCH-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
@@ -107,13 +106,13 @@
 			<Patient>
 				<id value="16fc5e15-2ce4-40c2-ac85-6ed7764dac9f"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Baby-Patient-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Baby-Patient-1"/>
 				</meta>
 				<identifier>
 					<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
 						<valueCodeableConcept>
 							<coding>
-								<system value="https://fhir.nhs.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
 								<code value="01"/>
 								<display value="Number present and verified"/>
 							</coding>
@@ -152,7 +151,7 @@
 			<Encounter>
 				<id value="58df44c5-2b01-4425-bd9a-985ac73152d0"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="urn:ietf:rfc:3986"/>
@@ -170,19 +169,6 @@
 					<reference value="urn:uuid:16fc5e15-2ce4-40c2-ac85-6ed7764dac9f"/>
 					<display value="DAWKINS, Sally"/>
 				</subject>
-				<participant>
-					<type>
-						<coding>
-							<system value="http://hl7.org/fhir/v3/ParticipationType"/>
-							<code value="PPRF"/>
-							<display value="primary performer"/>
-						</coding>
-					</type>
-					<individual>
-						<reference value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
-						<display value="Strange, Stephen (Dr.)"/>
-					</individual>
-				</participant>
 				<period>
 					<start value="2018-01-29T09:00:00"/>
 					<end value="2018-02-02T10:00:00"/>
@@ -217,14 +203,14 @@
 		</resource>
 	</entry>
 		
-<!--Practitioner from Encounter-->
+<!--Practitioner-->
 	<entry>
 		<fullUrl value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
 		<resource>
 			<Practitioner>
 				<id value="3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
+					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-DCH-Practitioner-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
@@ -239,6 +225,37 @@
 		</resource>
 	</entry>
 	
+		<!--Practitioner Role-->
+	<entry>
+		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+		<resource>
+			<PractitionerRole>
+				<id value="b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-DCH-PractitionerRole-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<practitioner>
+					<reference value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				</organization>	
+				<code>
+					<extension url="sdsJobRoleName"/>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-DCH-SDSJobRoleName-1"/>
+						<code value="R0070"/>
+						<display value="Associate Specialist"/>
+					</coding>
+				</code>		
+			</PractitionerRole>
+		</resource>
+	</entry>
+	
 <!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
@@ -246,7 +263,7 @@
 			<Location>
 				<id value="30f11523-4d42-4853-b060-896686e2b6c7"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Location-1"/>
+					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-DCH-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>

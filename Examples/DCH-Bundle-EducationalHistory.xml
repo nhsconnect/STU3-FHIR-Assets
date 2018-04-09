@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
+<Bundle xmlns="http://hl7.org/fhir">
 	<id value="ad4f9e16-aa2c-477e-bfbf-53d40ef1452b"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/StructureDefinition/DCH-Bundle-1"/>
@@ -30,11 +30,11 @@
 				</event>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -42,26 +42,27 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible org-->
+		
+<!--Responsible Org (MessageHeader.responsible)-->
 	<entry>
-		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 		<resource>
 			<Organization>
-				<id value="48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="X26"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="NHS DIGITAL"/>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 				<address>
-					<line value="1 TREVELYAN SQUARE"/>
-					<line value="BOAR LANE"/>
-					<city value="LEEDS"/>
-					<district value="WEST YORKSHIRE"/>
-					<postalCode value="LS1 6AE"/>
+					<line value="FRONT STREET"/>
+					<line value="SOUTH HETTON"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH6 2TH"/>
 				</address>
 			</Organization>
 		</resource>
@@ -71,28 +72,30 @@
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 		<resource>
 			<HealthcareService>
-				<id value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
+				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
 				</meta>
 				<identifier>
-					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<system value="urn:ietf:rfc:3986"/>
 					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
 				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="NHS DIGITAL"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</providedBy>
+				<!--***This should be a service not a professional e.g General Medical Practice not General Medical Practitioner***-->
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="M03"/>
-						<display value="General Medical Practitioner"/>
+						<code value="N03"/>
+						<display value="Health Visitor"/>
 					</coding>
 				</type>
 			</HealthcareService>
 		</resource>
 	</entry>
+	
 	<!--Who the patient (child) is-->
 	<entry>
 		<fullUrl value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
@@ -100,13 +103,13 @@
 			<Patient>
 				<id value="7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
 				</meta>
 				<identifier>
 					<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
 						<valueCodeableConcept>
 							<coding>
-								<system value="https://fhir.nhs.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
 								<code value="01"/>
 								<display value="Number present and verified"/>
 							</coding>
@@ -210,7 +213,7 @@
 			<Encounter>
 				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
@@ -234,7 +237,7 @@
 				<location>
 					<location>
 						<reference value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="Silverdale Family Practice"/>
+						<display value="SILVERDALE FAMILY PRACTICE"/>
 					</location>
 				</location>
 				<serviceProvider>
@@ -244,27 +247,7 @@
 			</Encounter>
 		</resource>
 	</entry>
-	<!--Practitioner from Encounter-->
-	<entry>
-		<fullUrl value="urn:uuid:e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-		<resource>
-			<Practitioner>
-				<id value="e9dbf8e8-5bdc-11e7-907b-a6006ad3dba0"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
-				</identifier>
-				<name>
-					<family value="Jones"/>
-					<given value="Bob"/>
-					<prefix value="Dr."/>
-				</name>
-			</Practitioner>
-		</resource>
-	</entry>
+
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
@@ -272,35 +255,15 @@
 			<Location>
 				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Location-1"/>
+					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-DCH-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="B86022"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="Silverdale Family Practice"/>
-				<managingOrganization>
-					<reference value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-					<display value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-				</managingOrganization>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 			</Location>
 		</resource>
 	</entry>
-	<!--Managing Org (CCG)-->
-	<entry>
-		<fullUrl value="urn:uuid:b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-		<resource>
-			<Organization>
-				<id value="b39c20cf-b3ce-46e0-91f2-d61b623dc490"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Organization-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="00D"/>
-				</identifier>
-				<name value="NHS DURHAM DALES, EASINGTON AND SEDGEFIELD CCG"/>
-			</Organization>
-		</resource>
-	</entry>
+
 </Bundle>
