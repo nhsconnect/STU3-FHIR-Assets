@@ -2,7 +2,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="HealthcareService" />
   <meta>
-    <lastUpdated value="2017-11-14T15:39:31.954+00:00" />
+    <lastUpdated value="2018-04-09T14:00:59.434+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
@@ -433,8 +433,8 @@
       <path value="HealthcareService.identifier" />
       <short value="e-RS healthcare service identifier" />
       <definition value="Provides the uniques identifier for the service." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="HealthcareService.identifier" />
         <min value="0" />
@@ -1150,6 +1150,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="https://fhir.nhs.uk/Id/ods-organization-code" />
       <example>
         <label value="General" />
         <valueUri value="http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri" />
@@ -1727,7 +1728,7 @@
       <definition value="The organization that provides this healthcare service." />
       <comment value="This property is recommended to be the same as the Location's managingOrganization, and if not provided should be interpreted as such. If the Location does not have a managing Organization, then this property should be populated." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="HealthcareService.providedBy" />
         <min value="0" />
@@ -3014,8 +3015,8 @@
       <short value="Specialties handled by the HealthcareService" />
       <definition value="Collection of specialties handled by the service site. This is more of a medical term." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="HealthcareService.specialty" />
         <min value="0" />
@@ -6335,7 +6336,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -8233,8 +8234,6 @@
       <path value="HealthcareService.identifier" />
       <short value="e-RS healthcare service identifier" />
       <definition value="Provides the uniques identifier for the service." />
-      <min value="1" />
-      <max value="1" />
     </element>
     <element id="HealthcareService.identifier.use">
       <path value="HealthcareService.identifier.use" />
@@ -8243,6 +8242,10 @@
     <element id="HealthcareService.identifier.type">
       <path value="HealthcareService.identifier.type" />
       <max value="0" />
+    </element>
+    <element id="HealthcareService.identifier.system">
+      <path value="HealthcareService.identifier.system" />
+      <fixedUri value="https://fhir.nhs.uk/Id/ods-organization-code" />
     </element>
     <element id="HealthcareService.identifier.value">
       <path value="HealthcareService.identifier.value" />
@@ -8260,10 +8263,6 @@
       <path value="HealthcareService.active" />
       <max value="0" />
     </element>
-    <element id="HealthcareService.providedBy">
-      <path value="HealthcareService.providedBy" />
-      <max value="0" />
-    </element>
     <element id="HealthcareService.category">
       <path value="HealthcareService.category" />
       <max value="0" />
@@ -8274,8 +8273,6 @@
     </element>
     <element id="HealthcareService.specialty">
       <path value="HealthcareService.specialty" />
-      <min value="1" />
-      <max value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="service-specialty" />
@@ -8361,6 +8358,10 @@
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-AdditionalRequirementType-1" />
         </valueSetReference>
       </binding>
+    </element>
+    <element id="HealthcareService.characteristic.coding">
+      <path value="HealthcareService.characteristic.coding" />
+      <max value="1" />
     </element>
     <element id="HealthcareService.characteristic.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
