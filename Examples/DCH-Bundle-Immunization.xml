@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
 	<id value="4e3ef073-dda5-4e57-b23b-ea3cab3ed96c"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/StructureDefinition/DCH-Bundle-1"/>
@@ -145,8 +145,7 @@
 			</Patient>
 		</resource>
 	</entry>
-	
-	<!--Additional Demographics Encounter details-->
+	<!--Encounter details-->
 	<entry>
 		<fullUrl value="urn:12779557-9033-4213-876f-69a670cdf35d"/>
 		<resource>
@@ -187,6 +186,87 @@
 			</Encounter>
 		</resource>
 	</entry>
+	<!--Immunizations-->
+	
+	<entry>
+		<fullUrl value="urn:uuid:076db265-8799-4dda-9418-e2a4d6d1c0d0"/>
+		<resource>
+			<Immunization>
+				<id value="076db265-8799-4dda-9418-e2a4d6d1c0d0"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Immunization-1"/>
+				</meta>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1">
+						<valueDateTime value="2017-11-29"/>
+					</extension>
+				<status value="completed"/>
+				<notGiven value="false"/>
+				<vaccineCode>
+					<coding>
+						<system value="https://fhir.nhs.uk/DCH-ChildHealthEventType-1"/>
+						<code value="396429000"/>
+						<display value="Measles, mumps and rubella vaccine (substance)"/>
+					</coding>
+				</vaccineCode>
+				<patient>
+					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+				</patient>
+				<encounter>
+					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+				</encounter>
+				<primarySource value="true"/>
+				<location>
+					<reference value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+				</location>
+				<site>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="368208006"/>
+						<display value="Left upper arm structure (body structure)"/>
+					</coding>
+				</site>
+				<route>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="34206005"/>
+						<display value="Subcutaneous route"/>
+					</coding>
+				</route>
+				<doseQuantity>
+					<value value="1"/>
+				</doseQuantity>
+				<practitioner>
+					<actor>
+						<reference value="urn:uuid:f25e9d63-6a4e-4de6-b9dc-c912fda62b01"/>
+					</actor>
+				</practitioner>
+<!--to review
+				<vaccinationProtocol>
+					<targetDisease>
+						<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="14189004"/>
+						<display value="Measles (disorder)"/>
+					</coding>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="36989005"/>
+						<display value="Mumps (disorder)"/>
+					</coding>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="36653000"/>
+						<display value="Rubella (disorder)"/>
+					</coding>
+					</targetDisease>
+					<doseStatus>
+						
+					</doseStatus>
+				</vaccinationProtocol>
+-->
+			</Immunization>
+		</resource>
+	</entry>
 	
 	<!--Practitioner-->
 	<entry>
@@ -209,7 +289,6 @@
 			</Practitioner>
 		</resource>
 	</entry>
-	
 	<!--Practitioner Role-->
 	<entry>
 		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
@@ -228,7 +307,7 @@
 				</practitioner>
 				<organization>
 					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-				</organization>	
+				</organization>
 				<code>
 					<extension url="sdsJobRoleName"/>
 					<coding>
@@ -236,11 +315,10 @@
 						<code value="R0260"/>
 						<display value="General Medical Practitioner"/>
 					</coding>
-				</code>		
+				</code>
 			</PractitionerRole>
 		</resource>
 	</entry>
-	
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
