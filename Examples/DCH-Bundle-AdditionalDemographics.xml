@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
 	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
 	<meta>
-		<profile value="https://fhir.nhs.uk/StructureDefinition/DCH-Bundle-1"/>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
 	<entry>
@@ -42,7 +42,6 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	
 	<!--Responsible Org-->
 	<entry>
 		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
@@ -67,7 +66,6 @@
 			</Organization>
 		</resource>
 	</entry>
-	
 	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
 		<fullUrl value="urn:uuid:47032621-220a-433e-9b64-94056e988730"/>
@@ -87,14 +85,21 @@
 				</providedBy>
 				<specialty>
 					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
 						<code value="600"/>
 						<display value="GENERAL MEDICAL PRACTICE"/>
 					</coding>
 				</specialty>
+				<location>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				</location>
+				<telecom>
+				<system value="phone"/>
+					<value value="0191 1231234"/>
+				</telecom>
 			</HealthcareService>
 		</resource>
 	</entry>
-	
 	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
@@ -104,27 +109,28 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
 				</meta>
+				<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
+					<valueAddress>
+						<city value="DURHAM"/>
+						<district value="County Durham"/>
+						<country value="UK"/>
+					</valueAddress>
+				</extension>
 				<identifier>
-					<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
-						<valueCodeableConcept>
-							<coding>
-								<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
-								<code value="01"/>
-								<display value="Number present and verified"/>
-							</coding>
-						</valueCodeableConcept>
-					</extension>
-					<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
-						<valueAddress>
-							<city value="DURHAM"/>
-							<district value="West Yorkshire"/>
-							<country value="UK"/>
-						</valueAddress>
-					</extension>
-					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="9912003888"/>
-				</identifier>
+						<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-NHSNumberVerificationStatus-1">
+							<valueCodeableConcept>
+								<coding>
+									<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
+									<code value="01"/>
+									<display value="Number present and verified"/>
+								</coding>
+							</valueCodeableConcept>
+						</extension>
+						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+						<value value="9912003888"/>
+				</identifier>				
 				<name>
+					<use value="official"/>
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
 					<period>
@@ -146,7 +152,6 @@
 			</Patient>
 		</resource>
 	</entry>
-	
 	<!--Additional Demographics Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -154,7 +159,7 @@
 			<Encounter>
 				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
 				<identifier>
 					<system value="urn:ietf:rfc:3986"/>
@@ -186,7 +191,7 @@
 					</individual>
 				</participant>
 				<period>
-					<start value="2017-10-01T09:00:00"/>
+					<start value="2017-10-01"/>
 				</period>
 				<location>
 					<location>
@@ -201,7 +206,6 @@
 			</Encounter>
 		</resource>
 	</entry>
-	
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
@@ -209,7 +213,7 @@
 			<Location>
 				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/StructureDefinition/CareConnect-DCH-Location-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
