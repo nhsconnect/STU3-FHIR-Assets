@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2018-04-10T13:15:52.828+01:00" />
+  </meta>
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-List-1" />
+  <version value="1.1.0" />
+  <name value="CareConnect-ITK-Medication-List-1" />
+  <title value="ITK Medication List" />
+  <status value="draft" />
+  <date value="2018-04-10" />
+  <publisher value="NHS Digital" />
+  <contact>
+    <name value="Interoperability Team" />
+    <telecom>
+      <system value="email" />
+      <value value="interoperabilityteam@nhs.net" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="Within the ITK eDischarge message, the Medication constrained List is used to hold a record of a patient's medication(s)." />
+  <purpose value="This profile is used to hold a record of a patient's medication(s)." />
+  <copyright value="Copyright © 2018 NHS Digital" />
+  <fhirVersion value="3.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="List" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/List" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="List.identifier">
+      <path value="List.identifier" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="List.identifier.value">
+      <path value="List.identifier.value" />
+      <min value="1" />
+    </element>
+    <element id="List.identifier.assigner">
+      <path value="List.identifier.assigner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="List.identifier.assigner.reference">
+      <path value="List.identifier.assigner.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.status">
+      <path value="List.status" />
+      <fixedCode value="current" />
+    </element>
+    <element id="List.mode">
+      <path value="List.mode" />
+      <fixedCode value="snapshot" />
+    </element>
+    <element id="List.code">
+      <path value="List.code" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ListPurpose" />
+        </extension>
+        <strength value="required" />
+        <valueSetUri value="http://snomed.info/sct" />
+      </binding>
+    </element>
+    <element id="List.code.coding">
+      <path value="List.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="List.code.coding.system">
+      <path value="List.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="List.code.coding.version">
+      <path value="List.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="List.code.coding.code">
+      <path value="List.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="medications" />
+    </element>
+    <element id="List.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Medication List" />
+    </element>
+    <element id="List.code.coding.userSelected">
+      <path value="List.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="List.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.code.text" />
+      <max value="0" />
+    </element>
+    <element id="List.subject">
+      <path value="List.subject" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+    </element>
+    <element id="List.subject.reference">
+      <path value="List.subject.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.encounter">
+      <path value="List.encounter" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
+      </type>
+    </element>
+    <element id="List.encounter.reference">
+      <path value="List.encounter.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.source">
+      <path value="List.source" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+      </type>
+    </element>
+    <element id="List.source.reference">
+      <path value="List.source.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.orderedBy">
+      <path value="List.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="List.orderedBy.coding.system">
+      <path value="List.orderedBy.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="List.orderedBy.coding.code">
+      <path value="List.orderedBy.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="List.orderedBy.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.orderedBy.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="List.note">
+      <path value="List.note" />
+      <max value="0" />
+    </element>
+    <element id="List.note.authorReference:authorReference">
+      <path value="List.note.authorReference" />
+      <sliceName value="authorReference" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+      </type>
+    </element>
+    <element id="List.note.authorReference:authorReference.reference">
+      <path value="List.note.authorReference.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.entry">
+      <path value="List.entry" />
+      <min value="1" />
+    </element>
+    <element id="List.entry.flag">
+      <path value="List.entry.flag" />
+      <max value="0" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ListItemFlag" />
+        </extension>
+        <strength value="example" />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/list-item-flag" />
+      </binding>
+    </element>
+    <element id="List.entry.flag.coding.system">
+      <path value="List.entry.flag.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="List.entry.flag.coding.code">
+      <path value="List.entry.flag.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="List.entry.flag.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.entry.flag.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="List.entry.deleted">
+      <path value="List.entry.deleted" />
+      <max value="0" />
+    </element>
+    <element id="List.entry.date">
+      <path value="List.entry.date" />
+      <max value="0" />
+    </element>
+    <element id="List.entry.item">
+      <path value="List.entry.item" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationStatement-1" />
+      </type>
+    </element>
+    <element id="List.entry.item.reference">
+      <path value="List.entry.item.reference" />
+      <min value="1" />
+    </element>
+    <element id="List.emptyReason">
+      <path value="List.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="List.emptyReason.coding.system">
+      <path value="List.emptyReason.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="List.emptyReason.coding.code">
+      <path value="List.emptyReason.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="List.emptyReason.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.emptyReason.coding.display" />
+      <min value="1" />
+    </element>
+  </differential>
+</StructureDefinition>
