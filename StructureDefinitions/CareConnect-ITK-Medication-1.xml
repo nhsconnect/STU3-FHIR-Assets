@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2018-04-12T22:30:06.886+01:00" />
+  </meta>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="phx" />
+  </extension>
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-1" />
+  <version value="1.0.0" />
+  <name value="CareConnect-ITK-Medication-1" />
+  <title value="CareConnect-ITK-Medication-1" />
+  <status value="active" />
+  <date value="2017-07-07T13:45:22.5627823+01:00" />
+  <publisher value="HL7 UK" />
+  <description value="This Medication Resource is primarily used for the identification and definition of a medication." />
+  <copyright value="Copyright © 2016 HL7 UK&#xD;&#xA;&#xD;&#xA;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&#xD;&#xA;&#xD;&#xA;HL7® FHIR® standard Copyright © 2011+ HL7&#xD;&#xA;&#xD;&#xA;The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at&#xD;&#xA;&#xD;&#xA;https://www.hl7.org/fhir/license.html" />
+  <fhirVersion value="3.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Medication" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Medication" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Medication.code">
+      <path value="Medication.code" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationFormalRepresentation" />
+        </extension>
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication from the VTM/VMP/VMPP/AMP/AMPP subsets from the dm+d terminology" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationCode-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Medication.code.coding.extension">
+      <path value="Medication.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Medication.code.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
+    <element id="Medication.manufacturer">
+      <path value="Medication.manufacturer" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
+      </type>
+    </element>
+    <element id="Medication.form">
+      <path value="Medication.form" />
+      <short value="Codes that describe a medication dose form" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="MedicationForm" />
+        </extension>
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system that describes a medication dose form" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationForm-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Medication.form.coding.extension">
+      <path value="Medication.form.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Medication.form.coding.extension:snomedCTDescriptionID">
+      <path value="Medication.form.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
+    <element id="Medication.ingredient.item[x]">
+      <path value="Medication.ingredient.item[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Substance" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-1" />
+      </type>
+    </element>
+    <element id="Medication.package.content.item[x]">
+      <path value="Medication.package.content.item[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-1" />
+      </type>
+    </element>
+  </differential>
+</StructureDefinition>
