@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
 	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
-			<entry>
+	<entry>
 		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 		<resource>
 			<MessageHeader>
@@ -42,7 +42,6 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	
 	<!--Responsible org-->
 	<entry>
 		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
@@ -67,7 +66,6 @@
 			</Organization>
 		</resource>
 	</entry>
-	
 	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
 		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
@@ -75,7 +73,7 @@
 			<HealthcareService>
 				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<identifier>
 					<system value="urn:ietf:rfc:3986"/>
@@ -92,18 +90,24 @@
 						<display value="Social Worker"/>
 					</coding>
 				</type>
+				<specialty>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
+						<code value="950"/>
+						<display value="NURSING EPISODE"/>
+					</coding>
+				</specialty>
 				<location>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				</location>
 				<telecom>
-				<system value="phone"/>
+					<system value="phone"/>
 					<value value="0191 1231234"/>
 				</telecom>
 			</HealthcareService>
 		</resource>
 	</entry>
-	
-		<!--Child Details (Jack Dawkins)-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -120,18 +124,18 @@
 					</valueAddress>
 				</extension>
 				<identifier>
-						<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-NHSNumberVerificationStatus-1">
-							<valueCodeableConcept>
-								<coding>
-									<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
-									<code value="01"/>
-									<display value="Number present and verified"/>
-								</coding>
-							</valueCodeableConcept>
-						</extension>
-						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-						<value value="9912003888"/>
-				</identifier>				
+					<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
 				<name>
 					<use value="official"/>
 					<family value="DAWKINS"/>
@@ -155,119 +159,119 @@
 			</Patient>
 		</resource>
 	</entry>
-	
-
-<!--Social Context Household-->
+	<!--Social Context Household-->
 	<entry>
 		<fullUrl value="urn:uuid:9fa0541c-67a2-4946-a7e3-ef3c4a8991f1"/>
 		<resource>
 			<QuestionnaireResponse>
-			<id value="9fa0541c-67a2-4946-a7e3-ef3c4a8991f1"/>
-			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-SocialContextHousehold-QuestionnaireResponse-1"/>
-			</meta>
-			<identifier>
-				<system value="urn:ietf:rfc:3986"/>
-				<value value="2d80c64f-9f4a-4786-b5b3-397612bca986"/>
-			</identifier>
-			<status value="completed"/>
-			<subject>
-				<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
-			</subject>
-			<context>
-				<reference value="urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b"/>
-			</context>
-			<item>
-				<linkId value="educationalEstablishmentType"/>
-				<text value="Type of Educational establishment"/>
-				<answer>
-					<valueCoding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EducationLevel-1"/>
-						<code value="Level 7"/>
-						<display value="Master's degree"/>
-					</valueCoding>
-				</answer>
-			</item>
-			<item>
-				<linkId value="householdSmokingStatus"/>
-				<text value="Household smoking status"/>
-				<answer>
-					<valueCoding>
-						<system value="http://snomed.info/sct"/>
-						<code value="94151000119101"/>
-						<display value="Smoker in household"/>
-					</valueCoding>
-				</answer>
-			</item>
-			<item>
-				<linkId value="householdSubstanceStatus"/>
-				<text value="Household substance status"/>
-				<answer>
-					<valueCoding>
-						<system value="http://snomed.info/sct"/>
-						<code value="New coded needed"/>
-						<display value="New coded needed"/>
-					</valueCoding>
-				</answer>
-			</item>
-			<item>
-				<linkId value="householdAlcoholDrinkingStatus"/>
-				<text value="Household alcohol drinking status"/>
-				<answer>
-					<valueString value="No concerns around the consumption of alcohol"/>
-				</answer>
-			</item>
-			<item>
-				<linkId value="employmentStatusMother"/>
-				<text value="Employment status (Mother)"/>
-				<answer>
-					<valueCoding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
-						<code value="1"/>
-						<display value="Employed"/>
-					</valueCoding>
-				</answer>
-			</item>
-			<item>
-				<linkId value="occupationMother"/>
-				<text value="Mother's Occupation"/>
-				<answer>
-					<valueString value="Accountant"/>
-				</answer>
-			</item>
-			<item>
-				<linkId value="employmentStatusFather"/>
-				<text value="Employment status (Father)"/>
-				<answer>
-					<valueCoding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
-						<code value="1"/>
-						<display value="Employed"/>
-					</valueCoding>
-				</answer>
-			</item>
-			<item>
-				<linkId value="occupationFather"/>
-				<text value="Father's Occupation"/>
-				<answer>
-					<valueString value="Business Analyst"/>
-				</answer>
-			</item>
-			<item>
-				<linkId value="accommodationStatus"/>
-				<text value="Accommodation status"/>
-				<answer>
-					<valueCoding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-AccommodationStatus-1"/>
-						<code value="MA01"/>
-						<display value="Owner occupier"/>
-					</valueCoding>
-				</answer>
-			</item>
-			</QuestionnaireResponse>			
+				<id value="9fa0541c-67a2-4946-a7e3-ef3c4a8991f1"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-SocialContextHousehold-QuestionnaireResponse-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="2d80c64f-9f4a-4786-b5b3-397612bca986"/>
+				</identifier>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b"/>
+				</context>
+				<author>
+					<reference value="urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
+				</author>
+				<item>
+					<linkId value="mothersEducationLevel"/>
+					<text value="Mothers Education Level"/>
+					<answer>
+						<valueCoding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EducationLevel-1"/>
+							<code value="Level 7"/>
+							<display value="Master's degree"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="householdSmokingStatus"/>
+					<text value="Household smoking status"/>
+					<answer>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="94151000119101"/>
+							<display value="Smoker in household"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="substanceStatus"/>
+					<text value="Household substance status"/>
+					<answer>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="New coded needed"/>
+							<display value="New coded needed"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="householdAlcoholDrinkingStatus"/>
+					<text value="Household alcohol drinking status"/>
+					<answer>
+						<valueString value="No concerns around the consumption of alcohol"/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="employmentStatusMother"/>
+					<text value="Employment status (Mother)"/>
+					<answer>
+						<valueCoding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
+							<code value="1"/>
+							<display value="Employed"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="occupationMother"/>
+					<text value="Mother's Occupation"/>
+					<answer>
+						<valueString value="Accountant"/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="employmentStatusFather"/>
+					<text value="Employment status (Father)"/>
+					<answer>
+						<valueCoding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
+							<code value="1"/>
+							<display value="Employed"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="occupationFather"/>
+					<text value="Father's Occupation"/>
+					<answer>
+						<valueString value="Business Analyst"/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="accommodationStatus"/>
+					<text value="Accommodation status"/>
+					<answer>
+						<valueCoding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-AccommodationStatus-1"/>
+							<code value="MA01"/>
+							<display value="Owner occupier"/>
+						</valueCoding>
+					</answer>
+				</item>
+			</QuestionnaireResponse>
 		</resource>
 	</entry>
-	
 	<!--Social Context Household Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b"/>
@@ -282,12 +286,19 @@
 					<value value="92c72a88-3e77-46e1-9453-da4ecc780575"/>
 				</identifier>
 				<status value="finished"/>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
+						<code value="0022"/>
+						<display value="6-8 Week Health Visitor review"/>
+					</coding>
+				</type>
 				<subject>
 					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2012-01-29T09:00:00"/>
+					<start value="2018-01-29"/>
 				</period>
 				<location>
 					<location>
@@ -302,7 +313,26 @@
 			</Encounter>
 		</resource>
 	</entry>
-	
+	<!--Practitioner Author-->
+	<entry>
+		<fullUrl value="urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
+		<resource>
+			<Practitioner>
+				<id value="e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<name>
+					<family value="Ripley"/>
+					<given value="Ellen"/>
+				</name>
+			</Practitioner>
+		</resource>
+	</entry>
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
@@ -320,5 +350,4 @@
 			</Location>
 		</resource>
 	</entry>
-	
 </Bundle>
