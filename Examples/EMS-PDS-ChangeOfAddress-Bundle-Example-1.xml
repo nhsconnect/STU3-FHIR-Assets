@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3/bundle.xsd">
+	<id value="236a1d4a-5d69-4fa9-9c7f-e72bf505aa5b"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
+	<entry>
+		<fullUrl value="3cfdf880-13e9-4f6b-8299-53e96ef5ec02"/>
+		<resource>
+			<MessageHeader>
+				<id value="3cfdf880-13e9-4f6b-8299-53e96ef5ec02"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1"/>
+					<code value="PDS002"/>
+					<display value="PDS Change of Address"/>
+				</event>
+				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:75ecfc00-1a86-4a8a-9104-aa6d43a67092"/>
+					<display value="NHS DIGITAL"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:3f98da8c-3fe9-430e-8e7c-6edd078622f0"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<!--Entry for responsible/publishing organization i.e. NHS Digital-->
+	<entry>
+		<fullUrl value="urn:uuid:75ecfc00-1a86-4a8a-9104-aa6d43a67092"/>
+		<resource>
+			<Organization>
+				<id value="75ecfc00-1a86-4a8a-9104-aa6d43a67092"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="X26"/>
+				</identifier>
+				<name value="NHS DIGITAL"/>
+				<address>
+					<line value="1 TREVELYAN SQUARE"/>
+					<line value="BOAR LANE"/>
+					<city value="LEEDS"/>
+					<district value="WEST YORKSHIRE"/>
+					<postalCode value="LS1 6AE"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<!--Entry for service type within the Organization i.e. PDS-->
+	<entry>
+		<fullUrl value="urn:uuid:4c687299-3693-47f0-b477-562b0784d225"/>
+		<resource>
+			<HealthcareService>
+				<id value="4c687299-3693-47f0-b477-562b0784d225"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+				</meta>
+				<providedBy>
+					<reference value="urn:uuid:75ecfc00-1a86-4a8a-9104-aa6d43a67092"/>
+					<display value="NHS DIGITAL"/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1"/>
+						<code value="PDS"/>
+						<display value="Personal Demographics Service"/>
+					</coding>
+				</type>
+			</HealthcareService>
+		</resource>
+	</entry>
+	<!--Entry for communication for the event message, with reference to subject and payload-->
+	<entry>
+		<fullUrl value="urn:uuid:3f98da8c-3fe9-430e-8e7c-6edd078622f0"/>
+		<resource>
+			<Communication>
+				<id value="3f98da8c-3fe9-430e-8e7c-6edd078622f0"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"/>
+				</meta>
+				<status value="completed"/>				
+				<subject>
+					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<sent value="2018-02-01"/>
+				<payload>
+					<contentReference>
+						<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
+						<display value="DAWKINS, Jack"/>
+					</contentReference>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
+	<!--Entry for communication for the Patient with change of address detail.-->
+	<entry>
+		<fullUrl value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<Patient>
+				<id value="dffd3330-dc21-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
+				</meta>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
+				<name>
+					<use value="usual"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
+				</name>
+				<gender value="male"/>
+				<birthDate value="2017-10-02">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<!--Entry for previous address.-->
+				<address>
+					<use value="old"/>
+					<line value="3 WELLHOUSE CLOSE"/>
+					<city value="WAKEFIELD"/>
+					<postalCode value="WF14 0BQ"/>
+					<period>
+						<start value="2017-10-02"/>
+						<end value="2017-11-01"/>
+					</period>
+				</address>
+				<!--Entry for new address.-->
+				<address>
+					<use value="home"/>
+					<line value="4 SANDMOOR DRIVE"/>
+					<city value="LEEDS"/>
+					<postalCode value="LS17 7DF"/>
+					<period>
+						<start value="2017-11-01"/>
+					</period>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+</Bundle>

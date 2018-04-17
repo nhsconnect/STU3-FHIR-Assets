@@ -1,0 +1,328 @@
+{
+  "resourceType": "Bundle",
+  "id": "e19b2ec1-6c6b-4278-a0bb-cea2f4ecb917",
+  "fhir_comments": [
+    "This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence"
+  ],
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"
+    ]
+  },
+  "type": "message",
+  "entry": [
+    {
+      "fhir_comments": [
+        "Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication"
+      ],
+      "fullUrl": "urn:uuid:54cbe7a2-0a13-4f22-a073-f15aa7b8b5a5",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1",
+                  "code": "new",
+                  "display": "New event message"
+                }
+              ]
+            }
+          }
+        ],
+        "event": {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1",
+          "code": "PDS004",
+          "display": "PDS Person Death"
+        },
+        "timestamp": "2017-11-01T15:00:00+00:00",
+        "source": {
+          "endpoint": "urn:nhs-uk:addressing:ods:X26"
+        },
+        "responsible": {
+          "reference": "urn:uuid:786f6800-4a71-4b75-83c6-9aa6b27baf9a",
+          "display": "NHS DIGITAL"
+        },
+        "focus": [
+          {
+            "reference": "urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for responsible/publishing organization i.e. NHS Digital"
+      ],
+      "fullUrl": "urn:uuid:786f6800-4a71-4b75-83c6-9aa6b27baf9a",
+      "resource": {
+        "resourceType": "Organization",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value": "X26"
+          }
+        ],
+        "name": "NHS DIGITAL",
+        "address": [
+          {
+            "line": [
+              "1 TREVELYAN SQUARE",
+              "BOAR LANE"
+            ],
+            "city": "LEEDS",
+            "district": "WEST YORKSHIRE",
+            "postalCode": "LS1 6AE"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for service type within the Organization i.e. PDS"
+      ],
+      "fullUrl": "urn:uuid:9c04e8e1-cac2-4559-af50-f2b2856c5a91",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"
+          ]
+        },
+        "providedBy": {
+          "reference": "urn:uuid:786f6800-4a71-4b75-83c6-9aa6b27baf9a",
+          "display": "NHS DIGITAL"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1",
+                "code": "PDS",
+                "display": "Personal Demographics Service"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for communication for the event message, with reference to subject and payload"
+      ],
+      "fullUrl": "urn:uuid:3a56ba02-785b-4f34-9282-d7129c8e134e",
+      "resource": {
+        "resourceType": "Communication",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"
+          ]
+        },
+        "status": "completed",
+        "subject": {
+          "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
+          "display": "JONES, Jack"
+        },
+        "sent": "2018-02-08",
+        "payload": [
+          {
+            "contentReference": {
+              "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
+              "display": "JONES, Jack"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for Patient"
+      ],
+      "fullUrl": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
+      "resource": {
+        "resourceType": "Patient",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DeathNotificationStatus-1",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DeathNotificationStatus-1",
+                  "code": "2",
+                  "display": "Formal - death notice received from Registrar of Deaths"
+                }
+              ]
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "extension": [
+              {
+                "url": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1",
+                      "code": "01",
+                      "display": "Number present and verified"
+                    }
+                  ]
+                }
+              }
+            ],
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "6101231234"
+          }
+        ],
+        "name": [
+          {
+            "family": "JONES",
+            "given": [
+              "Jack"
+            ],
+            "period": {
+              "start": "1918-02-01"
+            }
+          }
+        ],
+        "gender": "male",
+        "deceasedDateTime": "2017-11-01T15:00:00+00:00",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "4 Sandmoor Drive"
+            ],
+            "city": "LEEDS",
+            "postalCode": "LS17 7DF"
+          }
+        ],
+        "generalPractitioner": [
+          {
+            "reference": "urn:uuid:7b788347-493f-4e1b-9f0e-ed1ba218abb9",
+            "display": "SHADWELL MEDICAL CENTRE"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for organisation for current GP with ODS identifier for the primary care organisation with which the patient is registered (GP Practice code)"
+      ],
+      "fullUrl": "urn:uuid:7b788347-493f-4e1b-9f0e-ed1ba218abb9",
+      "resource": {
+        "resourceType": "Organization",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/ods-site-code",
+            "value": "B86056"
+          }
+        ],
+        "name": "SHADWELL MEDICAL CENTRE",
+        "partOf": {
+          "reference": "urn:uuid:de282fac-8d4d-432a-8683-f008485ae48c",
+          "display": "NHS LEEDS NORTH CCG"
+        }
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for organisation with ODS identifier for the primary care organisation commissioning the care."
+      ],
+      "fullUrl": "urn:uuid:de282fac-8d4d-432a-8683-f008485ae48c",
+      "resource": {
+        "resourceType": "Organization",
+        "meta": {
+          "profile": [
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value": "02V"
+          }
+        ],
+        "name": "NHS LEEDS NORTH CCG"
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for PDS death notification communication for the event message, with reference to subject"
+      ],
+      "fullUrl": "urn:uuid:833a9a73-8f86-4f04-9a68-362052b7dca6",
+      "resource": {
+        "resourceType": "Communication",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-PDS-PersonDeath-Communication-1"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathCause-1",
+            "extension": [
+              {
+                "url": "deathCauseComment",
+                "valueString": "Died of natural causes"
+              },
+              {
+                "url": "deathCauseIdentificationMethod",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathCauseIdentificationMethod-1",
+                      "code": "1",
+                      "display": "Death certificate"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-PDS-DeathLocationType-1",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-PDS-DeathLocationType-1",
+                  "code": "10",
+                  "display": "Hospital"
+                }
+              ]
+            }
+          }
+        ],
+        "status": "completed",
+        "subject": {
+          "reference": "urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a",
+          "display": "JONES, Jack"
+        },
+        "sent": "2018-02-01"
+      }
+    }
+  ]
+}
