@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-04-16T13:27:28.115+01:00" />
+    <lastUpdated value="2018-04-17T11:37:50.244+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-List-1" />
   <version value="1.1.0" />
@@ -1821,7 +1821,9 @@
         </extension>
         <strength value="required" />
         <description value="What the purpose of a list is" />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://snomed.info/sct" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -2158,7 +2160,6 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="procedures" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2204,7 +2205,6 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Medication List" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4201,7 +4201,7 @@
       <comment value="The flag can only be understood in the context of the List.code. If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true. Deleted can only be used if the List.mode is &quot;changes&quot;." />
       <requirements value="This field is present to support various clinical uses of lists, such as a discharge summary medication list, where flags specify whether the medication was added, modified, or deleted from the list." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="List.entry.flag" />
         <min value="0" />
@@ -4224,7 +4224,9 @@
         </extension>
         <strength value="example" />
         <description value="Codes that provide further information about the reason and meaning of the item in the list" />
-        <valueSetUri value="http://hl7.org/fhir/ValueSet/list-item-flag" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/list-item-flag" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -4797,7 +4799,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationStatement-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5581,7 +5583,9 @@
           <valueString value="ListPurpose" />
         </extension>
         <strength value="required" />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://snomed.info/sct" />
+        </valueSetReference>
       </binding>
     </element>
     <element id="List.code.coding">
@@ -5601,7 +5605,6 @@
     <element id="List.code.coding.code">
       <path value="List.code.coding.code" />
       <min value="1" />
-      <fixedCode value="procedures" />
     </element>
     <element id="List.code.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -5609,7 +5612,6 @@
       </extension>
       <path value="List.code.coding.display" />
       <min value="1" />
-      <fixedString value="Medication List" />
     </element>
     <element id="List.code.coding.userSelected">
       <path value="List.code.coding.userSelected" />
@@ -5696,17 +5698,6 @@
       <path value="List.entry" />
       <min value="1" />
     </element>
-    <element id="List.entry.flag">
-      <path value="List.entry.flag" />
-      <max value="0" />
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="ListItemFlag" />
-        </extension>
-        <strength value="example" />
-        <valueSetUri value="http://hl7.org/fhir/ValueSet/list-item-flag" />
-      </binding>
-    </element>
     <element id="List.entry.flag.coding.system">
       <path value="List.entry.flag.coding.system" />
       <min value="1" />
@@ -5734,7 +5725,7 @@
       <path value="List.entry.item" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-MedicationStatement-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
     </element>
     <element id="List.entry.item.reference">
