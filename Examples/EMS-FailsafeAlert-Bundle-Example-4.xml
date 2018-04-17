@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3/bundle.xsd">
+	<id value="ebfdb21c-dc18-11e7-9296-cec278b6b50a"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
+	<entry>
+		<fullUrl value="urn:uuid:ebfdb2e4-dc18-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<MessageHeader>
+				<id value="ebfdb2e4-dc18-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1"/>
+					<code value="FM001"/>
+					<display value="National Population Failsafe Alert"/>
+				</event>
+				<timestamp value="2018-01-09T10:54:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+					<display value="NHS DIGITAL"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:ebfdc798-dc18-11e7-9296-cec278b6b50a"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<!--Entry for responsible/publishing organization i.e. NHS Digital-->
+	<entry>
+		<fullUrl value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+		<resource>
+			<Organization>
+				<id value="b834d806-c076-11e7-abc4-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="X26"/>
+				</identifier>
+				<name value="NHS DIGITAL"/>
+				<address>
+					<line value="1 TREVELYAN SQUARE"/>
+					<line value="BOAR LANE"/>
+					<city value="LEEDS"/>
+					<district value="WEST YORKSHIRE"/>
+					<postalCode value="LS1 6AE"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	<!--Entry for service type within the Organization i.e. National Population Failsafe-->
+	<entry>
+		<fullUrl value="urn:uuid:b834db08-c076-11e7-abc4-cec278b6b50a"/>
+		<resource>
+			<HealthcareService>
+				<id value="b834db08-c076-11e7-abc4-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+				</meta>
+				<providedBy>
+					<reference value="urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a"/>
+					<display value="NHS DIGITAL"/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1"/>
+						<code value="NPFM"/>
+						<display value="National Population Failsafe"/>
+					</coding>
+				</type>
+			</HealthcareService>
+		</resource>
+	</entry>
+	<!--Entry for communication for the event message, with reference to subject and payload-->
+	<entry>
+		<fullUrl value="urn:uuid:ebfdc798-dc18-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<Communication>
+				<id value="ebfdc798-dc18-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"/>
+				</meta>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
+					<display value="PECKSNIFF, Mercy"/>
+				</subject>
+				<payload>
+					<contentReference>
+						<reference value="urn:uuid:ebfdc5fe-dc18-11e7-9296-cec278b6b50a"/>
+					</contentReference>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
+	<!--Entry for the Patient who is the subject of the Failsafe Alert.-->
+	<entry>
+		<fullUrl value="urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<Patient>
+				<id value="ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"/>
+				</meta>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003926"/>
+				</identifier>
+				<name>
+					<use value="usual"/>
+					<family value="PECKSNIFF"/>
+					<given value="Mercy"/>
+				</name>
+				<gender value="female"/>
+				<birthDate value="2017-09-17">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-09-17T20:00:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="3 WELLHOUSE CLOSE"/>
+					<city value="WAKEFIELD"/>
+					<postalCode value="WF14 0BQ"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+	<!--Entry for task with content of the Failsafe Alert.-->
+	<entry>
+		<fullUrl value="urn:uuid:ebfdc5fe-dc18-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<Task>
+				<id value="ebfdc5fe-dc18-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1"/>
+				</meta>
+				<!--FailsafeAlert-Severity Level-->
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertSeverityLevel-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertSeverityLevel-1"/>
+							<code value="Warning Alert"/>
+							<display value="Warning Alert"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<!--FailsafeAlert-Escalation Level-->
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-FailsafeAlertEscalationLevel-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertEscalationLevel-1"/>
+							<code value="Manager of Service"/>
+							<display value="Manager of Service"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<status value="requested"/>
+				<intent value="order"/>
+				<!--FailsafeAlert-Action Required-->
+				<code>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertActionRequired-1"/>
+						<code value="002"/>
+						<display value="Please contact parent to discuss GP registration"/>
+					</coding>
+				</code>
+				<!--FailsafeAlert-ReadableFormat-->
+				<description value="Severity Level: Warning Alert - Escalation Level: Manager of Service - Condition ID: 003 - Condition Description: Missing GP Service - Reason for alert: Individual has a missing association with a GP Service - Service needed to action: CHO - Action Required: Please contact parent to discuss GP registration - Action Required by Date: 2018-02-06T10:54:00+00:00"/>
+				<!--FailsafeAlert-Patient-->
+				<focus>
+					<reference value="urn:uuid:ebfdafba-dc18-11e7-9296-cec278b6b50a"/>
+					<display value="PECKSNIFF, Mercy"/>
+				</focus>
+				<!--FailsafeAlert-Date and Time raised-->
+				<authoredOn value="2018-01-09T10:54:00+00:00"/>
+				<!--FailsafeAlert-ServiceToAction-->
+				<performerType>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertServiceToAction-1"/>
+						<code value="CHO"/>
+						<display value="CHO"/>
+					</coding>
+				</performerType>
+				<!--FailsafeAlert-ConditionCode-->
+				<reason>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-FailsafeAlertReason-1"/>
+						<code value="003"/>
+						<display value="Missing GP Service - Individual has a missing association with a GP Service"/>
+					</coding>
+				</reason>
+				<restriction>
+					<!--FailsafeAlert-Action Required By End Date-->
+					<period>
+						<end value="2018-02-06T10:54:00+00:00"/>
+					</period>
+				</restriction>
+			</Task>
+		</resource>
+	</entry>
+</Bundle>
