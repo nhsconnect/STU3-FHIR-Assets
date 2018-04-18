@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-04-17T11:30:26.287+01:00" />
+    <lastUpdated value="2018-04-18T09:59:22.859+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-List-1" />
   <version value="1.1.0" />
@@ -4044,7 +4044,7 @@
       <short value="Entries in the list" />
       <definition value="Entries in this list." />
       <comment value="If there are no entries in the list, an emptyReason SHOULD be provided." />
-      <min value="1" />
+      <min value="0" />
       <max value="*" />
       <base>
         <path value="List.entry" />
@@ -4222,10 +4222,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ListItemFlag" />
         </extension>
-        <strength value="example" />
-        <description value="Codes that provide further information about the reason and meaning of the item in the list" />
+        <strength value="preferred" />
+        <description value="A valueset that describes patient medication change types in the context of status/workflow for a Medication list." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/list-item-flag" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/ITK-PatientMedicationChangeType-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -4723,7 +4723,7 @@
       <comment value="If the flag means that the entry has actually been deleted from the list, the deleted element SHALL be true. Both flag and deleted can only be used if the List.mode is &quot;changes&quot;. A deleted entry should be displayed in narrative as deleted.&#xA;&#xA;This element is labeled as a modifier because it indicates that an item is (to be) no longer in the list." />
       <requirements value="The flag element may contain codes that an application processing the list does not understand. However there can be no ambiguity if a list item is actually marked as &quot;deleted&quot;." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="List.entry.deleted" />
         <min value="0" />
@@ -4759,7 +4759,7 @@
       <comment value="This is only useful and meaningful when the mode is &quot;working&quot;." />
       <requirements value="The date may be significant for understanding the meaning of items in a working list." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="List.entry.date" />
         <min value="0" />
@@ -5694,9 +5694,18 @@
       <path value="List.note.authorReference.reference" />
       <min value="1" />
     </element>
-    <element id="List.entry">
-      <path value="List.entry" />
-      <min value="1" />
+    <element id="List.entry.flag">
+      <path value="List.entry.flag" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ListItemFlag" />
+        </extension>
+        <strength value="preferred" />
+        <description value="A valueset that describes patient medication change types in the context of status/workflow for a Medication list." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/ITK-PatientMedicationChangeType-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="List.entry.flag.coding.system">
       <path value="List.entry.flag.coding.system" />
@@ -5712,14 +5721,6 @@
       </extension>
       <path value="List.entry.flag.coding.display" />
       <min value="1" />
-    </element>
-    <element id="List.entry.deleted">
-      <path value="List.entry.deleted" />
-      <max value="0" />
-    </element>
-    <element id="List.entry.date">
-      <path value="List.entry.date" />
-      <max value="0" />
     </element>
     <element id="List.entry.item">
       <path value="List.entry.item" />
