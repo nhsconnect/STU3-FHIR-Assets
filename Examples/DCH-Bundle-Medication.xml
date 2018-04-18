@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/stu3/bundle.xsd">
 	<id value="981dbc45-9ff9-4570-836c-eb3e93763189"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
 	<!--Message Header-->
-		<entry>
+	<entry>
 		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 		<resource>
 			<MessageHeader>
@@ -95,14 +95,13 @@
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				</location>
 				<telecom>
-				<system value="phone"/>
+					<system value="phone"/>
 					<value value="0191 1231234"/>
 				</telecom>
 			</HealthcareService>
 		</resource>
 	</entry>
-	
-		<!--Child Details (Jack Dawkins)-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -112,18 +111,18 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
 				</meta>
 				<identifier>
-						<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-NHSNumberVerificationStatus-1">
-							<valueCodeableConcept>
-								<coding>
-									<system value="https://fhir.nhs.uk/STU3/CareConnect-DCH-NHSNumberVerificationStatus-1"/>
-									<code value="01"/>
-									<display value="Number present and verified"/>
-								</coding>
-							</valueCodeableConcept>
-						</extension>
-						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-						<value value="9912003888"/>
-				</identifier>				
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
 				<name>
 					<use value="official"/>
 					<family value="DAWKINS"/>
@@ -132,7 +131,7 @@
 						<start value="2017-10-12"/>
 					</period>
 				</name>
-				<gender value="male"/>
+				
 				<birthDate value="2017-10-12">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
@@ -147,54 +146,7 @@
 			</Patient>
 		</resource>
 	</entry>
-	
-	<!--Encounter details-->
-	<entry>
-		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
-		<resource>
-			<Encounter>
-				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
-				</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="519a0b37-a282-4bdd-b226-37ca95c8427f"/>
-				</identifier>
-				<status value="finished"/>
-				<subject>
-					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
-					<display value="DAWKINS, Jack"/>
-				</subject>
-				<participant>
-					<type>
-						<coding>
-							<system value="http://hl7.org/fhir/v3/ParticipationType"/>
-							<code value="PPRF"/>
-							<display value="primary performer"/>
-						</coding>
-					</type>
-					<individual>
-						<reference value="urn:uuid:50eb4757-15cf-421d-8d46-29fc35eea45d"/>
-						<display value="Strange, Stephen (Dr.)"/>
-					</individual>
-				</participant>
-				<period>
-					<start value="2018-01-29"/>
-				</period>
-				<location>
-					<location>
-						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="SILVERDALE FAMILY PRACTICE"/>
-					</location>
-				</location>
-				<serviceProvider>
-					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
-				</serviceProvider>
-			</Encounter>
-		</resource>
-	</entry>
+
 	<!--Medication Administration-->
 	<entry>
 		<fullUrl value="urn:uuid:849e013b-8a4c-4ea1-a8ba-0a28c8785eb2"/>
@@ -226,22 +178,34 @@
 				</performer>
 				<dosage>
 					<route>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="26643006"/>
-						<display value="Oral route"/>
-					</coding>
+						<coding>
+							<system value="http://snomed.info/sct"/>
+							<code value="26643006"/>
+							<display value="Oral route"/>
+						</coding>
 					</route>
+						<rateRatio>
+						<numerator>
+							<value value="50"/> 
+							  <unit value="microgram"/> 
+							  <system value="http://unitsofmeasure.org"/> 
+							  <code value="ug"/>
+						</numerator>
+						<denominator>
+							 <value value="1"/> 
+							  <unit value="day"/> 
+							  <system value="http://unitsofmeasure.org"/> 
+							  <code value="day"/>
+						</denominator>
+					</rateRatio>
 				</dosage>
 			</MedicationAdministration>
 		</resource>
-	</entry>	
-	
+	</entry>
 	<!--Medication-->
 	<entry>
 		<fullUrl value="urn:uuid:1d401368-54fb-4280-809a-a375fd70a48b"/>
 		<resource>
-			
 			<Medication>
 				<id value="1d401368-54fb-4280-809a-a375fd70a48b"/>
 				<meta>
@@ -264,7 +228,6 @@
 			</Medication>
 		</resource>
 	</entry>
-	
 	<!--Medication Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:f4150431-e2cb-4e0f-8405-36a31fd6b913"/>
@@ -279,11 +242,11 @@
 					<value value="03e2c230-7c0f-4ba0-863b-3d7b7d07ac03"/>
 				</identifier>
 				<status value="finished"/>
-				<type>
+			<type>
 					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-						<code value="CH018"/>
-						<display value="Measurements"/>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
+						<code value="0028"/>
+						<display value="GP Appointment"/>
 					</coding>
 				</type>
 				<subject>
@@ -306,9 +269,7 @@
 			</Encounter>
 		</resource>
 	</entry>
-	
-	
-<!--Practitioner-->
+	<!--Practitioner-->
 	<entry>
 		<fullUrl value="urn:uuid:50eb4757-15cf-421d-8d46-29fc35eea45d"/>
 		<resource>
@@ -329,7 +290,6 @@
 			</Practitioner>
 		</resource>
 	</entry>
-	
 	<!--Practitioner Role-->
 	<entry>
 		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
@@ -348,19 +308,17 @@
 				</practitioner>
 				<organization>
 					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-				</organization>	
+				</organization>
 				<code>
-					
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-DCH-SDSJobRoleName-1"/>
 						<code value="R0260"/>
 						<display value="General Medical Practitioner"/>
 					</coding>
-				</code>		
+				</code>
 			</PractitionerRole>
 		</resource>
 	</entry>
-	
 	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
