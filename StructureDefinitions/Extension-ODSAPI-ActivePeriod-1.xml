@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-07T10:16:05.479+00:00" />
+    <lastUpdated value="2018-04-03T10:17:27.243+01:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ODSAPI-ActivePeriod-1" />
   <version value="1.0.0" />
-  <name value="Extension-eRS-AttachedBy-1" />
-  <status value="draft" />
-  <date value="2018-02-27T15:28:56.413+00:00" />
+  <name value="Extension-ODSAPI-ActivePeriod-1" />
+  <status value="active" />
+  <date value="2018-04-01" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -17,21 +17,22 @@
       <use value="work" />
     </telecom>
   </contact>
-  <copyright value="Copyright © 2017  NHS Digital" />
+  <description value="An Extension to represent the organization period and date type." />
+  <copyright value="Copyright © 2018 Health and Social Care Information Centre. NHS Digital is the trading name of the Health and Social Care Information Centre." />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
   <contextType value="resource" />
-  <context value="DocumentReference.content.attachment" />
+  <context value="Organization" />
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <snapshot>
     <element id="Extension">
       <path value="Extension" />
-      <short value="Optional Extensions Element" />
+      <short value="An Extension to represent the organization period and date type." />
       <definition value="Optional Extension Element - found in all resources." />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
         <path value="Element" />
@@ -156,7 +157,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ODSAPI-ActivePeriod-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -174,22 +175,22 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.valueReference:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
-      <short value="Value of extension" />
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
-      <comment value="A stream of bytes, base64 encoded" />
+    <element id="Extension.valuePeriod:valuePeriod">
+      <path value="Extension.valuePeriod" />
+      <sliceName value="valuePeriod" />
+      <short value="A Period Type extended to carry the date type for an Organization." />
+      <definition value="A time period defined by a start and end date and optionally time." />
+      <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="1" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Extension.value[x]" />
         <min value="0" />
         <max value="1" />
       </base>
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1" />
+        <code value="Period" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ODSAPI-ActivePeriod-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -199,6 +200,13 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower value than end" />
+        <expression value="start.empty() or end.empty() or (start &lt;= end)" />
+        <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
+      </constraint>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -207,20 +215,34 @@
         <identity value="rim" />
         <map value="N/A" />
       </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;] or URG&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;]" />
+      </mapping>
     </element>
   </snapshot>
   <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <short value="An Extension to represent the organization period and date type." />
+      <min value="1" />
+    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ODSAPI-ActivePeriod-1" />
     </element>
-    <element id="Extension.valueReference:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
+    <element id="Extension.valuePeriod:valuePeriod">
+      <path value="Extension.valuePeriod" />
+      <sliceName value="valuePeriod" />
+      <short value="A Period Type extended to carry the date type for an Organization." />
       <min value="1" />
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1" />
+        <code value="Period" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ODSAPI-ActivePeriod-1" />
       </type>
     </element>
   </differential>

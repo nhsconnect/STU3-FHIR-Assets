@@ -1,38 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-07T10:16:05.479+00:00" />
+    <lastUpdated value="2018-03-12T09:37:46.722+00:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-DeathNotificationStatus-1" />
   <version value="1.0.0" />
-  <name value="Extension-eRS-AttachedBy-1" />
-  <status value="draft" />
-  <date value="2018-02-27T15:28:56.413+00:00" />
-  <publisher value="NHS Digital" />
-  <contact>
-    <name value="Interoperability Team" />
-    <telecom>
-      <system value="email" />
-      <value value="interoperabilityteam@nhs.net" />
-      <use value="work" />
-    </telecom>
-  </contact>
-  <copyright value="Copyright © 2017  NHS Digital" />
+  <name value="Extension-CareConnect-GPC-DeathNotificationStatus-1" />
+  <status value="active" />
+  <date value="2018-02-14T15:41:26.005+00:00" />
+  <publisher value="HL7 UK" />
+  <description value="This extension is constrained to represent a patient’s death notification (as held on Personal Demographics Service (PDS))." />
+  <copyright value="Copyright © 2016 HL7 UK&#xD;&#xA;&#xD;&#xA;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&#xD;&#xA;&#xD;&#xA;HL7® FHIR® standard Copyright © 2011+ HL7&#xD;&#xA;&#xD;&#xA;The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at&#xD;&#xA;&#xD;&#xA;https://www.hl7.org/fhir/license.html" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
   <contextType value="resource" />
-  <context value="DocumentReference.content.attachment" />
+  <context value="Patient" />
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <snapshot>
     <element id="Extension">
       <path value="Extension" />
-      <short value="Optional Extensions Element" />
-      <definition value="Optional Extension Element - found in all resources." />
+      <short value="Representation of a patient’s death notification (as held on Personal Demographics Service (PDS))" />
+      <definition value="This extension is constrained to represent a patient’s death notification (as held on Personal Demographics Service (PDS))." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element" />
         <min value="0" />
@@ -156,7 +149,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-DeathNotificationStatus-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -174,11 +167,11 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.valueReference:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
-      <short value="Value of extension" />
-      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept">
+      <path value="Extension.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="To identify the type of death notice as held on Personal Demographics Service (PDS)" />
+      <definition value="To identify the type of death notice as held on Personal Demographics Service (PDS)." />
       <comment value="A stream of bytes, base64 encoded" />
       <min value="1" />
       <max value="1" />
@@ -188,8 +181,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1" />
+        <code value="CodeableConcept" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -199,6 +191,13 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <binding>
+        <strength value="required" />
+        <description value="To identify the type of death notice as held on Personal Demographics Service (PDS)." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-DeathNotificationStatus-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -210,18 +209,32 @@
     </element>
   </snapshot>
   <differential>
+    <element id="Extension">
+      <path value="Extension" />
+      <short value="Representation of a patient’s death notification (as held on Personal Demographics Service (PDS))" />
+      <definition value="This extension is constrained to represent a patient’s death notification (as held on Personal Demographics Service (PDS))." />
+      <max value="1" />
+    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AttachedBy-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-DeathNotificationStatus-1" />
     </element>
-    <element id="Extension.valueReference:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
+    <element id="Extension.valueCodeableConcept:valueCodeableConcept">
+      <path value="Extension.valueCodeableConcept" />
+      <sliceName value="valueCodeableConcept" />
+      <short value="To identify the type of death notice as held on Personal Demographics Service (PDS)" />
+      <definition value="To identify the type of death notice as held on Personal Demographics Service (PDS)." />
       <min value="1" />
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Practitioner-1" />
+        <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <description value="To identify the type of death notice as held on Personal Demographics Service (PDS)." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-DeathNotificationStatus-1" />
+        </valueSetReference>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>

@@ -1,0 +1,271 @@
+{
+  "resourceType": "Bundle",
+  "id": "7b8db10c-d7c8-438a-985a-afd1c11a7842",
+  "fhir_comments": [
+    "This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence"
+  ],
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"
+    ]
+  },
+  "type": "message",
+  "entry": [
+    {
+      "fhir_comments": [
+        "Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication"
+      ],
+      "fullUrl": "urn:uuid:aabbbab3-fc16-45d8-8e1c-434f9d458180",
+      "resource": {
+        "resourceType": "MessageHeader",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-MessageHeader-1"
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1",
+                  "code": "new",
+                  "display": "New event message"
+                }
+              ]
+            }
+          }
+        ],
+        "event": {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1",
+          "code": "EMS01",
+          "display": "EMS Event Message Rejection"
+        },
+        "timestamp": "2018-02-01T10:00:00+00:00",
+        "source": {
+          "endpoint": "urn:nhs-uk:addressing:ods:X26"
+        },
+        "responsible": {
+          "reference": "urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a",
+          "display": "NHS DIGITAL"
+        },
+        "focus": [
+          {
+            "reference": "urn:uuid:3092d94e-4ef0-4343-b2c7-d99aaf470ee6"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for responsible/publishing organization i.e. NHS Digital"
+      ],
+      "fullUrl": "urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a",
+      "resource": {
+        "resourceType": "Organization",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/ods-organization-code",
+            "value": "X26"
+          }
+        ],
+        "name": "NHS DIGITAL",
+        "address": [
+          {
+            "line": [
+              "1 TREVELYAN SQUARE",
+              "BOAR LANE"
+            ],
+            "city": "LEEDS",
+            "district": "WEST YORKSHIRE",
+            "postalCode": "LS1 6AE"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for service type within the Organization i.e. National Events Management"
+      ],
+      "fullUrl": "urn:uuid:81387254-e6b4-4d0d-9c03-00e2920b3395",
+      "resource": {
+        "resourceType": "HealthcareService",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-HealthcareService-1"
+          ]
+        },
+        "providedBy": {
+          "reference": "urn:uuid:b834d806-c076-11e7-abc4-cec278b6b50a",
+          "display": "NHS DIGITAL"
+        },
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1",
+                "code": "EMS",
+                "display": "National Events Management Service"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for communication for the event message, with reference to subject and payload"
+      ],
+      "fullUrl": "urn:uuid:3092d94e-4ef0-4343-b2c7-d99aaf470ee6",
+      "resource": {
+        "resourceType": "Communication",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/NEMS-Communication-1"
+          ]
+        },
+        "status": "completed",
+        "subject": {
+          "reference": "urn:uuid:41a7740c-1d7e-4fe8-bac5-5d757adbae03",
+          "display": "DAWKINS, Jack"
+        },
+        "payload": [
+          {
+            "contentReference": {
+              "reference": "urn:uuid:a6c9c75c-43f5-430b-84ea-f80ab944903b"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for the Patient who is the subject of the Event Message containing the error."
+      ],
+      "fullUrl": "urn:uuid:41a7740c-1d7e-4fe8-bac5-5d757adbae03",
+      "resource": {
+        "resourceType": "Patient",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"
+          ]
+        },
+        "identifier": [
+          {
+            "extension": [
+              {
+                "url": "https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1",
+                "valueCodeableConcept": {
+                  "coding": [
+                    {
+                      "system": "https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1",
+                      "code": "01",
+                      "display": "Number present and verified"
+                    }
+                  ]
+                }
+              }
+            ],
+            "system": "https://fhir.nhs.uk/Id/nhs-number",
+            "value": "9912003888"
+          }
+        ],
+        "name": [
+          {
+            "use": "usual",
+            "family": "DAWKINS",
+            "given": [
+              "Jack"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "2017-10-02",
+        "_birthDate": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+              "valueDateTime": "2017-10-02T20:12:00+00:00"
+            }
+          ]
+        },
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "4 Sandmoor Drive"
+            ],
+            "city": "LEEDS",
+            "postalCode": "LS17 7DF"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Entry for task with content of the Event Error Resolution."
+      ],
+      "fullUrl": "urn:uuid:a6c9c75c-43f5-430b-84ea-f80ab944903b",
+      "resource": {
+        "resourceType": "Task",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/EMS-EventMessageResponse-Task-1"
+          ]
+        },
+        "status": "requested",
+        "intent": "order",
+        "authoredOn": "2018-02-01T10:00:00+00:00",
+        "reason": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseCode-1",
+              "code": "R00",
+              "display": "Message success"
+            }
+          ]
+        },
+        "input": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1",
+                  "code": "001",
+                  "display": "Response Level"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseLevel-1",
+                  "code": "001",
+                  "display": "Success"
+                }
+              ]
+            }
+          },
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventMessageResponseInput-1",
+                  "code": "002",
+                  "display": "Message ID"
+                }
+              ]
+            },
+            "valueId": "bd855a1e-6e48-4de0-8600-7e99aac74a9e"
+          }
+        ]
+      }
+    }
+  ]
+}
