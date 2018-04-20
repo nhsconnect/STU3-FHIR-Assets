@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="37c05c52-b929-43fa-83fc-f7630af95cd6"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+		<entry>
+		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
+		<resource>
+			<MessageHeader>
+				<id value="9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
+					<code value="CH003"/>
+					<display value="Allergies and Adverse Reactions"/>
+				</event>
+				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	
+	<!--Responsible for message content (Birth)-->
+	<entry>
+		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+		<resource>
+			<Organization>
+				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="RX3EP"/>
+				</identifier>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				<address>
+					<line value="NORTH ROAD"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH1 5TW"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	
+	<!--Healthcare service used e.g GP, trust, etc..-->
+	<entry>
+		<fullUrl value="urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+		<resource>
+			<HealthcareService>
+				<id value="aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
+				</identifier>
+				<providedBy>
+					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
+				</providedBy>
+				<specialty>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
+						<code value="180"/>
+						<display value="ACCIDENT &amp; EMERGENCY"/>
+					</coding>
+				</specialty>
+				<location>
+					<reference value="urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
+				</location>
+				<telecom>
+				<system value="phone"/>
+					<value value="0191 1231234"/>
+				</telecom>
+			</HealthcareService>
+		</resource>
+	</entry>
+	
+	<!--Child Details (Jack Dawkins)-->
+	<entry>
+		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+		<resource>
+			<Patient>
+				<id value="5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
+				</meta>
+				<identifier>
+						<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+							<valueCodeableConcept>
+								<coding>
+									<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
+									<code value="01"/>
+									<display value="Number present and verified"/>
+								</coding>
+							</valueCodeableConcept>
+						</extension>
+						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+						<value value="9912003888"/>
+				</identifier>				
+				<name>
+					<use value="official"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
+					<period>
+						<start value="2017-10-12"/>
+					</period>
+				</name>
+				
+				<birthDate value="2017-10-12">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="DURHAM"/>
+					<postalCode value="DH1 2TF"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+	
+	<!--Allergy or Adverse Reaction-->
+	<entry>
+		<fullUrl value="urn:uuid:89433cac-6226-428d-99c1-988cd8f31a18"/>
+		<resource>
+			<AllergyIntolerance>
+			<id value="89433cac-6226-428d-99c1-988cd8f31a18"/>
+			<meta>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
+			</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				</identifier>				
+				<verificationStatus value="confirmed"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="373270004"/>
+						<display value="Penicillin -class of antibiotic- (substance)"/>
+						</coding>
+				</code>
+				<patient>
+					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+				</patient>
+				<assertedDate value="2018-01-29"/>
+			</AllergyIntolerance>
+		</resource>
+	</entry>
+	
+	<!--Allergy or Adverse Reaction-->
+	<entry>
+		<fullUrl value="urn:uuid:fd44604e-eea1-4a9f-9b29-4606f8b5cbd5"/>
+		<resource>
+			<AllergyIntolerance>
+			<id value="fd44604e-eea1-4a9f-9b29-4606f8b5cbd5"/>
+			<meta>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
+			</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				</identifier>				
+				<verificationStatus value="confirmed"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="373270004"/>
+						<display value="Penicillin -class of antibiotic- (substance)"/>
+						</coding>
+				</code>
+				<patient>
+					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+				</patient>
+				<assertedDate value="2018-01-29"/>
+			</AllergyIntolerance>
+		</resource>
+	</entry>
+	
+<!--Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+		<resource>
+			<Encounter>
+				<id value="1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="af71a415-ae02-4159-914b-8b78c499fb1d"/>
+				</identifier>
+				<status value="finished"/>
+				<subject>
+					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<period>
+					<start value="2018-01-29"/>
+				</period>
+				<location>
+					<location>
+						<reference value="urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
+					</location>
+				</location>
+				<serviceProvider>
+					<reference value="urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+				</serviceProvider>
+			</Encounter>
+		</resource>
+	</entry>
+	
+<!--Location where event took place-->
+	<entry>
+		<fullUrl value="urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
+		<resource>
+			<Location>
+				<id value="9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
+					<value value="RX3EP"/>
+				</identifier>
+			</Location>
+		</resource>
+	</entry>
+	
+</Bundle>

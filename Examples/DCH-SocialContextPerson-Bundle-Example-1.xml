@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="a8ca980c-72aa-11e7-8cf7-a6006ad3dba0"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+			<entry>
+		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
+		<resource>
+			<MessageHeader>
+				<id value="85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
+					<code value="CH031"/>
+					<display value="Social Context Person"/>
+				</event>
+				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3QJ"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	
+	<!--Responsible org-->
+	<entry>
+		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+		<resource>
+			<Organization>
+				<id value="48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="RX3QJ"/>
+				</identifier>
+				<name value="DURHAM SOCIAL SERVICES"/>
+				<address>
+					<line value="PRIORY HOUSE"/>
+					<line value="ABBEY ROAD"/>
+					<city value="PITY ME"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH1 5RR"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+	
+	<!--Healthcare service used e.g GP, trust, etc..-->
+	<entry>
+		<fullUrl value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+		<resource>
+			<HealthcareService>
+				<id value="5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
+				</identifier>
+				<providedBy>
+					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
+				</providedBy>
+				<specialty>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-Specialty-1"/>
+						<code value="950"/>
+						<display value="NURSING EPISODE"/>
+					</coding>
+				</specialty>
+				<location>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				</location>
+				<telecom>
+				<system value="phone"/>
+					<value value="0191 1231234"/>
+				</telecom>
+			</HealthcareService>
+		</resource>
+	</entry>
+	
+		<!--Child Details (Jack Dawkins)-->
+	<entry>
+		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+		<resource>
+			<Patient>
+				<id value="5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
+				</meta>
+				<identifier>
+						<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+							<valueCodeableConcept>
+								<coding>
+									<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
+									<code value="01"/>
+									<display value="Number present and verified"/>
+								</coding>
+							</valueCodeableConcept>
+						</extension>
+						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+						<value value="9912003888"/>
+				</identifier>				
+				<name>
+					<use value="official"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
+					<period>
+						<start value="2017-10-12"/>
+					</period>
+				</name>
+				<birthDate value="2017-10-12">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="DURHAM"/>
+					<postalCode value="DH1 2TF"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+
+<!--Social Context Person-->
+	<entry>
+		<fullUrl value="urn:uuid:12a254e5-deb6-4efd-9bb1-36d286115819"/>
+		<resource>
+			<QuestionnaireResponse>
+			<id value="12a254e5-deb6-4efd-9bb1-36d286115819"/>
+			<meta>
+				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-SocialContextPerson-QuestionnaireResponse-1"/>
+			</meta>
+			<identifier>
+				<system value="urn:ietf:rfc:3986"/>
+				<value value="b7518c02-b58b-4e84-ab27-dbfc2955bffb"/>
+			</identifier>
+			<status value="completed"/>
+			<subject>
+				<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+			</subject>
+			<context>
+				<reference value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
+			</context>
+				<item>
+				<linkId value="lifestyle"/>
+				<text value="Lifestyle"/>
+				<answer>
+					<valueString value="Healthy child who is active."/>
+				</answer>
+			</item>
+			</QuestionnaireResponse>			
+		</resource>
+	</entry>
+	
+	<!--Social Context Household Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
+		<resource>
+			<Encounter>
+				<id value="a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
+				</identifier>
+				<status value="finished"/>
+				<subject>
+					<reference value="urn:uuid:7368c5fe-bbb4-4e9c-a585-234e06b84e82"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<period>
+					<start value="2018-01-29"/>
+				</period>
+				<location>
+					<location>
+						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+						<display value="DURHAM SOCIAL SERVICES"/>
+					</location>
+				</location>
+				<serviceProvider>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
+				</serviceProvider>
+			</Encounter>
+		</resource>
+	</entry>
+	
+	<!--Location where event took place-->
+	<entry>
+		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+		<resource>
+			<Location>
+				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
+					<value value="RX3QJ"/>
+				</identifier>
+				<name value="DURHAM SOCIAL SERVICES"/>
+			</Location>
+		</resource>
+	</entry>
+	
+</Bundle>
