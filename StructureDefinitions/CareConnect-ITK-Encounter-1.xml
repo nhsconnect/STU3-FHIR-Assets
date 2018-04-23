@@ -1,29 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2017-09-22T11:14:45.343+01:00" />
+    <lastUpdated value="2018-04-18T22:41:26.716+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pa" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
-  <version value="0.0.1" />
+  <version value="1.0.0" />
   <name value="CareConnect-ITK-Encounter-1" />
-  <title value="CareConnect-ITK-Encounter-1" />
   <status value="draft" />
-  <date value="2017-09-12" />
+  <date value="2018-04-16" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
     <telecom>
       <system value="email" />
       <value value="interoperabilityteam@nhs.net" />
-      <use value="work" />
     </telecom>
   </contact>
-  <description value="The encounter resource represents an interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or assessing the health status of a patient." />
-  <purpose value="The encounter resource represents an encounter between a care professional and the patient (or patient's record)." />
-  <copyright value="Copyright © 2017 NHS Digital" />
+  <description value="The encounter resource represents an encounter between a care professional and the patient (or patient's record)." />
+  <purpose value="To represent an encounter between a care professional and the patient (or patient's record)." />
+  <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -341,13 +339,13 @@
     <element id="Encounter.extension:encounterTransport">
       <path value="Encounter.extension" />
       <sliceName value="encounterTransport" />
-      <short value="Encounter transport" />
-      <definition value="Encounter transport." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -356,6 +354,92 @@
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EncounterTransport-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Encounter.extension:outcomeOfAttendance">
+      <path value="Encounter.extension" />
+      <sliceName value="outcomeOfAttendance" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-OutcomeOfAttendance-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Encounter.extension:emergencyCareDischargeStatus">
+      <path value="Encounter.extension" />
+      <sliceName value="emergencyCareDischargeStatus" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EmergencyCareDischargeStatus-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -889,7 +973,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -972,7 +1056,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -1017,7 +1101,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -1578,7 +1662,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -3808,13 +3892,13 @@
     <element id="Encounter.type.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Encounter.type.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -5014,7 +5098,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -5126,7 +5210,7 @@
     </element>
     <element id="Encounter.incomingReferral">
       <path value="Encounter.incomingReferral" />
-      <short value="The ReferralRequest that initiated this encounter." />
+      <short value="The ReferralRequest that initiated this encounter" />
       <definition value="The referral request this encounter satisfies (incoming referral)." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
@@ -5251,7 +5335,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -6633,7 +6717,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -7930,13 +8014,13 @@
     <element id="Encounter.reason.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Encounter.reason.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -8402,11 +8486,11 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -9316,7 +9400,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -9511,6 +9595,92 @@
       </base>
       <type>
         <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Encounter.hospitalization.extension:admissionMethod">
+      <path value="Encounter.hospitalization.extension" />
+      <sliceName value="admissionMethod" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-AdmissionMethod-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Encounter.hospitalization.extension:dischargeMethod">
+      <path value="Encounter.hospitalization.extension" />
+      <sliceName value="dischargeMethod" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DischargeMethod-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -11097,9 +11267,9 @@
           <valueString value="AdmitSource" />
         </extension>
         <strength value="preferred" />
-        <description value="From where the patient was admitted." />
+        <description value="The source of admission to a Hospital Provider Spell or a Nursing Episode when the Patient is in a Hospital Site or a Care Home." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/encounter-admit-source" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-SourceOfAdmission-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -12214,13 +12384,13 @@
     <element id="Encounter.hospitalization.reAdmission.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Encounter.hospitalization.reAdmission.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -14356,10 +14526,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DischargeDisp" />
         </extension>
-        <strength value="preferred" />
-        <description value="Discharge Disposition" />
+        <strength value="example" />
+        <description value="The destination of a Patient on completion of a Hospital Provider Spell, or a note that the Patient died or was a still birth." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/encounter-discharge-disposition" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-DischargeDestination-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -15977,7 +16147,7 @@
     </element>
   </snapshot>
   <differential>
-    <element>
+    <element id="Encounter.extension">
       <path value="Encounter.extension" />
       <slicing>
         <discriminator>
@@ -15995,20 +16165,21 @@
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EncounterTransport-1" />
       </type>
     </element>
-    <element id="Encounter.identifier.type.coding.system">
-      <path value="Encounter.identifier.type.coding.system" />
-      <min value="1" />
+    <element id="Encounter.extension:outcomeOfAttendance">
+      <path value="Encounter.extension" />
+      <sliceName value="outcomeOfAttendance" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-OutcomeOfAttendance-1" />
+      </type>
     </element>
-    <element id="Encounter.identifier.type.coding.code">
-      <path value="Encounter.identifier.type.coding.code" />
-      <min value="1" />
-    </element>
-    <element id="Encounter.identifier.type.coding.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Encounter.identifier.type.coding.display" />
-      <min value="1" />
+    <element id="Encounter.extension:emergencyCareDischargeStatus">
+      <path value="Encounter.extension" />
+      <sliceName value="emergencyCareDischargeStatus" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EmergencyCareDischargeStatus-1" />
+      </type>
     </element>
     <element id="Encounter.identifier.system">
       <path value="Encounter.identifier.system" />
@@ -16024,10 +16195,6 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
-    </element>
-    <element id="Encounter.identifier.assigner.reference">
-      <path value="Encounter.identifier.assigner.reference" />
-      <min value="1" />
     </element>
     <element id="Encounter.class">
       <path value="Encounter.class" />
@@ -16092,7 +16259,7 @@
         </valueSetReference>
       </binding>
     </element>
-    <element>
+    <element id="Encounter.type.coding:snomedCT.extension">
       <path value="Encounter.type.coding.extension" />
       <slicing>
         <discriminator>
@@ -16160,18 +16327,9 @@
       <path value="Encounter.episodeOfCare" />
       <max value="0" />
     </element>
-    <element id="Encounter.episodeOfCare.reference">
-      <path value="Encounter.episodeOfCare.reference" />
-      <min value="1" />
-    </element>
     <element id="Encounter.incomingReferral">
       <path value="Encounter.incomingReferral" />
-      <short value="The ReferralRequest that initiated this encounter." />
       <max value="0" />
-    </element>
-    <element id="Encounter.incomingReferral.reference">
-      <path value="Encounter.incomingReferral.reference" />
-      <min value="1" />
     </element>
     <element id="Encounter.participant.type.coding.system">
       <path value="Encounter.participant.type.coding.system" />
@@ -16207,10 +16365,6 @@
       <path value="Encounter.appointment" />
       <max value="0" />
     </element>
-    <element id="Encounter.appointment.reference">
-      <path value="Encounter.appointment.reference" />
-      <min value="1" />
-    </element>
     <element id="Encounter.reason.coding">
       <path value="Encounter.reason.coding" />
       <slicing>
@@ -16226,7 +16380,7 @@
       <path value="Encounter.reason.coding" />
       <sliceName value="snomedCT" />
     </element>
-    <element>
+    <element id="Encounter.reason.coding:snomedCT.extension">
       <path value="Encounter.reason.coding.extension" />
       <slicing>
         <discriminator>
@@ -16268,11 +16422,11 @@
       <path value="Encounter.diagnosis.condition" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1" />
       </type>
     </element>
     <element id="Encounter.diagnosis.condition.reference">
@@ -16298,9 +16452,31 @@
       <path value="Encounter.account" />
       <max value="0" />
     </element>
-    <element id="Encounter.account.reference">
-      <path value="Encounter.account.reference" />
-      <min value="1" />
+    <element id="Encounter.hospitalization.extension">
+      <path value="Encounter.hospitalization.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Encounter.hospitalization.extension:admissionMethod">
+      <path value="Encounter.hospitalization.extension" />
+      <sliceName value="admissionMethod" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-AdmissionMethod-1" />
+      </type>
+    </element>
+    <element id="Encounter.hospitalization.extension:dischargeMethod">
+      <path value="Encounter.hospitalization.extension" />
+      <sliceName value="dischargeMethod" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DischargeMethod-1" />
+      </type>
     </element>
     <element id="Encounter.hospitalization.preAdmissionIdentifier.type.coding.system">
       <path value="Encounter.hospitalization.preAdmissionIdentifier.type.coding.system" />
@@ -16347,6 +16523,19 @@
       <path value="Encounter.hospitalization.origin.reference" />
       <min value="1" />
     </element>
+    <element id="Encounter.hospitalization.admitSource">
+      <path value="Encounter.hospitalization.admitSource" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AdmitSource" />
+        </extension>
+        <strength value="preferred" />
+        <description value="The source of admission to a Hospital Provider Spell or a Nursing Episode when the Patient is in a Hospital Site or a Care Home." />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-SourceOfAdmission-1" />
+        </valueSetReference>
+      </binding>
+    </element>
     <element id="Encounter.hospitalization.admitSource.coding.system">
       <path value="Encounter.hospitalization.admitSource.coding.system" />
       <min value="1" />
@@ -16378,7 +16567,7 @@
       <sliceName value="snomedCT" />
       <max value="1" />
     </element>
-    <element>
+    <element id="Encounter.hospitalization.reAdmission.coding:snomedCT.extension">
       <path value="Encounter.hospitalization.reAdmission.coding.extension" />
       <slicing>
         <discriminator>
@@ -16487,7 +16676,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DischargeDisp" />
         </extension>
-        <strength value="preferred" />
+        <strength value="example" />
+        <description value="The destination of a Patient on completion of a Hospital Provider Spell, or a note that the Patient died or was a still birth." />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-DischargeDestination-1" />
+        </valueSetReference>
       </binding>
     </element>
     <element id="Encounter.hospitalization.dischargeDisposition.coding.system">
