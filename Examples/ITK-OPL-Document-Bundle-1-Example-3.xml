@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
-<Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/GitHubRepo/Schemas/bundle.xsd">
  <id value="e9ab79f4-ca79-440d-a125-80c7a8ecb460"/>
  <meta>
   <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
@@ -17,7 +17,7 @@
    <Composition>
     <id value="db3a110c-3a3d-457d-913b-1473f3be2e32"/>
     <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-OPL-Composition-1"/>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-OPL-Composition-1"/>
     </meta>
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-ITK-CareSettingType-1">
      <valueCodeableConcept>
@@ -53,7 +53,7 @@
     <author>
      <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
     </author>
-    <title value="Outpatient letter"/>
+    <title value="Ophthalmology Service Outpatient Letter"/>
     <!--Identifies the organization responsible for ongoing maintenance of and access to the composition/document information.-->
     <custodian>
      <reference value="urn:uuid:0b589972-4d02-4636-a090-964fe1952aa9"/>
@@ -71,22 +71,17 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
-          <th>Causative agent</th>
-          <td>No known drug allergies or adverse reactions</td>
+         <td>No known allergy</td>
          </tr>
         </tbody>
        </table>
       </div>
-     </text>
-     <!--Reference to Allergies List as the source of information for this section-->
-     <entry>
-      <reference value="urn:uuid:02cccb1a-e461-4237-bb64-cb342ea57135"/>
-     </entry>
+     </text>     
     </section>
     <section>
      <title value="Attendance details"/>
@@ -112,7 +107,7 @@
          </tr>
          <tr>
           <th>Contact type</th>
-          <td>First attendance</td>
+          <td>First attendance face to face</td>
          </tr>
          <tr>
           <th>Consultation method</th>
@@ -140,12 +135,16 @@
          </tr>
          <tr>
           <th>Outcome of outpatient attendance</th>
-          <td>Discharged (referred to ophthalmologist)</td>
+          <td>Discharged from Consultant's care (last attendance)</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
+      <!--Reference to the Encounter resource-->
+     <entry>
+      <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
+     </entry>
     </section>
     <!--Clinical summary section-->
     <section>
@@ -183,21 +182,21 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
           <th>Diagnosis name</th>
-          <td>Right IV cranial nerve palsy</td>
+          <td>Fourth nerve palsy</td>
          </tr>
         </tbody>
        </table>
       </div>
      </text>
-     <!--Reference to the Condition resource which carries supporting information for this section.-->
+     <!--Reference to the Condition List-->
      <entry>
-      <reference value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
+      <reference value="urn:uuid:ed25323b-1d74-47da-991e-e821c6b2b269"/>
      </entry>
     </section>
     <!--Distribution list-->
@@ -211,7 +210,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -359,26 +358,17 @@
         <tbody>
          <tr>
           <th>Presenting complaints or issue</th>
-          <td>Diplopia and ocular motility defect</td>
-         </tr>
-        </tbody>
+          <td><p>Diplopia</p><p>Abnormal ocular motility</p></td>
+         </tr>         
+         </tbody>
        </table>
       </div>
      </text>
-     <!--Reference to the diagnosis of fourth nerve palsy-->
+     <!--Reference to the Condition List-->
      <entry>
-      <reference value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
+      <reference value="urn:uuid:ed25323b-1d74-47da-991e-e821c6b2b269"/>
      </entry>
-     <entry>
-      <!--Reference to the procedure for Orthoptic treatment -prism in spectacles-->
-      <reference value="urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f"/>
-     </entry>
-    </section>
-    <!-- Individual requirements - no information given-->
-    <!-- Information and advice given - no information given-->
-    <!--Investigation results - no information given-->
-    <!--Legal information - no information given-->
-    <!--Patient and carer concerns, expectations and wishes - no information given-->
+     </section>
     <!-- Patient demographics-->
     <section>
      <title value="Patient demographics"/>
@@ -390,25 +380,21 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
           <th>Patient name</th>
           <td>Mr. Reginald Perrin</td>
-         </tr>
-         <tr>
-          <th>Patient preferred name</th>
-          <td>Reginald Perrin</td>
-         </tr>
+         </tr>         
          <tr>
           <th>Date of birth</th>
           <td>1 April 1983</td>
          </tr>
          <tr>
           <th>Gender</th>
-          <td>1 Male</td>
+          <td>Male</td>
          </tr>
          <tr>
           <th>NHS number</th>
@@ -428,7 +414,7 @@
          </tr>
          <tr>
           <th>Patient telephone number</th>
-          <td>077 6677 7766</td>
+          <td>Mobile: 077 6677 7766</td>
          </tr>
         </tbody>
        </table>
@@ -450,7 +436,7 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -461,15 +447,7 @@
          <tr>
           <th>Role</th>
           <td>Orthoptist</td>
-         </tr>
-         <tr>
-          <th>Grade</th>
-          <td>Not given</td>
-         </tr>
-         <tr>
-          <th>Specialty</th>
-          <td>Ophthalmology/orthoptics</td>
-         </tr>
+         </tr>        
          <tr>
           <th>Professional identifier</th>
           <td>14569872</td>
@@ -519,7 +497,6 @@
       </div>
      </text>
     </section>
-    <!--Problems and issues - no information given-->
     <!--Procedures section-->
     <section>
      <title value="Procedures"/>
@@ -531,23 +508,22 @@
       </coding>
      </code>
      <text>
-      <status value="generated"/>
+      <status value="additional"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
          <tr>
           <th>Procedure name</th>
-          <td>
-           <p>Fitted a prism on patient's glasses (right side)</p>
+          <td>Orthoptic treatment -prism in spectacles<p>Comment: Fitted a prism on patient’s glasses (right side)</p>
           </td>
-         </tr>
+         </tr>         
         </tbody>
        </table>
       </div>
      </text>
-     <!--Reference to procedure-->
+     <!--Reference to the Procedure List-->
      <entry>
-      <reference value="urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f"/>
+      <reference value="urn:uuid:852358ef-0163-4eee-8835-029c25f004a3"/>
      </entry>
     </section>
     <section>
@@ -560,7 +536,7 @@
       </coding>
      </code>
      <text>
-      <status value="additional"/>
+      <status value="generated"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
        <table width="100%">
         <tbody>
@@ -576,9 +552,16 @@
        </table>
       </div>
      </text>
+     <!--Reference to the practitioner resource-->
+     <entry>
+      <reference value="urn:uuid:d4d154f9-7bbc-4760-8cac-00f7974f5e6c"/>
+     </entry> 
+     <!--Reference to the organisation resource-->
+     <entry>
+      <reference value="urn:uuid:784e2b8a-8daa-42f3-8e65-ffe84aee00a5"/>
+     </entry>       
     </section>
-    <!-- Safety alerts - none given-->
-   </Composition>
+  </Composition>
   </resource>
  </entry>
  <!--Encounter Example 1-->
@@ -588,7 +571,7 @@
    <Encounter>
     <id value="230a0ced-90c9-4171-93f4-22f9500acb65"/>
     <meta>
-     <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1"/>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1"/>
     </meta>
     <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-OutcomeOfAttendance-1">
      <valueCodeableConcept>
@@ -596,20 +579,14 @@
        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-OutcomeOfAttendance-1"/>
        <code value="1"/>
        <display value="Discharged from Consultant's care (last attendance)"/>
-      </coding>
+      </coding>   
      </valueCodeableConcept>
     </extension>
     <identifier>
      <system value="https://tools.ietf.org/html/rfc4122"/>
      <value value="c6fa7540-9044-45a5-a91f-9b41cbb2db5b"/>
     </identifier>
-    <status value="finished"/>
-    <class>
-     <system value="http://hl7.org/fhir/v3-ActEncounterCode"/>
-     <code value="AMB"/>
-     <display value="ambulatory"/>
-     <!--The term ambulatory usually implies that the patient has come to the location and is not assigned to a bed. Sometimes referred to as an outpatient encounter.-->
-    </class>
+    <status value="finished"/>    
     <!--Specific type of encounter-->
     <type>
      <coding>
@@ -636,35 +613,9 @@
      </individual>
     </participant>
     <period>
-     <start value="2017-05-19T15:10:00+00:00"/>
-     <end value="2017-05-19T16:00:00+00:00"/>
-    </period>
-    <!--	The list of diagnoses relevant to this encounter-->
-    <diagnosis>
-     <!--Reason the encounter takes place (resource)-->
-     <condition>
-      <reference value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
-     </condition>
-    </diagnosis>
-    <hospitalization>
-     <admitSource>
-      <coding>
-       <system value="http://hl7.org/fhir/admit-source"/>
-       <code value="outp"/>
-       <display value="From outpatient department"/>
-       <!--	Note, the Head Injury Team provide an outpatient service.-->
-      </coding>
-     </admitSource>
-     <!--	Category or kind of location after discharge-->
-     <dischargeDisposition>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1"/>
-       <code value="19"/>
-       <display value="Usual place of residence unless listed below, for example, a private dwelling whether owner occupied or owned by Local Authority, housing association or other landlord. This includes wardened accommodation but not residential accommodation where health care is provided. It also includes Patients with no fixed abode."/>
-      </coding>
-     </dischargeDisposition>
-    </hospitalization>
-   </Encounter>
+     <start value="2017-05-19T15:10:00+00:00"/>   
+    </period>     
+    </Encounter>
   </resource>
  </entry>
  <!--Practitioner-Example-->
@@ -695,6 +646,49 @@
    </Practitioner>
   </resource>
  </entry>
+   <!--Condition list-->
+ <entry>
+  <fullUrl value="urn:uuid:ed25323b-1d74-47da-991e-e821c6b2b269"/>
+  <resource>
+   <List>
+    <id value="ed25323b-1d74-47da-991e-e821c6b2b269"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-List-1"/>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="0ab6e249-2677-46e2-9273-30a34a71b772"/>
+    </identifier>
+    <status value="current"/>
+    <mode value="snapshot"/>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="887161000000102"/>
+      <display value="Diagnoses"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
+    </subject>
+    <entry>
+     <item>
+      <reference value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
+     </item>
+    </entry> 
+    <entry>
+     <item>
+      <reference value="urn:uuid:b26285f5-aea0-4b1f-b0eb-bfcaa6a5d15c"/>
+     </item>
+    </entry>
+    <entry>
+     <item>
+      <reference value="urn:uuid:07b3cbda-5d14-4fed-b84a-91d77ab500c2"/>
+     </item>
+    </entry>         
+   </List>
+  </resource>
+ </entry>
  <!--Diagnoses 1-->
  <entry>
   <fullUrl value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
@@ -713,8 +707,8 @@
     <category>
      <coding>
       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
-      <code value="diagnosis"/>
-      <display value="Diagnosis"/>
+      <code value="encounter-diagnosis"/>
+      <display value="Encounter Diagnosis"/>
      </coding>
     </category>
     <code>
@@ -727,14 +721,10 @@
     <subject>
      <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
     </subject>
-    <!--Reference to the encounter-->
+     <!--Reference to the encounter-->
     <context>
      <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
-    </context>
-    <assertedDate value="2017-05-11"/>
-    <asserter>
-     <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
-    </asserter>
+    </context>    
    </Condition>
   </resource>
  </entry>
@@ -756,29 +746,24 @@
     <category>
      <coding>
       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
-      <code value="diagnosis"/>
-      <display value="Diagnosis"/>
+      <code value="presenting-complaint"/>
+      <display value="Presenting Complaint"/>
      </coding>
     </category>
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="84229001"/>
-      <display value="Fatigue"/>
+      <code value="103252009"/>
+      <display value="Abnormal ocular motility"/>
      </coding>
-     <text value="Fatigue. No evidence of inflammatory arthritis."/>
-    </code>
+     </code>
     <subject>
      <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
-    </subject>
-    <!--Reference to the encounter-->
+    </subject>  
+     <!--Reference to the encounter-->
     <context>
      <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
-    </context>
-    <assertedDate value="2017-05-11"/>
-    <asserter>
-     <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
-    </asserter>
+    </context>    
    </Condition>
   </resource>
  </entry>
@@ -800,15 +785,15 @@
     <category>
      <coding>
       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
-      <code value="diagnosis"/>
-      <display value="Diagnosis"/>
+    <code value="presenting-complaint"/>
+      <display value="Presenting Complaint"/>
      </coding>
     </category>
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="46635009"/>
-      <display value="Type 1 diabetes mellitus"/>
+      <code value="24982008"/>
+      <display value="Diplopia"/>
      </coding>
     </code>
     <subject>
@@ -817,55 +802,68 @@
     <!--Reference to the encounter-->
     <context>
      <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
-    </context>
-    <assertedDate value="2017-05-11"/>
-    <asserter>
-     <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
-    </asserter>
+    </context>    
    </Condition>
   </resource>
  </entry>
- <!--Diagnoses 4-->
+   <!-- Procedure List-->
  <entry>
-  <fullUrl value="urn:uuid:393db67a-1cc8-45b7-b0e2-1f1f5893e542"/>
+  <fullUrl value="urn:uuid:852358ef-0163-4eee-8835-029c25f004a3"/>
   <resource>
-   <Condition>
-    <id value="393db67a-1cc8-45b7-b0e2-1f1f5893e542"/>
+   <List>
+    <id value="852358ef-0163-4eee-8835-029c25f004a3"/>
     <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Condition-1"/>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-List-1"/>
     </meta>
     <identifier>
      <system value="https://tools.ietf.org/html/rfc4122"/>
-     <value value="f7d300b6-fb5a-4b99-979f-80af5a94885d"/>
+     <value value="68dc133c-368d-40ff-b7f9-d361026a22ec"/>
     </identifier>
-    <clinicalStatus value="active"/>
-    <verificationStatus value="confirmed"/>
-    <category>
-     <coding>
-      <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
-      <code value="diagnosis"/>
-      <display value="Diagnosis"/>
-     </coding>
-    </category>
+    <status value="current"/>
+    <mode value="snapshot"/>
     <code>
      <coding>
       <system value="http://snomed.info/sct"/>
-      <code value="40930008"/>
-      <display value="Hypothyroidism"/>
+      <code value="887171000000109"/>
+      <display value="Procedures"/>
      </coding>
     </code>
     <subject>
      <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
     </subject>
-    <!--Reference to the encounter-->
-    <context>
-     <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
-    </context>
-    <assertedDate value="2017-05-11"/>
-    <asserter>
-     <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
-    </asserter>
-   </Condition>
+    <entry>
+     <item>
+      <reference value="urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f"/>
+     </item>
+    </entry>    
+   </List>
+  </resource>
+ </entry>
+  <!--Procedure Example-->
+ <entry>
+  <fullUrl value="urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f"/>
+  <resource>
+   <Procedure>
+    <id value="4303abe7-0966-49b1-a89d-4d607189124f"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1"/>
+    </meta>    
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="a82c7d64-ff0e-4c4f-a7c5-7ede593bd8fb"/>
+    </identifier>
+    <status value="completed"/>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="419154004"/>
+      <display value="Orthoptic treatment -prism in spectacles"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
+    </subject>       
+   </Procedure>
   </resource>
  </entry>
  <!--Patient-Example-1-->
@@ -877,59 +875,6 @@
     <meta>
      <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1"/>
     </meta>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EthnicCategory-1">
-     <valueCodeableConcept>
-      <coding>
-       <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-EthnicCategory-1"/>
-       <code value="CA"/>
-       <display value="English"/>
-      </coding>
-     </valueCodeableConcept>
-    </extension>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSCommunication-1">
-     <extension url="language">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-HumanLanguage-1"/>
-        <code value="en"/>
-        <display value="English"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="preferred">
-      <valueBoolean value="true"/>
-     </extension>
-     <extension url="modeOfCommunication">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
-        <code value="ESP"/>
-        <display value="Expressed spoken"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="modeOfCommunication">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityMode-1"/>
-        <code value="RWR"/>
-        <display value="Received written"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="communicationProficiency">
-      <valueCodeableConcept>
-       <coding>
-        <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-LanguageAbilityProficiency-1"/>
-        <code value="E"/>
-        <display value="Excellent"/>
-       </coding>
-      </valueCodeableConcept>
-     </extension>
-     <extension url="interpreterRequired">
-      <valueBoolean value="false"/>
-     </extension>
-    </extension>
     <identifier>
      <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
       <valueCodeableConcept>
@@ -945,24 +890,14 @@
     </identifier>
     <identifier>
      <system value="https://fhir.nhs.uk/Id/local-patient-identifier"/>
-     <value value="TL23764"/>
-     <assigner>
-      <reference value="urn:uuid:0b589972-4d02-4636-a090-964fe1952aa9"/>
-     </assigner>
-    </identifier>
-    <active value="true"/>
+     <value value="TL23764"/>     
+    </identifier>    
     <name>
      <use value="official"/>
      <family value="Perrin"/>
      <given value="Reginald"/>
      <prefix value="Mr"/>
-    </name>
-    <name>
-     <use value="usual"/>
-     <family value="Perrin"/>
-     <given value="Reginald"/>
-     <prefix value="Mr"/>
-    </name>
+    </name>    
     <telecom>
      <system value="phone"/>
      <value value="077 6677 7766"/>
@@ -1198,75 +1133,6 @@
      <postalCode value="DO5 7TP"/>
     </address>
    </Organization>
-  </resource>
- </entry>
- <entry>
-  <fullUrl value="urn:uuid:02cccb1a-e461-4237-bb64-cb342ea57135"/>
-  <resource>
-   <List>
-    <id value="02cccb1a-e461-4237-bb64-cb342ea57135"/>
-    <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Allergies-List-1"/>
-    </meta>
-    <identifier>
-     <system value="https://tools.ietf.org/html/rfc4122"/>
-     <value value="d41523b0-c04c-4526-ba2b-ecef39108836"/>
-    </identifier>
-    <status value="current"/>
-    <mode value="snapshot"/>
-    <code>
-     <coding>
-      <system value="http://hl7.org/fhir/list-example-use-codes"/>
-      <code value="allergies"/>
-      <display value="Allergies"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
-    </subject>
-    <emptyReason>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="716186003"/>
-      <display value="No known allergy"/>
-     </coding>
-    </emptyReason>
-   </List>
-  </resource>
- </entry>
- <!--Procedure Example-->
- <entry>
-  <fullUrl value="urn:uuid:4303abe7-0966-49b1-a89d-4d607189124f"/>
-  <resource>
-   <Procedure>
-    <id value="4303abe7-0966-49b1-a89d-4d607189124f"/>
-    <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1"/>
-    </meta>
-    <extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1">
-     <valueDateTime value="2017-05-19"/>
-    </extension>
-    <identifier>
-     <system value="https://tools.ietf.org/html/rfc4122"/>
-     <value value="a82c7d64-ff0e-4c4f-a7c5-7ede593bd8fb"/>
-    </identifier>
-    <status value="completed"/>
-    <code>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="419154004"/>
-      <display value="Orthoptic treatment -prism in spectacles"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
-    </subject>
-    <performedDateTime value="2017-05-19T16:00:00+00:00"/>
-    <!--Reference to the condition which is the reason why this procedure has been performed-->
-    <reasonReference>
-     <reference value="urn:uuid:b45f2e3c-0aa9-4a14-828e-1eba1b0756a7"/>
-    </reasonReference>
-   </Procedure>
   </resource>
  </entry>
 </Bundle>
