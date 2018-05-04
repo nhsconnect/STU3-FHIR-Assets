@@ -12,10 +12,17 @@ This Git hook needs to be installed into your local copy of the Git repository t
 
 Install steps:
 
-- Right click on theis 'scripts' folder and choose 'Use Git Bash here', then type the following:
-- ```./installHook.sh```
+- If you are using Smart Git:
+  - Right click on the project on the list on the left and click 'Open Git Shell'
+  - Type ```cd scripts``` to go to the Scripts directory
+  - Type ```./installHook.sh``` to install the commit hook
+
+- Alternatively, if you have Git bash installed:
+  - Right click on the 'scripts' folder and choose 'Use Git Bash here'
+  - Type ```./installHook.sh``` to install the commit hook
 
 Usage
 =====
 
 Once installed (using the steps above) the script will run automatically every time you commit any changes to the repository. You should see some additional output when you commit changes reporting on any files that have been fixed. You can continue to work as usual - the fixes to the files should be handled automatically.
+
