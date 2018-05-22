@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-05-21T08:53:11.967+01:00" />
+    <lastUpdated value="2018-05-22T14:54:18.51+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pc" />
@@ -346,13 +346,13 @@
     <element id="Procedure.extension:anaestheticIssues">
       <path value="Procedure.extension" />
       <sliceName value="anaestheticIssues" />
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <short value="Details of any adverse reaction to any anaesthetic agents" />
+      <definition value="Details of any adverse reaction to any anaesthetic agents." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="DomainResource.extension" />
         <min value="0" />
@@ -2445,6 +2445,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="completed" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2484,7 +2485,7 @@
       <definition value="Set this to true if the record is saying that the procedure was NOT performed." />
       <comment value="If true, it means the procedure did not occur as described.  Typically it would be accompanied by attributes describing the type of activity.  It might also be accompanied by body site information or time information (i.e. no procedure was done to the left arm or no procedure was done in this 2-year period).  Specifying additional information such as performer, outcome, etc. is generally inappropriate.  For example, it's not that useful to say &quot;There was no appendectomy done at 12:03pm June 6th by Dr. Smith with a successful outcome&quot; as it implies that there *could* have been an appendectomy done at any other time, by any other clinician or with any other outcome.&#xA;&#xA;This element is labeled as a modifier because it indicates that a procedure didn't happen." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Procedure.notDone" />
         <min value="0" />
@@ -2519,7 +2520,7 @@
       <definition value="A code indicating why the procedure was not performed." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Procedure.notDoneReason" />
         <min value="0" />
@@ -3042,7 +3043,7 @@
       <definition value="A code that classifies the procedure for searching, sorting and display purposes (e.g. &quot;Surgical Procedure&quot;)." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Procedure.category" />
         <min value="0" />
@@ -4206,7 +4207,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -5740,6 +5741,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
+      </type>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5977,7 +5986,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when performing the action." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Procedure.performer.onBehalfOf" />
         <min value="0" />
@@ -6098,7 +6107,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -7861,7 +7870,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -9545,7 +9554,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -10081,7 +10090,7 @@
       <definition value="If the procedure required specific follow up - e.g. removal of sutures. The followup may be represented as a simple note, or could potentially be more complex in which case the CarePlan resource can be used." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Procedure.followUp" />
         <min value="0" />
@@ -10855,7 +10864,7 @@
       <short value="Device changed in procedure" />
       <definition value="A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Procedure.focalDevice" />
         <min value="0" />
@@ -11273,7 +11282,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -11356,7 +11365,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -11401,7 +11410,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -11538,7 +11547,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -11651,7 +11660,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -12539,6 +12548,7 @@
     <element id="Procedure.extension:anaestheticIssues">
       <path value="Procedure.extension" />
       <sliceName value="anaestheticIssues" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-AnaestheticIssues-1" />
@@ -12605,6 +12615,18 @@
       <path value="Procedure.partOf.reference" />
       <min value="1" />
     </element>
+    <element id="Procedure.status">
+      <path value="Procedure.status" />
+      <fixedCode value="completed" />
+    </element>
+    <element id="Procedure.notDone">
+      <path value="Procedure.notDone" />
+      <max value="0" />
+    </element>
+    <element id="Procedure.notDoneReason">
+      <path value="Procedure.notDoneReason" />
+      <max value="0" />
+    </element>
     <element id="Procedure.notDoneReason.coding.system">
       <path value="Procedure.notDoneReason.coding.system" />
       <min value="1" />
@@ -12619,6 +12641,10 @@
       </extension>
       <path value="Procedure.notDoneReason.coding.display" />
       <min value="1" />
+    </element>
+    <element id="Procedure.category">
+      <path value="Procedure.category" />
+      <max value="0" />
     </element>
     <element id="Procedure.category.coding.system">
       <path value="Procedure.category.coding.system" />
@@ -12681,6 +12707,7 @@
     <element id="Procedure.code.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Procedure.code.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
@@ -12757,6 +12784,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-RelatedPerson-1" />
+      </type>
     </element>
     <element id="Procedure.performer.actor.reference">
       <path value="Procedure.performer.actor.reference" />
@@ -12764,11 +12799,14 @@
     </element>
     <element id="Procedure.performer.onBehalfOf">
       <path value="Procedure.performer.onBehalfOf" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
+    </element>
+    <element id="Procedure.performer.onBehalfOf.reference">
+      <path value="Procedure.performer.onBehalfOf.reference" />
+      <min value="1" />
     </element>
     <element id="Procedure.location">
       <path value="Procedure.location" />
@@ -12847,6 +12885,7 @@
     <element id="Procedure.bodySite.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Procedure.bodySite.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
@@ -12927,6 +12966,7 @@
     <element id="Procedure.complication.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="Procedure.complication.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
+      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
@@ -12962,6 +13002,10 @@
     <element id="Procedure.complicationDetail.reference">
       <path value="Procedure.complicationDetail.reference" />
       <min value="1" />
+    </element>
+    <element id="Procedure.followUp">
+      <path value="Procedure.followUp" />
+      <max value="0" />
     </element>
     <element id="Procedure.followUp.coding.system">
       <path value="Procedure.followUp.coding.system" />
@@ -13000,9 +13044,31 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
     </element>
-    <element id="Procedure.focalDevice">
-      <path value="Procedure.focalDevice" />
-      <max value="0" />
+    <element id="Procedure.focalDevice.action.coding.system">
+      <path value="Procedure.focalDevice.action.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Procedure.focalDevice.action.coding.code">
+      <path value="Procedure.focalDevice.action.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Procedure.focalDevice.action.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Procedure.focalDevice.action.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Procedure.focalDevice.manipulated">
+      <path value="Procedure.focalDevice.manipulated" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
+      </type>
+    </element>
+    <element id="Procedure.focalDevice.manipulated.reference">
+      <path value="Procedure.focalDevice.manipulated.reference" />
+      <min value="1" />
     </element>
     <element id="Procedure.usedReference">
       <path value="Procedure.usedReference" />
