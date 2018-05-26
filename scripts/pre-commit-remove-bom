@@ -13,7 +13,7 @@ changedFiles=$(git diff --cached --name-only --diff-filter=ACM | grep .xml)
 echo "== Looking for Byte Order Markers to remove in changed files ONLY =="
 found=0
 for x in $(echo $changedFiles); do
- echo "Checking file: $x"
+ #echo "Checking file: $x"
  if [[ "$(file "$x")" == *UTF-8\ Unicode\ \(with\ BOM\)* ]]; then
    echo "Removing UTF-8 BOM for $x"
    let "found += 1"
