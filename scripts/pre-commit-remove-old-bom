@@ -1,19 +1,16 @@
 #!/bin/bash
-# This is a script to be used as a pre-commit hook in Git. It scans all changed XML
+# This is a script to be used as a pre-commit hook in Git. It scans all XML
 # files in the repository and removes any byte-order markers from the files before
 # they are committed.
 # If you've just cloned this repository, you can use the installHook.sh to install
 # this as a pre-commit hook locally.
 
-changedFiles=$(git diff --cached --name-only --diff-filter=ACM | grep .xml)
-
 #echo Running $BASH_SOURCE
 #set | egrep GIT
 #echo PWD is $PWD
-echo "== Looking for Byte Order Markers to remove in changed files ONLY =="
+echo "== Looking for Byte Order Markers to remove =="
 found=0
-for x in $(echo $changedFiles); do
- echo "Checking file: $x"
+for x in $(find . -name '*.xml'); do
  if [[ "$(file "$x")" == *UTF-8\ Unicode\ \(with\ BOM\)* ]]; then
    echo "Removing UTF-8 BOM for $x"
    let "found += 1"
