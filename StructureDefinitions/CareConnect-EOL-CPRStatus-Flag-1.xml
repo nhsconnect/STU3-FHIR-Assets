@@ -1654,6 +1654,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="active" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1693,7 +1694,7 @@
       <definition value="Allows an flag to be divided into different categories like clinical, administrative etc. Intended to be used as a means of filtering which flags are displayed to particular user or in a given context." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="Flag.category" />
         <min value="0" />
@@ -2987,6 +2988,10 @@
         <xpath value="@value|f:*|h:div" />
       </constraint>
       <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-CPRStatus-Code-1" />
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -3023,6 +3028,10 @@
       <type>
         <code value="string" />
       </type>
+      <example>
+        <label value="450475007" />
+        <valueString value="For cardiopulmonary resuscitation (finding)" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3150,35 +3159,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-      </type>
-      <type>
-        <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Medication-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3408,10 +3389,11 @@
     </element>
     <element id="Flag.period">
       <path value="Flag.period" />
+      <label value="Date Time of CPR Status" />
       <short value="Time period when flag is active" />
       <definition value="The period of time from the activation of the flag to inactivation of the flag. If the flag is active, the end of the period should be unspecified." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Flag.period" />
@@ -3534,10 +3516,10 @@
     </element>
     <element id="Flag.period.start">
       <path value="Flag.period.start" />
-      <short value="Starting time with inclusive boundary" />
+      <short value="Date Time of CPR Status" />
       <definition value="The start of the period. The boundary is inclusive." />
       <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Period.start" />
@@ -3572,7 +3554,7 @@
     </element>
     <element id="Flag.period.end">
       <path value="Flag.period.end" />
-      <short value="End time with inclusive boundary, if not ongoing" />
+      <short value="Review Date" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
       <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
       <min value="0" />
@@ -3611,7 +3593,7 @@
     </element>
     <element id="Flag.encounter">
       <path value="Flag.encounter" />
-      <short value="Alert relevant during encounter" />
+      <short value="The encounter where the discussion was taken to recommend a change in CPR Status" />
       <definition value="This alert is only relevant during the encounter." />
       <comment value="If both Flag.encounter and Flag.period are valued, then Flag.period.start shall not be before Encounter.period.start and Flag.period.end shall not be after Encounter.period.end." />
       <min value="0" />
@@ -3849,7 +3831,7 @@
     </element>
     <element id="Flag.author">
       <path value="Flag.author" />
-      <short value="Flag creator" />
+      <short value="Professional recording this CPR status" />
       <definition value="The person, organization or device that created the flag." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
@@ -3859,18 +3841,6 @@
         <min value="0" />
         <max value="1" />
       </base>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
@@ -4118,6 +4088,14 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
     </element>
+    <element id="Flag.status">
+      <path value="Flag.status" />
+      <fixedCode value="active" />
+    </element>
+    <element id="Flag.category">
+      <path value="Flag.category" />
+      <max value="0" />
+    </element>
     <element id="Flag.code.coding">
       <path value="Flag.code.coding" />
       <slicing>
@@ -4166,6 +4144,10 @@
     <element id="Flag.code.coding:snomedCT.code">
       <path value="Flag.code.coding.code" />
       <min value="1" />
+      <binding>
+        <strength value="required" />
+        <valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-CPRStatus-Code-1" />
+      </binding>
     </element>
     <element id="Flag.code.coding:snomedCT.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -4173,44 +4155,35 @@
       </extension>
       <path value="Flag.code.coding.display" />
       <min value="1" />
+      <example>
+        <label value="450475007" />
+        <valueString value="For cardiopulmonary resuscitation (finding)" />
+      </example>
     </element>
     <element id="Flag.subject">
       <path value="Flag.subject" />
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Procedure" />
-      </type>
-      <type>
-        <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Medication-1" />
-      </type>
+    </element>
+    <element id="Flag.period">
+      <path value="Flag.period" />
+      <label value="Date Time of CPR Status" />
+      <min value="1" />
+    </element>
+    <element id="Flag.period.start">
+      <path value="Flag.period.start" />
+      <short value="Date Time of CPR Status" />
+      <min value="1" />
+    </element>
+    <element id="Flag.period.end">
+      <path value="Flag.period.end" />
+      <short value="Review Date" />
     </element>
     <element id="Flag.encounter">
       <path value="Flag.encounter" />
+      <short value="The encounter where the discussion was taken to recommend a change in CPR Status" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
@@ -4218,18 +4191,7 @@
     </element>
     <element id="Flag.author">
       <path value="Flag.author" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
+      <short value="Professional recording this CPR status" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
