@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-05-14T14:18:37.392+01:00" />
+    <lastUpdated value="2018-05-24T15:44:39.804+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pc" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1" />
-  <version value="0.0.1" />
+  <version value="0.0.2" />
   <name value="CareConnect-RARecord-Condition-1" />
   <status value="draft" />
   <date value="2017-01-19T12:09:42.6617626+01:00" />
@@ -352,8 +352,8 @@
     <element id="Condition.extension:episodicity">
       <path value="Condition.extension" />
       <sliceName value="episodicity" />
-      <short value="Episodicity of condition" />
-      <definition value="Episodicity of condition." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -409,7 +409,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1507,7 +1507,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1861,7 +1861,7 @@
     </element>
     <element id="Condition.category">
       <path value="Condition.category" />
-      <short value="complaint | symptom | finding | diagnosis | problem | need" />
+      <short value="problem-list-item|encounter-diagnosis|presenting-complaint|co-morbidity|issue" />
       <definition value="A category assigned to the condition." />
       <comment value="The categorization is often highly contextual and may appear poorly differentiated or not very useful in other contexts." />
       <min value="0" />
@@ -1874,6 +1874,13 @@
       <type>
         <code value="CodeableConcept" />
       </type>
+      <fixedCodeableConcept>
+        <coding>
+          <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1" />
+          <code value="issue" />
+          <display value="Issue" />
+        </coding>
+      </fixedCodeableConcept>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1886,10 +1893,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ConditionCategory" />
         </extension>
-        <strength value="extensible" />
+        <strength value="required" />
         <description value="A category assigned to the condition." />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/ValueSet-RARecord-FlagCategory-1" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ConditionCategory-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -5098,7 +5105,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5494,11 +5501,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6839,7 +6846,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
       </type>
       <condition value="ele-1" />
       <condition value="con-1" />
@@ -8141,11 +8148,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -8280,7 +8287,7 @@
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
       </type>
     </element>
     <element id="Condition.identifier">
@@ -8299,7 +8306,7 @@
       <path value="Condition.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
     </element>
     <element id="Condition.clinicalStatus">
@@ -8312,14 +8319,21 @@
     </element>
     <element id="Condition.category">
       <path value="Condition.category" />
-      <short value="complaint | symptom | finding | diagnosis | problem | need" />
+      <short value="problem-list-item|encounter-diagnosis|presenting-complaint|co-morbidity|issue" />
+      <fixedCodeableConcept>
+        <coding>
+          <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1" />
+          <code value="issue" />
+          <display value="Issue" />
+        </coding>
+      </fixedCodeableConcept>
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ConditionCategory" />
         </extension>
-        <strength value="extensible" />
+        <strength value="required" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/ValueSet-RARecord-FlagCategory-1" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ConditionCategory-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -8540,7 +8554,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Encounter-1" />
       </type>
     </element>
     <element id="Condition.onset[x]">
@@ -8564,11 +8578,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
     </element>
     <element id="Condition.stage">
@@ -8640,7 +8654,7 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
       </type>
     </element>
     <element id="Condition.evidence">
@@ -8662,11 +8676,11 @@
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
       </type>
     </element>
   </differential>
