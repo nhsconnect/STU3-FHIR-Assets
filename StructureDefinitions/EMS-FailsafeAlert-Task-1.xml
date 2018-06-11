@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-29T13:28:52.175+01:00" />
+    <lastUpdated value="2018-06-07T14:56:37.447+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-FailsafeAlert-Task-1" />
-  <version value="1.0.0" />
+  <version value="2.0.0" />
   <name value="EMS-FailsafeAlert-Task-1" />
   <status value="draft" />
   <date value="2017-11-23T21:27:39.768+00:00" />
@@ -4724,7 +4724,7 @@
       <short value="Task Type" />
       <definition value="A name or code (or both) briefly describing what the task involves." />
       <comment value="The title (eg &quot;My Tasks&quot;, &quot;Outstanding Tasks for Patient X&quot;) should go into the code." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.code" />
@@ -4866,7 +4866,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -5263,7 +5263,7 @@
       <short value="Human-readable explanation of task" />
       <definition value="A free-text description of what is to be performed." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.description" />
@@ -6984,7 +6984,7 @@
       <definition value="The type of participant that can execute the task." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Use to distinguish tasks on different activity queues." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.performerType" />
@@ -7125,7 +7125,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -7525,8 +7525,8 @@
       <requirements value="Identifies who is expected to perform this task." />
       <alias value="Performer" />
       <alias value="Executer" />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Task.owner" />
         <min value="0" />
@@ -7535,10 +7535,6 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7775,7 +7771,7 @@
       <short value="Why task is needed" />
       <definition value="A description or code indicating why this task needs to be performed." />
       <comment value="This should only be included if there is no focus or if it differs from the reason indicated on the focus." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Task.reason" />
@@ -7916,7 +7912,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -11201,6 +11197,7 @@
     </element>
     <element id="Task.code">
       <path value="Task.code" />
+      <min value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskCode" />
@@ -11214,6 +11211,7 @@
     </element>
     <element id="Task.code.coding">
       <path value="Task.code.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.code.coding.system">
@@ -11242,6 +11240,7 @@
     </element>
     <element id="Task.description">
       <path value="Task.description" />
+      <min value="1" />
       <example>
         <label value="Failsafe Example Value" />
         <valueString value="Severity Level: Warning Alert - Escalation Level: Service - Condition ID: 001 - Condition Description: Missing Health Visiting Service - Reason for alert: Individual has a missing association with a Health Visiting Service - Service needed to action: Health Visiting" />
@@ -11305,6 +11304,7 @@
     <element id="Task.performerType">
       <path value="Task.performerType" />
       <short value="The service to action the task for the Failsafe Alert" />
+      <min value="1" />
       <max value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -11319,6 +11319,7 @@
     </element>
     <element id="Task.performerType.coding">
       <path value="Task.performerType.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.performerType.coding.system">
@@ -11347,18 +11348,15 @@
     </element>
     <element id="Task.owner">
       <path value="Task.owner" />
-      <max value="0" />
+      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Organization-1" />
       </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1" />
-      </type>
     </element>
     <element id="Task.reason">
       <path value="Task.reason" />
+      <min value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="TaskReason" />
@@ -11372,6 +11370,7 @@
     </element>
     <element id="Task.reason.coding">
       <path value="Task.reason.coding" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Task.reason.coding.system">
