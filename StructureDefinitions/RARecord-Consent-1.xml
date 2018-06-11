@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-05-15T11:32:46.775+01:00" />
+    <lastUpdated value="2018-06-08T11:31:04.459+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1" />
-  <version value="0.0.2"/>
+  <version value="0.0.2" />
   <name value="RARecord-Consent-1" />
   <status value="draft" />
-  <date value="2018-05-24T00:00:00+00:00"/>
+  <date value="2018-05-24T00:00:00+00:00" />
   <publisher value="NHS Digital" />
   <description value="To record consent to capture Reasonable Adjustments and Reasons for Reasonable Adjustments data" />
   <purpose value="Consent profile - to  record Consent To Record Reasonable Adjustments, Consent To (Dissent from) Secondary Use of Reasonable Adjustments data." />
@@ -452,6 +452,49 @@
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Consent.extension:removalReason">
+      <path value="Consent.extension" />
+      <sliceName value="removalReason" />
+      <short value="Optional Extensions Element" />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -10270,6 +10313,16 @@
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1" />
+      </type>
+    </element>
+    <element id="Consent.extension:removalReason">
+      <path value="Consent.extension" />
+      <sliceName value="removalReason" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1" />
       </type>
     </element>
     <element id="Consent.identifier">
