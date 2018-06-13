@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="HealthcareService" />
   <meta>
-    <lastUpdated value="2018-03-07T12:08:04.491+00:00" />
+    <lastUpdated value="2018-04-10T12:36:00.176+01:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralsForReview-HealthcareService-1" />
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pa" />
+  </extension>
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearch-HealthcareService-1" />
   <version value="1.0.0" />
-  <name value="eRS-ReferralsForReview-HealthcareService-1" />
+  <name value="eRS-ServiceSearch-HealthcareService-1" />
   <status value="draft" />
-  <date value="2018-03-02T13:50:51.323+00:00" />
+  <date value="2017-06-29T10:26:51.8705564+01:00" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -17,7 +21,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <copyright value="Copyright © 2017  NHS Digital" />
+  <description value="This healthcare service resource is constrained to support the eRS service search functionality. " />
+  <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -331,6 +336,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="HealthcareService.extension:Extension-eRS-HealthcareService">
+      <path value="HealthcareService.extension" />
+      <sliceName value="Extension-eRS-HealthcareService" />
+      <short value="Extensions to represent additional items representing the HealthcareService." />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-HealthcareService-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="HealthcareService.modifierExtension">
       <path value="HealthcareService.modifierExtension" />
       <slicing>
@@ -384,9 +432,9 @@
     <element id="HealthcareService.identifier">
       <path value="HealthcareService.identifier" />
       <short value="e-RS healthcare service identifier" />
-      <definition value="External identifiers for this item." />
-      <min value="1" />
-      <max value="1" />
+      <definition value="Provides the uniques identifier for the service." />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="HealthcareService.identifier" />
         <min value="0" />
@@ -1092,7 +1140,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -1102,6 +1150,7 @@
       <type>
         <code value="uri" />
       </type>
+      <fixedUri value="https://fhir.nhs.uk/Id/ods-organization-code" />
       <example>
         <label value="General" />
         <valueUri value="http://www.acme.com/identifiers/patient or urn:ietf:rfc:3986 if the Identifier.value itself is a full uri" />
@@ -1679,7 +1728,7 @@
       <definition value="The organization that provides this healthcare service." />
       <comment value="This property is recommended to be the same as the Location's managingOrganization, and if not provided should be interpreted as such. If the Location does not have a managing Organization, then this property should be populated." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="HealthcareService.providedBy" />
         <min value="0" />
@@ -2967,7 +3016,7 @@
       <definition value="Collection of specialties handled by the service site. This is more of a medical term." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="HealthcareService.specialty" />
         <min value="0" />
@@ -2989,10 +3038,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="service-specialty" />
         </extension>
-        <strength value="preferred" />
+        <strength value="required" />
         <description value="A specialty that a healthcare service may provide." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/c80-practice-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Specialty-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -3100,8 +3149,8 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -3119,6 +3168,13 @@
         <xpath value="@value|f:*|h:div" />
       </constraint>
       <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Specialty" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Specialty-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -3485,11 +3541,11 @@
     </element>
     <element id="HealthcareService.location">
       <path value="HealthcareService.location" />
-      <short value="Location where the service may be provided" />
+      <short value="Location(s) where service may be provided" />
       <definition value="The location(s) where this healthcare service may be provided." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="HealthcareService.location" />
         <min value="0" />
@@ -3498,6 +3554,7 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Location-1" />
+        <aggregation value="contained" />
         <aggregation value="referenced" />
       </type>
       <condition value="ele-1" />
@@ -3613,10 +3670,10 @@
     </element>
     <element id="HealthcareService.location.reference">
       <path value="HealthcareService.location.reference" />
-      <short value="The e-RS Organisation that locates the Service" />
+      <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -3651,7 +3708,7 @@
       <definition value="An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference." />
       <comment value="When an identifier is provided in place of a reference, any system processing the reference will only be able to resolve the identifier to a reference if it understands the business context in which the identifier is used. Sometimes this is global (e.g. a national identifier) but often it is not. For this reason, none of the useful mechanisms described for working with references (e.g. chaining, includes) are possible, nor should servers be expected to be able resolve the reference. Servers may accept an identifier based reference untouched, resolve it, and/or reject it - see CapabilityStatement.rest.resource.referencePolicy. &#xA;&#xA;When both an identifier and a literal reference are provided, the literal reference is preferred. Applications processing the resource are allowed - but not required - to check that the identifier matches the literal reference&#xA;&#xA;Applications converting a logical reference to a literal reference may choose to leave the logical reference present, or remove it." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Reference.identifier" />
         <min value="0" />
@@ -3699,7 +3756,7 @@
       <definition value="Plain text narrative that identifies the resource in addition to the resource reference." />
       <comment value="This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Reference.display" />
         <min value="0" />
@@ -3728,10 +3785,10 @@
     </element>
     <element id="HealthcareService.name">
       <path value="HealthcareService.name" />
-      <short value="Description of service as presented to a consumer while searching" />
-      <definition value="Further description of the service as it would be presented to a consumer while searching." />
+      <short value="The service name as held in eRS" />
+      <definition value="The service name as held in eRS" />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="HealthcareService.name" />
@@ -3741,10 +3798,6 @@
       <type>
         <code value="string" />
       </type>
-      <example>
-        <label value="NHS Digital" />
-        <valueString value="LGI Orthopaedics Service" />
-      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3798,11 +3851,11 @@
     </element>
     <element id="HealthcareService.extraDetails">
       <path value="HealthcareService.extraDetails" />
-      <short value="Extra details about the service that can't be placed in the other fields" />
-      <definition value="Extra details about the service that can't be placed in the other fields." />
+      <short value="Referrer alert message details for the service." />
+      <definition value="Referrer alert message details for the service." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="HealthcareService.extraDetails" />
         <min value="0" />
@@ -6150,7 +6203,7 @@
       <definition value="Collection of characteristics (attributes)." />
       <comment value="These could be such things as is wheelchair accessible." />
       <min value="0" />
-      <max value="0" />
+      <max value="3" />
       <base>
         <path value="HealthcareService.characteristic" />
         <min value="0" />
@@ -6171,8 +6224,11 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ServiceCharacteristic" />
         </extension>
-        <strength value="example" />
+        <strength value="required" />
         <description value="A custom attribute that could be provided at a service (e.g. Wheelchair accessibiliy)." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-AdditionalRequirementType-1" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -6280,7 +6336,7 @@
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -6627,7 +6683,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -8156,11 +8212,28 @@
     </element>
   </snapshot>
   <differential>
+    <element id="HealthcareService.extension">
+      <path value="HealthcareService.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="HealthcareService.extension:Extension-eRS-HealthcareService">
+      <path value="HealthcareService.extension" />
+      <sliceName value="Extension-eRS-HealthcareService" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-HealthcareService-1" />
+      </type>
+    </element>
     <element id="HealthcareService.identifier">
       <path value="HealthcareService.identifier" />
       <short value="e-RS healthcare service identifier" />
-      <min value="1" />
-      <max value="1" />
+      <definition value="Provides the uniques identifier for the service." />
     </element>
     <element id="HealthcareService.identifier.use">
       <path value="HealthcareService.identifier.use" />
@@ -8172,7 +8245,7 @@
     </element>
     <element id="HealthcareService.identifier.system">
       <path value="HealthcareService.identifier.system" />
-      <min value="1" />
+      <fixedUri value="https://fhir.nhs.uk/Id/ods-organization-code" />
     </element>
     <element id="HealthcareService.identifier.value">
       <path value="HealthcareService.identifier.value" />
@@ -8190,10 +8263,6 @@
       <path value="HealthcareService.active" />
       <max value="0" />
     </element>
-    <element id="HealthcareService.providedBy">
-      <path value="HealthcareService.providedBy" />
-      <max value="0" />
-    </element>
     <element id="HealthcareService.category">
       <path value="HealthcareService.category" />
       <max value="0" />
@@ -8204,42 +8273,41 @@
     </element>
     <element id="HealthcareService.specialty">
       <path value="HealthcareService.specialty" />
-      <max value="0" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="service-specialty" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Specialty-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="HealthcareService.specialty.coding">
+      <path value="HealthcareService.specialty.coding" />
+      <min value="1" />
+      <max value="1" />
+      <binding>
+        <strength value="required" />
+        <description value="Specialty" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Specialty-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="HealthcareService.location">
       <path value="HealthcareService.location" />
-      <short value="Location where the service may be provided" />
-      <min value="1" />
-      <max value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Location-1" />
+        <aggregation value="contained" />
         <aggregation value="referenced" />
       </type>
     </element>
-    <element id="HealthcareService.location.reference">
-      <path value="HealthcareService.location.reference" />
-      <short value="The e-RS Organisation that locates the Service" />
-      <min value="1" />
-    </element>
-    <element id="HealthcareService.location.identifier">
-      <path value="HealthcareService.location.identifier" />
-      <max value="0" />
-    </element>
-    <element id="HealthcareService.location.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="HealthcareService.location.display" />
-      <max value="0" />
-    </element>
     <element id="HealthcareService.name">
       <path value="HealthcareService.name" />
-      <min value="1" />
-      <example>
-        <label value="NHS Digital" />
-        <valueString value="LGI Orthopaedics Service" />
-      </example>
+      <short value="The service name as held in eRS" />
+      <definition value="The service name as held in eRS" />
     </element>
     <element id="HealthcareService.comment">
       <path value="HealthcareService.comment" />
@@ -8247,7 +8315,8 @@
     </element>
     <element id="HealthcareService.extraDetails">
       <path value="HealthcareService.extraDetails" />
-      <max value="0" />
+      <short value="Referrer alert message details for the service." />
+      <definition value="Referrer alert message details for the service." />
     </element>
     <element id="HealthcareService.photo">
       <path value="HealthcareService.photo" />
@@ -8279,6 +8348,26 @@
     </element>
     <element id="HealthcareService.characteristic">
       <path value="HealthcareService.characteristic" />
+      <max value="3" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ServiceCharacteristic" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-AdditionalRequirementType-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="HealthcareService.characteristic.coding">
+      <path value="HealthcareService.characteristic.coding" />
+      <max value="1" />
+    </element>
+    <element id="HealthcareService.characteristic.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="HealthcareService.characteristic.text" />
       <max value="0" />
     </element>
     <element id="HealthcareService.referralMethod">
