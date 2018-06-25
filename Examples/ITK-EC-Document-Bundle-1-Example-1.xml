@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="cb5626c6-ef5b-486d-9de9-e193d7cfd9d0"/>
+<id value="cb5626c6-ef5b-486d-9de9-e193d7cfd9d0"/>
 	<meta>
 	<lastUpdated value="2015-02-12T21:00:00+00:00"/> 
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
@@ -85,11 +85,7 @@
 									</tr>
 									<tr>
 										<th>Reaction details</th>
-										<td>Description of reaction: Rash. No swelling.</td>
-									</tr>
-									<tr>
-										<th>Date recorded</th>
-										<td>12 January 2012</td>
+										<td><p>Description of reaction: Eruption due to drug</p><p>Date recorded: 12 February 2015</p><p>Severity: Mild</p><p>Certainty: Certain</p><p>Comment: No swelling</p></td>
 									</tr>
 								</tbody>
 							</table>
@@ -695,6 +691,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
      <code value="EMER"/>
      <display value="emergency"/>
     </class>
+    <!--Specific type of encounter-->
     <type>
      <coding>
       <system value="http://snomed.info/sct"/>
@@ -738,62 +735,40 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				</identifier>
 				<status value="current"/>
 				<mode value="snapshot"/>
-				<!--Type of list-->
+					<!--	Dummy code used - awaiting a new code.-->
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="933361000000108"/>
-						<display value="Medications and medical devices"/>
+						<code value="1A"/>
+						<display value="Active Medications"/>
 					</coding>
 				</code>
 				<!--Patient subject of the list-->
 				<subject>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</subject>
+					<encounter>
+					<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+				</encounter>	
+				<source>
+					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+				</source>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="9"/>
-							<display value="Active"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:86442fdb-15ad-41cb-bd6a-f9a85db48d07"/>
 					</item>
 				</entry>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="9"/>
-							<display value="Active"/>
-						</coding>
-					</flag>
-					<item>
+						<item>
 						<reference value="urn:uuid:77ae6ef0-7a02-4845-bbde-4a6e5739c727"/>
 					</item>
 				</entry>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="9"/>
-							<display value="Active"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:a5b3e68f-0f80-4077-96e7-c41a23e14fd0"/>
 					</item>
 				</entry>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="9"/>
-							<display value="Active"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:4d3001fa-bf73-4a4a-b950-d9c6a4b405bb"/>
 					</item>
@@ -1042,14 +1017,13 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<subject>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</subject>
+					<encounter>
+					<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+				</encounter>	
+				<source>
+					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+				</source>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientAllergyChangeType-1"/>
-							<code value="1"/>
-							<display value="Unchanged"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:4559a534-7ebc-4139-8ada-09627696710a"/>
 					</item>
@@ -1071,6 +1045,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				</identifier>
 				<clinicalStatus value="active"/>
 				<verificationStatus value="confirmed"/>
+			 <category value="medication"/>
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
@@ -1081,7 +1056,17 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<patient>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</patient>
-				<onsetDateTime value="2012-01-12T12:00:00+00:00"/>
+				<assertedDate value="2015-02-12"/>
+				<reaction>
+					<manifestation>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="28926001"/>
+						<display value="Eruption due to drug"/>
+					</coding>
+					</manifestation>
+					<severity value="mild"/>
+				</reaction>	
 			</AllergyIntolerance>
 		</resource>
 	</entry>
@@ -1110,6 +1095,12 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<subject>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</subject>
+					<encounter>
+					<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+				</encounter>	
+				<source>
+					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+				</source>
 				<entry>
 					<item>
 						<reference value="urn:uuid:50dc3efe-1826-4ee0-bcba-439c4fb38ff4"/>
@@ -1222,6 +1213,12 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 				<subject>
 					<reference value="urn:uuid:c8225cc8-8026-466f-80f8-fc2832a4b9d5"/>
 				</subject>
+					<encounter>
+					<reference value="urn:uuid:9a20cb92-354a-4015-82ec-ab0252efc5b9"/>
+				</encounter>	
+				<source>
+					<reference value="urn:uuid:369d88a8-9f6b-407f-8560-6ee9d7ccc8bb"/>
+				</source>
 				<entry>
 					<item>
 						<reference value="urn:uuid:1a65a852-c14e-42ae-ae88-46ca1dc4d67f"/>
