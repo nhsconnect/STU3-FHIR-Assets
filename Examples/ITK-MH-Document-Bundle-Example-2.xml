@@ -1,8 +1,9 @@
-<!--This xml example is for illustrative purposes only and has not been clinically verified-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This xml example is for illustrative purposes only and has not been clinically verified.-->
 <Bundle xmlns="http://hl7.org/fhir">
 	<id value="6191cc21-cb11-4d99-8cb2-2afe1c7e9d2f"/>
 	<meta>
-		<lastUpdated value="2015-03-05T14:00:00+00:00"/> 
+		<lastUpdated value="2015-03-05T14:00:00+00:00"/>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Document-Bundle-1"/>
 	</meta>
 	<identifier>
@@ -120,17 +121,22 @@
 						</coding>
 					</code>
 					<text>
-						<status value="additional"/>
+						<status value="generated"/>
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
 									<tr>
+										<th>Causative agent</th>
 										<td>No known allergy</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</text>
+					<!--Reference to the allergy list-->
+					<entry>
+						<reference value="urn:uuid:975a3836-a71d-4773-b7c4-e79bdd1306e9"/>
+					</entry>
 				</section>
 				<!--Clinical summary-->
 				<section>
@@ -223,16 +229,18 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 											<p>Prefix: Dr</p>
 											<p>Given Name: Mike</p>
 											<p>Family Name: Scott</p>
-											<p>Identifier: 9222477</p>
 										</td>
 									</tr>
 									<tr>
 										<th>Discharging specialty/department</th>
-										<td>Adult Mental Health Service</td>
+										<td>Adult mental illness - speciality</td>
 									</tr>
 									<tr>
 										<th>Discharge location</th>
-										<td>Allerton ward</td>
+										<td>
+											<p>Name: Allerton ward</p>
+											<p>Identifier: RR8ALL</p>
+										</td>
 									</tr>
 									<tr>
 										<th>Date/time of discharge</th>
@@ -285,7 +293,6 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 											<p>Prefix: Mrs</p>
 											<p>Given Name: Gay</p>
 											<p>Family Name: Gillingham</p>
-											<p>Identifier: 033345750518</p>
 										</td>
 									</tr>
 									<tr>
@@ -293,9 +300,8 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 										<td>Consultant</td>
 									</tr>
 									<tr>
-										<th>Organisation</th>
-										<td>Leeds Mental Health NHS Trust<p>Identifier: RGD</p>
-										</td>
+										<th>Organisation name</th>
+										<td>Leeds Mental Health NHS Trust</td>
 									</tr>
 								</tbody>
 							</table>
@@ -307,7 +313,6 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 											<p>Prefix: Dr</p>
 											<p>Given Name: James</p>
 											<p>Family Name: Lozo</p>
-											<p>Identifier: GP12345600</p>
 										</td>
 									</tr>
 									<tr>
@@ -315,9 +320,8 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 										<td>General Medical Practitioner</td>
 									</tr>
 									<tr>
-										<th>Organisation</th>
-										<td>MGP Medical Centre<p>Identifier: GP123456</p>
-										</td>
+										<th>Organisation name</th>
+										<td>MGP Medical Centre</td>
 									</tr>
 								</tbody>
 							</table>
@@ -347,12 +351,12 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 							<table width="100%">
 								<tbody>
 									<tr>
-										<th>GP practice identifier</th>
-										<td>GP123456</td>
-									</tr>
-									<tr>
 										<th>GP name</th>
-										<td>Dr James Lozo</td>
+										<td>
+											<p>Prefix: Dr</p>
+											<p>Given Name: James</p>
+											<p>Family Name: Lozo</p>
+										</td>
 									</tr>
 									<tr>
 										<th>GP practice details</th>
@@ -362,7 +366,6 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 											<p>Address Line: 1 MGP House, Overtown</p>
 											<p>City: Leeds</p>
 											<p>Post Code: LS21 7PA</p>
-											<p>Tel: 0113 4111223 (Work)</p>
 										</td>
 									</tr>
 								</tbody>
@@ -380,8 +383,8 @@ therefore, subject to recall to hospital if she does not adhere to treatment.</p
 					<code>
 						<coding>
 							<system value="http://snomed.info/sct"/>
-							<code value="1052901000000109"/>
-							<display value="Individual requirement"/>
+							<code value="1078911000000106"/>
+							<display value="Individual requirements"/>
 						</coding>
 					</code>
 					<text>
@@ -489,8 +492,16 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 							<table width="100%">
 								<tbody>
 									<tr>
-										<th>Mental Health Act or equivalent status</th>
-										<td>Patient subject to a Community Treatment Order.</td>
+										<th>Consent for treatment record</th>
+										<td>Patient has consented to treatment, but will be subject to recall to hospital if she does not adhere to treatment.</td>
+									</tr>
+									<tr>
+										<th>Mental capacity assessment</th>
+										<td>Not undertaken</td>
+									</tr>
+									<tr>
+										<th>Safeguarding issues</th>
+										<td>None</td>
 									</tr>
 								</tbody>
 							</table>
@@ -508,14 +519,14 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 						</coding>
 					</code>
 					<text>
-						<status value="additional"/>
+						<status value="extensions"/>
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
 									<tr>
 										<th>Medication item</th>
 										<td>Medication name: Olanzapine 10mg tablet</td>
-										<td>Form: Tablet</td>
+										<td>Form: Chewable tablet</td>
 										<td>Route: Oral</td>
 										<td>Dose directions description: Take one 10 mg tablet daily.</td>
 									</tr>
@@ -528,7 +539,7 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 									<tr>
 										<th>Medication item</th>
 										<td>Medication name: Diazepam 2mg tablet</td>
-										<td>Form: Tablet</td>
+										<td>Form: Chewable tablet</td>
 										<td>Route: Oral</td>
 										<td>Dose directions description: Take three 2mg tablets daily for 7 days</td>
 									</tr>
@@ -544,30 +555,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 					<entry>
 						<reference value="urn:uuid:9b1cf5d4-2445-4c99-994a-b75b1a13a4f3"/>
 					</entry>
-				</section>
-				<!--Participation in research-->
-				<section>
-					<title value="Participation in research"/>
-					<code>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="886751000000102"/>
-							<display value="Participation in research"/>
-						</coding>
-					</code>
-					<text>
-						<status value="additional"/>
-						<div xmlns="http://www.w3.org/1999/xhtml">
-							<table width="100%">
-								<tbody>
-									<tr>
-										<th>Participation in research</th>
-										<td>Consent not given</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</text>
 				</section>
 				<!--Patient and carer concerns-->
 				<section>
@@ -680,7 +667,6 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 											<p>Prefix: Dr</p>
 											<p>Given Name: Mike</p>
 											<p>Family Name: Scott</p>
-											<p>Identifier: 9222477</p>
 										</td>
 									</tr>
 									<tr>
@@ -726,25 +712,25 @@ LUCs						0.2			x10*9/L			&lt; 0.4
 									<tr>
 										<th>Actions for healthcare professionals</th>
 										<td>
-											<p>Physical attention will be needed from Primary Care due to the fact she is on an atypical antipsychotic and 
-will need weight and general health monitoring by the Community Consultant/Team:Dr Gillingham Leeds Recovery and Support Team. </p>
+											<p>Physical attention will be needed from Primary Care due to the fact she is an atypical antipsychotic and 
+will need weight and general health monitoring</p>
+											<p>Person responsible: Dr Gillingham, Leeds Recovery and Support Team. </p>
 											<p>Status: Requested</p>
+											<p>Outcome and expectations: The patient is expected to benefit from physical attention from healthcare professionals and understands that she must attend her appointments.</p>
 										</td>
 									</tr>
 									<tr>
 										<th>Actions for patient or their carer</th>
-										<td>Patient to commence prescribed medication.</td>
+										<td>Patient has agreed to commence the prescribed medication and expects this to improve her condition.</td>
 									</tr>
 									<tr>
 										<th>Agreed with patient or legitimate patient representative</th>
-										<td>Patient has agreed to treatment plan.</td>
+										<td>Patient has agreed to treatment plan and epects this to improve her mental and physical condition.</td>
 									</tr>
 									<tr>
 										<th>Care planning arrangements</th>
 										<td>CPA Status and 117 Aftercare: Follow up will be made by the Leeds Recovery and Support team. 
-7 Day Follow up will be done by the community team.
-           <p>Status: Requested</p>
-										</td>
+7 Day Follow up will be done by the community team.</td>
 									</tr>
 								</tbody>
 							</table>
@@ -790,19 +776,38 @@ will need weight and general health monitoring by the Community Consultant/Team:
 						</coding>
 					</code>
 					<text>
-						<status value="additional"/>
+						<status value="generated"/>
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
 									<tr>
 										<th>Referrer details</th>
-										<td>Dr. Daniel Beck, Consultant, Leeds Mental Health NHS Trust <p>Tel: 0113 3246666</p>
+										<td>
+											<p>Name:</p>
+											<p>Prefix: Dr.</p>
+											<p>Given name: Daniel</p>
+											<p>Family name: Beck</p>
+											<p>Role: Consultant</p>
+											<p>Tel: 0113 3246666 (work)</p>
+											<p>Organisation</p>
+											<p>Name: Leeds Mental Health NHS Trust</p>
+											<p>Identifier: RGD</p>
+											<p>Address Line: Twenty One Fifty, Thorpe Park</p>
+											<p>City: Leeds</p>
+											<p>Post Code: LS15 8ZB</p>
 										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</text>
+					<!--reference to practitioner and organisation entries-->
+					<entry>
+						<reference value="urn:uuid:1858f474-c235-4e73-ab8d-a0a2236613d6"/>
+					</entry>
+					<entry>
+						<reference value="urn:uuid:35e7fc14-f7cb-4b6d-bb41-2ad7f45c501c"/>
+					</entry>
 				</section>
 				<!--Safety alerts-->
 				<section>
@@ -889,38 +894,40 @@ will need weight and general health monitoring by the Community Consultant/Team:
 						</coding>
 					</valueCodeableConcept>
 				</extension>
-				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DischargeMethod-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeMethod-1"/>
-							<code value="1"/>
-							<display value="Patient discharged on clinical advice or with clinical consent"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
 				<identifier>
 					<system value="https://tools.ietf.org/html/rfc4122"/>
 					<value value="e7fc263c-2e22-4dd1-9f5e-57e0e005128f"/>
 				</identifier>
 				<status value="finished"/>
-    <class>
-     <system value="http://hl7.org/fhir/v3-ActEncounterCode"/>
-     <code value="IMP"/>
-     <display value="inpatient encounter"/>
-    </class>
-    <!--Specific type of encounter-->
-    <type>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="24882007"/>
-      <display value="Medical consultation on hospital inpatient"/>
-     </coding>
-    </type>
+				<class>
+					<system value="http://hl7.org/fhir/v3-ActEncounterCode"/>
+					<code value="IMP"/>
+					<display value="inpatient encounter"/>
+				</class>
+				<!--Specific type of encounter-->
+				<type>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="163771000000109"/>
+						<display value="Mental health care spell"/>
+					</coding>
+				</type>
 				<!--Reference to the patient as the subject of the Encounter-->
 				<subject>
 					<reference value="urn:uuid:1c5a26fd-b317-4fc0-8e0d-7ed8c75d34d8"/>
 				</subject>
-				<!--	The start and end time of the encounter-->
+				<participant>
+					<type>
+						<coding>
+							<system value="http://hl7.org/fhir/v3/ParticipationType"/>
+							<code value="DIS"/>
+							<display value="discharger"/>
+						</coding>
+					</type>
+					<individual>
+						<reference value="urn:uuid:ba20623e-6d70-420e-bbf9-e4b6ac0f50b3"/>
+					</individual>
+				</participant>
 				<period>
 					<start value="2015-02-12T12:00:00+00:00"/>
 					<end value="2015-03-05T12:00:00+00:00"/>
@@ -933,6 +940,7 @@ will need weight and general health monitoring by the Community Consultant/Team:
 					</coding>
 				</reason>
 				<hospitalization>
+					<!--From where patient was admitted-->
 					<admitSource>
 						<coding>
 							<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SourceOfAdmission-1"/>
@@ -940,6 +948,7 @@ will need weight and general health monitoring by the Community Consultant/Team:
 							<display value="NHS other Hospital Provider - Ward for general Patients or the younger physically disabled or A and E department"/>
 						</coding>
 					</admitSource>
+					<!--	Category or kind of location after discharge-->
 					<dischargeDisposition>
 						<coding>
 							<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DischargeDestination-1"/>
@@ -948,17 +957,81 @@ will need weight and general health monitoring by the Community Consultant/Team:
 						</coding>
 					</dischargeDisposition>
 				</hospitalization>
-				<!--Location patient discharged from-->
+				<!--Discharge location-->
 				<location>
 					<location>
 						<reference value="urn:uuid:d19c145a-9fa4-401d-89cc-4024c1a9b74a"/>
 					</location>
 					<period>
-						<start value="2015-02-12T12:00:00+00:00"/>
 						<end value="2015-03-05T12:00:00+00:00"/>
 					</period>
 				</location>
 			</Encounter>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:975a3836-a71d-4773-b7c4-e79bdd1306e9"/>
+		<resource>
+			<List>
+				<id value="975a3836-a71d-4773-b7c4-e79bdd1306e9"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Allergy-List-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="f076cd77-db45-4a22-af7e-9dfbd107432b"/>
+				</identifier>
+				<status value="current"/>
+				<mode value="snapshot"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="886921000000105"/>
+						<display value="Allergies and adverse reactions"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:1c5a26fd-b317-4fc0-8e0d-7ed8c75d34d8"/>
+				</subject>
+				<encounter>
+					<reference value="urn:uuid:c37a3a1a-0895-44c4-a79a-f7b7bb425e47"/>
+				</encounter>
+				<source>
+					<reference value="urn:uuid:ba20623e-6d70-420e-bbf9-e4b6ac0f50b3"/>
+				</source>
+				<entry>
+					<item>
+						<reference value="urn:uuid:795343f5-0431-4af4-bc93-f8724bd93fd4"/>
+					</item>
+				</entry>
+			</List>
+		</resource>
+	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:795343f5-0431-4af4-bc93-f8724bd93fd4"/>
+		<resource>
+			<AllergyIntolerance>
+				<id value="795343f5-0431-4af4-bc93-f8724bd93fd4"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-AllergyIntolerance-1"/>
+				</meta>
+				<identifier>
+					<system value="https://tools.ietf.org/html/rfc4122"/>
+					<value value="06d65f0f-117a-43c6-84ea-f28c3bd664a2"/>
+				</identifier>
+				<clinicalStatus value="active"/>
+				<verificationStatus value="confirmed"/>
+				<code>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="716186003"/>
+						<display value="No known allergy"/>
+					</coding>
+				</code>
+				<patient>
+		<reference value="urn:uuid:1c5a26fd-b317-4fc0-8e0d-7ed8c75d34d8"/>
+				</patient>
+			</AllergyIntolerance>
 		</resource>
 	</entry>
 	<entry>
@@ -978,8 +1051,8 @@ will need weight and general health monitoring by the Community Consultant/Team:
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="933361000000108"/>
-						<display value="Medications and medical devices"/>
+						<code value="1102411000000102"/>
+						<display value="Active medications"/>
 					</coding>
 				</code>
 				<subject>
@@ -988,26 +1061,15 @@ will need weight and general health monitoring by the Community Consultant/Team:
 				<encounter>
 					<reference value="urn:uuid:c37a3a1a-0895-44c4-a79a-f7b7bb425e47"/>
 				</encounter>
+				<source>
+					<reference value="urn:uuid:ba20623e-6d70-420e-bbf9-e4b6ac0f50b3"/>
+				</source>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="1"/>
-							<display value="Continued"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:8006a0b5-4081-40f0-8b00-ccc22489ce24"/>
 					</item>
 				</entry>
 				<entry>
-					<flag>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/ITK-PatientMedicationChangeType-1"/>
-							<code value="4"/>
-							<display value="Addition"/>
-						</coding>
-					</flag>
 					<item>
 						<reference value="urn:uuid:467c0506-a1eb-4724-acf7-eef207d84ae3"/>
 					</item>
@@ -1108,6 +1170,13 @@ will need weight and general health monitoring by the Community Consultant/Team:
 						<display value="Olanzapine 10mg tablet"/>
 					</coding>
 				</code>
+				<form>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="66076007"/>
+						<display value="Chewable tablet"/>
+					</coding>
+				</form>
 			</Medication>
 		</resource>
 	</entry>
@@ -1127,6 +1196,13 @@ will need weight and general health monitoring by the Community Consultant/Team:
 						<display value="Diazepam 2mg tablet"/>
 					</coding>
 				</code>
+				<form>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="66076007"/>
+						<display value="Chewable tablet"/>
+					</coding>
+				</form>
 			</Medication>
 		</resource>
 	</entry>
@@ -1155,6 +1231,12 @@ will need weight and general health monitoring by the Community Consultant/Team:
 				<subject>
 					<reference value="urn:uuid:1c5a26fd-b317-4fc0-8e0d-7ed8c75d34d8"/>
 				</subject>
+				<encounter>
+					<reference value="urn:uuid:c37a3a1a-0895-44c4-a79a-f7b7bb425e47"/>
+				</encounter>
+				<source>
+					<reference value="urn:uuid:ba20623e-6d70-420e-bbf9-e4b6ac0f50b3"/>
+				</source>
 				<entry>
 					<item>
 						<reference value="urn:uuid:a3dc2263-d9f7-4ae4-bfcc-e39951b3df26"/>
@@ -1218,6 +1300,12 @@ will need weight and general health monitoring by the Community Consultant/Team:
 				<subject>
 					<reference value="urn:uuid:1c5a26fd-b317-4fc0-8e0d-7ed8c75d34d8"/>
 				</subject>
+				<encounter>
+					<reference value="urn:uuid:c37a3a1a-0895-44c4-a79a-f7b7bb425e47"/>
+				</encounter>
+				<source>
+					<reference value="urn:uuid:ba20623e-6d70-420e-bbf9-e4b6ac0f50b3"/>
+				</source>
 				<entry>
 					<item>
 						<reference value="urn:uuid:ebe24eb4-72ff-4300-ac05-dbc69b73ce14"/>
@@ -1365,6 +1453,27 @@ will need weight and general health monitoring by the Community Consultant/Team:
 			</Practitioner>
 		</resource>
 	</entry>
+	<entry>
+		<fullUrl value="urn:uuid:1858f474-c235-4e73-ab8d-a0a2236613d6"/>
+		<resource>
+			<Practitioner>
+				<id value="1858f474-c235-4e73-ab8d-a0a2236613d6"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
+				</meta>
+				<name>
+					<family value="Beck"/>
+					<given value="Daniel"/>
+					<prefix value="Dr"/>
+				</name>
+				<telecom>
+					<system value="phone"/>
+					<value value="0113 3246666"/>
+					<use value="work"/>
+				</telecom>
+			</Practitioner>
+		</resource>
+	</entry>
 	<!--Role details for referenced practitioners-->
 	<entry>
 		<fullUrl value="urn:uuid:001c858c-3e3d-4b58-be94-0f46c79d8bae"/>
@@ -1447,6 +1556,30 @@ will need weight and general health monitoring by the Community Consultant/Team:
 		</resource>
 	</entry>
 	<entry>
+		<fullUrl value="urn:uuid:d53edede-fcb0-4bdd-9724-e4e5745f1b63"/>
+		<resource>
+			<PractitionerRole>
+				<id value="d53edede-fcb0-4bdd-9724-e4e5745f1b63"/>
+				<meta>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-PractitionerRole-1"/>
+				</meta>
+				<practitioner>
+					<reference value="urn:uuid:1858f474-c235-4e73-ab8d-a0a2236613d6"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:35e7fc14-f7cb-4b6d-bb41-2ad7f45c501c"/>
+				</organization>
+				<code>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
+						<code value="R0050"/>
+						<display value="Consultant"/>
+					</coding>
+				</code>
+			</PractitionerRole>
+		</resource>
+	</entry>
+	<entry>
 		<fullUrl value="urn:uuid:0a8c9568-62d7-49f0-ab13-313215c497ab"/>
 		<resource>
 			<Organization>
@@ -1459,11 +1592,6 @@ will need weight and general health monitoring by the Community Consultant/Team:
 					<value value="GP123456"/>
 				</identifier>
 				<name value="MGP Medical Centre"/>
-				<telecom>
-					<system value="phone"/>
-					<value value="0113 4111223"/>
-					<use value="work"/>
-				</telecom>
 				<address>
 					<line value="1 MGP House, Overtown"/>
 					<city value="Leeds"/>
@@ -1485,6 +1613,11 @@ will need weight and general health monitoring by the Community Consultant/Team:
 					<value value="RGD"/>
 				</identifier>
 				<name value="Leeds Mental Health NHS Trust"/>
+				<address>
+					<line value="Twenty One Fifty, Thorpe Park"/>
+					<city value="Leeds"/>
+					<postalCode value="LS15 8ZB"/>
+				</address>
 			</Organization>
 		</resource>
 	</entry>
@@ -1497,6 +1630,10 @@ will need weight and general health monitoring by the Community Consultant/Team:
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
 				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/local-location-identifier"/>
+					<value value="RR8ALL"/>
+				</identifier>
 				<name value="Allerton Ward"/>
 				<managingOrganization>
 					<reference value="urn:uuid:35e7fc14-f7cb-4b6d-bb41-2ad7f45c501c"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-05-22T16:15:59.166+01:00" />
+    <lastUpdated value="2018-06-29T13:55:33.151+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Medication-List-1" />
   <version value="1.2.0" />
@@ -2246,7 +2246,6 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="933361000000108" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2292,7 +2291,6 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Medications and medical devices" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4934,7 +4932,7 @@
       <comment value="The various reasons for an empty list make a significant interpretation to its interpretation. Note that this code is for use when the entire list has been suppressed, and not for when individual items are omitted - implementers may consider using a text note or a flag on an entry in these cases." />
       <requirements value="Allows capturing things like &quot;none exist&quot; or &quot;not asked&quot; which can be important for most lists." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="List.emptyReason" />
         <min value="0" />
@@ -5199,7 +5197,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -5282,7 +5280,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -5327,7 +5325,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -5558,7 +5556,6 @@
     <element id="List.code.coding.code">
       <path value="List.code.coding.code" />
       <min value="1" />
-      <fixedCode value="933361000000108" />
     </element>
     <element id="List.code.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -5566,7 +5563,6 @@
       </extension>
       <path value="List.code.coding.display" />
       <min value="1" />
-      <fixedString value="Medications and medical devices" />
     </element>
     <element id="List.code.coding.userSelected">
       <path value="List.code.coding.userSelected" />
@@ -5680,7 +5676,6 @@
     </element>
     <element id="List.emptyReason">
       <path value="List.emptyReason" />
-      <max value="0" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ListEmptyReason" />
@@ -5690,6 +5685,21 @@
           <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ListEmptyReasonCode-1" />
         </valueSetReference>
       </binding>
+    </element>
+    <element id="List.emptyReason.coding.system">
+      <path value="List.emptyReason.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="List.emptyReason.coding.code">
+      <path value="List.emptyReason.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="List.emptyReason.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="List.emptyReason.coding.display" />
+      <min value="1" />
     </element>
   </differential>
 </StructureDefinition>
