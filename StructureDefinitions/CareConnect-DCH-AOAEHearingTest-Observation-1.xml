@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-29T14:03:00.824+01:00" />
+    <lastUpdated value="2018-07-06T08:57:54.699+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="oo" />
   </extension>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Length-Observation-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AOAEHearingTest-Observation-1" />
   <version value="1.0.0" />
-  <name value="CareConnect-DCH-Length-Observation-1" />
+  <name value="CareConnect-DCH-AOAEHearingTest-Observation-1" />
   <status value="draft" />
   <date value="2018-02-01" />
   <publisher value="NHS Digital" />
@@ -20,7 +20,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="The Observation resource is used for tracking the current and historical observations that have been made for a patient with further contraints applied to represent a body length observation, to support the Digital Child Health project." />
+  <description value="The Observation resource is used for tracking the current and historical observations that have been made for a patient with further contraints applied to represent the outcome of an automated oto-acoustic emission hearing test, to support the Digital Child Health project." />
   <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -2982,7 +2982,7 @@
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
-      <short value="Type of measurement observation (code / type)" />
+      <short value="The outcome of an automated oto-acoustic emission hearing test" />
       <definition value="Describes what was observed. Sometimes this is called the observation &quot;name&quot;." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <requirements value="Knowing what kind of observation is being made is essential to understanding the observation." />
@@ -3010,10 +3010,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ObservationCode" />
         </extension>
-        <strength value="example" />
-        <description value="Codes identifying names of simple observations." />
+        <strength value="required" />
+        <description value="The outcome of an automated oto-acoustic emission hearing test" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/observation-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-AOAEHearingTest-Outcome-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -3267,6 +3267,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="Observation.code.coding.extension:snomedCTDescriptionID">
+      <path value="Observation.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Observation.code.coding.system">
       <path value="Observation.code.coding.system" />
       <short value="Identity of the terminology system" />
@@ -3367,7 +3410,10 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="248334005" />
+      <example>
+        <label value="DCH Example Value" />
+        <valueCode value="1085491000000106" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3413,7 +3459,10 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Length of body" />
+      <example>
+        <label value="DCH Example Value" />
+        <valueString value="Automated oto-acoustic emission test left ear clear response" />
+      </example>
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3529,7 +3578,7 @@
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
-      <short value="The subject of the measurement observation" />
+      <short value="Who and/or what this is about" />
       <definition value="The patient, or group of patients, location, or device whose characteristics (direct or indirect) are described by the observation and into whose record the observation is placed.  Comments: Indirect characteristics may be those of a specimen, fetus, donor,  other observer (for example a relative or EMT), or any observation made about the subject." />
       <comment value="One would expect this element to be a cardinality  of 1..1.  The only circumstance in which the subject can be missing is when the observation is made by a device that does not know the patient. In this case, the observation SHALL be matched to a patient through some context/channel matching technique, and at this point, the observation should be updated.&#xD;&#xD;If the target of the observation is different than the subject, the general extension [observation-focal-subject](extension-observation-focal-subject.html).  may be used.  However, the distinction between the patient's own value for an observation versus that of the fetus, or the donor or blood product unit, etc., are often specified in the observation code." />
       <requirements value="Observations have no value if you don't know who or what they're about." />
@@ -3780,7 +3829,7 @@
     </element>
     <element id="Observation.context">
       <path value="Observation.context" />
-      <short value="Child health encounter during which this observation is made" />
+      <short value="Healthcare event during which this observation is made" />
       <definition value="The healthcare event  (e.g. a patient and healthcare provider interaction) during which this observation is made." />
       <comment value="This will typically be the encounter the event occurred within, but some events may be initiated prior to or after the official completion of an encounter or episode but still be tied to the context of the encounter or episode (e.g. pre-admission lab tests)." />
       <requirements value="For some observations it may be important to know the link between an observation and a particular encounter." />
@@ -4037,8 +4086,8 @@
       <comment value="At least a date should be present unless this observation is a historical report." />
       <requirements value="Knowing when an observation was deemed true is important to its relevance as well as determining trends." />
       <alias value="Occurrence" />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Observation.effective[x]" />
         <min value="0" />
@@ -4120,7 +4169,7 @@
     </element>
     <element id="Observation.performer">
       <path value="Observation.performer" />
-      <short value="Professional performing the observation" />
+      <short value="Who is responsible for the observation" />
       <definition value="Who was responsible for asserting the observed value as &quot;true&quot;." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="May give a degree of confidence in the observation and also indicates where follow-up questions should be directed." />
@@ -4133,7 +4182,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4369,15 +4418,14 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.valueQuantity" />
-      <sliceName value="valueQuantity" />
-      <short value="Measurement observation value" />
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
+      <short value="Actual result" />
       <definition value="The information determined as a result of making the observation, if the information has a simple value." />
       <comment value="Normally, an observation will have either a single value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and related observations (for an Apgar score, the observations from which the measure is derived). If a value is present, the datatype for this element should be determined by Observation.code. This element has a variable name depending on the type as follows: valueQuantity, valueCodeableConcept, valueString, valueBoolean, valueRange, valueRatio, valueSampledData, valueAttachment, valueTime, valueDateTime, or valuePeriod. (The name format is &quot;'value' + the type name&quot; with a capital on the first letter of the type).&#xD;&#xD;&#xD;If the data element is usually coded or if the type associated with the Observation.value defines a coded value, use CodeableConcept instead of string datatype even if the value is uncoded text.  A value set is bound to the ValueCodeableConcept element.    For further discussion and examples see the  [notes section](observation.html#notes) below." />
       <requirements value="An observation exists to have a value, though it may not if it is in error, or if it represents a group of observations." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="0" />
       <base>
         <path value="Observation.value[x]" />
         <min value="0" />
@@ -4385,6 +4433,36 @@
       </base>
       <type>
         <code value="Quantity" />
+      </type>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="string" />
+      </type>
+      <type>
+        <code value="boolean" />
+      </type>
+      <type>
+        <code value="Range" />
+      </type>
+      <type>
+        <code value="Ratio" />
+      </type>
+      <type>
+        <code value="SampledData" />
+      </type>
+      <type>
+        <code value="Attachment" />
+      </type>
+      <type>
+        <code value="time" />
+      </type>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <type>
+        <code value="Period" />
       </type>
       <condition value="ele-1" />
       <condition value="obs-7" />
@@ -4434,297 +4512,6 @@
       <mapping>
         <identity value="sct-attr" />
         <map value="363714003 |Interprets|" />
-      </mapping>
-    </element>
-    <element id="Observation.value[x]:valueQuantity.id">
-      <path value="Observation.valueQuantity.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="Observation.value[x]:valueQuantity.extension">
-      <path value="Observation.valueQuantity.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.value">
-      <path value="Observation.valueQuantity.value" />
-      <short value="Numerical value (to 1 decimal place)" />
-      <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value." />
-      <comment value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)." />
-      <requirements value="Precision is handled implicitly in almost all cases of measurement." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Quantity.value" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="decimal" />
-      </type>
-      <example>
-        <label value="DCH Example Value" />
-        <valueDecimal value="52.5" />
-      </example>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="SN.2  / CQ - N/A" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="PQ.value, CO.value, MO.value, IVL.high or IVL.low depending on the value" />
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.comparator">
-      <path value="Observation.valueQuantity.comparator" />
-      <short value="&lt; | &lt;= | &gt;= | &gt; - how to understand the value" />
-      <definition value="How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value." />
-      <comment value="This is labeled as &quot;Is Modifier&quot; because the comparator modifies the interpretation of the value significantly. If there is no comparator, then there is no modification of the value." />
-      <requirements value="Need a framework for handling measures where the value is &lt;5ug/L or &gt;400mg/L due to the limitations of measuring methodology." />
-      <min value="0" />
-      <max value="0" />
-      <base>
-        <path value="Quantity.comparator" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <meaningWhenMissing value="If there is no comparator, then there is no modification of the value" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isModifier value="true" />
-      <isSummary value="true" />
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="QuantityComparator" />
-        </extension>
-        <strength value="required" />
-        <description value="How the Quantity should be understood and represented." />
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/quantity-comparator" />
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="SN.1  / CQ.1" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="IVL properties" />
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.unit">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Observation.valueQuantity.unit" />
-      <short value="Unit representation" />
-      <definition value="A human-readable form of the unit." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Quantity.unit" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <fixedString value="centimeter" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="(see OBX.6 etc.) / CQ.2" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="PQ.unit" />
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.system">
-      <path value="Observation.valueQuantity.system" />
-      <short value="System that defines coded unit form" />
-      <definition value="The identification of the system that provides the coded form of the unit." />
-      <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
-      <requirements value="Need to know the system that defines the coded form of the unit." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Quantity.system" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="uri" />
-      </type>
-      <fixedUri value="http://unitsofmeasure.org" />
-      <condition value="ele-1" />
-      <condition value="qty-3" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="(see OBX.6 etc.) / CQ.2" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CO.codeSystem, PQ.translation.codeSystem" />
-      </mapping>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.code">
-      <path value="Observation.valueQuantity.code" />
-      <short value="Coded form of the unit" />
-      <definition value="A computer processable form of the unit in some unit representation system." />
-      <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
-      <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Quantity.code" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <fixedCode value="cm" />
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <isSummary value="true" />
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="(see OBX.6 etc.) / CQ.2" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="PQ.code, MO.currency, PQ.translation.code" />
       </mapping>
     </element>
     <element id="Observation.dataAbsentReason">
@@ -13776,12 +13563,43 @@
     </element>
     <element id="Observation.code">
       <path value="Observation.code" />
-      <short value="Type of measurement observation (code / type)" />
+      <short value="The outcome of an automated oto-acoustic emission hearing test" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ObservationCode" />
+        </extension>
+        <strength value="required" />
+        <description value="The outcome of an automated oto-acoustic emission hearing test" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-AOAEHearingTest-Outcome-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Observation.code.coding">
       <path value="Observation.code.coding" />
       <min value="1" />
       <max value="1" />
+    </element>
+    <element id="Observation.code.coding.extension">
+      <path value="Observation.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Observation.code.coding.extension:snomedCTDescriptionID">
+      <path value="Observation.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <max value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
     </element>
     <element id="Observation.code.coding.system">
       <path value="Observation.code.coding.system" />
@@ -13795,7 +13613,10 @@
     <element id="Observation.code.coding.code">
       <path value="Observation.code.coding.code" />
       <min value="1" />
-      <fixedCode value="248334005" />
+      <example>
+        <label value="DCH Example Value" />
+        <valueCode value="1085491000000106" />
+      </example>
     </element>
     <element id="Observation.code.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -13803,7 +13624,10 @@
       </extension>
       <path value="Observation.code.coding.display" />
       <min value="1" />
-      <fixedString value="Length of body" />
+      <example>
+        <label value="DCH Example Value" />
+        <valueString value="Automated oto-acoustic emission test left ear clear response" />
+      </example>
     </element>
     <element id="Observation.code.coding.userSelected">
       <path value="Observation.code.coding.userSelected" />
@@ -13818,7 +13642,6 @@
     </element>
     <element id="Observation.subject">
       <path value="Observation.subject" />
-      <short value="The subject of the measurement observation" />
       <min value="1" />
       <type>
         <code value="Reference" />
@@ -13831,7 +13654,6 @@
     </element>
     <element id="Observation.context">
       <path value="Observation.context" />
-      <short value="Child health encounter during which this observation is made" />
       <min value="1" />
       <type>
         <code value="Reference" />
@@ -13845,7 +13667,7 @@
     <element id="Observation.effectiveDateTime:effectiveDateTime">
       <path value="Observation.effectiveDateTime" />
       <sliceName value="effectiveDateTime" />
-      <max value="0" />
+      <min value="1" />
       <type>
         <code value="dateTime" />
       </type>
@@ -13856,57 +13678,20 @@
     </element>
     <element id="Observation.performer">
       <path value="Observation.performer" />
-      <short value="Professional performing the observation" />
       <min value="1" />
       <max value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
     </element>
     <element id="Observation.performer.reference">
       <path value="Observation.performer.reference" />
       <min value="1" />
     </element>
-    <element id="Observation.value[x]:valueQuantity">
-      <path value="Observation.valueQuantity" />
-      <sliceName value="valueQuantity" />
-      <short value="Measurement observation value" />
-      <min value="1" />
-      <type>
-        <code value="Quantity" />
-      </type>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.value">
-      <path value="Observation.valueQuantity.value" />
-      <short value="Numerical value (to 1 decimal place)" />
-      <min value="1" />
-      <example>
-        <label value="DCH Example Value" />
-        <valueDecimal value="52.5" />
-      </example>
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.comparator">
-      <path value="Observation.valueQuantity.comparator" />
+    <element id="Observation.value[x]">
+      <path value="Observation.value[x]" />
       <max value="0" />
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.unit">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Observation.valueQuantity.unit" />
-      <min value="1" />
-      <fixedString value="centimeter" />
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.system">
-      <path value="Observation.valueQuantity.system" />
-      <min value="1" />
-      <fixedUri value="http://unitsofmeasure.org" />
-    </element>
-    <element id="Observation.valueQuantity:valueQuantity.code">
-      <path value="Observation.valueQuantity.code" />
-      <min value="1" />
-      <fixedCode value="cm" />
     </element>
     <element id="Observation.dataAbsentReason">
       <path value="Observation.dataAbsentReason" />
