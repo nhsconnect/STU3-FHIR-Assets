@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-07-04T12:08:31.393+01:00" />
+    <lastUpdated value="2018-07-11T15:34:02.5+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
@@ -351,8 +351,8 @@
     <element id="MedicationStatement.extension:lastIssueDate">
       <path value="MedicationStatement.extension" />
       <sliceName value="lastIssueDate" />
-      <short value="The date a prescription was last issued" />
-      <definition value="The date a prescription was last issued." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -2003,7 +2003,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <requirements value="This should not be used when indicating which resource a MedicationStatement has been derived from.  If that is the use case, then MedicationStatement.derivedFrom should be used." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="MedicationStatement.partOf" />
         <min value="0" />
@@ -2011,23 +2011,15 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationDispense" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
-      </type>
-      <type>
-        <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1" />
       </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationDispense-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -2145,7 +2137,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -9101,8 +9093,8 @@
     <element id="MedicationStatement.dosage.route.coding:snomedCT.extension:snomedCTDescriptionID">
       <path value="MedicationStatement.dosage.route.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <short value="The SNOMED CT Description ID for the display" />
-      <definition value="The SNOMED CT Description ID for the display." />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -11589,19 +11581,6 @@
     </element>
     <element id="MedicationStatement.partOf">
       <path value="MedicationStatement.partOf" />
-      <max value="0" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationAdministration" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/MedicationDispense" />
-      </type>
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
-      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationStatement-1" />
@@ -11610,6 +11589,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Procedure-1" />
       </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-MedicationDispense-1" />
+      </type>
+    </element>
+    <element id="MedicationStatement.partOf.reference">
+      <path value="MedicationStatement.partOf.reference" />
+      <min value="1" />
     </element>
     <element id="MedicationStatement.context">
       <path value="MedicationStatement.context" />
