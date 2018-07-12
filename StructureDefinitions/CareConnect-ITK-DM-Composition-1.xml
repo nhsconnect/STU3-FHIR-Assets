@@ -1,0 +1,906 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <meta>
+    <lastUpdated value="2018-05-04T09:54:22.262+01:00" />
+  </meta>
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-DM-Composition-1" />
+  <version value="1.0.0" />
+  <name value="CareConnect-ITK-DM-Composition-1" />
+  <status value="draft" />
+  <date value="2018-07-10" />
+  <publisher value="NHS Digital" />
+  <contact>
+    <name value="Interoperability Team" />
+    <telecom>
+      <system value="email" />
+      <value value="interoperabilityteam@nhs.net" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="A set of healthcare-related information that is assembled together into a single logical document that provides a single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to who is making the statement." />
+  <purpose value="This constrained composition resource represents the Dgital Medicines Document Header Composition." />
+  <copyright value="Copyright © 2018 NHS Digital" />
+  <fhirVersion value="3.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Composition" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Composition" />
+  <derivation value="constraint" />
+  <differential>
+    <element id="Composition.identifier">
+      <path value="Composition.identifier" />
+      <min value="1" />
+    </element>
+    <element id="Composition.identifier.use">
+      <path value="Composition.identifier.use" />
+      <max value="0" />
+    </element>
+    <element id="Composition.identifier.type">
+      <path value="Composition.identifier.type" />
+      <max value="0" />
+    </element>
+    <element id="Composition.identifier.system">
+      <path value="Composition.identifier.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.identifier.value">
+      <path value="Composition.identifier.value" />
+      <short value="Contains a UUID" />
+      <min value="1" />
+    </element>
+    <element id="Composition.identifier.period">
+      <path value="Composition.identifier.period" />
+      <max value="0" />
+    </element>
+    <element id="Composition.identifier.assigner">
+      <path value="Composition.identifier.assigner" />
+      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="Composition.type">
+      <path value="Composition.type" />
+      <short value="Kind of composition" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DocumentType" />
+        </extension>
+        <strength value="preferred" />
+        <description value="A set of codes to classify the type of document." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DocumentType-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Composition.type.coding.system">
+      <path value="Composition.type.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.type.coding.version">
+      <path value="Composition.type.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.type.coding.code">
+      <path value="Composition.type.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.type.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.type.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.type.coding.userSelected">
+      <path value="Composition.type.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.class.coding.system">
+      <path value="Composition.class.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="Composition.class.coding.version">
+      <path value="Composition.class.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.class.coding.code">
+      <path value="Composition.class.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.class.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.class.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="Composition.class.coding.userSelected">
+      <path value="Composition.class.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.subject">
+      <path value="Composition.subject" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+    </element>
+    <element id="Composition.subject.reference">
+      <path value="Composition.subject.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.encounter">
+      <path value="Composition.encounter" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.encounter.reference">
+      <path value="Composition.encounter.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.author">
+      <path value="Composition.author" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/ITK-Device-1" />
+      </type>
+    </element>
+    <element id="Composition.author.reference">
+      <path value="Composition.author.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.confidentiality">
+      <path value="Composition.confidentiality" />
+      <max value="0" />
+    </element>
+    <element id="Composition.attester">
+      <path value="Composition.attester" />
+      <max value="0" />
+    </element>
+    <element id="Composition.attester.party">
+      <path value="Composition.attester.party" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+    </element>
+    <element id="Composition.custodian">
+      <path value="Composition.custodian" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Composition.custodian.reference">
+      <path value="Composition.custodian.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.relatesTo">
+      <path value="Composition.relatesTo" />
+      <max value="1" />
+    </element>
+    <element id="Composition.relatesTo.target[x]">
+      <path value="Composition.relatesTo.target[x]" />
+      <type>
+        <code value="Identifier" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-DM-Composition-1" />
+      </type>
+    </element>
+    <element id="Composition.event">
+      <path value="Composition.event" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="code.coding.code" />
+        </discriminator>
+        <ordered value="false" />
+        <rules value="closed" />
+      </slicing>
+      <max value="1" />
+    </element>
+    <element id="Composition.section.code">
+      <path value="Composition.section.code" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CompositionSectionType" />
+        </extension>
+        <strength value="preferred" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-CompositionSectionCode-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="allergiesAndAdverseReactions" />
+      <short value="Summarised table of Allergies and Intolerance relating to the patient." />
+      <definition value="Summarised table of Allergies and Intolerance relating to the patient." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.title">
+      <path value="Composition.section.title" />
+      <short value="Allergies and Adverse Reactions" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="886921000000105" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Allergies and adverse reactions" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.text">
+      <path value="Composition.section.text" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.entry">
+      <path value="Composition.section.entry" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Allergy-List-1" />
+      </type>
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:allergiesAndAdverseReactions.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="attendanceDetails" />
+      <short value="Information relating to the patients attendance." />
+      <definition value="Information relating to the patients attendance." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetails.title">
+      <path value="Composition.section.title" />
+      <short value="Attendance Details" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CompositionSectionType" />
+        </extension>
+        <strength value="required" />
+        <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
+        <valueSetUri value="http://snomed.info/sct" />
+      </binding>
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="1077881000000105" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Attendance details" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.text">
+      <path value="Composition.section.text" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:attendanceDetails.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Encounter-1" />
+      </type>
+    </element>
+    <element id="Composition.section:attendanceDetails.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:attendanceDetails.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="consent" />
+      <short value="Information on patients consent for treatment and information sharing guidance." />
+      <definition value="Information on patients consent for treatment and information sharing guidance." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:consent.title">
+      <path value="Composition.section.title" />
+      <short value="Consent" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:consent.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:consent.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:consent.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:consent.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="cons" />
+    </element>
+    <element id="Composition.section:consent.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Consent" />
+    </element>
+    <element id="Composition.section:consent.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.entry">
+      <path value="Composition.section.entry" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:consent.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="eligibilityCriteria" />
+      <short value="Patients eligibility for treatment." />
+      <definition value="Patients eligibility for treatment." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.title">
+      <path value="Composition.section.title" />
+      <short value="Eligibility Criteria" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="eligcrit" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Eligibility criteria" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.text">
+      <path value="Composition.section.text" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.entry">
+      <path value="Composition.section.entry" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:eligibilityCriteria.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="gpPractice" />
+      <short value="Information realting to the patients registered GP Practice." />
+      <definition value="Information realting to the patients registered GP Practice." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:gpPractice.title">
+      <path value="Composition.section.title" />
+      <short value="GP Practice" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:gpPractice.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="886711000000101" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="GP practice" />
+    </element>
+    <element id="Composition.section:gpPractice.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+      </type>
+    </element>
+    <element id="Composition.section:gpPractice.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:gpPractice.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:gpPractice.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="immunisations" />
+      <short value="Information relating to the vaccines administered on the patient." />
+      <definition value="Information relating to the vaccines administered on the patient." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:immunisations.title">
+      <path value="Composition.section.title" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:immunisations.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="imms" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Immunisations" />
+    </element>
+    <element id="Composition.section:immunisations.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:immunisations.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-DM-Immunization-1" />
+      </type>
+    </element>
+    <element id="Composition.section:immunisations.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:immunisations.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="informationAndAdviceGiven" />
+      <short value="Information or advice given." />
+      <definition value="The oral or written information or advice given to the patient, carer, other authorised representative, care professional or other third party." />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.title">
+      <path value="Composition.section.title" />
+      <short value="Information and Advice given" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="1052951000000105" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Information and advice given" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.code.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.text" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.entry">
+      <path value="Composition.section.entry" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:informationAndAdviceGiven.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Section" />
+      </extension>
+      <path value="Composition.section" />
+      <sliceName value="patientDemographics" />
+      <short value="Patient demographic information including the patient's next of kin and carer information." />
+      <definition value="Patient demographic information including the patient's next of kin and carer information." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:patientDemographics.title">
+      <path value="Composition.section.title" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:patientDemographics.code">
+      <path value="Composition.section.code" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding">
+      <path value="Composition.section.code.coding" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding.system">
+      <path value="Composition.section.code.coding.system" />
+      <min value="1" />
+      <fixedUri value="http://snomed.info/sct" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding.version">
+      <path value="Composition.section.code.coding.version" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding.code">
+      <path value="Composition.section.code.coding.code" />
+      <min value="1" />
+      <fixedCode value="886731000000109" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Composition.section.code.coding.display" />
+      <min value="1" />
+      <fixedString value="Patient demographics" />
+    </element>
+    <element id="Composition.section:patientDemographics.code.coding.userSelected">
+      <path value="Composition.section.code.coding.userSelected" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics.mode">
+      <path value="Composition.section.mode" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics.orderedBy">
+      <path value="Composition.section.orderedBy" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics.entry">
+      <path value="Composition.section.entry" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Patient-1" />
+      </type>
+    </element>
+    <element id="Composition.section:patientDemographics.entry.reference">
+      <path value="Composition.section.entry.reference" />
+      <min value="1" />
+    </element>
+    <element id="Composition.section:patientDemographics.emptyReason">
+      <path value="Composition.section.emptyReason" />
+      <max value="0" />
+    </element>
+    <element id="Composition.section:patientDemographics.section">
+      <path value="Composition.section.section" />
+      <max value="0" />
+    </element>
+  </differential>
+</StructureDefinition>
