@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This xml example is for illustrative purposes only and has not been clinically verified-->
-<Bundle xmlns="http://hl7.org/fhir">
+<!--<Bundle xmlns="http://hl7.org/fhir">-->
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/GitHubRepo/Schemas/bundle.xsd">
 	<id value="e9ab79f4-ca79-440d-a125-80c7a8ecb460"/>
 	<meta>
 		<lastUpdated value="2017-05-19T19:00:00+00:00"/> 
@@ -74,17 +75,22 @@
 						</coding>
 					</code>
 					<text>
-						<status value="additional"/>
+      <status value="generated"/>
 						<div xmlns="http://www.w3.org/1999/xhtml">
 							<table width="100%">
 								<tbody>
 									<tr>
+          <th>Causative agent</th>
 										<td>No known allergy</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</text>
+     <!--Reference to the allergy list-->
+					<entry>
+						<reference value="urn:uuid:a706d098-55f9-4fb1-ba0a-9aa6726afb97"/>
+					</entry>					
 				</section>
 				<section>
 					<title value="Attendance details"/>
@@ -106,7 +112,7 @@
 									</tr>
 									<tr>
 										<th>Date and time of contact</th>
-										<td>19-May-2017</td>
+										<td>19-May-2017 10:00</td>
 									</tr>
 									<tr>
 										<th>Contact type</th>
@@ -126,7 +132,7 @@
 									</tr>
 									<tr>
 										<th>Service</th>
-										<td>Ophthalmology service</td>
+										<td>Ophthalmology</td>
 									</tr>
 									<tr>
 										<th>Seen by</th>
@@ -651,12 +657,12 @@
      <code value="AMB"/>
      <display value="ambulatory"/>
     </class>
-    <!--Specific type of encounter-->
+   <!--Specific type of encounter-->
     <type>
      <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="163381000000105"/>
-      <display value="Outpatient Clinic Attendance"/>
+      <system value="https://www.datadictionary.nhs.uk"/>
+      <code value="1"/>
+      <display value="First attendance face to face"/>
      </coding>
     </type>
 				<!--Reference to the patient as the subject of the Encounter-->
@@ -677,11 +683,77 @@
 					</individual>
 				</participant>
 				<period>
-					<start value="2017-05-19"/>
+					<start value="2017-05-19T10:00:00+00:00"/>
+    <end value="2017-05-19T11:00:00+00:00"/>
 				</period>
 			</Encounter>
 		</resource>
 	</entry>
+	 <entry>
+  <fullUrl value="urn:uuid:a706d098-55f9-4fb1-ba0a-9aa6726afb97"/>
+  <resource>
+   <List>
+    <id value="a706d098-55f9-4fb1-ba0a-9aa6726afb97"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-Allergy-List-1"/>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="53ca67c5-b6c2-4771-b87f-c9e628790366"/>
+    </identifier>
+    <status value="current"/>
+    <mode value="snapshot"/>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="886921000000105"/>
+      <display value="Allergies and adverse reactions"/>
+     </coding>
+    </code>
+    <subject>
+     <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
+    </subject>
+    <encounter>
+     <reference value="urn:uuid:230a0ced-90c9-4171-93f4-22f9500acb65"/>
+    </encounter>
+    <source>
+     <reference value="urn:uuid:88f1ca61-0200-4943-a066-baf9a1570029"/>
+    </source>
+    <entry>
+     <item>
+      <reference value="urn:uuid:fd217de4-fb9d-485c-abfb-4db6c307fae3"/>
+     </item>
+    </entry>
+   </List>
+  </resource>
+ </entry>
+ <entry>
+  <fullUrl value="urn:uuid:fd217de4-fb9d-485c-abfb-4db6c307fae3"/>
+  <resource>
+   <AllergyIntolerance>
+    <id value="fd217de4-fb9d-485c-abfb-4db6c307fae3"/>
+    <meta>
+     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-AllergyIntolerance-1"/>
+    </meta>
+    <identifier>
+     <system value="https://tools.ietf.org/html/rfc4122"/>
+     <value value="0f8d2f4d-5598-4f69-b734-1d62a2bba66c"/>
+    </identifier>
+    <clinicalStatus value="active"/>
+    <verificationStatus value="confirmed"/>
+    <code>
+     <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="716186003"/>
+      <display value="No known allergy"/>
+     </coding>
+    </code>
+    <patient>
+    <reference value="urn:uuid:dc3491e5-a4c0-4d7e-b879-7bd86133e61f"/>
+    </patient>
+   </AllergyIntolerance>
+  </resource>
+ </entry>
 	<!--Condition list-->
 	<entry>
 		<fullUrl value="urn:uuid:ed25323b-1d74-47da-991e-e821c6b2b269"/>
@@ -1089,6 +1161,13 @@
 						<display value="Orthoptist"/>
 					</coding>
 				</code>
+				<specialty>
+				<coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="394594003"/>
+      <display value="Ophthalmology"/>
+     </coding>
+				</specialty>
 			</PractitionerRole>
 		</resource>
 	</entry>
