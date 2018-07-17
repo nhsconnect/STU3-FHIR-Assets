@@ -1,20 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- RARecord-Consent-1 example using a Legal Proxy -->
-<Consent xmlns="http://hl7.org/fhir">
-    <id value="f1dc0ac6-45ff-4d2b-bf91-793971e3e286"/>
+<!-- RARecord-Flag-1 example - for v0.0.3 clarification examples -->
+<!-- Example
+1.	A patient with multiple Reasonable Adjustments within the same Category
+
+Reasonable Adjustment Category: Communication Needs
+Reasonable Adjustment 1: Requires information in Easy read
+Reasonable Adjustment 2: Uses Personal Communication passport
+
+As noted in example-2
+Using variant (so they're both in the same Category)
+Reasonable Adjustment Category: Communication Needs
+Reasonable Adjustment 1: Provide written reminders and advice
+Reasonable Adjustment 2: Adjust for use of communication book / aid
+
+1. RARecord-Flag-1-example-2.xml
+2. RARecord-Flag-1-example-3.xml
+  -->
+<Flag xmlns="http://hl7.org/fhir">
+    <id value="5dd09792-2b3e-4133-8a61-8234080a0077"/>
     <meta>
-        <versionId value="2c8cab29-db54-4ae7-8135-5de94807f2d9"/>
+        <versionId value="9cb8bb35-833f-41d9-9385-f09b6dcabf95"/>
         <lastUpdated value="2016-03-01T10:04:33+00:00"/>
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"/>
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"/>
     </meta>
     <contained>
             <Provenance>
-                <id value="e0531fd1-212d-4a97-a7a9-d17cec9a6af2"/>
+                <id value="cb0a09b0-ddb5-4d42-a3fb-a4be0c7431bb"/>
                 <meta>
                     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"/>
                 </meta>
                 <target>
-                    <reference value="Consent/f1dc0ac6-45ff-4d2b-bf91-793971e3e286"/>
+                    <reference value="Flag/5dd09792-2b3e-4133-8a61-8234080a0077"/>
                 </target>
                 <recorded value="2016-03-01T10:05:33+00:00"/>
                 <agent>
@@ -35,22 +50,22 @@
                     </onBehalfOfReference>
                 </agent>
             </Provenance>
-        </contained>
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1">
-        <valueCodeableConcept>
-            <coding>
-                <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1"/>
-                <code value="lpa"/>
-                <display value="Lasting power of attorney personal welfare"/>
-            </coding>
-        </valueCodeableConcept>
-    </extension>
+    </contained>
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1">
         <extension url="created">
             <valueReference>
-                <reference value="#e0531fd1-212d-4a97-a7a9-d17cec9a6af2"/>
+                <reference value="#cb0a09b0-ddb5-4d42-a3fb-a4be0c7431bb"/>
             </valueReference>
         </extension>
+    </extension>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1">
+        <valueCodeableConcept>
+            <coding>
+                <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1"/>
+                <code value="comms"/>
+                <display value="Communication"/>
+            </coding>
+        </valueCodeableConcept>
     </extension>
     <status value="active"/>
     <category>
@@ -60,19 +75,16 @@
             <display value="Reasonable Adjustments Flag"/>
         </coding>
     </category>
-    <patient>
+    <code>
+        <coding>
+            <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-CommunicationAdjustments-1"/>
+            <code value="adjustforuseofcommunicationbookaid"/>
+            <display value="Adjust for use of communication book / aid"/>
+        </coding>
+    </code>
+    <subject>
         <identifier>
             <reference value="demographics.spineservices.nhs.uk/STU3/Patient/999999998"/>
         </identifier>
-    </patient>
-    <!-- these are directly lifted from National Data Opt Out. Will need either a general set or specific values for Reasonable Adjustments -->
-    <policy>
-        <authority value="https://www.gov.uk/"/>
-        <uri value="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"/>
-    </policy>
-    <purpose>
-        <system value="https://snomed.info/sct"/>
-        <code value="370856009"/>
-        <display value="Limiting access to confidential patient information"/>
-    </purpose>
-</Consent>
+    </subject>
+</Flag>
