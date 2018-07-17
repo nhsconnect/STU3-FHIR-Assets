@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="f14bbabb-0592-4b58-96b1-93dbb6631106"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+			<entry>
+		<fullUrl value="urn:uuid:b9c63b5e-a88e-47d3-9d45-081ebe9e48b5"/>
+		<resource>
+			<MessageHeader>
+				<id value="b9c63b5e-a88e-47d3-9d45-081ebe9e48b5"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
+					<code value="CH002"/>
+					<display value="Admission Details"/>
+				</event>
+				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+				</source>
+				<responsible>
+					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+<!--Responsible for message content (Admission)-->
+	<entry>
+		<fullUrl value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+		<resource>
+			<Organization>
+				<id value="e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="RX3EP"/>
+				</identifier>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				<address>
+					<line value="NORTH ROAD"/>
+					<city value="DURHAM"/>
+					<district value="COUNTY DURHAM"/>
+					<postalCode value="DH1 5TW"/>
+				</address>
+			</Organization>
+		</resource>
+	</entry>
+<!--Healthcare service used e.g GP, trust, etc..-->
+	<entry>
+		<fullUrl value="urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+		<resource>
+			<HealthcareService>
+				<id value="aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
+				</identifier>
+				<providedBy>
+					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
+						<code value="N01"/>
+						<display value="Midwife"/>
+					</coding>
+				</type>
+				<location>
+					<reference value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
+				</location>
+				<telecom>
+				<system value="phone"/>
+					<value value="0191 1231234"/>
+				</telecom>
+			</HealthcareService>
+		</resource>
+	</entry>
+<!-- Patient-->
+	<entry>
+		<fullUrl value="urn:uuid:16fc5e15-2ce4-40c2-ac85-6ed7764dac9f"/>
+		<resource>
+			<Patient>
+				<id value="16fc5e15-2ce4-40c2-ac85-6ed7764dac9f"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Mother-Patient-1"/>
+				</meta>
+				<identifier>
+						<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+							<valueCodeableConcept>
+								<coding>
+									<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
+									<code value="01"/>
+									<display value="Number present and verified"/>
+								</coding>
+							</valueCodeableConcept>
+						</extension>
+						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+						<value value="9912003777"/>
+				</identifier>				
+				<name>
+					<use value="official"/>
+					<family value="Dawkins"/>
+					<given value="Sally"/>
+				</name>
+				<birthDate value="1983-12-12">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="1983-12-12T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="DURHAM"/>
+					<postalCode value="DH1 2TF"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+<!--Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+		<resource>
+			<Encounter>
+				<id value="58df44c5-2b01-4425-bd9a-985ac73152d0"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
+				</meta>
+				<identifier>
+					<system value="urn:ietf:rfc:3986"/>
+					<value value="ff99b376-1c33-45c1-b125-6bada923f439"/>
+				</identifier>
+				<status value="finished"/>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
+						<code value="003"/>
+						<display value="Birth"/>
+					</coding>
+				</type>
+				<subject>
+					<reference value="urn:uuid:16fc5e15-2ce4-40c2-ac85-6ed7764dac9f"/>
+					<display value="DAWKINS, Sally"/>
+				</subject>
+				<period>
+					<start value="2018-01-29"/>
+					<end value="2018-02-02"/>
+				</period>
+				<location>
+					<location>
+						<reference value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
+						<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					</location>
+				</location>
+				<serviceProvider>
+					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				</serviceProvider>
+			</Encounter>
+		</resource>
+	</entry>
+<!--Practitioner-->
+	<entry>
+		<fullUrl value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+		<resource>
+			<Practitioner>
+				<id value="3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2469"/>
+				</identifier>
+				<name>
+					<family value="Bashir"/>
+					<given value="Julian"/>
+					<prefix value="Dr."/>
+				</name>
+			</Practitioner>
+		</resource>
+	</entry>
+<!--Practitioner Role-->
+	<entry>
+		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+		<resource>
+			<PractitionerRole>
+				<id value="b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<practitioner>
+					<reference value="urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"/>
+				</practitioner>
+				<organization>
+					<reference value="urn:uuid:e04e172e-db43-4ff3-a30a-9d574f693d96"/>
+				</organization>	
+			</PractitionerRole>
+		</resource>
+	</entry>
+<!--Location where event took place-->
+	<entry>
+		<fullUrl value="urn:uuid:30f11523-4d42-4853-b060-896686e2b6c7"/>
+		<resource>
+			<Location>
+				<id value="30f11523-4d42-4853-b060-896686e2b6c7"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
+					<value value="RX3EP"/>
+				</identifier>
+				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+			</Location>
+		</resource>
+	</entry>
+</Bundle>

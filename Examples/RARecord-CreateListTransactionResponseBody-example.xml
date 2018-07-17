@@ -1,0 +1,134 @@
+<!-- CreateListTransactionResponseBody-example.xml -->
+<Bundle xmlns="http://hl7.org/fhir">
+  <id value="urn:uuid:e96acfdc-daf9-4a2e-9e4e-93dc26d935e9"/> 
+  <meta> 
+    <lastUpdated value="2018-05-25T00:00:00Z"/> 
+  </meta> 
+  <type value="transaction-response"/> 
+  <!--    now, each entry is an action to take in the transaction    -->
+  <entry> 
+    <fullUrl value="https://clinicals.spineservices.nhs.uk/STU3/flagserver/List/e00c5a85-d34f-4075-96ac-b787deb484b1"/> 
+    <resource>
+        <!-- payload resource in here -->
+        <!-- there's an ordering to the resources entered see http://hl7.org/fhir/http.html#transaction -->
+        <!-- CareConnect-RARecord-List-1 example -->
+        <List xmlns="http://hl7.org/fhir">
+            <id value="e00c5a85-d34f-4075-96ac-b787deb484b1"/>
+            <meta>
+                <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1"/>
+            </meta>
+            <status value="current"/>
+            <mode value="changes"/>
+            <title value="Reasonable Adjustment List"/>
+            <code>
+                <coding>
+                    <system value="http://snomed.info/sct"/>
+                    <code value="1094391000000102"/>
+                    <display value="Reasonable adjustments for health and care access"/>
+                </coding>
+            </code>
+            <subject>
+                <identifier>
+                    <system value="https://fhir.nhs.uk/Id/nhs-number"/>
+                    <value value="999999998"/>
+                </identifier>
+            </subject>
+            <date value="2018-05-25T00:00:00Z"/>
+            <entry>
+                <deleted value="false"/>
+                <date value="2018-05-25T00:00:00Z"/>
+                <item>
+                    <!-- reference to a successfully written Condition available at referred endpoint.  -->
+                    <reference value="https://clinicals.spineservices.nhs.uk/STU3/flagserver/Condition/cba81f41-e57d-4b91-b59f-b5efc479faf9"/>
+                </item>
+            </entry>
+        </List>
+    </resource>
+    <!--    details about the response to action to take with the resource    -->
+    <response>
+        <status value="201 Created"/>
+        <location value="List/e00c5a85-d34f-4075-96ac-b787deb484b1"/>
+        <!-- Servers SHOULD return an ETag header with the versionId (if versioning is supported) and a Last-Modified header  -->
+        <etag value="W/&quot;0f7f7be2&quot;"/>
+        <lastModified value="2018-05-25T00:00:01Z"/>
+    </response>
+  </entry>
+  <entry> 
+    <fullUrl value="https://clinicals.spineservices.nhs.uk/STU3/flagserver/Condition/cba81f41-e57d-4b91-b59f-b5efc479faf9"/> 
+    <resource>
+        <!-- payload resource in here -->
+        <!-- there's an ordering to the resources entered see http://hl7.org/fhir/http.html#transaction -->
+        <Condition xmlns="http://hl7.org/fhir">
+            <id value="cba81f41-e57d-4b91-b59f-b5efc479faf9"/>
+            <meta>
+                <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1" />
+            </meta>
+            <contained>
+                <Provenance xmlns="http://hl7.org/fhir">
+                    <id value="e0531fd1-212d-4a97-a7a9-d17cec9a6af2"/>
+                    <meta>
+                        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"/>
+                    </meta>
+                    <target>
+                        <reference value="f1dc0ac6-45ff-4d2b-bf91-793971e3e286"/>
+                    </target>
+                    <recorded value="2016-03-01T10:05:33+00:00"/>
+                    <agent>
+                        <role>
+                            <coding>
+                                <system value="https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
+                                <code value="R0260"/>
+                                <display value="General Medical Practitioner"/>
+                            </coding>
+                        </role>
+                        <whoReference>
+                            <reference value="https://sds.spineservices.nhs.uk/STU3/Organization/[OrgCode]"/>
+                            <display value="Dr.D"/>
+                        </whoReference>
+                        <onBehalfOfReference>
+                            <reference value="https://directory.spineservices.nhs.uk/STU3/Organization/[OrgCode]"/>
+                            <display value="Some GP Clinic"/>
+                        </onBehalfOfReference>
+                    </agent>
+                </Provenance>
+            </contained>
+            <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1">
+                <extension url="created">
+                    <valueReference>
+                        <reference value="#7c342c40-2471-498d-a937-d25dbae0dc7c"/>
+                    </valueReference>
+                </extension>
+            </extension>
+            <clinicalStatus value="active"/>
+            <category>
+                <coding>
+                    <system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1"/>
+                    <code value="issue"/>
+                    <display value="Issue"/>
+                </coding>
+            </category>
+            <code>
+                <coding>
+                    <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1"/>
+                    <code value="requiresinformationineasyread"/>
+                    <display value="Requires information in Easyread"/>
+                </coding>
+            </code>
+            <subject>
+                <identifier>
+                    <system value="https://fhir.nhs.uk/Id/nhs-number"/>
+                    <value value="999999998"/>
+                </identifier>
+            </subject>
+        </Condition>
+    </resource>
+    <!--    details about the response to action to take with the resource    -->
+    <response>
+        <status value="201 Created"/>
+        <location value="Condition/cba81f41-e57d-4b91-b59f-b5efc479faf9"/>
+        <!-- Servers SHOULD return an ETag header with the versionId (if versioning is supported) and a Last-Modified header  -->
+        <etag value="W/&quot;919efe05&quot;"/>
+        <lastModified value="2018-05-25T00:00:01Z"/>
+    </response>
+  </entry>
+</Bundle>
