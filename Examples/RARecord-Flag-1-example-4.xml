@@ -1,17 +1,33 @@
-<!-- UpdateFlagRequestBody-example.xml -->
+<!-- RARecord-Flag-1 example - for v0.0.3 clarification examples -->
+<!-- Example
+2.	A patient with multiple Reasonable Adjustments but fall under different Categories
+
+Reasonable Adjustment Category: Environment
+Reasonable Adjustment: Adjust / minimise waiting times
+
+and bonus (to match '2.	A patient with multiple Reasonable Adjustments but fall under different Categories; ')
+
+Reasonable Adjustment Category: Specific Risks
+Reasonable Adjustment: Monitor for epilepsy
+
+1. RARecord-Flag-1-example-4.xml
+2. RARecord-Flag-1-example-5.xml
+-->
 <Flag xmlns="http://hl7.org/fhir">
-    <id value="744eec7d-8951-4722-ad74-dc34e86d4e1a"/>
+    <id value="7c30576a-072b-408f-a709-dd0b6f5d07c8"/>
     <meta>
+        <versionId value="3c7d0c2f-a35e-4148-b236-02865edc32b8"/>
+        <lastUpdated value="2016-03-01T10:04:33+00:00"/>
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"/>
     </meta>
     <contained>
-        <Provenance xmlns="http://hl7.org/fhir">
-            <id value="2c625745-c551-419d-beaf-96ba5c4a3790"/>
+        <Provenance>
+            <id value="be61dcef-58ac-4181-b02d-4848959cad2d"/>
             <meta>
                 <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"/>
             </meta>
             <target>
-                <reference value="f1dc0ac6-45ff-4d2b-bf91-793971e3e286"/>
+                <reference value="Flag/7c30576a-072b-408f-a709-dd0b6f5d07c8"/>
             </target>
             <recorded value="2016-03-01T10:05:33+00:00"/>
             <agent>
@@ -23,11 +39,11 @@
                     </coding>
                 </role>
                 <whoReference>
-                    <reference value="https://sds.spineservices.nhs.uk/STU3/Organization/[OrgCode]"/>
+                    <reference value="https://sds.spineservices.nhs.uk/STU3/Practitioner/2ee4tr6a9"/>
                     <display value="Dr.D"/>
                 </whoReference>
                 <onBehalfOfReference>
-                    <reference value="https://directory.spineservices.nhs.uk/STU3/Organization/[OrgCode]"/>
+                    <reference value="https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7"/>
                     <display value="Some GP Clinic"/>
                 </onBehalfOfReference>
             </agent>
@@ -36,30 +52,20 @@
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1">
         <extension url="created">
             <valueReference>
-                <reference value="#2c625745-c551-419d-beaf-96ba5c4a3790"/>
+                <reference value="#be61dcef-58ac-4181-b02d-4848959cad2d"/>
             </valueReference>
         </extension>
-    </extension>
-    <!-- updated provenance would go here, but will be populated server-side -->
-    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1">
-        <valueCodeableConcept>
-            <coding>
-                <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1"/>
-                <code value="Error"/>
-                <display value="The Reasonable Adjustment Flag was created in error"/>
-            </coding>
-        </valueCodeableConcept>
     </extension>
     <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1">
         <valueCodeableConcept>
             <coding>
                 <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1"/>
-                <code value="comms"/>
-                <display value="Communication"/>
+                <code value="environment"/>
+                <display value="Environment"/>
             </coding>
         </valueCodeableConcept>
     </extension>
-    <status value="inactive"/>
+    <status value="active"/>
     <category>
         <coding>
             <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1"/>
@@ -69,15 +75,12 @@
     </category>
     <code>
         <coding>
-            <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1"/>
-            <code value="requiresinformationineasyread"/>
-            <display value="Requires information in Easyread"/>
+            <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-EnvironmentAdjustments-1"/>
+            <code value="adjustminimisewaitingtimes"/>
+            <display value="Adjust / minimise waiting times"/>
         </coding>
     </code>
     <subject>
-        <identifier>
-            <system value="https://fhir.nhs.uk/Id/nhs-number"/>
-            <value value="999999998"/>
-        </identifier>
+        <reference value="demographics.spineservices.nhs.uk/STU3/Patient/999999998"/>
     </subject>
 </Flag>
