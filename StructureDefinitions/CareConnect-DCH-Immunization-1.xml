@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-06-21T13:16:16.414+01:00" />
+    <lastUpdated value="2018-07-16T12:42:17.467+01:00" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="pher" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Immunization-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="CareConnect-DCH-Immunization-1" />
   <status value="draft" />
   <date value="2017-07-13T12:35:11.2226231+01:00" />
@@ -21,6 +21,7 @@
     </telecom>
   </contact>
   <description value="This Immunization Resource describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a patient, a clinician or another party and may include vaccine reaction information and what vaccination protocol was followed, with further constraints applied to support the Digital Child Health project." />
+  <purpose value="CURATED BY INTEROPen see: http://www.interopen.org/careconnect-curation-methodology/ " />
   <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
@@ -396,9 +397,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Immunization.extension:dateRecorded">
+    <element id="Immunization.extension:recordedDate">
       <path value="Immunization.extension" />
-      <sliceName value="dateRecorded" />
+      <sliceName value="recordedDate" />
       <short value="The date that the Vaccination was recorded" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
@@ -414,6 +415,49 @@
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Immunization.extension:vaccinationProcedure">
+      <path value="Immunization.extension" />
+      <sliceName value="vaccinationProcedure" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-VaccinationProcedure-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -494,7 +538,7 @@
       <short value="Business identifier" />
       <definition value="A unique identifier assigned to this immunization record." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Immunization.identifier" />
         <min value="0" />
@@ -629,7 +673,7 @@
       <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary id for a permanent one. Applications can assume that an identifier is permanent unless it explicitly says that it is temporary." />
       <requirements value="Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.use" />
         <min value="0" />
@@ -678,7 +722,7 @@
       <comment value="This element deals only with general categories of identifiers.  It SHOULD not be used for codes that correspond 1..1 with the Identifier.system. Some identifiers may fall into multiple categories due to common usage. &#xA;&#xA;Where the system is known, a type is unnecessary because the type is always part of the system definition. However systems often need to handle identifiers where the system is not known. There is not a 1:1 relationship between type and system, since many different systems have the same type." />
       <requirements value="Allows users to make use of identifiers when the identifier system is not known." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.type" />
         <min value="0" />
@@ -1298,7 +1342,7 @@
       <definition value="Time period during which identifier is/was valid for use." />
       <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.period" />
         <min value="0" />
@@ -1509,7 +1553,7 @@
       <definition value="Organization that issued/manages the identifier." />
       <comment value="The Identifier.assigner may omit the .reference element and only contain a .display element reflecting the name or other textual information about the assigning organization." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Identifier.assigner" />
         <min value="0" />
@@ -1751,7 +1795,7 @@
     </element>
     <element id="Immunization.status">
       <path value="Immunization.status" />
-      <short value="completed | entered-in-error" />
+      <short value="completed" />
       <definition value="Indicates the current status of the vaccination event." />
       <comment value="Will generally be set to show that the immunization has been completed.&#xA;&#xA;This element is labeled as a modifier because the status contains codes that mark the resource as not currently valid." />
       <min value="1" />
@@ -1817,6 +1861,7 @@
       <type>
         <code value="boolean" />
       </type>
+      <fixedBoolean value="false" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1846,8 +1891,8 @@
     </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <short value="Immunisation procedure performed" />
-      <definition value="The immunisation procedure performed" />
+      <short value="Vaccine product administered" />
+      <definition value="Vaccine that was administered or was to be administered." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="1" />
       <max value="1" />
@@ -1871,10 +1916,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="VaccineCode" />
         </extension>
-        <strength value="example" />
+        <strength value="extensible" />
         <description value="The code for vaccine product administered" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/vaccine-code" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-VaccineCode-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -1994,12 +2039,12 @@
     </element>
     <element id="Immunization.vaccineCode.coding">
       <path value="Immunization.vaccineCode.coding" />
-      <short value="A code from the SNOMED Clinical Terminology UK coding system that describes a vaccine product from the VMP/ AMP subsets from the dm+d terminology" />
+      <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -2130,7 +2175,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -2172,7 +2217,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -2213,7 +2258,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -2258,7 +2303,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -2301,7 +2346,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -2942,6 +2987,7 @@
       <type>
         <code value="boolean" />
       </type>
+      <defaultValueBoolean value="true" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2973,7 +3019,7 @@
       <definition value="The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine." />
       <comment value="Should not be populated if primarySource = True, will not be required even if primarySource = False." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.reportOrigin" />
         <min value="0" />
@@ -3510,7 +3556,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3755,7 +3801,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4031,7 +4077,7 @@
       <short value="Vaccine expiration date" />
       <definition value="Date vaccine batch expires." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.expirationDate" />
         <min value="0" />
@@ -4088,7 +4134,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ImmunizationSite" />
         </extension>
-        <strength value="required" />
+        <strength value="preferred" />
         <description value="The site at which the vaccine was administered" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ImmunisationSite-1" />
@@ -4333,6 +4379,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="Immunization.site.coding.extension:snomedCTDescriptionID">
+      <path value="Immunization.site.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Immunization.site.coding.system">
       <path value="Immunization.site.coding.system" />
       <short value="Identity of the terminology system" />
@@ -4382,7 +4471,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -4511,7 +4600,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -4618,10 +4707,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ImmunizationRoute" />
         </extension>
-        <strength value="required" />
+        <strength value="preferred" />
         <description value="The route by which the vaccine was administered" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ImmunisationRoute-1" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -4737,7 +4826,7 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
@@ -4863,6 +4952,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="Immunization.route.coding.extension:snomedCTDescriptionID">
+      <path value="Immunization.route.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Immunization.route.coding.system">
       <path value="Immunization.route.coding.system" />
       <short value="Identity of the terminology system" />
@@ -4912,7 +5044,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -5041,7 +5173,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -5086,7 +5218,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -5265,7 +5397,7 @@
       <definition value="The value of the measured amount. The value includes an implicit precision in the presentation of the value." />
       <comment value="The implicit precision in the value should always be honored. Monetary values have their own rules for handling precision (refer to standard accounting text books)." />
       <requirements value="Precision is handled implicitly in almost all cases of measurement." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.value" />
@@ -5356,7 +5488,7 @@
       <definition value="A human-readable form of the unit." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="There are many representations for units of measure and in many contexts, particular representations are fixed and required. I.e. mcg for micrograms." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.unit" />
@@ -5394,7 +5526,7 @@
       <definition value="The identification of the system that provides the coded form of the unit." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="Need to know the system that defines the coded form of the unit." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.system" />
@@ -5433,7 +5565,7 @@
       <definition value="A computer processable form of the unit in some unit representation system." />
       <comment value="The preferred system is UCUM, but SNOMED CT can also be used (for customary units) or ISO 4217 for currency.  The context of use may additionally require a code from a particular system." />
       <requirements value="Need a computable form of the unit that is fixed across all forms. UCUM provides this for quantities, but SNOMED CT provides many units of interest." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Quantity.code" />
@@ -5467,7 +5599,7 @@
     </element>
     <element id="Immunization.practitioner">
       <path value="Immunization.practitioner" />
-      <short value="Practitioner performing the Immunisation" />
+      <short value="Who performed event" />
       <definition value="Indicates who or what performed the event." />
       <min value="1" />
       <max value="1" />
@@ -5633,7 +5765,7 @@
       <definition value="Describes the type of performance (e.g. ordering provider, administering provider, etc.)." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Immunization.practitioner.role" />
         <min value="0" />
@@ -6155,7 +6287,7 @@
     </element>
     <element id="Immunization.practitioner.actor">
       <path value="Immunization.practitioner.actor" />
-      <short value="Individual who was performing the Immunisation" />
+      <short value="Individual who was performing" />
       <definition value="The device, practitioner, etc. who performed the action." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="1" />
@@ -6401,11 +6533,11 @@
     </element>
     <element id="Immunization.note">
       <path value="Immunization.note" />
-      <short value="Vaccination notes, such as vaccine product" />
+      <short value="Vaccination notes" />
       <definition value="Extra information about the immunization that is not conveyed by the other attributes." />
       <comment value="For systems that do not have structured annotations, they can simply communicate a single annotation with no author or time.  This element may need to be included in narrative because of the potential for modifying information.  *Annotations SHOULD NOT* be used to communicate &quot;modifying&quot; information that could be computable. (This is a SHOULD because enforcing user behavior is nearly impossible)." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Immunization.note" />
         <min value="0" />
@@ -6809,7 +6941,7 @@
       <definition value="Reasons why a vaccine was administered." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Immunization.explanation.reason" />
         <min value="0" />
@@ -6833,7 +6965,7 @@
         <strength value="example" />
         <description value="The reason why a vaccine was administered" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/immunization-reason" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ImmunizationExplanationReason-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -7334,7 +7466,7 @@
       <definition value="Reason why a vaccine was not administered." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Immunization.explanation.reasonNotGiven" />
         <min value="0" />
@@ -7356,7 +7488,7 @@
           <valueString value="NoImmunizationReason" />
         </extension>
         <strength value="required" />
-        <description value="The reason why an immunisation was not given" />
+        <description value="The reason why a vaccine was not administered" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReasonNotGiven-1" />
         </valueSetReference>
@@ -7474,8 +7606,8 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -7606,7 +7738,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -7649,7 +7781,7 @@
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
       <comment value="Where the terminology does not clearly define what string should be used to identify code system versions, the recommendation is to use the date (expressed in FHIR date format) on which that version was officially published as the version date." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.version" />
         <min value="0" />
@@ -7690,7 +7822,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -7735,7 +7867,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -7778,7 +7910,7 @@
       <comment value="Amongst a set of alternatives, a directly chosen code is the most appropriate starting point for new translations. There is some ambiguity about what exactly 'directly chosen' implies, and trading partner agreement may be needed to clarify the use of this element and its consequences more completely." />
       <requirements value="This has been identified as a clinical safety criterium - that this exact system/code pair was chosen explicitly, rather than inferred by the system based on some rules or language processing." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Coding.userSelected" />
         <min value="0" />
@@ -7823,7 +7955,7 @@
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.text" />
         <min value="0" />
@@ -7864,7 +7996,7 @@
       <definition value="Categorical data indicating that an adverse event is associated in time to an immunization." />
       <comment value="A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Immunization.reaction" />
         <min value="0" />
@@ -8332,7 +8464,7 @@
       <short value="What protocol was followed" />
       <definition value="Contains information about the protocol(s) under which the vaccine was administered." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Immunization.vaccinationProtocol" />
         <min value="0" />
@@ -8489,7 +8621,7 @@
       <short value="Dose number within series" />
       <definition value="Nominal position in a series." />
       <comment value="32 bit number; for values larger than this, use decimal" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Immunization.vaccinationProtocol.doseSequence" />
@@ -10830,9 +10962,9 @@
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-ParentPresent-1" />
       </type>
     </element>
-    <element id="Immunization.extension:dateRecorded">
+    <element id="Immunization.extension:recordedDate">
       <path value="Immunization.extension" />
-      <sliceName value="dateRecorded" />
+      <sliceName value="recordedDate" />
       <short value="The date that the Vaccination was recorded" />
       <max value="1" />
       <type>
@@ -10840,17 +10972,15 @@
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DateRecorded-1" />
       </type>
     </element>
-    <element id="Immunization.identifier">
-      <path value="Immunization.identifier" />
+    <element id="Immunization.extension:vaccinationProcedure">
+      <path value="Immunization.extension" />
+      <sliceName value="vaccinationProcedure" />
+      <min value="1" />
       <max value="1" />
-    </element>
-    <element id="Immunization.identifier.use">
-      <path value="Immunization.identifier.use" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.identifier.type">
-      <path value="Immunization.identifier.type" />
-      <max value="0" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-VaccinationProcedure-1" />
+      </type>
     </element>
     <element id="Immunization.identifier.system">
       <path value="Immunization.identifier.system" />
@@ -10860,13 +10990,8 @@
       <path value="Immunization.identifier.value" />
       <min value="1" />
     </element>
-    <element id="Immunization.identifier.period">
-      <path value="Immunization.identifier.period" />
-      <max value="0" />
-    </element>
     <element id="Immunization.identifier.assigner">
       <path value="Immunization.identifier.assigner" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
@@ -10874,41 +10999,24 @@
     </element>
     <element id="Immunization.status">
       <path value="Immunization.status" />
+      <short value="completed" />
       <fixedCode value="completed" />
+    </element>
+    <element id="Immunization.notGiven">
+      <path value="Immunization.notGiven" />
+      <fixedBoolean value="false" />
     </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
-      <short value="Immunisation procedure performed" />
-      <definition value="The immunisation procedure performed" />
-    </element>
-    <element id="Immunization.vaccineCode.coding">
-      <path value="Immunization.vaccineCode.coding" />
-      <short value="A code from the SNOMED Clinical Terminology UK coding system that describes a vaccine product from the VMP/ AMP subsets from the dm+d terminology" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Immunization.vaccineCode.coding.system">
-      <path value="Immunization.vaccineCode.coding.system" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.vaccineCode.coding.version">
-      <path value="Immunization.vaccineCode.coding.version" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.vaccineCode.coding.code">
-      <path value="Immunization.vaccineCode.coding.code" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.vaccineCode.coding.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Immunization.vaccineCode.coding.display" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.vaccineCode.coding.userSelected">
-      <path value="Immunization.vaccineCode.coding.userSelected" />
-      <max value="0" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="VaccineCode" />
+        </extension>
+        <strength value="extensible" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-VaccineCode-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Immunization.patient">
       <path value="Immunization.patient" />
@@ -10933,16 +11041,16 @@
       <path value="Immunization.encounter.reference" />
       <min value="1" />
     </element>
-    <element id="Immunization.reportOrigin">
-      <path value="Immunization.reportOrigin" />
-      <max value="0" />
+    <element id="Immunization.primarySource">
+      <path value="Immunization.primarySource" />
+      <defaultValueBoolean value="true" />
     </element>
     <element id="Immunization.location">
       <path value="Immunization.location" />
       <min value="1" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1" />
       </type>
     </element>
     <element id="Immunization.location.reference">
@@ -10953,12 +11061,8 @@
       <path value="Immunization.manufacturer" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
-    </element>
-    <element id="Immunization.expirationDate">
-      <path value="Immunization.expirationDate" />
-      <max value="0" />
     </element>
     <element id="Immunization.site">
       <path value="Immunization.site" />
@@ -10966,7 +11070,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ImmunizationSite" />
         </extension>
-        <strength value="required" />
+        <strength value="preferred" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ImmunisationSite-1" />
         </valueSetReference>
@@ -10976,14 +11080,31 @@
       <path value="Immunization.site.coding" />
       <max value="1" />
     </element>
+    <element id="Immunization.site.coding.extension">
+      <path value="Immunization.site.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.site.coding.extension:snomedCTDescriptionID">
+      <path value="Immunization.site.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
     <element id="Immunization.site.coding.system">
       <path value="Immunization.site.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Immunization.site.coding.version">
-      <path value="Immunization.site.coding.version" />
-      <max value="0" />
     </element>
     <element id="Immunization.site.coding.code">
       <path value="Immunization.site.coding.code" />
@@ -10996,35 +11117,47 @@
       <path value="Immunization.site.coding.display" />
       <min value="1" />
     </element>
-    <element id="Immunization.site.coding.userSelected">
-      <path value="Immunization.site.coding.userSelected" />
-      <max value="0" />
-    </element>
     <element id="Immunization.route">
       <path value="Immunization.route" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ImmunizationRoute" />
         </extension>
-        <strength value="required" />
+        <strength value="preferred" />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ImmunisationRoute-1" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
     </element>
     <element id="Immunization.route.coding">
       <path value="Immunization.route.coding" />
-      <min value="1" />
       <max value="1" />
+    </element>
+    <element id="Immunization.route.coding.extension">
+      <path value="Immunization.route.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Immunization.route.coding.extension:snomedCTDescriptionID">
+      <path value="Immunization.route.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="The SNOMED CT Description ID for the display" />
+      <definition value="The SNOMED CT Description ID for the display." />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
     </element>
     <element id="Immunization.route.coding.system">
       <path value="Immunization.route.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
-    </element>
-    <element id="Immunization.route.coding.version">
-      <path value="Immunization.route.coding.version" />
-      <max value="0" />
     </element>
     <element id="Immunization.route.coding.code">
       <path value="Immunization.route.coding.code" />
@@ -11037,49 +11170,13 @@
       <path value="Immunization.route.coding.display" />
       <min value="1" />
     </element>
-    <element id="Immunization.route.coding.userSelected">
-      <path value="Immunization.route.coding.userSelected" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.route.text">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Immunization.route.text" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.doseQuantity.value">
-      <path value="Immunization.doseQuantity.value" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.doseQuantity.unit">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Immunization.doseQuantity.unit" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.doseQuantity.system">
-      <path value="Immunization.doseQuantity.system" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.doseQuantity.code">
-      <path value="Immunization.doseQuantity.code" />
-      <min value="1" />
-    </element>
     <element id="Immunization.practitioner">
       <path value="Immunization.practitioner" />
-      <short value="Practitioner performing the Immunisation" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="Immunization.practitioner.role">
-      <path value="Immunization.practitioner.role" />
-      <max value="0" />
-    </element>
     <element id="Immunization.practitioner.actor">
       <path value="Immunization.practitioner.actor" />
-      <short value="Individual who was performing the Immunisation" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
@@ -11088,11 +11185,6 @@
     <element id="Immunization.practitioner.actor.reference">
       <path value="Immunization.practitioner.actor.reference" />
       <min value="1" />
-    </element>
-    <element id="Immunization.note">
-      <path value="Immunization.note" />
-      <short value="Vaccination notes, such as vaccine product" />
-      <max value="1" />
     </element>
     <element id="Immunization.note.author[x]">
       <path value="Immunization.note.author[x]" />
@@ -11114,61 +11206,31 @@
     </element>
     <element id="Immunization.explanation.reason">
       <path value="Immunization.explanation.reason" />
-      <max value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ImmunizationReason" />
+        </extension>
+        <strength value="example" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ImmunizationExplanationReason-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Immunization.explanation.reasonNotGiven">
       <path value="Immunization.explanation.reasonNotGiven" />
-      <max value="1" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="NoImmunizationReason" />
         </extension>
         <strength value="required" />
-        <description value="The reason why an immunisation was not given" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReasonNotGiven-1" />
         </valueSetReference>
       </binding>
     </element>
-    <element id="Immunization.explanation.reasonNotGiven.coding">
-      <path value="Immunization.explanation.reasonNotGiven.coding" />
-      <min value="1" />
-      <max value="1" />
-    </element>
     <element id="Immunization.explanation.reasonNotGiven.coding.system">
       <path value="Immunization.explanation.reasonNotGiven.coding.system" />
-      <min value="1" />
       <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ReasonNotGiven-1" />
-    </element>
-    <element id="Immunization.explanation.reasonNotGiven.coding.version">
-      <path value="Immunization.explanation.reasonNotGiven.coding.version" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.explanation.reasonNotGiven.coding.code">
-      <path value="Immunization.explanation.reasonNotGiven.coding.code" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.explanation.reasonNotGiven.coding.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Immunization.explanation.reasonNotGiven.coding.display" />
-      <min value="1" />
-    </element>
-    <element id="Immunization.explanation.reasonNotGiven.coding.userSelected">
-      <path value="Immunization.explanation.reasonNotGiven.coding.userSelected" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.explanation.reasonNotGiven.text">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
-      <path value="Immunization.explanation.reasonNotGiven.text" />
-      <max value="0" />
-    </element>
-    <element id="Immunization.reaction">
-      <path value="Immunization.reaction" />
-      <max value="0" />
     </element>
     <element id="Immunization.reaction.detail">
       <path value="Immunization.reaction.detail" />
@@ -11177,9 +11239,9 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Observation-1" />
       </type>
     </element>
-    <element id="Immunization.vaccinationProtocol">
-      <path value="Immunization.vaccinationProtocol" />
-      <max value="1" />
+    <element id="Immunization.vaccinationProtocol.doseSequence">
+      <path value="Immunization.vaccinationProtocol.doseSequence" />
+      <min value="1" />
     </element>
     <element id="Immunization.vaccinationProtocol.authority">
       <path value="Immunization.vaccinationProtocol.authority" />
