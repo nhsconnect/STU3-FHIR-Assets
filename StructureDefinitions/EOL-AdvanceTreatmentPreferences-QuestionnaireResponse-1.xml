@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-07-23T11:01:56.504+01:00" />
+    <lastUpdated value="2018-07-23T11:55:40.732+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EOL-AdvanceTreatmentPreferences-QuestionnaireResponse-1" />
   <version value="1.0.0" />
@@ -2044,6 +2044,199 @@
         <map value="who.author" />
       </mapping>
     </element>
+    <element id="QuestionnaireResponse.author.id">
+      <path value="QuestionnaireResponse.author.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.author.extension">
+      <path value="QuestionnaireResponse.author.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.author.reference">
+      <path value="QuestionnaireResponse.author.reference" />
+      <short value="Literal reference, Relative, internal or absolute URL" />
+      <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
+      <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Reference.reference" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="ref-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.author.identifier">
+      <path value="QuestionnaireResponse.author.identifier" />
+      <short value="Logical reference, when literal reference is not known" />
+      <definition value="An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference." />
+      <comment value="When an identifier is provided in place of a reference, any system processing the reference will only be able to resolve the identifier to a reference if it understands the business context in which the identifier is used. Sometimes this is global (e.g. a national identifier) but often it is not. For this reason, none of the useful mechanisms described for working with references (e.g. chaining, includes) are possible, nor should servers be expected to be able resolve the reference. Servers may accept an identifier based reference untouched, resolve it, and/or reject it - see CapabilityStatement.rest.resource.referencePolicy. &#xA;&#xA;When both an identifier and a literal reference are provided, the literal reference is preferred. Applications processing the resource are allowed - but not required - to check that the identifier matches the literal reference&#xA;&#xA;Applications converting a logical reference to a literal reference may choose to leave the logical reference present, or remove it." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Reference.identifier" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Identifier" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CX / EI (occasionally, more often EI maps to a resource id or a URL)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="II - see see identifier pattern at http://wiki.hl7.org/index.php?title=Common_Design_Patterns#Identifier_Pattern for relevant discussion. The Identifier class is a little looser than the v3 type II because it allows URIs as well as registered OIDs or GUIDs.  Also maps to Role[classCode=IDENT]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="Identifier" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".identifier" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.author.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="QuestionnaireResponse.author.display" />
+      <short value="Text alternative for the resource" />
+      <definition value="Plain text narrative that identifies the resource in addition to the resource reference." />
+      <comment value="This is generally not the same as the Resource.text of the referenced resource.  The purpose is to identify what's being referenced, not to fully describe it." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Reference.display" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="QuestionnaireResponse.source">
       <path value="QuestionnaireResponse.source" />
       <short value="The person who answered the questions" />
@@ -2681,9 +2874,9 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="problemOrCondition" />
+      <sliceName value="respectCarePriorityScale" />
       <short value="Groups and questions" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
@@ -2721,7 +2914,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.id">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.id">
       <path value="QuestionnaireResponse.item.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -2750,7 +2943,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.extension">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.extension">
       <path value="QuestionnaireResponse.item.extension" />
       <slicing>
         <discriminator>
@@ -2799,7 +2992,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.modifierExtension">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.modifierExtension">
       <path value="QuestionnaireResponse.item.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -2843,7 +3036,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.linkId">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
       <short value="Pointer to specific item from Questionnaire" />
       <definition value="The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource." />
@@ -2859,7 +3052,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="problemOrCondition" />
+      <fixedString value="respectCarePriorityScale" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2877,7 +3070,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].id" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.definition">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <short value="ElementDefinition - details for the item" />
       <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item." />
@@ -2910,7 +3103,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].code" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.text">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.text">
       <path value="QuestionnaireResponse.item.text" />
       <short value="Name for group or question text" />
       <definition value="Text that is displayed above the contents of the group or as the text of the question being answered." />
@@ -2926,7 +3119,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Problem Or Condition" />
+      <fixedString value="ReSPECT Care Priority Scale" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -2944,7 +3137,7 @@
         <map value=".text" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.subject">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <short value="The subject this group's answers are about" />
       <definition value="More specific subject this section's answers are about, details the subject given in QuestionnaireResponse." />
@@ -2989,7 +3182,7 @@
         <map value=".participation[typeCode=SBJ].role or .outboundRelationship[typeCode=SUBJ].target" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer">
       <path value="QuestionnaireResponse.item.answer" />
       <short value="The response(s) to the question" />
       <definition value="The respondent's answer(s) to the question." />
@@ -3021,7 +3214,7 @@
         <map value=".value[type=LIST_ANY]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.id">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.id">
       <path value="QuestionnaireResponse.item.answer.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -3050,7 +3243,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.extension">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.extension">
       <path value="QuestionnaireResponse.item.answer.extension" />
       <slicing>
         <discriminator>
@@ -3099,7 +3292,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.modifierExtension">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.modifierExtension">
       <path value="QuestionnaireResponse.item.answer.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -3143,9 +3336,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.valueString:valueString">
-      <path value="QuestionnaireResponse.item.answer.valueString" />
-      <sliceName value="valueString" />
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.value[x]:valueInteger">
+      <path value="QuestionnaireResponse.item.answer.valueInteger" />
+      <sliceName value="valueInteger" />
       <short value="Single-valued answer to the question" />
       <definition value="The answer (or one of the answers) provided by the respondent to the question." />
       <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
@@ -3158,7 +3351,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="string" />
+        <code value="integer" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3187,7 +3380,7 @@
         <map value=".item" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.item">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <short value="Nested groups and questions" />
       <definition value="Nested groups and/or questions found within this particular answer." />
@@ -3205,7 +3398,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.item">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.item">
       <path value="QuestionnaireResponse.item.item" />
       <short value="Nested questionnaire response items" />
       <definition value="Questions or sub-groups nested beneath a question or group." />
@@ -3223,9 +3416,9 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="treatmentLevel" />
+      <sliceName value="respectPatientCarePriority" />
       <short value="Groups and questions" />
       <definition value="A group or question item from the original questionnaire for which answers are provided." />
       <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
@@ -3263,7 +3456,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.id">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.id">
       <path value="QuestionnaireResponse.item.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -3292,7 +3485,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.extension">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.extension">
       <path value="QuestionnaireResponse.item.extension" />
       <slicing>
         <discriminator>
@@ -3341,7 +3534,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.modifierExtension">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.modifierExtension">
       <path value="QuestionnaireResponse.item.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -3385,7 +3578,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.linkId">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
       <short value="Pointer to specific item from Questionnaire" />
       <definition value="The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource." />
@@ -3401,7 +3594,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="treatmentLevel" />
+      <fixedString value="respectPatientCarePriority" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3419,7 +3612,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].id" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.definition">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <short value="ElementDefinition - details for the item" />
       <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item." />
@@ -3452,7 +3645,7 @@
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].code" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.text">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.text">
       <path value="QuestionnaireResponse.item.text" />
       <short value="Name for group or question text" />
       <definition value="Text that is displayed above the contents of the group or as the text of the question being answered." />
@@ -3486,7 +3679,7 @@
         <map value=".text" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.subject">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <short value="The subject this group's answers are about" />
       <definition value="More specific subject this section's answers are about, details the subject given in QuestionnaireResponse." />
@@ -3531,7 +3724,7 @@
         <map value=".participation[typeCode=SBJ].role or .outboundRelationship[typeCode=SUBJ].target" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer">
       <path value="QuestionnaireResponse.item.answer" />
       <short value="The response(s) to the question" />
       <definition value="The respondent's answer(s) to the question." />
@@ -3563,7 +3756,7 @@
         <map value=".value[type=LIST_ANY]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.id">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.id">
       <path value="QuestionnaireResponse.item.answer.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -3592,7 +3785,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.extension">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.extension">
       <path value="QuestionnaireResponse.item.answer.extension" />
       <slicing>
         <discriminator>
@@ -3641,7 +3834,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.modifierExtension">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.modifierExtension">
       <path value="QuestionnaireResponse.item.answer.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
       <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
@@ -3685,7 +3878,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.valueString:valueString">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.value[x]:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <short value="Single-valued answer to the question" />
@@ -3729,7 +3922,7 @@
         <map value=".item" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.item">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <short value="Nested groups and questions" />
       <definition value="Nested groups and/or questions found within this particular answer." />
@@ -3747,7 +3940,7 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.item">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.item">
       <path value="QuestionnaireResponse.item.item" />
       <short value="Nested questionnaire response items" />
       <definition value="Questions or sub-groups nested beneath a question or group." />
@@ -4372,6 +4565,10 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
     </element>
+    <element id="QuestionnaireResponse.author.reference">
+      <path value="QuestionnaireResponse.author.reference" />
+      <min value="1" />
+    </element>
     <element id="QuestionnaireResponse.source">
       <path value="QuestionnaireResponse.source" />
       <max value="0" />
@@ -4388,77 +4585,77 @@
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="problemOrCondition" />
+      <sliceName value="respectCarePriorityScale" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.linkId">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="problemOrCondition" />
+      <fixedString value="respectCarePriorityScale" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.definition">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.text">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Problem Or Condition" />
+      <fixedString value="ReSPECT Care Priority Scale" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.subject">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer">
       <path value="QuestionnaireResponse.item.answer" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.valueString:valueString">
-      <path value="QuestionnaireResponse.item.answer.valueString" />
-      <sliceName value="valueString" />
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.value[x]:valueInteger">
+      <path value="QuestionnaireResponse.item.answer.valueInteger" />
+      <sliceName value="valueInteger" />
       <min value="1" />
       <type>
-        <code value="string" />
+        <code value="integer" />
       </type>
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.answer.item">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:problemOrCondition.item">
+    <element id="QuestionnaireResponse.item:respectCarePriorityScale.item">
       <path value="QuestionnaireResponse.item.item" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority">
       <path value="QuestionnaireResponse.item" />
-      <sliceName value="treatmentLevel" />
+      <sliceName value="respectPatientCarePriority" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.linkId">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="treatmentLevel" />
+      <fixedString value="respectPatientCarePriority" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.definition">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.definition">
       <path value="QuestionnaireResponse.item.definition" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.text">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
       <fixedString value="Treatment Level" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.subject">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer">
       <path value="QuestionnaireResponse.item.answer" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.valueString:valueString">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.value[x]:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <min value="1" />
@@ -4466,11 +4663,11 @@
         <code value="string" />
       </type>
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.answer.item">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.answer.item">
       <path value="QuestionnaireResponse.item.answer.item" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:treatmentLevel.item">
+    <element id="QuestionnaireResponse.item:respectPatientCarePriority.item">
       <path value="QuestionnaireResponse.item.item" />
       <max value="0" />
     </element>
