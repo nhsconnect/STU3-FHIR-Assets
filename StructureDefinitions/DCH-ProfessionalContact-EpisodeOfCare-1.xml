@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-06-21T19:57:30.572+01:00" />
+    <lastUpdated value="2018-07-24T11:08:00.447+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalContact-EpisodeOfCare-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="DCH-ProfessionalContact-EpisodeOfCare-1" />
   <status value="draft" />
   <date value="2018-01-25T13:34:31.135+00:00" />
@@ -3826,7 +3826,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Team-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3936,7 +3936,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -4722,7 +4722,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <alias value="CareTeam" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="EpisodeOfCare.team" />
         <min value="0" />
@@ -4730,7 +4730,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-CareTeam-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4834,12 +4834,12 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="EpisodeOfCare.team.reference">
+    <element id="team.reference">
       <path value="EpisodeOfCare.team.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -5197,9 +5197,6 @@
     <element id="EpisodeOfCare.extension:reason">
       <path value="EpisodeOfCare.extension" />
       <sliceName value="reason" />
-      <short value="Reason why the Professional Contact association has been created or ended" />
-      <definition value="Reason why the Professional Contact association has been created or ended" />
-      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -5317,12 +5314,8 @@
       <path value="EpisodeOfCare.managingOrganization" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Team-Organization-1" />
+        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
-    </element>
-    <element id="EpisodeOfCare.managingOrganization.reference">
-      <path value="EpisodeOfCare.managingOrganization.reference" />
-      <min value="1" />
     </element>
     <element id="EpisodeOfCare.referralRequest">
       <path value="EpisodeOfCare.referralRequest" />
@@ -5341,7 +5334,15 @@
     </element>
     <element id="EpisodeOfCare.team">
       <path value="EpisodeOfCare.team" />
-      <max value="0" />
+      <max value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-CareTeam-1" />
+      </type>
+    </element>
+    <element id="team.reference">
+      <path value="EpisodeOfCare.team.reference" />
+      <min value="1" />
     </element>
     <element id="EpisodeOfCare.account">
       <path value="EpisodeOfCare.account" />
