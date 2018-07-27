@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-07-27T07:48:13.981+01:00" />
+    <lastUpdated value="2018-07-27T08:50:48.846+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Subscription-1" />
   <version value="1.0.0" />
@@ -267,8 +267,8 @@
       <alias value="inline resources" />
       <alias value="anonymous resources" />
       <alias value="contained resources" />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="DomainResource.contained" />
         <min value="0" />
@@ -431,10 +431,17 @@
     </element>
     <element id="Subscription.contact">
       <path value="Subscription.contact" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="value" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
       <short value="Contact details for source (e.g. troubleshooting)" />
       <definition value="Contact details for a human to contact about the subscription. The primary use of this for system administrator troubleshooting." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Subscription.contact" />
         <min value="0" />
@@ -911,6 +918,1051 @@
       </mapping>
     </element>
     <element id="Subscription.contact.period.end">
+      <path value="Subscription.contact.period.end" />
+      <short value="End time with inclusive boundary, if not ongoing" />
+      <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.end" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <meaningWhenMissing value="If the end of the period is missing, it means that the period is ongoing" />
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./high" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode">
+      <path value="Subscription.contact" />
+      <sliceName value="oDSCode" />
+      <short value="Contact details for source (e.g. troubleshooting)" />
+      <definition value="Contact details for a human to contact about the subscription. The primary use of this for system administrator troubleshooting." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Subscription.contact" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="ContactPoint" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="cpt-2" />
+        <severity value="error" />
+        <human value="A system is required if a value is provided." />
+        <expression value="value.empty() or system.exists()" />
+        <xpath value="not(exists(f:value)) or exists(f:system)" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="TEL" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="ContactPoint" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.focus" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.id">
+      <path value="Subscription.contact.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.extension">
+      <path value="Subscription.contact.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.system">
+      <path value="Subscription.contact.system" />
+      <short value="phone | fax | email | pager | url | sms | other" />
+      <definition value="Telecommunications form for contact point - what communications system is required to make use of the contact." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <fixedCode value="url" />
+      <condition value="ele-1" />
+      <condition value="cpt-2" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointSystem" />
+        </extension>
+        <strength value="required" />
+        <description value="Telecommunications form for contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/contact-point-system" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./scheme" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointType" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.value">
+      <path value="Subscription.contact.value" />
+      <short value="The ODS FHIR API url for the Organization requesting the subscription" />
+      <definition value="The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)." />
+      <comment value="Additional text data such as phone extension numbers, or notes about use of the contact are sometimes included in the value." />
+      <requirements value="Need to support legacy numbers that are not in a tightly controlled format." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.value" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.1 (or XTN.12)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./url" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./Value" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.use">
+      <path value="Subscription.contact.use" />
+      <short value="home | work | temp | old | mobile - purpose of this contact point" />
+      <definition value="Identifies the purpose for the contact point." />
+      <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary or old contact etc.for a current/permanent one. Applications can assume that a contact is current unless it explicitly says that it is temporary or old." />
+      <requirements value="Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.use" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <fixedCode value="work" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointUse" />
+        </extension>
+        <strength value="required" />
+        <description value="Use of contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/contact-point-use" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.2 - but often indicated by field" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="unique(./use)" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointPurpose" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.rank">
+      <path value="Subscription.contact.rank" />
+      <short value="Specify preferred order of use (1 = highest)" />
+      <definition value="Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values." />
+      <comment value="Note that rank does not necessarily follow the order in which the contacts are represented in the instance." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.rank" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="positiveInt" />
+      </type>
+      <fixedPositiveInt value="1" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.period">
+      <path value="Subscription.contact.period" />
+      <short value="Time period when the contact point was/is in use" />
+      <definition value="Time period when the contact point was/is in use." />
+      <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="ContactPoint.period" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Period" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower value than end" />
+        <expression value="start.empty() or end.empty() or (start &lt;= end)" />
+        <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;] or URG&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./usablePeriod[type=&quot;IVL&lt;TS&gt;&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./StartDate and ./EndDate" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.period.id">
+      <path value="Subscription.contact.period.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.period.extension">
+      <path value="Subscription.contact.period.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.period.start">
+      <path value="Subscription.contact.period.start" />
+      <short value="Starting time with inclusive boundary" />
+      <definition value="The start of the period. The boundary is inclusive." />
+      <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.start" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./low" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:oDSCode.period.end">
+      <path value="Subscription.contact.period.end" />
+      <short value="End time with inclusive boundary, if not ongoing" />
+      <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
+      <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.end" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <meaningWhenMissing value="If the end of the period is missing, it means that the period is ongoing" />
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./high" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint">
+      <path value="Subscription.contact" />
+      <sliceName value="otherContactPoint" />
+      <short value="Contact details for source (e.g. troubleshooting)" />
+      <definition value="Contact details for a human to contact about the subscription. The primary use of this for system administrator troubleshooting." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Subscription.contact" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="ContactPoint" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="cpt-2" />
+        <severity value="error" />
+        <human value="A system is required if a value is provided." />
+        <expression value="value.empty() or system.exists()" />
+        <xpath value="not(exists(f:value)) or exists(f:system)" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="TEL" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="ContactPoint" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.focus" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.id">
+      <path value="Subscription.contact.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.extension">
+      <path value="Subscription.contact.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.system">
+      <path value="Subscription.contact.system" />
+      <short value="phone | fax | email | pager | url | sms | other" />
+      <definition value="Telecommunications form for contact point - what communications system is required to make use of the contact." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.system" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="cpt-2" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointSystem" />
+        </extension>
+        <strength value="required" />
+        <description value="Telecommunications form for contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/contact-point-system" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./scheme" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointType" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.value">
+      <path value="Subscription.contact.value" />
+      <short value="The actual contact point details" />
+      <definition value="The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)." />
+      <comment value="Additional text data such as phone extension numbers, or notes about use of the contact are sometimes included in the value." />
+      <requirements value="Need to support legacy numbers that are not in a tightly controlled format." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.value" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.1 (or XTN.12)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./url" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./Value" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.use">
+      <path value="Subscription.contact.use" />
+      <short value="home | work | temp | old | mobile - purpose of this contact point" />
+      <definition value="Identifies the purpose for the contact point." />
+      <comment value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary or old contact etc.for a current/permanent one. Applications can assume that a contact is current unless it explicitly says that it is temporary or old." />
+      <requirements value="Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.use" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointUse" />
+        </extension>
+        <strength value="required" />
+        <description value="Use of contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/contact-point-use" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.2 - but often indicated by field" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="unique(./use)" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointPurpose" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.rank">
+      <path value="Subscription.contact.rank" />
+      <short value="Specify preferred order of use (1 = highest)" />
+      <definition value="Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values." />
+      <comment value="Note that rank does not necessarily follow the order in which the contacts are represented in the instance." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.rank" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="positiveInt" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.period">
+      <path value="Subscription.contact.period" />
+      <short value="Time period when the contact point was/is in use" />
+      <definition value="Time period when the contact point was/is in use." />
+      <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="ContactPoint.period" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Period" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower value than end" />
+        <expression value="start.empty() or end.empty() or (start &lt;= end)" />
+        <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;] or URG&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./usablePeriod[type=&quot;IVL&lt;TS&gt;&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./StartDate and ./EndDate" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.period.id">
+      <path value="Subscription.contact.period.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.period.extension">
+      <path value="Subscription.contact.period.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.period.start">
+      <path value="Subscription.contact.period.start" />
+      <short value="Starting time with inclusive boundary" />
+      <definition value="The start of the period. The boundary is inclusive." />
+      <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.start" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./low" />
+      </mapping>
+    </element>
+    <element id="Subscription.contact:otherContactPoint.period.end">
       <path value="Subscription.contact.period.end" />
       <short value="End time with inclusive boundary, if not ongoing" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
@@ -1695,11 +2747,55 @@
     <element id="Subscription.contained">
       <path value="Subscription.contained" />
       <short value="Contained Provenance resource" />
-      <min value="1" />
-      <max value="1" />
       <type>
         <code value="Provenance" />
       </type>
+    </element>
+    <element id="Subscription.contact">
+      <path value="Subscription.contact" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="value" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Subscription.contact:oDSCode">
+      <path value="Subscription.contact" />
+      <sliceName value="oDSCode" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Subscription.contact:oDSCode.system">
+      <path value="Subscription.contact.system" />
+      <min value="1" />
+      <fixedCode value="url" />
+    </element>
+    <element id="Subscription.contact:oDSCode.value">
+      <path value="Subscription.contact.value" />
+      <short value="The ODS FHIR API url for the Organization requesting the subscription" />
+      <min value="1" />
+    </element>
+    <element id="Subscription.contact:oDSCode.use">
+      <path value="Subscription.contact.use" />
+      <min value="1" />
+      <fixedCode value="work" />
+    </element>
+    <element id="Subscription.contact:oDSCode.rank">
+      <path value="Subscription.contact.rank" />
+      <fixedPositiveInt value="1" />
+    </element>
+    <element id="Subscription.contact:oDSCode.period">
+      <path value="Subscription.contact.period" />
+      <max value="0" />
+    </element>
+    <element id="Subscription.contact:otherContactPoint">
+      <path value="Subscription.contact" />
+      <sliceName value="otherContactPoint" />
+      <max value="1" />
     </element>
     <element id="Subscription.error">
       <path value="Subscription.error" />
