@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-07-25T11:33:53.071+01:00" />
+    <lastUpdated value="2018-07-30T15:02:57.206+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/EOL-FunctionalStatus-QuestionnaireResponse-1" />
   <version value="1.0.0" />
@@ -390,7 +390,7 @@
       <short value="Unique id for this set of answers" />
       <definition value="A business identifier assigned to a particular completed (or partially completed) questionnaire." />
       <requirements value="Used for tracking, registration and other business purposes." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="QuestionnaireResponse.identifier" />
@@ -630,7 +630,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -1142,7 +1142,7 @@
       <alias value="Date Issued" />
       <alias value="Date updated" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="QuestionnaireResponse.authored" />
         <min value="0" />
@@ -1185,8 +1185,8 @@
       <alias value="Department" />
       <alias value="Company" />
       <alias value="Performer" />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="QuestionnaireResponse.author" />
         <min value="0" />
@@ -2550,10 +2550,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="example" />
+        <strength value="required" />
         <description value="Code indicating the response provided for a question." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-FunctionalStatusType-Code-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -2891,6 +2891,548 @@
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
       </mapping>
     </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue">
+      <path value="QuestionnaireResponse.item" />
+      <sliceName value="functionalStatusValue" />
+      <short value="Groups and questions" />
+      <definition value="A group or question item from the original questionnaire for which answers are provided." />
+      <comment value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="QuestionnaireResponse.item" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="qrs-1" />
+        <severity value="error" />
+        <human value="Nested item can't be beneath both item and answer" />
+        <expression value="(answer.exists() and item.exists()).not()" />
+        <xpath value="not(exists(f:answer) and exists(f:item))" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.id">
+      <path value="QuestionnaireResponse.item.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.extension">
+      <path value="QuestionnaireResponse.item.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.modifierExtension">
+      <path value="QuestionnaireResponse.item.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.linkId">
+      <path value="QuestionnaireResponse.item.linkId" />
+      <short value="Pointer to specific item from Questionnaire" />
+      <definition value="The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Items can repeat in the answers, so a direct 1..1 correspondence by position may not exist - requiring correspondence by identifier." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="QuestionnaireResponse.item.linkId" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <fixedString value="functionalStatusValue" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].id" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.definition">
+      <path value="QuestionnaireResponse.item.definition" />
+      <short value="ElementDefinition - details for the item" />
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item." />
+      <comment value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html) or a [DataElement](dataelement.html), and must have a fragment identifier that identifies the specific data element by its id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&#xA;&#xA;There is no need for this element if the item pointed to by the linkId has a definition listed." />
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="QuestionnaireResponse.item.definition" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN].code" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.text">
+      <path value="QuestionnaireResponse.item.text" />
+      <short value="Name for group or question text" />
+      <definition value="Text that is displayed above the contents of the group or as the text of the question being answered." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <requirements value="Allows the questionnaire response to be read without access to the questionnaire." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="QuestionnaireResponse.item.text" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <fixedString value="Functional Status Coded Value" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".text" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.subject">
+      <path value="QuestionnaireResponse.item.subject" />
+      <short value="The subject this group's answers are about" />
+      <definition value="More specific subject this section's answers are about, details the subject given in QuestionnaireResponse." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <requirements value="Sometimes a group of answers is about a specific participant, artifact or piece of information in the patient's care or record, e.g. a specific Problem, RelatedPerson, Allergy etc." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="QuestionnaireResponse.item.subject" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".participation[typeCode=SBJ].role or .outboundRelationship[typeCode=SUBJ].target" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer">
+      <path value="QuestionnaireResponse.item.answer" />
+      <short value="The response(s) to the question" />
+      <definition value="The respondent's answer(s) to the question." />
+      <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="QuestionnaireResponse.item.answer" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".value[type=LIST_ANY]" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.id">
+      <path value="QuestionnaireResponse.item.answer.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.extension">
+      <path value="QuestionnaireResponse.item.answer.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.modifierExtension">
+      <path value="QuestionnaireResponse.item.answer.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.valueString:valueString">
+      <path value="QuestionnaireResponse.item.answer.valueString" />
+      <sliceName value="valueString" />
+      <short value="Single-valued answer to the question" />
+      <definition value="The answer (or one of the answers) provided by the respondent to the question." />
+      <comment value="More complex structures (Attachment, Resource and Quantity) will typically be limited to electronic forms that can expose an appropriate user interface to capture the components and enforce the constraints of a complex data type.  Additional complex types can be introduced through extensions." />
+      <requirements value="Ability to retain a single-valued answer to a question." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="QuestionnaireResponse.item.answer.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="example" />
+        <description value="Code indicating the response provided for a question." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".item" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.item">
+      <path value="QuestionnaireResponse.item.answer.item" />
+      <short value="Nested groups and questions" />
+      <definition value="Nested groups and/or questions found within this particular answer." />
+      <requirements value="It is useful to have &quot;sub-questions&quot;, questions which normally appear when certain answers are given and which collect additional details." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="QuestionnaireResponse.item.answer.item" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#QuestionnaireResponse.item" />
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.item">
+      <path value="QuestionnaireResponse.item.item" />
+      <short value="Nested questionnaire response items" />
+      <definition value="Questions or sub-groups nested beneath a question or group." />
+      <requirements value="Reports can consist of complex nested groups." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="QuestionnaireResponse.item.item" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#QuestionnaireResponse.item" />
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]" />
+      </mapping>
+    </element>
     <element id="QuestionnaireResponse.item:functionalStatusText">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="functionalStatusText" />
@@ -3136,7 +3678,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Functional Status Value Text" />
+      <fixedString value="Functional Status Text" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -3204,8 +3746,8 @@
       <short value="The response(s) to the question" />
       <definition value="The respondent's answer(s) to the question." />
       <comment value="The value is nested because we cannot have a repeating structure that has variable type." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="QuestionnaireResponse.item.answer" />
         <min value="0" />
@@ -3353,7 +3895,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:functionalStatusText.answer.valueString:valueString">
+    <element id="QuestionnaireResponse.item:functionalStatusText.answer.value[x]:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <short value="Single-valued answer to the question" />
@@ -3435,10 +3977,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="QuestionnaireResponse.identifier">
-      <path value="QuestionnaireResponse.identifier" />
-      <min value="1" />
-    </element>
     <element id="QuestionnaireResponse.identifier.use">
       <path value="QuestionnaireResponse.identifier.use" />
       <max value="0" />
@@ -3446,6 +3984,10 @@
     <element id="QuestionnaireResponse.identifier.type">
       <path value="QuestionnaireResponse.identifier.type" />
       <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.identifier.system">
+      <path value="QuestionnaireResponse.identifier.system" />
+      <min value="1" />
     </element>
     <element id="QuestionnaireResponse.identifier.value">
       <path value="QuestionnaireResponse.identifier.value" />
@@ -3486,13 +4028,9 @@
       <path value="QuestionnaireResponse.context" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.authored">
-      <path value="QuestionnaireResponse.authored" />
-      <max value="0" />
-    </element>
     <element id="QuestionnaireResponse.author">
       <path value="QuestionnaireResponse.author" />
-      <max value="0" />
+      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
@@ -3549,6 +4087,15 @@
       <type>
         <code value="Coding" />
       </type>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="QuestionnaireAnswer" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-FunctionalStatusType-Code-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="QuestionnaireResponse.item:functionalStatusType.answer.valueCoding:valueCoding.system">
       <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
@@ -3581,6 +4128,48 @@
       <path value="QuestionnaireResponse.item.item" />
       <max value="0" />
     </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue">
+      <path value="QuestionnaireResponse.item" />
+      <sliceName value="functionalStatusValue" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.linkId">
+      <path value="QuestionnaireResponse.item.linkId" />
+      <fixedString value="functionalStatusValue" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.definition">
+      <path value="QuestionnaireResponse.item.definition" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.text">
+      <path value="QuestionnaireResponse.item.text" />
+      <min value="1" />
+      <fixedString value="Functional Status Coded Value" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.subject">
+      <path value="QuestionnaireResponse.item.subject" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer">
+      <path value="QuestionnaireResponse.item.answer" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.valueString:valueString">
+      <path value="QuestionnaireResponse.item.answer.valueString" />
+      <sliceName value="valueString" />
+      <min value="1" />
+      <type>
+        <code value="string" />
+      </type>
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.answer.item">
+      <path value="QuestionnaireResponse.item.answer.item" />
+      <max value="0" />
+    </element>
+    <element id="QuestionnaireResponse.item:functionalStatusValue.item">
+      <path value="QuestionnaireResponse.item.item" />
+      <max value="0" />
+    </element>
     <element id="QuestionnaireResponse.item:functionalStatusText">
       <path value="QuestionnaireResponse.item" />
       <sliceName value="functionalStatusText" />
@@ -3596,18 +4185,13 @@
     <element id="QuestionnaireResponse.item:functionalStatusText.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Functional Status Value Text" />
+      <fixedString value="Functional Status Text" />
     </element>
     <element id="QuestionnaireResponse.item:functionalStatusText.subject">
       <path value="QuestionnaireResponse.item.subject" />
       <max value="0" />
     </element>
-    <element id="QuestionnaireResponse.item:functionalStatusText.answer">
-      <path value="QuestionnaireResponse.item.answer" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="QuestionnaireResponse.item:functionalStatusText.answer.valueString:valueString">
+    <element id="QuestionnaireResponse.item:functionalStatusText.answer.value[x]:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <min value="1" />
