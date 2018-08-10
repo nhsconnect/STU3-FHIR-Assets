@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Bundle xmlns="http://hl7.org/fhir">
-	<id value="66aa4a36-4882-11e8-842f-0ed5f89f718b"/>
+<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../SchemasSTU3/bundle.xsd">
+	<id value="5fae67ac-4883-11e8-842f-0ed5f89f718b"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
+	<!--Message Header-->
 	<entry>
 		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 		<resource>
@@ -24,16 +25,16 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH011"/>
-					<display value="Emergency Care Attendance"/>
+					<code value="CH027"/>
+					<display value="Professional Contacts"/>
 				</event>
-				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<timestamp value="2018-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
-					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</responsible>
 				<focus>
 					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
@@ -41,25 +42,26 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible for message content-->
+	<!--Responsible Org (MessageHeader.responsible)-->
 	<entry>
-		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 		<resource>
 			<Organization>
-				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
+				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="RX3EP"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				<name value="SILVERDALE FAMILY PRACTICE"/>
 				<address>
-					<line value="NORTH ROAD"/>
+					<line value="FRONT STREET"/>
+					<line value="SOUTH HETTON"/>
 					<city value="DURHAM"/>
 					<district value="COUNTY DURHAM"/>
-					<postalCode value="DH1 5TW"/>
+					<postalCode value="DH6 2TH"/>
 				</address>
 			</Organization>
 		</resource>
@@ -74,14 +76,14 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<providedBy>
-					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
-					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="310000008"/>
-						<display value="Accident and Emergency service"/>
+						<code value="71078501000000104"/>
+						<display value="Health visiting service"/>
 					</coding>
 				</type>
 				<location>
@@ -136,115 +138,100 @@
 			</Patient>
 		</resource>
 	</entry>
-	<!--Emergency Care Investigation Procedure-->
-	<entry>
-		<fullUrl value="urn:uuid:1221e99b-7099-4313-b808-ec8a02687710"/>
-		<resource>
-			<Procedure>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-EmergencyCare-Procedure-1"/>
-				</meta>
-				<status value="completed"/>
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="29893006"/>
-						<display value="Peak expiratory flow measurement"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-				</subject>
-				<context>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
-				</context>
-			</Procedure>
-		</resource>
-	</entry>
-	<!-- Emergency Encounter details-->
+	<!--Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
 		<resource>
 			<Encounter>
 				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Emergency-Encounter-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
-				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-DCH-EmergencyCareDischargeStatus-1">
-					<valueCodeableConcept>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1066311000000101"/>
-							<display value="Left care setting after initial assessment"/>
-						</coding>
-					</valueCodeableConcept>
-				</extension>
 				<status value="finished"/>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEncounterType-1"/>
+						<code value="0028"/>
+						<display value="GP Appointment"/>
+					</coding>
+				</type>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
-					<start value="2018-03-23"/>
-					<end value="2018-03-23"/>
+					<start value="2018-11-01"/>
 				</period>
-				<reason>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="50043002"/>
-						<display value="Disorder of respiratory system"/>
-					</coding>
-				</reason>
-				<hospitalization>
-					<dischargeDisposition>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="306689006"/>
-							<display value="Discharge to home (procedure)"/>
-						</coding>
-					</dischargeDisposition>
-				</hospitalization>
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="ACCIDENT &amp; EMERGENCY LGI"/>
+						<display value="Silverdale Family Practice"/>
 					</location>
 				</location>
 				<serviceProvider>
 					<reference value="urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb"/>
-					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</serviceProvider>
 			</Encounter>
 		</resource>
 	</entry>
-	<!-- Accompanied Person-->
+	<!--Pro Contact Episode of Care-->
 	<entry>
+		<fullUrl value="urn:uuid:5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
 		<resource>
-			<RelatedPerson>
-				<id value="d73b0bd6-375b-4167-aea6-b63c97f08ecc"/>
+			<EpisodeOfCare>
+				<id value="5812bce1-58c4-43c0-bd17-30d5a567d87e"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalContact-EpisodeOfCare-1"/>
 				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
-				</identifier>
+				<status value="active"/>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-AssociationType-1"/>
+						<code value="Assumed"/>
+						<display value="Assumed"/>
+					</coding>
+				</type>
 				<patient>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 				</patient>
-				<relationship>
-					<coding>
-						<system value="http://hl7.org/fhir/v3/RoleCode"/>
-						<code value="MTH"/>
-						<display value="mother"/>
-					</coding>
-				</relationship>
-				<name>
-					<family value="Dawkins"/>
-					<given value="Sally"/>
-				</name>
-				<birthDate value="1973-12-12"/>
-			</RelatedPerson>
+				<period>
+					<start value="2018-11-01"/>
+				</period>
+				<team>
+					<reference value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+				</team>
+			</EpisodeOfCare>
+		</resource>
+	</entry>
+	<!--CareTeam-->
+	<entry>
+		<fullUrl value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+		<resource>
+			<CareTeam>
+				<id value="7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+				<name value="Silverdale Health Visiting Service"/>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+				</context>
+				<participant>
+					<role>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
+							<code value="330"/>
+							<display value="Specialist Community Public Health Nurse: Health Visitor"/>
+						</coding>
+					</role>
+				</participant>
+				<managingOrganization>
+					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+					<display value="SILVERDALE FAMILY PRACTICE"/>
+				</managingOrganization>
+			</CareTeam>
 		</resource>
 	</entry>
 	<!--Location where event took place-->
@@ -258,9 +245,12 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="RX3EP"/>
+					<value value="A83627"/>
 				</identifier>
-				<name value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
+				<name value="Silverdale Family Practice"/>
+				<managingOrganization>
+					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+				</managingOrganization>
 			</Location>
 		</resource>
 	</entry>
