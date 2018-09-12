@@ -337,6 +337,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="Flag.extension:RelatedPerson">
+      <path value="Flag.extension" />
+      <sliceName value="RelatedPerson" />
+      <short value="Person who has been granted Lating Power of Attorney" />
+      <definition value="Person who has been granted Lating Power of Attorney" />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/flag-detail" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Flag.modifierExtension">
       <path value="Flag.modifierExtension" />
       <slicing>
@@ -1402,7 +1445,7 @@
     </element>
     <element id="Flag.code">
       <path value="Flag.code" />
-      <short value="SNOMED Code indicating patient has a lasing power of attorney in place" />
+      <short value="SNOMED Code indicating patient has a lasting power of attorney in place" />
       <definition value="The coded value or textual component of the flag to display to the user." />
       <comment value="If non coded, use CodeableConcept.text.  This element should always be included in the narrative." />
       <min value="1" />
@@ -1429,7 +1472,7 @@
           <valueString value="FlagCode" />
         </extension>
         <strength value="required" />
-        <description value="Lasting Power of Attronet SNOMED CT Codes" />
+        <description value="Lasting Power of Attroney SNOMED CT Codes" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-LastingPowerAttorney-Code-1" />
         </valueSetReference>
@@ -1543,8 +1586,8 @@
       <definition value="A reference to a code defined by a terminology system." />
       <comment value="Codes may be defined very casually in enumerations, or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information.  Ordering of codings is undefined and SHALL NOT be used to infer meaning. Generally, at most only one of the coding values will be labeled as UserSelected = true." />
       <requirements value="Allows for translations and alternate encodings within a code system.  Also supports communication of the same instance to systems requiring different encodings." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="CodeableConcept.coding" />
         <min value="0" />
@@ -2120,6 +2163,28 @@
     </element>
   </snapshot>
   <differential>
+    <element id="Flag.extension">
+      <path value="Flag.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="Flag.extension:RelatedPerson">
+      <path value="Flag.extension" />
+      <sliceName value="RelatedPerson" />
+      <short value="Person who has been granted Lating Power of Attorney" />
+      <definition value="Person who has been granted Lating Power of Attorney" />
+      <min value="0" />
+      <max value="*" />
+      <type>
+        <code value="Extension" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/flag-detail" />
+      </type>
+    </element>
     <element id="Flag.identifier">
       <path value="Flag.identifier" />
       <max value="0" />
@@ -2177,17 +2242,22 @@
     </element>
     <element id="Flag.code">
       <path value="Flag.code" />
-      <short value="SNOMED Code indicating patient has a lasing power of attorney in place" />
+      <short value="SNOMED Code indicating patient has a lasting power of attorney in place" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="FlagCode" />
         </extension>
         <strength value="required" />
-        <description value="Lasting Power of Attronet SNOMED CT Codes" />
+        <description value="Lasting Power of Attroney SNOMED CT Codes" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-LastingPowerAttorney-Code-1" />
         </valueSetReference>
       </binding>
+    </element>
+    <element id="Flag.code.coding">
+      <path value="Flag.code.coding" />
+      <min value="1" />
+      <max value="1" />
     </element>
     <element id="Flag.code.coding.system">
       <path value="Flag.code.coding.system" />
