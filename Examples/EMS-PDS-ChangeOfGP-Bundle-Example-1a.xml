@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+	<id value="60fe6b0b-69f2-47d3-84a7-e3e5d0c5442a"/>
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
+	<entry>
+		<fullUrl value="urn:uuid:8bb85c96-d8b7-4995-94ed-72845b85cf14"/>
+		<resource>
+			<MessageHeader>
+				<id value="8bb85c96-d8b7-4995-94ed-72845b85cf14"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1"/>
+					<code value="PDS001"/>
+					<display value="PDS Change of GP"/>
+				</event>
+				<timestamp value="2017-11-01T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+				</source>
+				<responsible>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
+					<display value="NHS DIGITAL"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:16de978c-92c5-44da-8f28-0875e3cc30b4"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<!--Entry for service type within the Organization i.e. PDS-->
+	<entry>
+		<fullUrl value="urn:uuid:4245ffa6-5e9a-4e2e-9536-35d23f56a1e9"/>
+		<resource>
+			<HealthcareService>
+				<id value="4245ffa6-5e9a-4e2e-9536-35d23f56a1e9"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+				</meta>
+				<providedBy>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
+					<display value="NHS DIGITAL"/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1"/>
+						<code value="PDS"/>
+						<display value="Personal Demographics Service"/>
+					</coding>
+				</type>
+			</HealthcareService>
+		</resource>
+	</entry>
+	<!--Entry for communication for the event message, with reference to subject and payload-->
+	<entry>
+		<fullUrl value="urn:uuid:ef928ae9-c961-46f1-9d4f-671f17adaa87"/>
+		<resource>
+			<Communication>
+				<id value="ef928ae9-c961-46f1-9d4f-671f17adaa87"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"/>
+				</meta>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+					<display value="DAWKINS, Jack"/>
+				</subject>
+				<payload>
+					<contentReference>
+						<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+						<display value="DAWKINS, Jack"/>
+					</contentReference>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
+	<!--Entry for communication for the Patient with change of GP detail.-->
+	<entry>
+		<fullUrl value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+		<resource>
+			<Patient>
+				<id value="dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"/>
+				</meta>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
+				<name>
+					<use value="usual"/>
+					<family value="DAWKINS"/>
+					<given value="Jack"/>
+				</name>
+				<gender value="male"/>
+				<birthDate value="2017-10-02">
+					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
+						<valueDateTime value="2017-10-02T20:12:00+00:00"/>
+					</extension>
+				</birthDate>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="LEEDS"/>
+					<postalCode value="LS17 7DF"/>
+				</address>
+				<generalPractitioner>
+					<reference value="urn:uuid:59a63170-b769-44f7-acb1-95cc3a0cb067"/>
+					<display value="SHADWELL MEDICAL CENTRE"/>
+				</generalPractitioner>
+			</Patient>
+		</resource>
+	</entry>
+	<!--Entry for organisation for current GP with ODS identifier for the primary care organisation with which the patient is registered (GP Practice code)-->
+	<entry>
+		<fullUrl value="urn:uuid:59a63170-b769-44f7-acb1-95cc3a0cb067"/>
+		<resource>
+			<Organization>
+				<id value="59a63170-b769-44f7-acb1-95cc3a0cb067"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="B86056"/>
+				</identifier>
+				<name value="SHADWELL MEDICAL CENTRE"/>
+				<partOf>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/02V"/>
+					<display value="NHS LEEDS NORTH CCG"/>
+				</partOf>
+			</Organization>
+		</resource>
+	</entry>
+	<!--Entry for episode of care with reference to finished GP registration.-->
+	<entry>
+		<fullUrl value="urn:uuid:b13f45db-bd6d-48ef-bf30-3a4c0904a777"/>
+		<resource>
+			<EpisodeOfCare>
+				<id value="b13f45db-bd6d-48ef-bf30-3a4c0904a777"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-PDS-GPRegistration-EpisodeOfCare-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-PDS-SystemEffectivePeriod-1">
+					<valuePeriod>
+						<start value="2017-10-10T15:00:00+00:00"/>
+						<end value="2017-10-30T15:00:00+00:00"/>
+					</valuePeriod>
+				</extension>
+				<status value="finished"/>
+				<type>
+					<coding>
+						<system value="http://snomed.info/sct"/>
+						<code value="408443003"/>
+						<display value="General medical practice (qualifier value)"/>
+					</coding>
+				</type>
+				<patient>
+					<reference value="urn:uuid:dffd2ca0-dc21-11e7-9296-cec278b6b50a"/>
+					<display value="DAWKINS, Jack"/>
+				</patient>
+				<managingOrganization>
+					<reference value="urn:uuid:e84bfc04-2d79-451e-84ef-a50116506088"/>
+					<display value="LIVERSEDGE MEDICAL CENTRE"/>
+				</managingOrganization>
+				<period>
+					<start value="2017-10-09T15:00:00+00:00"/>
+					<end value="2017-10-29T15:00:00+00:00"/>
+				</period>
+			</EpisodeOfCare>
+		</resource>
+	</entry>
+	<!--Entry for organisation with ODS identifier of the General Practitioner or General Practice the patient was previously registered with.-->
+	<entry>
+		<fullUrl value="urn:uuid:e84bfc04-2d79-451e-84ef-a50116506088"/>
+		<resource>
+			<Organization>
+				<id value="e84bfc04-2d79-451e-84ef-a50116506088"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
+					<value value="B85612"/>
+				</identifier>
+				<name value="LIVERSEDGE MEDICAL CENTRE"/>
+				<partOf>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/03J"/>
+					<display value="NHS NORTH KIRKLEES CCG"/>
+				</partOf>
+			</Organization>
+		</resource>
+	</entry>
+</Bundle>
