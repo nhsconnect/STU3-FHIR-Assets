@@ -1,13 +1,13 @@
 <OperationDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<meta>
-		<lastUpdated value="2016-09-22T00:00:00+01:00"/>
+		<lastUpdated value="2018-10-05T00:00:00+01:00"/>
 	</meta>
 	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-PatientServiceSearch-Operation-1"/>
 	<version value="1.0.0"/>
 	<name value="eRS-PatientServiceSearch-Operation-1"/>
 	<status value="active"/>
 	<kind value="operation"/>
-	<date value="2016-09-22T00:00:00+01:00"/>
+	<date value="2018-10-05T00:00:00+01:00"/>
 	<publisher value="NHS Digital"/>
 	<contact>
 		<name value="Interoperability Team"/>
@@ -18,17 +18,25 @@
 		</telecom>
 	</contact>
 	<description value="Request to retrieve a healthcare service using patient specific details."/>
-	<code value="ers.PatientServiceSearch"/>
+	<code value="ers.patientServiceSearch"/>
 	<system value="false"/>
 	<type value="true"/>
 	<instance value="false"/>
 	<parameter>
-		<name value="patientNhsNumber"/>
+		<name value="patientNHSNumber"/>
 		<use value="in"/>
-		<min value="1"/>
+		<min value="0"/>
 		<max value="1"/>
-		<documentation value="Patient NHS number."/>
-		<type value="string"/>
+		<documentation value="Patient NHS number"/>
+		<type value="Identifier"/>
+	</parameter>
+	<parameter>
+		<name value="UBRN"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Unique Booking Reference Number"/>
+		<type value="Identifier"/>
 	</parameter>
 	<parameter>
 		<name value="requestType"/>
@@ -36,7 +44,7 @@
 		<min value="1"/>
 		<max value="1"/>
 		<documentation value="Request Type"/>
-		<type value="CodeableConcept"/>
+		<type value="code"/>
 		<binding>
 			<strength value="required"/>
 			<valueSetReference>
@@ -45,66 +53,34 @@
 		</binding>
 	</parameter>
 	<parameter>
-		<name value="priority"/>
+		<name value="referringClinicianId"/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Priority"/>
-		<type value="CodeableConcept"/>
-		<binding>
-			<strength value="required"/>
-			<valueSetReference>
-				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1"/>
-			</valueSetReference>
-		</binding>
+		<documentation value="Referring Clinician ID"/>
+		<type value="Identifier"/>
 	</parameter>
 	<parameter>
-		<name value="specialty"/>
+		<name value="SearchCriteria"/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="The service specialty."/>
-		<type value="CodeableConcept"/>
-		<binding>
-			<strength value="required"/>
-			<valueSetReference>
-				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Specialty-1"/>
-			</valueSetReference>
-		</binding>
+		<documentation value="Search criteria"/>
+		<profile>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"/>
+		</profile>
 	</parameter>
 	<parameter>
-		<name value="clinicType"/>
+		<name value="sortBy"/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Clinic Type"/>
-		<type value="CodeableConcept"/>
+		<documentation value="Sort By"/>
+		<type value="code"/>
 		<binding>
 			<strength value="required"/>
 			<valueSetReference>
-				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-ClinicType-1"/>
-			</valueSetReference>
-		</binding>
-	</parameter>
-	<parameter>
-		<name value="patientPostcode"/>
-		<use value="in"/>
-		<min value="0"/>
-		<max value="1"/>
-		<documentation value="Postcode"/>
-		<type value="string"/>
-	</parameter>
-	<parameter>
-		<name value="commissioningType"/>
-		<use value="in"/>
-		<min value="1"/>
-		<max value="1"/>
-		<documentation value="The commissioning type of the service"/>
-		<type value="CodeableConcept"/>
-		<binding>
-			<strength value="required"/>
-			<valueSetReference>
-				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-CommissioningType-1"/>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-ServiceSearch-SortBy-1"/>
 			</valueSetReference>
 		</binding>
 	</parameter>
@@ -113,10 +89,10 @@
 		<use value="out"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="The HealthcareService resource that has been returned in response to the given input parameters"/>
-		<type value="HealthcareService"/>
+		<documentation value="The List resource that has been returned in response to the given input parameters"/>
+		<type value="List"/>
 		<profile>
-			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-HealthcareService-1"/>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchServices-List-1"/>
 		</profile>
 	</parameter>
 </OperationDefinition>
