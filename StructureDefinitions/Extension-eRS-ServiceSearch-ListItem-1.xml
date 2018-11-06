@@ -140,7 +140,7 @@
     <element id="Extension.extension:distance">
       <path value="Extension.extension" />
       <sliceName value="distance" />
-      <short value="Distance between Service and Place provided. This is therefore specific to each search." />
+      <short value="Distance (in miles) between Service and Place provided. This is therefore specific to each search." />
       <definition value="Distance between Service and Place provided. This is therefore specific to each search.&#xD;&#xA;It shall be expressed in miles." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
@@ -291,9 +291,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:distance.valueQuantity:valueQuantity">
-      <path value="Extension.extension.valueQuantity" />
-      <sliceName value="valueQuantity" />
+    <element id="Extension.extension:distance.value[x]:valueUnsignedInt">
+      <path value="Extension.extension.valueUnsignedInt" />
+      <sliceName value="valueUnsignedInt" />
       <short value="Value of extension" />
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
       <comment value="A stream of bytes, base64 encoded" />
@@ -305,7 +305,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="Quantity" />
+        <code value="unsignedInt" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -327,8 +327,8 @@
     <element id="Extension.extension:unaccredited">
       <path value="Extension.extension" />
       <sliceName value="unaccredited" />
-      <short value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the Referrer and the Service." />
-      <definition value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the Referrer and the Service.&#xD;&#xA;Unless otherwise specified, Services are “accredited” by default. &#xD;&#xA;Being “unaccredited” is the exceptional case and it requires specific action on the part of the referrer.&#xD;&#xA;" />
+      <short value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the User and the Service." />
+      <definition value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the User and the Service.&#xD;&#xA;Unless otherwise specified, Services are “accredited” by default. &#xD;&#xA;Being “unaccredited” is the exceptional case and it requires specific action on the part of the user." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -515,8 +515,8 @@
     <element id="Extension.extension:restricted">
       <path value="Extension.extension" />
       <sliceName value="restricted" />
-      <short value="Search restrictions" />
-      <definition value="This field assumes a slightly different meaning in the two types of searches:&#xD;&#xA;Patient Service Search: Is the Service Restricted (=not allowed) for the user performing the search? True/false&#xD;&#xA;&#xD;&#xA;DoS Search: are there any restrictions imposed on the Service at all (for the current or for other users)? True/False&#xD;&#xA;" />
+      <short value="Indicates whether the User can refer into the Service directly." />
+      <definition value="Indicates whether the User can refer into the Service directly.&#xD;&#xA;In order to refer into a Service marked as ‘Restricted’, the User must refer the Patient into one of the Services in the ‘Authorised Pathway’, who in turn will be able to onward refer into the ‘Restricted’ Service." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -889,8 +889,8 @@
     <element id="Extension.extension:indicativeAppointmentWaitTime">
       <path value="Extension.extension" />
       <sliceName value="indicativeAppointmentWaitTime" />
-      <short value="Statistical indication of how long Patients can expect to wait for an available slot." />
-      <definition value="The Appointment wait time is calculated on the fly every time it is requested." />
+      <short value="Statistical indication of how long Patients can expect to wait (in days) for an available slot." />
+      <definition value="Statistical indication of how long Patients can expect to wait (in days) for an available slot.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The Indicative Appointment Wait is NOT_APPLICABLE for Priority = TWO_WEEK_WAIT.&#xD;&#xA;For other Priorities, where it is possible to calculate the number of days’ wait until an appointment could be available, this is expressed as the number of days.&#xD;&#xA;Otherwise, the Indicative Appointment Wait Time is LIMITED_AVAILABILITY" />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
@@ -1053,10 +1053,197 @@
         <max value="1" />
       </base>
       <type>
-        <code value="Coding" />
+        <code value="unsignedInt" />
       </type>
       <type>
-        <code value="Quantity" />
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:displayProminently">
+      <path value="Extension.extension" />
+      <sliceName value="displayProminently" />
+      <short value="Whether the service needs to be displayed in a prominent fashion" />
+      <definition value="Whether the service needs to be displayed in a prominent fashion." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:displayProminently.id">
+      <path value="Extension.extension.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:displayProminently.extension">
+      <path value="Extension.extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:displayProminently.url">
+      <path value="Extension.extension.url" />
+      <representation value="xmlAttr" />
+      <short value="identifies the meaning of the extension" />
+      <definition value="Source of the definition for the extension code - a logical name or a URL." />
+      <comment value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Extension.url" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="displayProminently" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:displayProminently.value[x]:valueBoolean">
+      <path value="Extension.extension.valueBoolean" />
+      <sliceName value="valueBoolean" />
+      <short value="Value of extension" />
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Extension.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1267,7 +1454,7 @@
     <element id="Extension.extension:distance">
       <path value="Extension.extension" />
       <sliceName value="distance" />
-      <short value="Distance between Service and Place provided. This is therefore specific to each search." />
+      <short value="Distance (in miles) between Service and Place provided. This is therefore specific to each search." />
       <definition value="Distance between Service and Place provided. This is therefore specific to each search.&#xD;&#xA;It shall be expressed in miles." />
       <max value="1" />
     </element>
@@ -1275,18 +1462,18 @@
       <path value="Extension.extension.url" />
       <fixedUri value="distance" />
     </element>
-    <element id="Extension.extension:distance.valueQuantity:valueQuantity">
-      <path value="Extension.extension.valueQuantity" />
-      <sliceName value="valueQuantity" />
+    <element id="Extension.extension:distance.value[x]:valueUnsignedInt">
+      <path value="Extension.extension.valueUnsignedInt" />
+      <sliceName value="valueUnsignedInt" />
       <type>
-        <code value="Quantity" />
+        <code value="unsignedInt" />
       </type>
     </element>
     <element id="Extension.extension:unaccredited">
       <path value="Extension.extension" />
       <sliceName value="unaccredited" />
-      <short value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the Referrer and the Service." />
-      <definition value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the Referrer and the Service.&#xD;&#xA;Unless otherwise specified, Services are “accredited” by default. &#xD;&#xA;Being “unaccredited” is the exceptional case and it requires specific action on the part of the referrer.&#xD;&#xA;" />
+      <short value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the User and the Service." />
+      <definition value="The accreditation is not an attribute of the Service, but it qualifies the relationship between the User and the Service.&#xD;&#xA;Unless otherwise specified, Services are “accredited” by default. &#xD;&#xA;Being “unaccredited” is the exceptional case and it requires specific action on the part of the user." />
       <min value="1" />
       <max value="1" />
     </element>
@@ -1305,8 +1492,8 @@
     <element id="Extension.extension:restricted">
       <path value="Extension.extension" />
       <sliceName value="restricted" />
-      <short value="Search restrictions" />
-      <definition value="This field assumes a slightly different meaning in the two types of searches:&#xD;&#xA;Patient Service Search: Is the Service Restricted (=not allowed) for the user performing the search? True/false&#xD;&#xA;&#xD;&#xA;DoS Search: are there any restrictions imposed on the Service at all (for the current or for other users)? True/False&#xD;&#xA;" />
+      <short value="Indicates whether the User can refer into the Service directly." />
+      <definition value="Indicates whether the User can refer into the Service directly.&#xD;&#xA;In order to refer into a Service marked as ‘Restricted’, the User must refer the Patient into one of the Services in the ‘Authorised Pathway’, who in turn will be able to onward refer into the ‘Restricted’ Service." />
       <min value="1" />
       <max value="1" />
     </element>
@@ -1341,8 +1528,8 @@
     <element id="Extension.extension:indicativeAppointmentWaitTime">
       <path value="Extension.extension" />
       <sliceName value="indicativeAppointmentWaitTime" />
-      <short value="Statistical indication of how long Patients can expect to wait for an available slot." />
-      <definition value="The Appointment wait time is calculated on the fly every time it is requested." />
+      <short value="Statistical indication of how long Patients can expect to wait (in days) for an available slot." />
+      <definition value="Statistical indication of how long Patients can expect to wait (in days) for an available slot.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;The Indicative Appointment Wait is NOT_APPLICABLE for Priority = TWO_WEEK_WAIT.&#xD;&#xA;For other Priorities, where it is possible to calculate the number of days’ wait until an appointment could be available, this is expressed as the number of days.&#xD;&#xA;Otherwise, the Indicative Appointment Wait Time is LIMITED_AVAILABILITY" />
       <min value="1" />
       <max value="1" />
     </element>
@@ -1353,10 +1540,29 @@
     <element id="Extension.extension:indicativeAppointmentWaitTime.value[x]">
       <path value="Extension.extension.value[x]" />
       <type>
-        <code value="Coding" />
+        <code value="unsignedInt" />
       </type>
       <type>
-        <code value="Quantity" />
+        <code value="Coding" />
+      </type>
+    </element>
+    <element id="Extension.extension:displayProminently">
+      <path value="Extension.extension" />
+      <sliceName value="displayProminently" />
+      <short value="Whether the service needs to be displayed in a prominent fashion" />
+      <definition value="Whether the service needs to be displayed in a prominent fashion." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:displayProminently.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="displayProminently" />
+    </element>
+    <element id="Extension.extension:displayProminently.value[x]:valueBoolean">
+      <path value="Extension.extension.valueBoolean" />
+      <sliceName value="valueBoolean" />
+      <type>
+        <code value="boolean" />
       </type>
     </element>
     <element id="Extension.url">
