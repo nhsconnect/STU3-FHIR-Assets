@@ -294,7 +294,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:patient.value[x]:valueReference">
+    <element id="Extension.extension:patient.valueReference:valueReference">
       <path value="Extension.extension.valueReference" />
       <sliceName value="valueReference" />
       <short value="Value of extension" />
@@ -676,7 +676,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:priority.value[x]:valueCodeableConcept">
+    <element id="Extension.extension:priority.valueCodeableConcept:valueCodeableConcept">
       <path value="Extension.extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
       <short value="Value of extension" />
@@ -1191,7 +1191,7 @@
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Element.extension" />
@@ -1711,7 +1711,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:clinicalInfoLastUpdated.value[x]:valueDateTime">
+    <element id="Extension.extension:clinicalInfoLastUpdated.valueDateTime:valueDateTime">
       <path value="Extension.extension.valueDateTime" />
       <sliceName value="valueDateTime" />
       <short value="Value of extension" />
@@ -2088,11 +2088,11 @@
     <element id="Extension.extension:allocatedClinician.valueReference:valueReference">
       <path value="Extension.extension.valueReference" />
       <sliceName value="valueReference" />
-      <short value="A person with a  formal responsibility in the provisioning of healthcare or related services" />
-      <definition value="A person who is directly or indirectly involved in the provisioning of healthcare." />
-      <comment value="Note that a cab driver no longer fits the bill. You probably would be interested in the organization rather than the individual?" />
+      <short value="Value of extension" />
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+      <comment value="A stream of bytes, base64 encoded" />
       <min value="0" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Extension.value[x]" />
         <min value="0" />
@@ -2110,34 +2110,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <constraint>
-        <key value="dom-2" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
-        <expression value="contained.contained.empty()" />
-        <xpath value="not(parent::f:contained and f:contained)" />
-      </constraint>
-      <constraint>
-        <key value="dom-1" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
-        <expression value="contained.text.empty()" />
-        <xpath value="not(parent::f:contained and f:text)" />
-      </constraint>
-      <constraint>
-        <key value="dom-4" />
-        <severity value="error" />
-        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
-        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
-        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
-      </constraint>
-      <constraint>
-        <key value="dom-3" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
-        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
-        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
-      </constraint>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -2145,26 +2117,6 @@
       <mapping>
         <identity value="rim" />
         <map value="N/A" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="Entity. Role, or Act" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="PRD (as one example)" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="Role" />
-      </mapping>
-      <mapping>
-        <identity value="servd" />
-        <map value="Provider" />
-      </mapping>
-      <mapping>
-        <identity value="w5" />
-        <map value="administrative.individual" />
       </mapping>
     </element>
     <element id="Extension.extension:requestContextStatus">
@@ -2175,7 +2127,7 @@
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
       <alias value="user content" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Element.extension" />
@@ -3191,7 +3143,6 @@
       <path value="Extension.extension" />
       <sliceName value="appointmentStart" />
       <short value="Appointment start date and time" />
-      <min value="1" />
       <max value="1" />
     </element>
     <element id="Extension.extension:appointmentStart.url">
@@ -3233,7 +3184,7 @@
       <path value="Extension.extension.url" />
       <fixedUri value="clinicalInfoLastUpdated" />
     </element>
-    <element id="Extension.extension:clinicalInfoLastUpdated.value[x]:valueDateTime">
+    <element id="Extension.extension:clinicalInfoLastUpdated.valueDateTime:valueDateTime">
       <path value="Extension.extension.valueDateTime" />
       <sliceName value="valueDateTime" />
       <type>
@@ -3281,6 +3232,7 @@
       <path value="Extension.extension" />
       <sliceName value="requestContextStatus" />
       <short value="Request context status" />
+      <min value="1" />
       <max value="1" />
     </element>
     <element id="Extension.extension:requestContextStatus.url">

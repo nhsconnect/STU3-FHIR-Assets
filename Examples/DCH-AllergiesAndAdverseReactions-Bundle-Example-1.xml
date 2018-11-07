@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
 <Bundle xmlns="http://hl7.org/fhir">
 	<id value="37c05c52-b929-43fa-83fc-f7630af95cd6"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
-		<entry>
+	<entry>
 		<fullUrl value="urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f"/>
 		<resource>
 			<MessageHeader>
@@ -28,9 +27,12 @@
 					<code value="CH003"/>
 					<display value="Allergies and Adverse Reactions"/>
 				</event>
+				<destination>
+					<endpoint value="urn:nhs:addressing:asid:477121000325"/>
+				</destination>	
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+					<endpoint value="urn:nhs:addressing:asid:300000000161"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
@@ -42,15 +44,14 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	
-	<!--Responsible for message content (Birth)-->
+	<!--Responsible for message content-->
 	<entry>
 		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
 				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
@@ -66,7 +67,7 @@
 			</Organization>
 		</resource>
 	</entry>
-<!--Healthcare service used e.g GP, trust, etc..-->
+	<!--Healthcare service used e.g GP, trust, etc..-->
 	<entry>
 		<fullUrl value="urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca"/>
 		<resource>
@@ -75,32 +76,28 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
-				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 					<display value="UNIVERSITY HOSPITAL OF DURHAM "/>
 				</providedBy>
 				<type>
 					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="N33"/>
-						<display value="Other Registered Nurse"/>
+						<system value="http://snomed.info/sct"/>
+						<code value="708170008"/>
+						<display value="Nursing service"/>
 					</coding>
 				</type>
 				<location>
 					<reference value="urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
 				</location>
 				<telecom>
-				<system value="phone"/>
+					<system value="phone"/>
 					<value value="0191 1231234"/>
 				</telecom>
 			</HealthcareService>
 		</resource>
 	</entry>
-<!--Child Details (Jack Dawkins)-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -110,27 +107,24 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"/>
 				</meta>
 				<identifier>
-						<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
-							<valueCodeableConcept>
-								<coding>
-									<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
-									<code value="01"/>
-									<display value="Number present and verified"/>
-								</coding>
-							</valueCodeableConcept>
-						</extension>
-						<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-						<value value="9912003888"/>
-				</identifier>				
+					<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="9912003888"/>
+				</identifier>
 				<name>
 					<use value="official"/>
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
-					<period>
-						<start value="2014-10-12"/>
-					</period>
 				</name>
-				
+				<gender value="male"/>
 				<birthDate value="2013-10-12">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
@@ -145,63 +139,57 @@
 			</Patient>
 		</resource>
 	</entry>
-<!--Allergy or Adverse Reaction-->
+	<!--Allergy or Adverse Reaction-->
 	<entry>
 		<fullUrl value="urn:uuid:89433cac-6226-428d-99c1-988cd8f31a18"/>
 		<resource>
 			<AllergyIntolerance>
-			<id value="89433cac-6226-428d-99c1-988cd8f31a18"/>
-			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
-			</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
-				</identifier>				
+				<id value="89433cac-6226-428d-99c1-988cd8f31a18"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
+				</meta>
+				<clinicalStatus value="active"/>
 				<verificationStatus value="confirmed"/>
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
 						<code value="373270004"/>
 						<display value="Penicillin -class of antibiotic- (substance)"/>
-						</coding>
+					</coding>
 				</code>
 				<patient>
-					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 				</patient>
 				<assertedDate value="2018-01-29"/>
 			</AllergyIntolerance>
 		</resource>
 	</entry>
-<!--Allergy or Adverse Reaction-->
+	<!--Allergy or Adverse Reaction-->
 	<entry>
 		<fullUrl value="urn:uuid:fd44604e-eea1-4a9f-9b29-4606f8b5cbd5"/>
 		<resource>
 			<AllergyIntolerance>
-			<id value="fd44604e-eea1-4a9f-9b29-4606f8b5cbd5"/>
-			<meta>
-				<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
-			</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
-				</identifier>				
+				<id value="fd44604e-eea1-4a9f-9b29-4606f8b5cbd5"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"/>
+				</meta>
+				<clinicalStatus value="active"/>
 				<verificationStatus value="confirmed"/>
 				<code>
 					<coding>
 						<system value="http://snomed.info/sct"/>
 						<code value="373270004"/>
 						<display value="Penicillin -class of antibiotic- (substance)"/>
-						</coding>
+					</coding>
 				</code>
 				<patient>
-					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 				</patient>
 				<assertedDate value="2018-01-29"/>
 			</AllergyIntolerance>
 		</resource>
 	</entry>
-<!--Encounter details-->
+	<!--Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"/>
 		<resource>
@@ -210,13 +198,9 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="af71a415-ae02-4159-914b-8b78c499fb1d"/>
-				</identifier>
 				<status value="finished"/>
 				<subject>
-					<reference value="urn:uuid:c7e2ab89-4e20-4921-84b3-9d59fb6c1f79"/>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<period>
@@ -233,14 +217,14 @@
 			</Encounter>
 		</resource>
 	</entry>
-<!--Location where event took place-->
+	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
 		<resource>
 			<Location>
 				<id value="9fb9d531-84dd-421e-8f4a-a309d9ff7890"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>

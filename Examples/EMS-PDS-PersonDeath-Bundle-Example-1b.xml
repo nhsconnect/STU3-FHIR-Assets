@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+	<meta>
+		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Bundle-1"/>
+	</meta>
+	<type value="message"/>
+	<!--Entry for MessageHeader with id, timestamp, event type, source, responsible/publishing organization, communication-->
+	<entry>
+		<fullUrl value="urn:uuid:54cbe7a2-0a13-4f22-a073-f15aa7b8b5a5"/>
+		<resource>
+			<MessageHeader>
+				<id value="54cbe7a2-0a13-4f22-a073-f15aa7b8b5a5"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-MessageHeader-1"/>
+				</meta>
+				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EMS-MessageEventType-1">
+					<valueCodeableConcept>
+						<coding>
+							<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-MessageEventType-1"/>
+							<code value="new"/>
+							<display value="New event message"/>
+						</coding>
+					</valueCodeableConcept>
+				</extension>
+				<event>
+					<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-EventType-1"/>
+					<code value="PDS004"/>
+					<display value="PDS Person Death"/>
+				</event>
+				<timestamp value="2017-11-02T15:00:00+00:00"/>
+				<source>
+					<endpoint value="urn:nhs:addressing:asid:477121000323"/>
+				</source>
+				<responsible>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
+					<display value="NHS DIGITAL"/>
+				</responsible>
+				<focus>
+					<reference value="urn:uuid:7b0c74a0-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+				</focus>
+			</MessageHeader>
+		</resource>
+	</entry>
+	<!--Entry for service type within the Organization i.e. PDS-->
+	<entry>
+		<fullUrl value="urn:uuid:7b0c75e0-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+		<resource>
+			<HealthcareService>
+				<id value="7b0c75e0-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-HealthcareService-1"/>
+				</meta>
+				<providedBy>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
+					<display value="NHS DIGITAL"/>
+				</providedBy>
+				<type>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/EMS-HealthcareServiceType-1"/>
+						<code value="PDS"/>
+						<display value="Personal Demographics Service"/>
+					</coding>
+				</type>
+			</HealthcareService>
+		</resource>
+	</entry>
+	<!--Entry for communication for the event message, with reference to subject and payload-->
+	<entry>
+		<fullUrl value="urn:uuid:7b0c74a0-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+		<resource>
+			<Communication>
+				<id value="7b0c74a0-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-Communication-1"/>
+				</meta>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:7b0c7720-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+					<display value="JONES, Jack"/>
+				</subject>
+				<sent value="2017-11-02T00:00:00+00:00"/>
+				<payload>
+				<contentReference>
+						<reference value="urn:uuid:7b0c7720-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+						<display value="JONES, Jack"/>
+					</contentReference>
+				</payload>
+			</Communication>
+		</resource>
+	</entry>
+	<!--Entry for Patient-->
+	<entry>
+		<fullUrl value="urn:uuid:7b0c7720-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+		<resource>
+			<Patient>
+				<id value="7b0c7720-d1ed-11e8-a8d5-f2801f1b9fd1"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"/>
+				</meta>
+				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-DeathNotificationStatus-1">
+					<extension url="deathNotificationStatus">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-DeathNotificationStatus-1"/>
+								<code value="1"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<extension url="systemEffectiveDate">
+						<valueDateTime value="2017-11-02T00:00:00+00:00"/>
+					</extension>
+				</extension>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+								<display value="Number present and verified"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="6101231234"/>
+				</identifier>
+				<name>
+					<use value="official"/>
+					<family value="JONES"/>
+					<given value="Jack"/>
+				</name>
+				<gender value="male"/>
+				<deceasedDateTime value="2017-11-01T15:00:00+00:00"/>
+				<address>
+					<use value="home"/>
+					<line value="4 Sandmoor Drive"/>
+					<city value="LEEDS"/>
+					<postalCode value="LS17 7DF"/>
+				</address>
+			</Patient>
+		</resource>
+	</entry>
+</Bundle>

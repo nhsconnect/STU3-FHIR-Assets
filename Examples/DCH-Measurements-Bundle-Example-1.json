@@ -1,9 +1,6 @@
 {
   "resourceType": "Bundle",
   "id": "06c3a224-4883-11e8-842f-0ed5f89f718b",
-  "fhir_comments": [
-    "This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence"
-  ],
   "meta": {
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"
@@ -15,6 +12,7 @@
       "fullUrl": "urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
       "resource": {
         "resourceType": "MessageHeader",
+        "id": "9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -39,9 +37,14 @@
           "code": "CH018",
           "display": "Measurements"
         },
+        "destination": [
+          {
+            "endpoint": "urn:nhs:addressing:asid:477121000325"
+          }
+        ],
         "timestamp": "2017-11-01T15:00:00+00:00",
         "source": {
-          "endpoint": "urn:nhs-uk:addressing:ods:RX3EP"
+          "endpoint": "urn:nhs:addressing:asid:300000000161"
         },
         "responsible": {
           "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
@@ -55,15 +58,13 @@
       }
     },
     {
-      "fhir_comments": [
-        "Responsible for message content (Birth)"
-      ],
       "fullUrl": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
       "resource": {
         "resourceType": "Organization",
+        "id": "33a33b58-648a-4453-b981-e21ea9ebc6ea",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
           ]
         },
         "identifier": [
@@ -86,23 +87,15 @@
       }
     },
     {
-      "fhir_comments": [
-        "Healthcare service used e.g GP, trust, etc.."
-      ],
       "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
+        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
           ]
         },
-        "identifier": [
-          {
-            "system": "urn:ietf:rfc:3986",
-            "value": "2db9a96b-393f-4817-868f-3e064296f1f9"
-          }
-        ],
         "providedBy": {
           "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
           "display": "UNIVERSITY HOSPITAL OF DURHAM"
@@ -111,9 +104,9 @@
           {
             "coding": [
               {
-                "system": "https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1",
-                "code": "M03",
-                "display": "General Medical Practitioner"
+                "system": "http://snomed.info/sct",
+                "code": "1060971000000108",
+                "display": "General practice service"
               }
             ]
           }
@@ -132,12 +125,10 @@
       }
     },
     {
-      "fhir_comments": [
-        "Child Details (Jack Dawkins)"
-      ],
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
+        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
@@ -169,12 +160,10 @@
             "family": "DAWKINS",
             "given": [
               "Jack"
-            ],
-            "period": {
-              "start": "2014-10-12"
-            }
+            ]
           }
         ],
+        "gender": "male",
         "birthDate": "2013-10-12",
         "_birthDate": {
           "extension": [
@@ -197,26 +186,32 @@
       }
     },
     {
-      "fhir_comments": [
-        "Measurements Birth Weight Observation"
-      ],
       "fullUrl": "urn:uuid:095c5818-4984-48a2-a47f-230b75c93936",
       "resource": {
         "resourceType": "Observation",
+        "id": "095c5818-4984-48a2-a47f-230b75c93936",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-BirthWeight-Observation-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Weight-Observation-1"
           ]
         },
-        "identifier": [
+        "status": "final",
+        "category": [
           {
-            "system": "urn:ietf:rfc:3986",
-            "value": "c21b95a9-4fd9-4328-9876-a8b4102b28ee"
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs"
+              }
+            ]
           }
         ],
-        "status": "final",
         "code": {
           "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7"
+            },
             {
               "system": "http://snomed.info/sct",
               "code": "364589006",
@@ -244,23 +239,15 @@
       }
     },
     {
-      "fhir_comments": [
-        "Measurements Encounter details"
-      ],
       "fullUrl": "urn:uuid:a3bec8bd-56af-4ca9-9eb9-889f3f9adecb",
       "resource": {
         "resourceType": "Encounter",
+        "id": "a3bec8bd-56af-4ca9-9eb9-889f3f9adecb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
           ]
         },
-        "identifier": [
-          {
-            "system": "urn:ietf:rfc:3986",
-            "value": "0f9aeaeb-97e3-4939-92af-169e31aebb49"
-          }
-        ],
         "status": "finished",
         "type": [
           {
@@ -295,12 +282,10 @@
       }
     },
     {
-      "fhir_comments": [
-        "Practitioner"
-      ],
       "fullUrl": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
       "resource": {
         "resourceType": "Practitioner",
+        "id": "1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"
@@ -326,12 +311,10 @@
       }
     },
     {
-      "fhir_comments": [
-        "Practitioner Role"
-      ],
       "fullUrl": "urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922",
       "resource": {
         "resourceType": "PractitionerRole",
+        "id": "b7e3cc3a-9120-49fe-801c-2793b80ca922",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"
@@ -352,15 +335,13 @@
       }
     },
     {
-      "fhir_comments": [
-        "Location where event took place"
-      ],
       "fullUrl": "urn:uuid:c30f1fdd-0247-4e38-ba12-0d26c5555ea3",
       "resource": {
         "resourceType": "Location",
+        "id": "c30f1fdd-0247-4e38-ba12-0d26c5555ea3",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"
+            "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"
           ]
         },
         "identifier": [

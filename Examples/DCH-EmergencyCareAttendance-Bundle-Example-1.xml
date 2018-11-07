@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
 <Bundle xmlns="http://hl7.org/fhir">
 	<id value="66aa4a36-4882-11e8-842f-0ed5f89f718b"/>
 	<meta>
@@ -28,9 +27,12 @@
 					<code value="CH011"/>
 					<display value="Emergency Care Attendance"/>
 				</event>
+				<destination>
+					<endpoint value="urn:nhs:addressing:asid:477121000325"/>
+				</destination>	
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:RX3EP"/>
+					<endpoint value="urn:nhs:addressing:asid:300000000161"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
@@ -42,14 +44,14 @@
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible for message content (Birth)-->
+	<!--Responsible for message content-->
 	<entry>
 		<fullUrl value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 		<resource>
 			<Organization>
 				<id value="33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Organization-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
@@ -74,19 +76,15 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="2db9a96b-393f-4817-868f-3e064296f1f9"/>
-				</identifier>
 				<providedBy>
 					<reference value="urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"/>
 					<display value="UNIVERSITY HOSPITAL OF NORTH DURHAM"/>
 				</providedBy>
 				<type>
 					<coding>
-						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-						<code value="M02"/>
-						<display value="Consultant"/>
+						<system value="http://snomed.info/sct"/>
+						<code value="310000008"/>
+						<display value="Accident and Emergency service"/>
 					</coding>
 				</type>
 				<location>
@@ -99,7 +97,7 @@
 			</HealthcareService>
 		</resource>
 	</entry>
-<!--Child Details (Jack Dawkins)-->
+	<!--Child Details (Jack Dawkins)-->
 	<entry>
 		<fullUrl value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
 		<resource>
@@ -125,10 +123,8 @@
 					<use value="official"/>
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
-					<period>
-						<start value="2014-10-12"/>
-					</period>
 				</name>
+				<gender value="male"/>
 				<birthDate value="2013-10-12">
 					<extension url="http://hl7.org/fhir/StructureDefinition/patient-birthTime">
 						<valueDateTime value="2017-10-02T12:00:00+00:00"/>
@@ -143,7 +139,7 @@
 			</Patient>
 		</resource>
 	</entry>
-<!--Emergency Care Investigation Procedure-->
+	<!--Emergency Care Investigation Procedure-->
 	<entry>
 		<fullUrl value="urn:uuid:1221e99b-7099-4313-b808-ec8a02687710"/>
 		<resource>
@@ -151,10 +147,6 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-EmergencyCare-Procedure-1"/>
 				</meta>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="1221e99b-7099-4313-b808-ec8a02687710"/>
-				</identifier>
 				<status value="completed"/>
 				<code>
 					<coding>
@@ -172,7 +164,7 @@
 			</Procedure>
 		</resource>
 	</entry>
-<!-- Emergency Encounter details-->
+	<!-- Emergency Encounter details-->
 	<entry>
 		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
 		<resource>
@@ -190,10 +182,6 @@
 						</coding>
 					</valueCodeableConcept>
 				</extension>
-				<identifier>
-					<system value="urn:ietf:rfc:3986"/>
-					<value value="a8ca9fe6-72aa-11e7-8cf7-a6006ad3dba0"/>
-				</identifier>
 				<status value="finished"/>
 				<subject>
 					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
@@ -232,7 +220,7 @@
 			</Encounter>
 		</resource>
 	</entry>
-<!-- Accompanied Person-->
+	<!-- Accompanied Person-->
 	<entry>
 		<resource>
 			<RelatedPerson>
@@ -262,14 +250,14 @@
 			</RelatedPerson>
 		</resource>
 	</entry>
-<!--Location where event took place-->
+	<!--Location where event took place-->
 	<entry>
 		<fullUrl value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 		<resource>
 			<Location>
 				<id value="e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Location-1"/>
+					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>

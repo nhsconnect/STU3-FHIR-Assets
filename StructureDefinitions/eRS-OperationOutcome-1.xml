@@ -4,7 +4,7 @@
     <lastUpdated value="2018-03-07T10:55:35.077+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-OperationOutcome-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="eRS-OperationOutcome-1" />
   <status value="draft" />
   <date value="2018-02-28T11:57:35.745+00:00" />
@@ -496,6 +496,92 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="OperationOutcome.issue.extension:elementName">
+      <path value="OperationOutcome.issue.extension" />
+      <sliceName value="elementName" />
+      <short value="The name of the parameter at fault" />
+      <definition value="The name of the parameter at fault." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-OperationOutcomeElementName-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="OperationOutcome.issue.extension:elementValue">
+      <path value="OperationOutcome.issue.extension" />
+      <sliceName value="elementValue" />
+      <short value="The value of the parameter at fault" />
+      <definition value="The value of the parameter at fault." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-OperationOutcomeElementValue-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="OperationOutcome.issue.modifierExtension">
       <path value="OperationOutcome.issue.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
@@ -922,7 +1008,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-APIErrorCode-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -1058,10 +1144,6 @@
       <example>
         <label value="NHS Digital" />
         <valueString value="Invalid value" />
-      </example>
-      <example>
-        <label value="dd" />
-        <valueString value="MISSING_VALUE" />
       </example>
       <condition value="ele-1" />
       <constraint>
@@ -1291,6 +1373,38 @@
     </element>
   </snapshot>
   <differential>
+    <element id="OperationOutcome.issue.extension">
+      <path value="OperationOutcome.issue.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="OperationOutcome.issue.extension:elementName">
+      <path value="OperationOutcome.issue.extension" />
+      <sliceName value="elementName" />
+      <short value="The name of the parameter at fault" />
+      <definition value="The name of the parameter at fault." />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-OperationOutcomeElementName-1" />
+      </type>
+    </element>
+    <element id="OperationOutcome.issue.extension:elementValue">
+      <path value="OperationOutcome.issue.extension" />
+      <sliceName value="elementValue" />
+      <short value="The value of the parameter at fault" />
+      <definition value="The value of the parameter at fault." />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-OperationOutcomeElementValue-1" />
+      </type>
+    </element>
     <element id="OperationOutcome.issue.details">
       <path value="OperationOutcome.issue.details" />
       <short value="eRS Error Code" />
@@ -1314,7 +1428,7 @@
       <path value="OperationOutcome.issue.details.coding.system" />
       <short value="eRS Error Codes" />
       <min value="1" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-APIErrorCode-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/eRS-APIErrorCode-1" />
     </element>
     <element id="OperationOutcome.issue.details.coding.version">
       <path value="OperationOutcome.issue.details.coding.version" />
@@ -1337,10 +1451,6 @@
       <example>
         <label value="NHS Digital" />
         <valueString value="Invalid value" />
-      </example>
-      <example>
-        <label value="dd" />
-        <valueString value="MISSING_VALUE" />
       </example>
     </element>
     <element id="OperationOutcome.issue.details.coding.userSelected">

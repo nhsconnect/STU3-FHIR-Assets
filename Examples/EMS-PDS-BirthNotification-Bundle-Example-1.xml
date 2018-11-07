@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--This example message is provided for illustrative purposes only. It has had no clinical validation. Where there are conflicts with the written message specification or schema, the specification or schema shall be considered to take precedence-->
 <Bundle xmlns="http://hl7.org/fhir">
 	<id value="85b9d933-b3e2-41a7-a8f2-f5ee7be4ee82"/>
 	<meta>
@@ -31,7 +30,7 @@
 				</event>
 				<timestamp value="2017-10-02T20:20:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:X26"/>
+					<endpoint value="urn:nhs:addressing:asid:477121000323"/>
 				</source>
 				<responsible>
 					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/X26"/>
@@ -75,20 +74,88 @@
 				</meta>
 				<status value="completed"/>
 				<subject>
-					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-					<display value="DAWKINS, Jack"/>
+						<reference value="urn:uuid:70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
+						<display value="DAWKINS, Sally"/>
 				</subject>
 				<sent value="2018-02-01"/>
 				<payload>
 					<contentReference>
-						<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
-						<display value="DAWKINS, Jack"/>
+						<reference value="urn:uuid:70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
+						<display value="DAWKINS, Sally"/>
 					</contentReference>
 				</payload>
 			</Communication>
 		</resource>
 	</entry>
-	<!--Entry for communication for the Patient as subject of Birth Notification.-->
+	<!--Entry for the Mother of Patient.-->
+	<entry>
+		<fullUrl value="urn:uuid:70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
+		<resource>
+			<Patient>
+				<id value="70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-Patient-1"/>
+				</meta>
+				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-RegistrationDetails-1">
+					<extension url="registrationPeriod">
+						<valuePeriod>
+							<start value="2017-10-02T20:20:00+00:00"/>
+						</valuePeriod>
+					</extension>
+				</extension>
+				<identifier>
+					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
+						<valueCodeableConcept>
+							<coding>
+								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
+								<code value="01"/>
+							</coding>
+						</valueCodeableConcept>
+					</extension>
+					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
+					<value value="1112223330"/>
+				</identifier>
+				<name>
+					<use value="official"/>
+					<family value="DAWKINS"/>
+					<given value="Sally"/>
+				</name>
+				<birthDate value="1987-10-02"/>
+				<generalPractitioner>
+					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/B86056"/>
+					<display value="SHADWELL MEDICAL CENTRE"/>
+				</generalPractitioner>
+				<link>
+					<other>
+						<reference value="urn:uuid:d93aeee8-91bf-4da5-8658-ce86cfee4751"/>
+					</other>
+					<type value="seealso"/>
+				</link>
+			</Patient>
+		</resource>
+	</entry>
+	<!--Entry for RelatedPerson relationship between mother and baby.-->
+	<entry>
+		<fullUrl value="urn:uuid:d93aeee8-91bf-4da5-8658-ce86cfee4751"/>
+		<resource>
+			<RelatedPerson>
+				<id value="d93aeee8-91bf-4da5-8658-ce86cfee4751"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/EMS-PDS-RelatedPerson-1"/>
+				</meta>
+				<patient>
+					<reference value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
+				</patient>
+				<relationship>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/PersonRelationshipType-1"/>
+						<code value="12"/>
+					</coding>
+				</relationship>
+			</RelatedPerson>
+		</resource>
+	</entry>
+	<!--Entry for the Baby.-->
 	<entry>
 		<fullUrl value="urn:uuid:dffd3330-dc21-11e7-9296-cec278b6b50a"/>
 		<resource>
@@ -97,6 +164,13 @@
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-PDS-Baby-Patient-1"/>
 				</meta>
+				<extension url="http://hl7.org/fhir/StructureDefinition/birthPlace">
+					<valueAddress>
+						<city value="LEEDS"/>
+						<district value="WEST YORKSHIRE"/>
+						<country value="ENGLAND"/>
+					</valueAddress>
+				</extension>
 				<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-EthnicCategory-1">
 					<valueCodeableConcept>
 						<coding>
@@ -112,7 +186,6 @@
 							<coding>
 								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
 								<code value="01"/>
-								<display value="Number present and verified"/>
 							</coding>
 						</valueCodeableConcept>
 					</extension>
@@ -120,12 +193,10 @@
 					<value value="9912003888"/>
 				</identifier>
 				<name>
-					<use value="usual"/>
+					<use value="official"/>
 					<family value="DAWKINS"/>
 					<given value="Jack"/>
-					<period>
-						<start value="2017-10-02"/>
-					</period>
+					<prefix value="Master"/>
 				</name>
 				<gender value="male"/>
 				<birthDate value="2017-10-02">
@@ -134,9 +205,8 @@
 					</extension>
 				</birthDate>
 				<address>
-					<use value="home"/>
 					<line value="4 Sandmoor Drive"/>
-					<city value="LEEDS"/>
+					<line value="LEEDS"/>
 					<postalCode value="LS17 7DF"/>
 				</address>
 				<multipleBirthInteger value="1"/>
@@ -175,47 +245,6 @@
 			</Organization>
 		</resource>
 	</entry>
-	<!--Entry for the Mother of Patient.-->
-	<entry>
-		<fullUrl value="urn:uuid:70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
-		<resource>
-			<Patient>
-				<id value="70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-PDS-Mother-Patient-1"/>
-				</meta>
-				<identifier>
-					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1">
-						<valueCodeableConcept>
-							<coding>
-								<system value="https://fhir.hl7.org.uk/STU3/CareConnect-NHSNumberVerificationStatus-1"/>
-								<code value="01"/>
-								<display value="Number present and verified"/>
-							</coding>
-						</valueCodeableConcept>
-					</extension>
-					<extension url="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-RegistrationDetails-1">
-						<extension url="registrationPeriod">
-							<valuePeriod>
-								<start value="2017-10-02T20:20:00+00:00"/>
-							</valuePeriod>
-						</extension>
-					</extension>
-					<system value="https://fhir.nhs.uk/Id/nhs-number"/>
-					<value value="1112223330"/>
-				</identifier>
-				<name>
-					<use value="usual"/>
-					<family value="DAWKINS"/>
-					<given value="Sally"/>
-				</name>
-				<birthDate value="1987-10-02"/>
-				<generalPractitioner>
-					<reference value="https://directory.spineservices.nhs.uk/STU3/Organization/B86056"/>
-				</generalPractitioner>
-			</Patient>
-		</resource>
-	</entry>
 	<!--Entry for birth weight observation.-->
 	<entry>
 		<fullUrl value="urn:uuid:cf2cb0ba-5a8c-47bc-848b-7f15922e7bb3"/>
@@ -226,7 +255,17 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-EMS-PDS-BirthWeight-Observation-1"/>
 				</meta>
 				<status value="final"/>
+				<category>
+					<coding>
+						<system value="http://hl7.org/fhir/observation-category"/>
+						<code value="vital-signs"/>
+					</coding>
+				</category>
 				<code>
+					<coding>
+						<system value="http://loinc.org"/>
+						<code value="29463-7"/>
+					</coding>
 					<coding>
 						<system value="http://snomed.info/sct"/>
 						<code value="364589006"/>
@@ -238,10 +277,10 @@
 					<display value="DAWKINS, Jack"/>
 				</subject>
 				<valueQuantity>
-					<value value="3.98"/>
-					<unit value="kilogram"/>
+					<value value="3980"/>
+					<unit value="gram"/>
 					<system value="http://unitsofmeasure.org"/>
-					<code value="kg"/>
+					<code value="g"/>
 				</valueQuantity>
 			</Observation>
 		</resource>
@@ -294,7 +333,7 @@
 					</coding>
 				</code>
 				<subject>
-					<reference value="urn:uuid:44120b4d-482e-4310-881c-5a22267763fb"/>
+					<reference value="urn:uuid:70e10b4b-9296-4cc7-816f-97b6fa676a04"/>
 					<display value="DAWKINS, SALLY"/>
 				</subject>
 				<valueQuantity>
@@ -382,6 +421,7 @@
 						<code value="4"/>
 					</coding>
 				</type>
+				<name value="CLARENDON WING, LEEDS GENERAL INFIRMARY"/>
 			</Organization>
 		</resource>
 	</entry>
@@ -395,7 +435,6 @@
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1"/>
 				</meta>
 				<name>
-					<use value="official"/>
 					<family value="JONES"/>
 					<given value="JANE"/>
 				</name>
