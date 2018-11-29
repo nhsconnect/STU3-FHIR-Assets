@@ -20,7 +20,7 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="The Patient resource represents the patient involved in the provision of healthcare related services, with further constraints applied to represent the patient as the subject of an event message." />
+  <description value="The Patient resource represents the patient involved in the provision of healthcare related services, with further constraints applied to represent the patient as the subject of an event message. " />
   <copyright value="Copyright © 2018 NHS Digital" />
   <fhirVersion value="3.0.0" />
   <kind value="resource" />
@@ -8809,7 +8809,7 @@
       <short value="phone | fax | email | pager | url | sms | other" />
       <definition value="Telecommunications form for contact point - what communications system is required to make use of the contact." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="ContactPoint.system" />
@@ -8836,7 +8836,7 @@
         <strength value="required" />
         <description value="Telecommunications form for contact point" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/contact-point-system" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-ContactPointSystem-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -8862,7 +8862,7 @@
       <definition value="The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)." />
       <comment value="Additional text data such as phone extension numbers, or notes about use of the contact are sometimes included in the value." />
       <requirements value="Need to support legacy numbers that are not in a tightly controlled format." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="ContactPoint.value" />
@@ -8931,7 +8931,7 @@
         <strength value="required" />
         <description value="Use of contact point" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/contact-point-use" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-ContactPointUse-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -9806,7 +9806,7 @@
         <strength value="required" />
         <description value="The use of an address" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/address-use" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-AddressUse-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -18370,11 +18370,27 @@
     </element>
     <element id="Patient.telecom.system">
       <path value="Patient.telecom.system" />
-      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointSystem" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-ContactPointSystem-1" />
+        </valueSetReference>
+      </binding>
     </element>
-    <element id="Patient.telecom.value">
-      <path value="Patient.telecom.value" />
-      <min value="1" />
+    <element id="Patient.telecom.use">
+      <path value="Patient.telecom.use" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="ContactPointUse" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-ContactPointUse-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Patient.gender">
       <path value="Patient.gender" />
@@ -18416,6 +18432,18 @@
     <element id="Patient.birthDate.extension:patient-birthTime.valueDateTime:valueDateTime">
       <path value="Patient.birthDate.extension.valueDateTime" />
       <sliceName value="valueDateTime" />
+    </element>
+    <element id="Patient.address.use">
+      <path value="Patient.address.use" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="AddressUse" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EMS-AddressUse-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="Patient.address.text">
       <path value="Patient.address.text" />
