@@ -346,6 +346,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="List.extension:isTruncated">
+      <path value="List.extension" />
+      <sliceName value="isTruncated" />
+      <short value="isTruncated" />
+      <definition value="Indicates whether the records returned are a subset of the full search results.&#xD;&#xA;&#xD;&#xA;If set to true, it indicates that more results existed than those returned. To retrieve the Services that were omitted, try refining the search" />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-Truncated-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="List.modifierExtension">
       <path value="List.modifierExtension" />
       <slicing>
@@ -5461,6 +5504,28 @@
     </element>
   </snapshot>
   <differential>
+    <element id="List.extension">
+      <path value="List.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="List.extension:isTruncated">
+      <path value="List.extension" />
+      <sliceName value="isTruncated" />
+      <short value="isTruncated" />
+      <definition value="Indicates whether the records returned are a subset of the full search results.&#xD;&#xA;&#xD;&#xA;If set to true, it indicates that more results existed than those returned. To retrieve the Services that were omitted, try refining the search" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-ServiceSearch-Truncated-1" />
+      </type>
+    </element>
     <element id="List.code">
       <path value="List.code" />
       <short value="Indicates the type of search result." />
@@ -5500,8 +5565,6 @@
     <element id="List.entry.extension:searchData">
       <path value="List.entry.extension" />
       <sliceName value="searchData" />
-      <short value="Optional Extensions Element" />
-      <definition value="Optional Extension Element - found in all resources." />
       <min value="1" />
       <max value="1" />
       <type>
