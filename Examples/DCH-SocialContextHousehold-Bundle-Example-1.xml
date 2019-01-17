@@ -27,9 +27,12 @@
 					<code value="CH030"/>
 					<display value="Social Context Household"/>
 				</event>
+				<destination>
+					<endpoint value="urn:nhs:addressing:asid:477121007825"/>
+				</destination>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:RX3QJ"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3QS"/>
 				</source>
 				<responsible>
 					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
@@ -168,7 +171,7 @@
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
 					<display value="DURHAM SOCIAL SERVICES"/>
 				</serviceProvider>
 			</Encounter>
@@ -190,9 +193,6 @@
 				<context>
 					<reference value="urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b"/>
 				</context>
-				<author>
-					<reference value="urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
-				</author>
 				<item>
 					<linkId value="mothersEducationLevel"/>
 					<text value="Mothers Education Level"/>
@@ -211,7 +211,7 @@
 						<valueCoding>
 							<system value="http://snomed.info/sct"/>
 							<code value="94151000119101"/>
-							<display value="Smoker in household"/>
+							<display value="Smoker in household (situation)"/>
 						</valueCoding>
 					</answer>
 				</item>
@@ -221,8 +221,8 @@
 					<answer>
 						<valueCoding>
 							<system value="http://snomed.info/sct"/>
-							<code value="New coded needed"/>
-							<display value="New coded needed"/>
+							<code value="1104271000000102"/>
+							<display value="No history of substance misuse in household (finding)"/>
 						</valueCoding>
 					</answer>
 				</item>
@@ -230,12 +230,16 @@
 					<linkId value="householdAlcoholDrinkingStatus"/>
 					<text value="Household alcohol drinking status"/>
 					<answer>
-						<valueString value="No concerns around the consumption of alcohol"/>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="1104841000000109"/>
+							<display value="No history of alcohol use in household (situation)"/>
+						</valueCoding>
 					</answer>
 				</item>
 				<item>
-					<linkId value="employmentStatusMother"/>
-					<text value="Employment status (Mother)"/>
+					<linkId value="employmentStatusCareGiver1"/>
+					<text value="Employment status (care giver 1)"/>
 					<answer>
 						<valueCoding>
 							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
@@ -245,15 +249,19 @@
 					</answer>
 				</item>
 				<item>
-					<linkId value="occupationMother"/>
-					<text value="Mother's Occupation"/>
+					<linkId value="occupationCareGiver1"/>
+					<text value="Care giver 1's occupation"/>
 					<answer>
-						<valueString value="Accountant"/>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="25285009"/>
+							<display value="Accountant (general)"/>
+						</valueCoding>
 					</answer>
 				</item>
 				<item>
-					<linkId value="employmentStatusFather"/>
-					<text value="Employment status (Father)"/>
+					<linkId value="employmentStatusCareGiver2"/>
+					<text value="Employment status (care giver 2)"/>
 					<answer>
 						<valueCoding>
 							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-EmploymentStatus-1"/>
@@ -263,10 +271,19 @@
 					</answer>
 				</item>
 				<item>
-					<linkId value="occupationFather"/>
-					<text value="Father's Occupation"/>
+					<linkId value="occupationCareGiver2"/>
+					<text value="Care giver 2's occupation"/>
 					<answer>
-						<valueString value="Business Analyst"/>
+						<extension url="http://hl7.org/fhir/StructureDefinition/questionnaireresponse-note">
+							<valueAnnotation>
+								<text value="Business Analyst"/>
+							</valueAnnotation>
+						</extension>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="20222007"/>
+							<display value="Systems analyst"/>
+						</valueCoding>
 					</answer>
 				</item>
 				<item>
@@ -281,26 +298,6 @@
 					</answer>
 				</item>
 			</QuestionnaireResponse>
-		</resource>
-	</entry>
-	<!--Practitioner Author-->
-	<entry>
-		<fullUrl value="urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
-		<resource>
-			<Practitioner>
-				<id value="e0eb638c-3ac2-484a-a2d9-3357608f38f0"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2469"/>
-				</identifier>
-				<name>
-					<family value="Ripley"/>
-					<given value="Ellen"/>
-				</name>
-			</Practitioner>
 		</resource>
 	</entry>
 	<!--Location where event took place-->

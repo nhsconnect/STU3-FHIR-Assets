@@ -2918,7 +2918,7 @@
       <alias value="Date Issued" />
       <alias value="Date updated" />
       <min value="0" />
-      <max value="1" />
+      <max value="0" />
       <base>
         <path value="QuestionnaireResponse.authored" />
         <min value="0" />
@@ -2961,8 +2961,8 @@
       <alias value="Department" />
       <alias value="Company" />
       <alias value="Performer" />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="0" />
       <base>
         <path value="QuestionnaireResponse.author" />
         <min value="0" />
@@ -9281,11 +9281,9 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="required" />
-        <description value="Code indicating household alcohol use status" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-HouseholdAlcoholStatus-1" />
-        </valueSetReference>
+        <strength value="example" />
+        <description value="Code indicating the response provided for a question." />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
       </binding>
       <mapping>
         <identity value="rim" />
@@ -9380,8 +9378,8 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
-      <max value="0" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Coding.system" />
         <min value="0" />
@@ -9800,7 +9798,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="employmentStatusMother" />
+      <fixedString value="employmentStatusCareGiver1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -9867,7 +9865,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Employment status (Mother)" />
+      <fixedString value="Employment status (care giver 1)" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -10826,7 +10824,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="occupationMother" />
+      <fixedString value="occupationCareGiver1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -11958,7 +11956,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="employmentStatusFather" />
+      <fixedString value="employmentStatusCareGiver2" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -12025,7 +12023,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Employment status (Father)" />
+      <fixedString value="Employment status (care giver 2)" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -12984,7 +12982,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="occupationFather" />
+      <fixedString value="occupationCareGiver2" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -15761,9 +15759,13 @@
       <path value="QuestionnaireResponse.context.reference" />
       <min value="1" />
     </element>
+    <element id="QuestionnaireResponse.authored">
+      <path value="QuestionnaireResponse.authored" />
+      <max value="0" />
+    </element>
     <element id="QuestionnaireResponse.author">
       <path value="QuestionnaireResponse.author" />
-      <min value="1" />
+      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
@@ -16140,16 +16142,13 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="QuestionnaireAnswer" />
         </extension>
-        <strength value="required" />
-        <description value="Code indicating household alcohol use status" />
-        <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-HouseholdAlcoholStatus-1" />
-        </valueSetReference>
+        <strength value="example" />
+        <valueSetUri value="http://hl7.org/fhir/ValueSet/questionnaire-answers" />
       </binding>
     </element>
     <element id="QuestionnaireResponse.item:householdAlcoholDrinkingStatus.answer.valueCoding:valueCoding.system">
       <path value="QuestionnaireResponse.item.answer.valueCoding.system" />
-      <max value="0" />
+      <min value="1" />
     </element>
     <element id="QuestionnaireResponse.item:householdAlcoholDrinkingStatus.answer.valueCoding:valueCoding.version">
       <path value="QuestionnaireResponse.item.answer.valueCoding.version" />
@@ -16186,7 +16185,7 @@
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver1.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="employmentStatusMother" />
+      <fixedString value="employmentStatusCareGiver1" />
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver1.definition">
       <path value="QuestionnaireResponse.item.definition" />
@@ -16195,7 +16194,7 @@
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver1.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Employment status (Mother)" />
+      <fixedString value="Employment status (care giver 1)" />
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver1.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -16264,7 +16263,7 @@
     </element>
     <element id="QuestionnaireResponse.item:occupationCareGiver1.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="occupationMother" />
+      <fixedString value="occupationCareGiver1" />
     </element>
     <element id="QuestionnaireResponse.item:occupationCareGiver1.definition">
       <path value="QuestionnaireResponse.item.definition" />
@@ -16343,7 +16342,7 @@
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver2.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="employmentStatusFather" />
+      <fixedString value="employmentStatusCareGiver2" />
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver2.definition">
       <path value="QuestionnaireResponse.item.definition" />
@@ -16352,7 +16351,7 @@
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver2.text">
       <path value="QuestionnaireResponse.item.text" />
       <min value="1" />
-      <fixedString value="Employment status (Father)" />
+      <fixedString value="Employment status (care giver 2)" />
     </element>
     <element id="QuestionnaireResponse.item:employmentStatusCareGiver2.subject">
       <path value="QuestionnaireResponse.item.subject" />
@@ -16421,7 +16420,7 @@
     </element>
     <element id="QuestionnaireResponse.item:occupationCareGiver2.linkId">
       <path value="QuestionnaireResponse.item.linkId" />
-      <fixedString value="occupationFather" />
+      <fixedString value="occupationCareGiver2" />
     </element>
     <element id="QuestionnaireResponse.item:occupationCareGiver2.definition">
       <path value="QuestionnaireResponse.item.definition" />

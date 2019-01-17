@@ -12,7 +12,6 @@
       "fullUrl": "urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "85c8a1c5-a8a1-41c9-bb99-20956fa66218",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -37,9 +36,14 @@
           "code": "CH030",
           "display": "Social Context Household"
         },
+        "destination": [
+          {
+            "endpoint": "urn:nhs:addressing:asid:477121007825"
+          }
+        ],
         "timestamp": "2017-11-01T15:00:00+00:00",
         "source": {
-          "endpoint": "urn:nhs-uk:addressing:ods:RX3QJ"
+          "endpoint": "urn:nhs-uk:addressing:ods:RX3QS"
         },
         "responsible": {
           "reference": "urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb",
@@ -53,10 +57,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Responsible org"
+      ],
       "fullUrl": "urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb",
       "resource": {
         "resourceType": "Organization",
-        "id": "48833cb6-a2d5-4364-9b08-7d2ef6dacffb",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
@@ -83,10 +89,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Healthcare service used e.g GP, trust, etc.."
+      ],
       "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
@@ -121,10 +129,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Child Details (Jack Dawkins)"
+      ],
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
-        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
@@ -182,10 +192,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Social Context Household Encounter details"
+      ],
       "fullUrl": "urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b",
       "resource": {
         "resourceType": "Encounter",
-        "id": "b6c9ce9b-4092-448b-8fc0-287cd26cec4b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
@@ -219,16 +231,18 @@
           }
         ],
         "serviceProvider": {
-          "reference": "urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7",
+          "reference": "urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb",
           "display": "DURHAM SOCIAL SERVICES"
         }
       }
     },
     {
+      "fhir_comments": [
+        "Social Context Household"
+      ],
       "fullUrl": "urn:uuid:9fa0541c-67a2-4946-a7e3-ef3c4a8991f1",
       "resource": {
         "resourceType": "QuestionnaireResponse",
-        "id": "9fa0541c-67a2-4946-a7e3-ef3c4a8991f1",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-SocialContextHousehold-QuestionnaireResponse-1"
@@ -240,9 +254,6 @@
         },
         "context": {
           "reference": "urn:uuid:b6c9ce9b-4092-448b-8fc0-287cd26cec4b"
-        },
-        "author": {
-          "reference": "urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0"
         },
         "item": [
           {
@@ -266,7 +277,7 @@
                 "valueCoding": {
                   "system": "http://snomed.info/sct",
                   "code": "94151000119101",
-                  "display": "Smoker in household"
+                  "display": "Smoker in household (situation)"
                 }
               }
             ]
@@ -278,8 +289,8 @@
               {
                 "valueCoding": {
                   "system": "http://snomed.info/sct",
-                  "code": "New coded needed",
-                  "display": "New coded needed"
+                  "code": "1104271000000102",
+                  "display": "No history of substance misuse in household (finding)"
                 }
               }
             ]
@@ -289,13 +300,17 @@
             "text": "Household alcohol drinking status",
             "answer": [
               {
-                "valueString": "No concerns around the consumption of alcohol"
+                "valueCoding": {
+                  "system": "http://snomed.info/sct",
+                  "code": "1104841000000109",
+                  "display": "No history of alcohol use in household (situation)"
+                }
               }
             ]
           },
           {
-            "linkId": "employmentStatusMother",
-            "text": "Employment status (Mother)",
+            "linkId": "employmentStatusCareGiver1",
+            "text": "Employment status (care giver 1)",
             "answer": [
               {
                 "valueCoding": {
@@ -307,17 +322,21 @@
             ]
           },
           {
-            "linkId": "occupationMother",
-            "text": "Mother's Occupation",
+            "linkId": "occupationCareGiver1",
+            "text": "Care giver 1's occupation",
             "answer": [
               {
-                "valueString": "Accountant"
+                "valueCoding": {
+                  "system": "http://snomed.info/sct",
+                  "code": "25285009",
+                  "display": "Accountant (general)"
+                }
               }
             ]
           },
           {
-            "linkId": "employmentStatusFather",
-            "text": "Employment status (Father)",
+            "linkId": "employmentStatusCareGiver2",
+            "text": "Employment status (care giver 2)",
             "answer": [
               {
                 "valueCoding": {
@@ -329,11 +348,23 @@
             ]
           },
           {
-            "linkId": "occupationFather",
-            "text": "Father's Occupation",
+            "linkId": "occupationCareGiver2",
+            "text": "Care giver 2's occupation",
             "answer": [
               {
-                "valueString": "Business Analyst"
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaireresponse-note",
+                    "valueAnnotation": {
+                      "text": "Business Analyst"
+                    }
+                  }
+                ],
+                "valueCoding": {
+                  "system": "http://snomed.info/sct",
+                  "code": "20222007",
+                  "display": "Systems analyst"
+                }
               }
             ]
           },
@@ -354,36 +385,12 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:e0eb638c-3ac2-484a-a2d9-3357608f38f0",
-      "resource": {
-        "resourceType": "Practitioner",
-        "id": "e0eb638c-3ac2-484a-a2d9-3357608f38f0",
-        "meta": {
-          "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"
-          ]
-        },
-        "identifier": [
-          {
-            "system": "https://fhir.nhs.uk/Id/sds-role-profile-id",
-            "value": "PT2469"
-          }
-        ],
-        "name": [
-          {
-            "family": "Ripley",
-            "given": [
-              "Ellen"
-            ]
-          }
-        ]
-      }
-    },
-    {
+      "fhir_comments": [
+        "Location where event took place"
+      ],
       "fullUrl": "urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7",
       "resource": {
         "resourceType": "Location",
-        "id": "e3177167-40fc-4f1a-80f2-a2f17f18fde7",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"
