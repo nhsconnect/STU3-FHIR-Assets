@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir file:///C:/Git/SchemasSTU3/bundle.xsd">
+<Bundle xmlns="http://hl7.org/fhir">
 	<id value="6e824ff8-9b0a-11e8-9eb6-529269fb1459"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
@@ -172,7 +172,7 @@
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:6e825dae-9b0a-11e8-9eb6-529269fb1459"/>
+					<reference value="urn:uuid:6e82558e-9b0a-11e8-9eb6-529269fb1459"/>
 					<display value="SILVERDALE FAMILY PRACTICE"/>
 				</serviceProvider>
 			</Encounter>
@@ -188,14 +188,14 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalContact-EpisodeOfCare-1"/>
 				</meta>
 				<extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-DCH-ProfessionalContactReason-1">
-					<valueString value="Ended - Patient has moved out of area"/>
+					<valueString value="Patient moving out of area"/>
 				</extension>
 				<status value="finished"/>
 				<type>
 					<coding>
 						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-AssociationType-1"/>
-						<code value="Ended"/>
-						<display value="Ended"/>
+						<code value="Temporary"/>
+						<display value="Temporary"/>
 					</coding>
 				</type>
 				<patient>
@@ -203,7 +203,7 @@
 				</patient>
 				<period>
 					<start value="2018-11-01T09:00:00+00:00"/>
-					<end value="2018-11-30T09:00:00+00:00"/>
+					<end value="2018-11-20T09:00:00+00:00"/>
 				</period>
 				<team>
 					<reference value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
@@ -211,37 +211,59 @@
 			</EpisodeOfCare>
 		</resource>
 	</entry>
-	<!--CareTeam-->
+	<!--Practitioner-->
 	<entry>
-		<fullUrl value="urn:uuid:7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+		<fullUrl value="urn:uuid:ded73ce8-a8e6-4f73-8675-34bbe0e90a73"/>
 		<resource>
-			<CareTeam>
-				<id value="7fc14cd0-9022-11e8-9eb6-529269fb1459"/>
+			<Practitioner>
+				<id value="ded73ce8-a8e6-4f73-8675-34bbe0e90a73"/>
 				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-CareTeam-1"/>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
 				</meta>
-				<name value="Silverdale Health Visiting Service"/>
-				<subject>
-					<reference value="urn:uuid:6e82624a-9b0a-11e8-9eb6-529269fb1459"/>
-					<display value="DAWKINS, Jack"/>
-				</subject>
-				<context>
-					<reference value="urn:uuid:6e825796-9b0a-11e8-9eb6-529269fb1459"/>
-				</context>
-				<participant>
-					<role>
-						<coding>
-							<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
-							<code value="330"/>
-							<display value="Specialist Community Public Health Nurse: Health Visitor"/>
-						</coding>
-					</role>
-				</participant>
-				<managingOrganization>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<name>
+					<family value="Bashir"/>
+					<given value="Julian"/>
+					<prefix value="Dr."/>
+				</name>
+			</Practitioner>
+		</resource>
+	</entry>
+	<!--Practitioner Role-->
+	<entry>
+		<fullUrl value="urn:uuid:b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+		<resource>
+			<PractitionerRole>
+				<id value="b7e3cc3a-9120-49fe-801c-2793b80ca922"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"/>
+				</meta>
+				<identifier>
+					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
+					<value value="PT2468"/>
+				</identifier>
+				<practitioner>
+					<reference value="urn:uuid:ded73ce8-a8e6-4f73-8675-34bbe0e90a73"/>
+				</practitioner>
+				<code>
+					<coding>
+						<system value="https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"/>
+						<code value="R0260"/>
+						<display value="General Medical Practitioner"/>
+					</coding>
+					<coding>
+						<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalType-1"/>
+						<code value="160"/>
+						<display value="General Medical Practitioner"/>
+					</coding>
+				</code>
+				<organization>
 					<reference value="urn:uuid:6e82558e-9b0a-11e8-9eb6-529269fb1459"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
-				</managingOrganization>
-			</CareTeam>
+				</organization>
+			</PractitionerRole>
 		</resource>
 	</entry>
 	<!--Location where event took place-->
