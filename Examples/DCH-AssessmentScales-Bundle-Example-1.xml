@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../Schemas/bundle.xsd">
+<Bundle xmlns="http://hl7.org/fhir">
  <id value="91e5a484-e53b-427b-8317-130bd79fbb34"/>
  <meta>
   <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
@@ -28,9 +28,8 @@
      <display value="Assessment Scales"/>
     </event>
     <destination>
-					<endpoint value="urn:nhs:addressing:asid:477121000325"/>
-				</destination>
-    
+     <endpoint value="urn:nhs:addressing:asid:477121000325"/>
+    </destination>
     <timestamp value="2017-11-01T15:00:00+00:00"/>
     <source>
      <endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
@@ -150,6 +149,64 @@
     <meta>
      <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1"/>
     </meta>
+    <!--Contained Subscale 1 - Personal Social Score-->
+    <contained>
+     <Observation>
+      <id value="PersonalSocialScore"/>
+      <meta>
+       <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1"/>
+      </meta>
+      <status value="final"/>
+      <code>
+       <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="952901000000104"/>
+        <display value="Ages and Stages Questionnaires Third Edition 10 month questionnaire - personal-social score"/>
+       </coding>
+      </code>
+      <subject>
+       <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+      </subject>
+      <context>
+       <reference value="urn:uuid:5dbe9e0a-d520-44ff-af10-3cbb8d6015c6"/>
+      </context>
+      <performer>
+       <reference value="urn:uuid:10efef65-ad4f-43ed-b848-5e79e6db21c0"/>
+      </performer>
+      <valueQuantity>
+       <value value="8"/>
+      </valueQuantity>
+     </Observation>
+    </contained>
+    <!--Contained Subscale 2 - Communication Score-->
+    <contained>
+     <Observation>
+      <id value="CommunicationScore"/>
+      <meta>
+       <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1"/>
+      </meta>
+      <status value="final"/>
+      <code>
+       <coding>
+        <system value="http://snomed.info/sct"/>
+        <code value="953161000000105"/>
+        <display value="Ages and Stages Questionnaires Third Edition 22 month questionnaire - communication score"/>
+       </coding>
+      </code>
+      <subject>
+       <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+      </subject>
+      <context>
+       <reference value="urn:uuid:5dbe9e0a-d520-44ff-af10-3cbb8d6015c6"/>
+      </context>
+      <performer>
+       <reference value="urn:uuid:10efef65-ad4f-43ed-b848-5e79e6db21c0"/>
+      </performer>
+      <valueQuantity>
+       <value value="25"/>
+      </valueQuantity>
+     </Observation>
+    </contained>
     <status value="final"/>
     <code>
      <coding>
@@ -167,84 +224,22 @@
     <performer>
      <reference value="urn:uuid:10efef65-ad4f-43ed-b848-5e79e6db21c0"/>
     </performer>
-    <!--Assessment Subscale 1-->
+    <!--Assessment Subscale 1 - Personal Social Score-->
     <related>
      <type value="derived-from"/>
      <target>
-      <reference value="urn:uuid:517e91c1-2df4-44f6-b9e3-d0bb6c279497"/>
+      <reference value="#PersonalSocialScore"/>
+      <display value="Personal Social Score"/>
      </target>
     </related>
-    <!--Assessment Subscale 2-->
+    <!--Assessment Subscale 2 - Communication Score-->
     <related>
      <type value="derived-from"/>
      <target>
-      <reference value="urn:uuid:80bc3b0d-5730-4309-bb60-aff5ac1ce6a8"/>
+      <reference value="#CommunicationScore"/>
+      <display value="Communication Score"/>
      </target>
     </related>
-   </Observation>
-  </resource>
- </entry>
- <!--Assessment Subscale 1-->
- <entry>
-  <fullUrl value="urn:uuid:517e91c1-2df4-44f6-b9e3-d0bb6c279497"/>
-  <resource>
-   <Observation>
-    <id value="517e91c1-2df4-44f6-b9e3-d0bb6c279497"/>
-    <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1"/>
-    </meta>
-    <status value="final"/>
-    <code>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="952901000000104"/>
-      <display value="Ages and Stages Questionnaires Third Edition 10 month questionnaire - personal-social score"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-    </subject>
-    <context>
-     <reference value="urn:uuid:5dbe9e0a-d520-44ff-af10-3cbb8d6015c6"/>
-    </context>
-    <performer>
-     <reference value="urn:uuid:10efef65-ad4f-43ed-b848-5e79e6db21c0"/>
-    </performer>
-    <valueQuantity>
-     <value value="8"/>
-    </valueQuantity>
-   </Observation>
-  </resource>
- </entry>
- <!--Assessment Subscale 2-->
- <entry>
-  <fullUrl value="urn:uuid:80bc3b0d-5730-4309-bb60-aff5ac1ce6a8"/>
-  <resource>
-   <Observation>
-    <id value="80bc3b0d-5730-4309-bb60-aff5ac1ce6a8"/>
-    <meta>
-     <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1"/>
-    </meta>
-    <status value="final"/>
-    <code>
-     <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="953161000000105"/>
-      <display value="Ages and Stages Questionnaires Third Edition 22 month questionnaire - communication score"/>
-     </coding>
-    </code>
-    <subject>
-     <reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-    </subject>
-    <context>
-     <reference value="urn:uuid:5dbe9e0a-d520-44ff-af10-3cbb8d6015c6"/>
-    </context>
-    <performer>
-     <reference value="urn:uuid:10efef65-ad4f-43ed-b848-5e79e6db21c0"/>
-    </performer>
-    <valueQuantity>
-     <value value="25"/>
-    </valueQuantity>
    </Observation>
   </resource>
  </entry>
