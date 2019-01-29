@@ -4,10 +4,10 @@
     <lastUpdated value="2018-01-25T10:27:36.429+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ConsentDecisionDetails-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="Extension-EOL-ConsentDecisionDetails-1" />
   <status value="draft" />
-  <date value="2018-08-16" />
+  <date value="2019-01-29" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -295,7 +295,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept">
       <path value="Extension.extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
       <short value="Value of extension" />
@@ -413,7 +413,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding">
       <path value="Extension.extension.valueCodeableConcept.coding" />
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
@@ -545,7 +545,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.system">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.system">
       <path value="Extension.extension.valueCodeableConcept.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
@@ -588,7 +588,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.version">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.version">
       <path value="Extension.extension.valueCodeableConcept.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
@@ -629,7 +629,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.code">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.code">
       <path value="Extension.extension.valueCodeableConcept.coding.code" />
       <short value="Symbol in syntax defined by the system" />
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
@@ -671,7 +671,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.display">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -716,7 +716,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.userSelected">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.userSelected">
       <path value="Extension.extension.valueCodeableConcept.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
@@ -957,13 +957,200 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.extension:consentDiscussionDetails.value[x]:valueString">
+    <element id="Extension.extension:consentDiscussionDetails.valueString:valueString">
       <path value="Extension.extension.valueString" />
       <sliceName value="valueString" />
       <short value="Value of extension" />
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
       <comment value="A stream of bytes, base64 encoded" />
       <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Extension.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes">
+      <path value="Extension.extension" />
+      <sliceName value="consentAdditionalNotes" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.id">
+      <path value="Extension.extension.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.extension">
+      <path value="Extension.extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.url">
+      <path value="Extension.extension.url" />
+      <representation value="xmlAttr" />
+      <short value="identifies the meaning of the extension" />
+      <definition value="Source of the definition for the extension code - a logical name or a URL." />
+      <comment value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Extension.url" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="consentAdditionalNotes" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.value[x]:valueString">
+      <path value="Extension.extension.valueString" />
+      <sliceName value="valueString" />
+      <short value="Value of extension" />
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Extension.value[x]" />
@@ -1026,9 +1213,9 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="Role of the Proxy" />
-      <definition value="Role that the proxy plays." />
-      <comment value="The proxy may make decisions on behalf of a patient." />
+      <short value="Value of extension" />
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+      <comment value="A stream of bytes, base64 encoded" />
       <min value="0" />
       <max value="0" />
       <base>
@@ -1191,7 +1378,7 @@
       <path value="Extension.extension.url" />
       <fixedUri value="consentDecisionDetails" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept">
       <path value="Extension.extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
       <min value="1" />
@@ -1206,32 +1393,32 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding">
       <path value="Extension.extension.valueCodeableConcept.coding" />
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.system">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.system">
       <path value="Extension.extension.valueCodeableConcept.coding.system" />
       <min value="1" />
       <fixedUri value="http://snomed.info/sct" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.version">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.version">
       <path value="Extension.extension.valueCodeableConcept.coding.version" />
       <max value="0" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.code">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.code">
       <path value="Extension.extension.valueCodeableConcept.coding.code" />
       <min value="1" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.display">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Extension.extension.valueCodeableConcept.coding.display" />
       <min value="1" />
     </element>
-    <element id="Extension.extension:consentDecisionDetails.value[x]:valueCodeableConcept.coding.userSelected">
+    <element id="Extension.extension:consentDecisionDetails.valueCodeableConcept:valueCodeableConcept.coding.userSelected">
       <path value="Extension.extension.valueCodeableConcept.coding.userSelected" />
       <max value="0" />
     </element>
@@ -1244,10 +1431,26 @@
       <path value="Extension.extension.url" />
       <fixedUri value="consentDiscussionDetails" />
     </element>
-    <element id="Extension.extension:consentDiscussionDetails.value[x]:valueString">
+    <element id="Extension.extension:consentDiscussionDetails.valueString:valueString">
       <path value="Extension.extension.valueString" />
       <sliceName value="valueString" />
       <min value="1" />
+      <type>
+        <code value="string" />
+      </type>
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes">
+      <path value="Extension.extension" />
+      <sliceName value="consentAdditionalNotes" />
+      <max value="1" />
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.url">
+      <path value="Extension.extension.url" />
+      <fixedUri value="consentAdditionalNotes" />
+    </element>
+    <element id="Extension.extension:consentAdditionalNotes.value[x]:valueString">
+      <path value="Extension.extension.valueString" />
+      <sliceName value="valueString" />
       <type>
         <code value="string" />
       </type>
@@ -1258,9 +1461,6 @@
     </element>
     <element id="Extension.value[x]">
       <path value="Extension.value[x]" />
-      <short value="Role of the Proxy" />
-      <definition value="Role that the proxy plays." />
-      <comment value="The proxy may make decisions on behalf of a patient." />
       <max value="0" />
       <type>
         <code value="base64Binary" />
