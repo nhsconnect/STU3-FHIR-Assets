@@ -1,37 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <meta>
-    <lastUpdated value="2018-01-25T10:27:36.429+00:00" />
-  </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ConsentDecisionDetails-1" />
-  <version value="1.1.0" />
-  <name value="Extension-EOL-ConsentDecisionDetails-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ADRT-1" />
+  <version value="1.0.0" />
+  <name value="Extension-EOL-ADRT-1" />
   <status value="draft" />
-  <date value="2019-01-29" />
+  <date value="2019-01-25T15:37:37.175+00:00" />
   <publisher value="NHS Digital" />
-  <contact>
-    <name value="Interoperability Team" />
-    <telecom>
-      <system value="email" />
-      <value value="interoperabilityteam@nhs.net" />
-      <use value="work" />
-    </telecom>
-  </contact>
-  <description value="Where the consent was not given by the patient, how was this decision made." />
-  <copyright value="Copyright © 2018 NHS Digital" />
+  <description value="An indicator to determine if an ADRT has been placed on the patients EoL record." />
+  <copyright value="Copyright © 2017 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
   <contextType value="resource" />
-  <context value="Consent" />
+  <context value="List" />
   <type value="Extension" />
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
   <derivation value="constraint" />
   <snapshot>
     <element id="Extension">
       <path value="Extension" />
-      <short value="consentDecisionDetails" />
-      <definition value="Identity of the person who set preferences on behalf of another person e.g. Parent, Carer, etc." />
+      <short value="Optional Extensions Element" />
+      <definition value="Optional Extension Element - found in all resources." />
       <min value="0" />
       <max value="1" />
       <base>
@@ -157,7 +146,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ConsentDecisionDetails-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ADRT-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -175,7 +164,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails">
+    <element id="Extension.value[x]:valueCodeableConcept">
       <path value="Extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
       <short value="Value of extension" />
@@ -199,6 +188,13 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <binding>
+        <strength value="required" />
+        <description value="SNOMED CT code to indicate if an ADRT decision is in place." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-ADRT-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -286,7 +282,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding">
+    <element id="Extension.value[x]:valueCodeableConcept.coding">
       <path value="Extension.valueCodeableConcept.coding" />
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
@@ -418,7 +414,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.system">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.system">
       <path value="Extension.valueCodeableConcept.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
@@ -460,7 +456,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.version">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.version">
       <path value="Extension.valueCodeableConcept.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
@@ -501,7 +497,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.code">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.code">
       <path value="Extension.valueCodeableConcept.coding.code" />
       <short value="Symbol in syntax defined by the system" />
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
@@ -543,7 +539,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.display">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -588,7 +584,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.userSelected">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.userSelected">
       <path value="Extension.valueCodeableConcept.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
@@ -630,12 +626,12 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:decisionDetails.text">
+    <element id="Extension.value[x]:valueCodeableConcept.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Extension.valueCodeableConcept.text" />
-      <short value="Consent Decision Details" />
+      <short value="Plain text representation of the concept" />
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." />
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
@@ -679,54 +675,58 @@
   <differential>
     <element id="Extension">
       <path value="Extension" />
-      <short value="consentDecisionDetails" />
-      <definition value="Identity of the person who set preferences on behalf of another person e.g. Parent, Carer, etc." />
       <max value="1" />
     </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ConsentDecisionDetails-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-EOL-ADRT-1" />
     </element>
-    <element id="Extension.value[x]:decisionDetails">
+    <element id="Extension.value[x]:valueCodeableConcept">
       <path value="Extension.valueCodeableConcept" />
       <sliceName value="valueCodeableConcept" />
       <type>
         <code value="CodeableConcept" />
       </type>
+      <binding>
+        <strength value="required" />
+        <description value="SNOMED CT code to indicate if an ADRT decision is in place." />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/EOL-ADRT-1" />
+        </valueSetReference>
+      </binding>
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding">
+    <element id="Extension.value[x]:valueCodeableConcept.coding">
       <path value="Extension.valueCodeableConcept.coding" />
       <max value="1" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.system">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.system">
       <path value="Extension.valueCodeableConcept.coding.system" />
       <min value="1" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.version">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.version">
       <path value="Extension.valueCodeableConcept.coding.version" />
       <max value="0" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.code">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.code">
       <path value="Extension.valueCodeableConcept.coding.code" />
       <min value="1" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.display">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Extension.valueCodeableConcept.coding.display" />
       <min value="1" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.coding.userSelected">
+    <element id="Extension.value[x]:valueCodeableConcept.coding.userSelected">
       <path value="Extension.valueCodeableConcept.coding.userSelected" />
       <max value="0" />
     </element>
-    <element id="Extension.value[x]:decisionDetails.text">
+    <element id="Extension.value[x]:valueCodeableConcept.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
       <path value="Extension.valueCodeableConcept.text" />
-      <short value="Consent Decision Details" />
       <min value="1" />
     </element>
   </differential>
