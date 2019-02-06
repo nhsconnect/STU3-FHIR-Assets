@@ -12,7 +12,6 @@
       "fullUrl": "urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -58,10 +57,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Responsible for message content"
+      ],
       "fullUrl": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
       "resource": {
         "resourceType": "Organization",
-        "id": "33a33b58-648a-4453-b981-e21ea9ebc6ea",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
@@ -87,10 +88,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Healthcare service used e.g GP, trust, etc.."
+      ],
       "fullUrl": "urn:uuid:aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "aed99abc-59b8-48c3-a81e-4fa4ff6ed4ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
@@ -125,10 +128,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Child Details (Jack Dawkins)"
+      ],
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
-        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
@@ -186,40 +191,67 @@
       }
     },
     {
+      "fhir_comments": [
+        "Allergy or Adverse Reaction (full set of data)"
+      ],
       "fullUrl": "urn:uuid:89433cac-6226-428d-99c1-988cd8f31a18",
       "resource": {
         "resourceType": "AllergyIntolerance",
-        "id": "89433cac-6226-428d-99c1-988cd8f31a18",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-2"
           ]
         },
         "clinicalStatus": "active",
         "verificationStatus": "confirmed",
+        "type": "allergy",
         "code": {
           "coding": [
             {
               "system": "http://snomed.info/sct",
               "code": "373270004",
-              "display": "Penicillin -class of antibiotic- (substance)"
+              "display": "Penicillin antibacterial"
             }
           ]
         },
         "patient": {
           "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
         },
-        "assertedDate": "2018-01-29"
+        "onsetString": "In Childhood",
+        "assertedDate": "2018-01-29",
+        "note": [
+          {
+            "text": "Evidence: Reacted badly to penicillin prescription as a child\r\nComment: Prescribe alternative an antibiotic group"
+          }
+        ],
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "421581006",
+                    "display": "Pharyngeal swelling"
+                  }
+                ]
+              }
+            ],
+            "severity": "moderate"
+          }
+        ]
       }
     },
     {
+      "fhir_comments": [
+        "Allergy or Adverse Reaction (minimum data)"
+      ],
       "fullUrl": "urn:uuid:fd44604e-eea1-4a9f-9b29-4606f8b5cbd5",
       "resource": {
         "resourceType": "AllergyIntolerance",
-        "id": "fd44604e-eea1-4a9f-9b29-4606f8b5cbd5",
         "meta": {
           "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-1"
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-2"
           ]
         },
         "clinicalStatus": "active",
@@ -228,8 +260,8 @@
           "coding": [
             {
               "system": "http://snomed.info/sct",
-              "code": "373270004",
-              "display": "Penicillin -class of antibiotic- (substance)"
+              "code": "29276003",
+              "display": "Chlorine"
             }
           ]
         },
@@ -240,10 +272,51 @@
       }
     },
     {
+      "fhir_comments": [
+        "Allergy or Adverse Reaction using text"
+      ],
+      "fullUrl": "urn:uuid:fd44604e-eea1-4a9f-9b29-4606f8b5cb89",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AllergyIntolerance-2"
+          ]
+        },
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "type": "allergy",
+        "code": {
+          "text": "Panobinostat lactate"
+        },
+        "patient": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
+        },
+        "onsetString": "In Childhood",
+        "assertedDate": "2018-01-29",
+        "note": [
+          {
+            "text": "Certainty: Confirmed by test\r\nSeverity: Moderate\r\nEvidence: Reacted badly to penicillin prescription as a child\r\nComment: Prescribe alternative an antibiotic group"
+          }
+        ],
+        "reaction": [
+          {
+            "manifestation": [
+              {
+                "text": "Pharyngeal swelling"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Encounter details"
+      ],
       "fullUrl": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
       "resource": {
         "resourceType": "Encounter",
-        "id": "1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
@@ -270,10 +343,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Location where event took place"
+      ],
       "fullUrl": "urn:uuid:9fb9d531-84dd-421e-8f4a-a309d9ff7890",
       "resource": {
         "resourceType": "Location",
-        "id": "9fb9d531-84dd-421e-8f4a-a309d9ff7890",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"
