@@ -9,10 +9,12 @@
   "type": "message",
   "entry": [
     {
+      "fhir_comments": [
+        "Message Header"
+      ],
       "fullUrl": "urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "85c8a1c5-a8a1-41c9-bb99-20956fa66218",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -37,6 +39,11 @@
           "code": "CH022",
           "display": "Parent Guardian or Personal Comment"
         },
+        "destination": [
+          {
+            "endpoint": "urn:nhs:addressing:asid:477121000325"
+          }
+        ],
         "timestamp": "2017-11-01T15:00:00+00:00",
         "source": {
           "endpoint": "urn:nhs-uk:addressing:ods:A83627"
@@ -53,10 +60,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Responsible Org (MessageHeader.responsible)"
+      ],
       "fullUrl": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
       "resource": {
         "resourceType": "Organization",
-        "id": "3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
@@ -83,10 +92,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Healthcare service used e.g GP, trust, etc.."
+      ],
       "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
@@ -121,10 +132,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Child Details (Jack Dawkins)"
+      ],
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
-        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
@@ -182,10 +195,68 @@
       }
     },
     {
+      "fhir_comments": [
+        "Related person giving comment"
+      ],
+      "fullUrl": "urn:uuid:8d99532e-08ce-4981-80c6-40ae6e9c7a47",
+      "resource": {
+        "resourceType": "RelatedPerson",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1"
+          ]
+        },
+        "patient": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
+          "display": "DAWKINS, Jack"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/NHSDataDictionary-RelationshipToPersonForChildrenAndYoungPeople-1",
+              "code": "BPM",
+              "display": "Biological mother"
+            }
+          ]
+        },
+        "name": [
+          {
+            "use": "official",
+            "family": "DAWKINS",
+            "given": [
+              "Jane"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1993-12-10",
+        "_birthDate": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
+              "valueDateTime": "1993-12-02T10:00:00+00:00"
+            }
+          ]
+        },
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "4 Sandmoor Drive"
+            ],
+            "city": "DURHAM",
+            "postalCode": "DH1 2TF"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Parent, Guardian or Personal Comment"
+      ],
       "fullUrl": "urn:uuid:872c7730-1690-4e72-9434-0794dafa6ea9",
       "resource": {
         "resourceType": "Communication",
-        "id": "872c7730-1690-4e72-9434-0794dafa6ea9",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-InformationAndAdviceGiven-Communication-1"
@@ -200,7 +271,7 @@
         },
         "sent": "2018-02-20",
         "sender": {
-          "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"
+          "reference": "urn:uuid:8d99532e-08ce-4981-80c6-40ae6e9c7a47"
         },
         "payload": [
           {
@@ -210,10 +281,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Encounter details"
+      ],
       "fullUrl": "urn:uuid:12779557-9033-4213-876f-69a670cdf35d",
       "resource": {
         "resourceType": "Encounter",
-        "id": "12779557-9033-4213-876f-69a670cdf35d",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
@@ -247,45 +320,18 @@
           }
         ],
         "serviceProvider": {
-          "reference": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
+          "reference": "urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c",
           "display": "SILVERDALE FAMILY PRACTICE"
         }
       }
     },
     {
-      "fullUrl": "urn:uuid:5765ec08-7e7b-4782-ae17-4cb17ed02202",
-      "resource": {
-        "resourceType": "Practitioner",
-        "id": "5765ec08-7e7b-4782-ae17-4cb17ed02202",
-        "meta": {
-          "profile": [
-            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"
-          ]
-        },
-        "identifier": [
-          {
-            "system": "https://fhir.nhs.uk/Id/sds-role-profile-id",
-            "value": "PT2468"
-          }
-        ],
-        "name": [
-          {
-            "family": "Emmanuel",
-            "given": [
-              "Gladys"
-            ],
-            "prefix": [
-              "Dr."
-            ]
-          }
-        ]
-      }
-    },
-    {
+      "fhir_comments": [
+        "Location where event took place"
+      ],
       "fullUrl": "urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7",
       "resource": {
         "resourceType": "Location",
-        "id": "e3177167-40fc-4f1a-80f2-a2f17f18fde7",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"
