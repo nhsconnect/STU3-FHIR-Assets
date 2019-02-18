@@ -7,7 +7,7 @@
   <version value="1.2.0" />
   <name value="DCH-SocialContextPerson-QuestionnaireResponse-1" />
   <status value="draft" />
-  <date value="2019-02-15" />
+  <date value="2019-02-18" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -3933,7 +3933,7 @@
       <alias value="Date published" />
       <alias value="Date Issued" />
       <alias value="Date updated" />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="QuestionnaireResponse.authored" />
@@ -3978,7 +3978,7 @@
       <alias value="Company" />
       <alias value="Performer" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="QuestionnaireResponse.author" />
         <min value="0" />
@@ -3986,7 +3986,19 @@
       </base>
       <type>
         <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4221,7 +4233,7 @@
       <comment value="If not specified, no inference can be made about who provided the data." />
       <requirements value="When answering questions about a subject that is minor, incapable of answering or an animal, another human source may answer the questions." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="QuestionnaireResponse.source" />
         <min value="0" />
@@ -4229,15 +4241,15 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Practitioner" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
       </type>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/RelatedPerson" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -4355,7 +4367,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -8388,7 +8400,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:smokingStatusDetails.answer.value[x]:valueString">
+    <element id="QuestionnaireResponse.item:smokingStatusDetails.answer.valueString:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <short value="Single-valued answer to the question" />
@@ -11908,7 +11920,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="QuestionnaireResponse.item:alcoholUseDetails.answer.value[x]:valueString">
+    <element id="QuestionnaireResponse.item:alcoholUseDetails.answer.valueString:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <short value="Single-valued answer to the question" />
@@ -12054,14 +12066,24 @@
     <element id="QuestionnaireResponse.authored">
       <path value="QuestionnaireResponse.authored" />
       <short value="Date/Time the social context was recorded." />
-      <min value="1" />
     </element>
     <element id="QuestionnaireResponse.author">
       <path value="QuestionnaireResponse.author" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Device" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1" />
       </type>
     </element>
     <element id="QuestionnaireResponse.author.reference">
@@ -12070,7 +12092,22 @@
     </element>
     <element id="QuestionnaireResponse.source">
       <path value="QuestionnaireResponse.source" />
-      <max value="0" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-RelatedPerson-1" />
+      </type>
+    </element>
+    <element id="QuestionnaireResponse.source.reference">
+      <path value="QuestionnaireResponse.source.reference" />
+      <min value="1" />
     </element>
     <element id="QuestionnaireResponse.item">
       <path value="QuestionnaireResponse.item" />
@@ -12275,7 +12312,7 @@
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:smokingStatusDetails.answer.value[x]:valueString">
+    <element id="QuestionnaireResponse.item:smokingStatusDetails.answer.valueString:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <min value="1" />
@@ -12512,7 +12549,7 @@
       <min value="1" />
       <max value="1" />
     </element>
-    <element id="QuestionnaireResponse.item:alcoholUseDetails.answer.value[x]:valueString">
+    <element id="QuestionnaireResponse.item:alcoholUseDetails.answer.valueString:valueString">
       <path value="QuestionnaireResponse.item.answer.valueString" />
       <sliceName value="valueString" />
       <min value="1" />
