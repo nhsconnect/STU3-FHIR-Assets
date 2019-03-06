@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-	<id value="0ba61966-599f-4e84-848f-eec86bf0ed95"/>
+	<id value="66aa5f6c-4882-11e8-842f-0ed5f89f718b"/>
 	<meta>
 		<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-Bundle-1"/>
 	</meta>
 	<type value="message"/>
-	<!--Message Header-->
-	<entry> 
+	<entry>
 		<fullUrl value="urn:uuid:85c8a1c5-a8a1-41c9-bb99-20956fa66218"/>
 		<resource>
 			<MessageHeader>
@@ -25,46 +24,46 @@
 				</extension>
 				<event>
 					<system value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ChildHealthEventType-1"/>
-					<code value="CH020"/>
-					<display value="Developmental Skills"/>
+					<code value="CH031"/>
+					<display value="Social Context"/>
 				</event>
 				<destination>
-					<endpoint value="urn:nhs:addressing:asid:499121000325"/>
+					<endpoint value="urn:nhs:addressing:asid:477121000325"/>
 				</destination>
 				<timestamp value="2017-11-01T15:00:00+00:00"/>
 				<source>
-					<endpoint value="urn:nhs-uk:addressing:ods:A83627"/>
+					<endpoint value="urn:nhs-uk:addressing:ods:RX3QJ"/>
 				</source>
 				<responsible>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
 				</responsible>
 				<focus>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+					<reference value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
 				</focus>
 			</MessageHeader>
 		</resource>
 	</entry>
-	<!--Responsible Org (MessageHeader.responsible)-->
+	<!--Responsible org-->
 	<entry>
-		<fullUrl value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+		<fullUrl value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
 		<resource>
 			<Organization>
-				<id value="3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
+				<id value="48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
 				<meta>
 					<profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"/>
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-organization-code"/>
-					<value value="A83627"/>
+					<value value="RX3QJ"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="DURHAM SOCIAL SERVICES"/>
 				<address>
-					<line value="FRONT STREET"/>
-					<line value="SOUTH HETTON"/>
-					<city value="DURHAM"/>
+					<line value="PRIORY HOUSE"/>
+					<line value="ABBEY ROAD"/>
+					<city value="PITY ME"/>
 					<district value="COUNTY DURHAM"/>
-					<postalCode value="DH6 2TH"/>
+					<postalCode value="DH1 5RR"/>
 				</address>
 			</Organization>
 		</resource>
@@ -79,14 +78,14 @@
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"/>
 				</meta>
 				<providedBy>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:48833cb6-a2d5-4364-9b08-7d2ef6dacffb"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
 				</providedBy>
 				<type>
 					<coding>
 						<system value="http://snomed.info/sct"/>
-						<code value="1060971000000108"/>
-						<display value="General practice service"/>
+						<code value="708170008"/>
+						<display value="Nursing service"/>
 					</coding>
 				</type>
 				<location>
@@ -141,12 +140,85 @@
 			</Patient>
 		</resource>
 	</entry>
-	<!--Encounter details-->
+	<!--Social Context-->
 	<entry>
-		<fullUrl value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
+		<fullUrl value="urn:uuid:12a254e5-deb6-4efd-9bb1-36d286115819"/>
+		<resource>
+			<QuestionnaireResponse>
+				<id value="12a254e5-deb6-4efd-9bb1-36d286115819"/>
+				<meta>
+					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-SocialContextPerson-QuestionnaireResponse-1"/>
+				</meta>
+				<status value="completed"/>
+				<subject>
+					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
+				</subject>
+				<context>
+					<reference value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
+				</context>
+				<item>
+					<linkId value="socialCircumstances"/>
+					<text value="Social Circumstances"/>
+					<answer>
+						<valueString value="The family are dependant on the charity of local food banks, as their household income is too low to afford food. One parent smokes cigarettes in the home."/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="lifestyle"/>
+					<text value="Lifestyle"/>
+					<answer>
+						<valueString value="Unhealthy child who is not active."/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="smokingStatus"/>
+					<text value="Smoking Status"/>
+					<answer>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="266919005"/>
+							<display value="Never smoked tobacco"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="smokingStatusDetails"/>
+					<text value="Smoking Status - Details"/>
+					<answer>
+						<valueString value="The child is regulary exposed to secondhand smoke in their home, and is more likely to suffer from health risks linked with passive smoking, for example, lung cancer and heart disease."/>
+					</answer>
+				</item>
+				<item>
+					<linkId value="substanceStatus"/>
+					<text value="Drug/substance use"/>
+					<answer>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="228368007"/>
+							<display value="Has never misused drugs"/>
+						</valueCoding>
+					</answer>
+				</item>
+				<item>
+					<linkId value="alcoholIntake"/>
+					<text value="Alcohol use"/>
+					<answer>
+						<valueCoding>
+							<system value="http://snomed.info/sct"/>
+							<code value="228274009"/>
+							<display value="Lifetime non-drinker"/>
+						</valueCoding>
+					</answer>
+				</item>
+			</QuestionnaireResponse>
+		</resource>
+	</entry>
+	<!--Social Context Household Encounter details-->
+	<entry>
+		<fullUrl value="urn:uuid:a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
 		<resource>
 			<Encounter>
-				<id value="12779557-9033-4213-876f-69a670cdf35d"/>
+				<id value="a0b4e544-fc29-4953-91e6-8b09073b15f5"/>
 				<meta>
 					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"/>
 				</meta>
@@ -161,106 +233,14 @@
 				<location>
 					<location>
 						<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
-						<display value="SILVERDALE FAMILY PRACTICE"/>
+						<display value="DURHAM SOCIAL SERVICES"/>
 					</location>
 				</location>
 				<serviceProvider>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-					<display value="SILVERDALE FAMILY PRACTICE"/>
+					<reference value="urn:uuid:e3177167-40fc-4f1a-80f2-a2f17f18fde7"/>
+					<display value="DURHAM SOCIAL SERVICES"/>
 				</serviceProvider>
 			</Encounter>
-		</resource>
-	</entry>
-	<!--Early Years Progress-->
-	<entry>
-		<fullUrl value="urn:uuid:7071ad47-fa74-4ec6-872a-5b0eded5f88e"/>
-		<resource>
-			<Condition>
-				<id value="7071ad47-fa74-4ec6-872a-5b0eded5f88e"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-DevelopmentalSkill-Condition-1"/>
-				</meta>
-				<category>
-					<coding>
-						<system value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ConditionCategory-1"/>
-						<code value="finding"/>
-						<display value="Finding"/>
-					</coding>
-				</category>
-				<code>
-					<coding>
-						<system value="http://snomed.info/sct"/>
-						<code value="1093111000000107"/>
-						<display value="Lifts head clear of ground"/>
-					</coding>
-				</code>
-				<subject>
-					<reference value="urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"/>
-					<display value="DAWKINS, Jack"/>
-				</subject>
-				<context>
-					<reference value="urn:uuid:12779557-9033-4213-876f-69a670cdf35d"/>
-				</context>
-				<asserter>
-					<reference value="urn:uuid:2873cc37-72ff-491b-8d3f-bb3876f85359"/>
-					<display value="EMMANUEL, Dr. Gladys"/>
-				</asserter>
-				<stage>
-					<summary>
-						<coding>
-							<system value="http://snomed.info/sct"/>
-							<code value="1094981000000100"/>
-							<display value="Developmental skill achieved"/>
-						</coding>
-					</summary>
-				</stage>
-				<note>
-					<text value="Development skill additional text"/>
-				</note>
-			</Condition>
-		</resource>
-	</entry>
-	<!--Practitioner from Encounter-->
-	<entry>
-		<fullUrl value="urn:uuid:2873cc37-72ff-491b-8d3f-bb3876f85359"/>
-		<resource>
-			<Practitioner>
-				<id value="2873cc37-72ff-491b-8d3f-bb3876f85359"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
-				</identifier>
-				<name>
-					<family value="Emmanuel"/>
-					<given value="Gladys"/>
-					<prefix value="Dr."/>
-				</name>
-			</Practitioner>
-		</resource>
-	</entry>
-	<!--Practitioner Role-->
-	<entry>
-		<fullUrl value="urn:uuid:9db6dc59-9553-4060-beda-b16f0f43358c"/>
-		<resource>
-			<PractitionerRole>
-				<id value="9db6dc59-9553-4060-beda-b16f0f43358c"/>
-				<meta>
-					<profile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"/>
-				</meta>
-				<identifier>
-					<system value="https://fhir.nhs.uk/Id/sds-role-profile-id"/>
-					<value value="PT2468"/>
-				</identifier>
-				<practitioner>
-					<reference value="urn:uuid:2873cc37-72ff-491b-8d3f-bb3876f85359"/>
-				</practitioner>
-				<organization>
-					<reference value="urn:uuid:3ff6d789-af64-4d9c-aa1d-0087d29e9e1c"/>
-				</organization>
-			</PractitionerRole>
 		</resource>
 	</entry>
 	<!--Location where event took place-->
@@ -274,9 +254,9 @@
 				</meta>
 				<identifier>
 					<system value="https://fhir.nhs.uk/Id/ods-site-code"/>
-					<value value="A83627"/>
+					<value value="RX3QJ"/>
 				</identifier>
-				<name value="SILVERDALE FAMILY PRACTICE"/>
+				<name value="DURHAM SOCIAL SERVICES"/>
 			</Location>
 		</resource>
 	</entry>
