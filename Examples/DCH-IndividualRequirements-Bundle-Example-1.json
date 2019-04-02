@@ -12,7 +12,6 @@
       "fullUrl": "urn:uuid:9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
       "resource": {
         "resourceType": "MessageHeader",
-        "id": "9d2e2cd9-ffe1-49c7-be43-f36e30564d3f",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-MessageHeader-1"
@@ -58,10 +57,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Responsible for message content"
+      ],
       "fullUrl": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
       "resource": {
         "resourceType": "Organization",
-        "id": "33a33b58-648a-4453-b981-e21ea9ebc6ea",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1"
@@ -87,10 +88,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Healthcare service used e.g GP, trust, etc.."
+      ],
       "fullUrl": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
       "resource": {
         "resourceType": "HealthcareService",
-        "id": "5a293df7-b22f-41b6-8bf1-44248ea59edb",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-HealthcareService-1"
@@ -125,10 +128,12 @@
       }
     },
     {
+      "fhir_comments": [
+        " Patient"
+      ],
       "fullUrl": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca",
       "resource": {
         "resourceType": "Patient",
-        "id": "5d5845f3-398f-474b-af59-14882fc7b0ca",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Patient-1"
@@ -186,10 +191,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Encounter details"
+      ],
       "fullUrl": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
       "resource": {
         "resourceType": "Encounter",
-        "id": "1bcb0151-4ddf-4084-9c06-e8a31fdcf25b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Encounter-1"
@@ -212,16 +219,18 @@
           }
         ],
         "serviceProvider": {
-          "reference": "urn:uuid:5a293df7-b22f-41b6-8bf1-44248ea59edb",
+          "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea",
           "display": "UNIVERSITY HOSPITAL OF NORTH DURHAM"
         }
       }
     },
     {
+      "fhir_comments": [
+        "Ind Requirements"
+      ],
       "fullUrl": "urn:uuid:7071ad47-fa74-4ec6-872a-5b0eded5f88e",
       "resource": {
         "resourceType": "QuestionnaireResponse",
-        "id": "7071ad47-fa74-4ec6-872a-5b0eded5f88e",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-IndividualRequirements-QuestionnaireResponse-1"
@@ -268,10 +277,12 @@
       }
     },
     {
+      "fhir_comments": [
+        "Practitioner"
+      ],
       "fullUrl": "urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b",
       "resource": {
         "resourceType": "Practitioner",
-        "id": "3ce8fdf8-63fe-4e34-b42f-283263e3710b",
         "meta": {
           "profile": [
             "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-Practitioner-1"
@@ -297,10 +308,79 @@
       }
     },
     {
+      "fhir_comments": [
+        "Practitioner Role"
+      ],
+      "fullUrl": "urn:uuid:87f2a6d7-8d16-4253-915b-20405157b949",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-PractitionerRole-1"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "https://fhir.nhs.uk/Id/sds-role-profile-id",
+            "value": "PT2468"
+          }
+        ],
+        "practitioner": {
+          "reference": "urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"
+        },
+        "organization": {
+          "reference": "urn:uuid:33a33b58-648a-4453-b981-e21ea9ebc6ea"
+        }
+      }
+    },
+    {
+      "fhir_comments": [
+        "Professional Comment"
+      ],
+      "fullUrl": "urn:uuid:6f2b5f86-2cf4-4b4e-a47a-eb1c0711752e",
+      "resource": {
+        "resourceType": "Communication",
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ProfessionalComment-Communication-1"
+          ]
+        },
+        "status": "completed",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/DCH-ProfessionalCommentType-1",
+                "code": "015",
+                "display": "Individual Requirement"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "urn:uuid:5d5845f3-398f-474b-af59-14882fc7b0ca"
+        },
+        "context": {
+          "reference": "urn:uuid:1bcb0151-4ddf-4084-9c06-e8a31fdcf25b"
+        },
+        "sent": "2017-02-14",
+        "sender": {
+          "reference": "urn:uuid:3ce8fdf8-63fe-4e34-b42f-283263e3710b"
+        },
+        "payload": [
+          {
+            "contentString": "Prefers green ink!"
+          }
+        ]
+      }
+    },
+    {
+      "fhir_comments": [
+        "Location where event took place"
+      ],
       "fullUrl": "urn:uuid:14810b4e-abdf-4cb9-8f94-d144eea9dc2c",
       "resource": {
         "resourceType": "Location",
-        "id": "14810b4e-abdf-4cb9-8f94-d144eea9dc2c",
         "meta": {
           "profile": [
             "https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Location-1"

@@ -7,10 +7,10 @@
     <valueCode value="oo" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1" />
-  <version value="1.1.0" />
+  <version value="1.3.0" />
   <name value="CareConnect-DCH-AssessmentScale-Observation-1" />
   <status value="draft" />
-  <date value="2018-02-01" />
+  <date value="2019-03-05" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -21,7 +21,7 @@
     </telecom>
   </contact>
   <description value="The Observation resource is used for tracking the current and historical observations that have been made for a patient with further contraints applied to represent an Assessment Scale observation, to support the Digital Child Health project." />
-  <copyright value="Copyright © 2018 NHS Digital" />
+  <copyright value="Copyright © 2019 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -3787,7 +3787,7 @@
       <alias value="extensions" />
       <alias value="user content" />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Element.extension" />
         <min value="0" />
@@ -12020,7 +12020,7 @@
       <comment value="For a discussion on the ways Observations can assembled in groups together see [Notes below](observation.html#4.20.4)." />
       <requirements value="Normally, an observation will have either a value or a set of related observations. A few observations (e.g. Apgar score) may have both a value and a set of related observations or sometimes a QuestionnaireResponse from which the measure is derived." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Observation.related" />
         <min value="0" />
@@ -12179,7 +12179,7 @@
       <definition value="A code specifying the kind of relationship that exists with the target resource." />
       <comment value="The &quot;derived-from&quot; type is the only logical choice when referencing the QuestionnaireAnswer resource." />
       <requirements value="A relationship type SHOULD be provided." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Observation.related.type" />
@@ -12189,6 +12189,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="derived-from" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -12351,7 +12352,7 @@
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
       <comment value="Using absolute URLs provides a stable scalable approach suitable for a cloud/web context, while using relative/logical references provides a flexible approach suitable for use when trading across closed eco-system boundaries.   Absolute URLs do not need to point to a FHIR RESTful server, though this is the preferred approach. If the URL conforms to the structure &quot;/[type]/[id]&quot; then it should be assumed that the reference is to a FHIR RESTful server." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Reference.reference" />
@@ -12468,7 +12469,7 @@
       <comment value="For a discussion on the ways Observations can be assembled in groups together see [Notes](observation.html#notes) below." />
       <requirements value="Component observations share the same attributes in the Observation resource as the primary observation and are always treated a part of a single observation (they are not separable).   However, the reference range for the primary observation value is not inherited by the component values and is required when appropriate for each component observation." />
       <min value="0" />
-      <max value="*" />
+      <max value="0" />
       <base>
         <path value="Observation.component" />
         <min value="0" />
@@ -14775,7 +14776,6 @@
     <element id="Observation.code.coding.extension:snomedCTDescriptionID">
       <path value="Observation.code.coding.extension" />
       <sliceName value="snomedCTDescriptionID" />
-      <max value="0" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
@@ -14990,9 +14990,10 @@
       <path value="Observation.referenceRange" />
       <max value="0" />
     </element>
-    <element id="Observation.related">
-      <path value="Observation.related" />
-      <max value="0" />
+    <element id="Observation.related.type">
+      <path value="Observation.related.type" />
+      <min value="1" />
+      <fixedCode value="derived-from" />
     </element>
     <element id="Observation.related.target">
       <path value="Observation.related.target" />
@@ -15004,6 +15005,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-DCH-AssessmentScale-Observation-1" />
       </type>
+    </element>
+    <element id="Observation.related.target.reference">
+      <path value="Observation.related.target.reference" />
+      <min value="1" />
+    </element>
+    <element id="Observation.component">
+      <path value="Observation.component" />
+      <max value="0" />
     </element>
     <element id="Observation.component.code.coding">
       <path value="Observation.component.code.coding" />

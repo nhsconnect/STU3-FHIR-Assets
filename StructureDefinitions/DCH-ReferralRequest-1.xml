@@ -4,10 +4,10 @@
     <lastUpdated value="2018-06-21T13:20:01.428+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-ReferralRequest-1" />
-  <version value="1.1.0" />
+  <version value="1.2.0" />
   <name value="DCH-ReferralRequest-1" />
   <status value="draft" />
-  <date value="2018-01-29T09:54:50.421+00:00" />
+  <date value="2019-03-08" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -18,7 +18,7 @@
     </telecom>
   </contact>
   <description value="This ReferralRequest has been constrained to represent a Referral Request, to support the Digital Child Health project." />
-  <copyright value="Copyright © 2018 NHS Digital" />
+  <copyright value="Copyright © 2019 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -4637,6 +4637,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="ReferralRequest.serviceRequested.coding.extension:snomedCTDescriptionID">
+      <path value="ReferralRequest.serviceRequested.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="ReferralRequest.serviceRequested.coding.system">
       <path value="ReferralRequest.serviceRequested.coding.system" />
       <short value="Identity of the terminology system" />
@@ -6909,7 +6952,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ReferralReason" />
         </extension>
-        <strength value="required" />
+        <strength value="extensible" />
         <description value="The reason for the Referral Request" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReasonForReferral-1" />
@@ -7166,7 +7209,6 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ReasonForReferral-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -7923,7 +7965,7 @@
       <definition value="Comments made about the referral request by any of the participants." />
       <comment value="For systems that do not have structured annotations, they can simply communicate a single annotation with no author or time.  This element may need to be included in narrative because of the potential for modifying information.  *Annotations SHOULD NOT* be used to communicate &quot;modifying&quot; information that could be computable. (This is a SHOULD because enforcing user behavior is nearly impossible)." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ReferralRequest.note" />
         <min value="0" />
@@ -8515,6 +8557,26 @@
       <path value="ReferralRequest.serviceRequested.coding" />
       <max value="1" />
     </element>
+    <element id="ReferralRequest.serviceRequested.coding.extension">
+      <path value="ReferralRequest.serviceRequested.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="ReferralRequest.serviceRequested.coding.extension:snomedCTDescriptionID">
+      <path value="ReferralRequest.serviceRequested.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <min value="0" />
+      <max value="*" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
     <element id="ReferralRequest.subject">
       <path value="ReferralRequest.subject" />
       <short value="Patient referred to care " />
@@ -8598,16 +8660,12 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ReferralReason" />
         </extension>
-        <strength value="required" />
+        <strength value="extensible" />
         <description value="The reason for the Referral Request" />
         <valueSetReference>
           <reference value="https://fhir.nhs.uk/STU3/ValueSet/DCH-ReasonForReferral-1" />
         </valueSetReference>
       </binding>
-    </element>
-    <element id="ReferralRequest.reasonCode.coding.system">
-      <path value="ReferralRequest.reasonCode.coding.system" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/CodeSystem/DCH-ReasonForReferral-1" />
     </element>
     <element id="ReferralRequest.reasonReference">
       <path value="ReferralRequest.reasonReference" />
@@ -8623,7 +8681,7 @@
     </element>
     <element id="ReferralRequest.note">
       <path value="ReferralRequest.note" />
-      <max value="0" />
+      <max value="1" />
     </element>
     <element id="ReferralRequest.relevantHistory">
       <path value="ReferralRequest.relevantHistory" />

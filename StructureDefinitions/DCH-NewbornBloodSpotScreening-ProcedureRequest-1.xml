@@ -4,10 +4,10 @@
     <lastUpdated value="2018-03-29T17:37:24.182+01:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/DCH-NewbornBloodSpotScreening-ProcedureRequest-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="DCH-NewbornBloodSpotScreening-ProcedureRequest-1" />
   <status value="draft" />
-  <date value="2018-02-02T14:29:39.761+00:00" />
+  <date value="2019-03-08" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -18,7 +18,7 @@
     </telecom>
   </contact>
   <description value="This ProcedureRequest resource has been constrained to represent the request for a Newborn Blood Spot Screening procedure, to support the Digital Child Health project." />
-  <copyright value="Copyright © 2018 NHS Digital" />
+  <copyright value="Copyright © 2019 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -4675,6 +4675,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="ProcedureRequest.code.coding.extension:snomedCTDescriptionID">
+      <path value="ProcedureRequest.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="ProcedureRequest.code.coding.system">
       <path value="ProcedureRequest.code.coding.system" />
       <short value="Identity of the terminology system" />
@@ -4775,7 +4818,7 @@
       <type>
         <code value="code" />
       </type>
-      <fixedCode value="428447008" />
+      <fixedCode value="1104201000000105" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4821,7 +4864,7 @@
       <type>
         <code value="string" />
       </type>
-      <fixedString value="Newborn blood spot screening" />
+      <fixedString value="Newborn blood spot screening card sent to laboratory" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -9453,6 +9496,26 @@
       <path value="ProcedureRequest.code.coding" />
       <max value="1" />
     </element>
+    <element id="ProcedureRequest.code.coding.extension">
+      <path value="ProcedureRequest.code.coding.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="ProcedureRequest.code.coding.extension:snomedCTDescriptionID">
+      <path value="ProcedureRequest.code.coding.extension" />
+      <sliceName value="snomedCTDescriptionID" />
+      <min value="0" />
+      <max value="*" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid" />
+      </type>
+    </element>
     <element id="ProcedureRequest.code.coding.system">
       <path value="ProcedureRequest.code.coding.system" />
       <min value="1" />
@@ -9465,7 +9528,7 @@
     <element id="ProcedureRequest.code.coding.code">
       <path value="ProcedureRequest.code.coding.code" />
       <min value="1" />
-      <fixedCode value="428447008" />
+      <fixedCode value="1104201000000105" />
     </element>
     <element id="ProcedureRequest.code.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
@@ -9473,7 +9536,7 @@
       </extension>
       <path value="ProcedureRequest.code.coding.display" />
       <min value="1" />
-      <fixedString value="Newborn blood spot screening" />
+      <fixedString value="Newborn blood spot screening card sent to laboratory" />
     </element>
     <element id="ProcedureRequest.code.coding.userSelected">
       <path value="ProcedureRequest.code.coding.userSelected" />

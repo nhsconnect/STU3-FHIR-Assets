@@ -6,7 +6,7 @@
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1" />
   <version value="1.0.0" />
   <name value="eRS-Appointment-1" />
-  <status value="draft" />
+  <status value="active" />
   <date value="2018-02-27T11:05:11.455+00:00" />
   <publisher value="NHS Digital" />
   <contact>
@@ -6259,9 +6259,9 @@
       <path value="Appointment.participant.actor" />
       <short value="Practitioner or HealthcareService" />
       <definition value="Practitioner or HealthcareService that is participating in the appointment." />
-      <comment value="Note that a cab driver no longer fits the bill. You probably would be interested in the organization rather than the individual?" />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="1" />
-      <max value="*" />
+      <max value="1" />
       <base>
         <path value="Appointment.participant.actor" />
         <min value="0" />
@@ -6290,34 +6290,6 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
-      <constraint>
-        <key value="dom-2" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
-        <expression value="contained.contained.empty()" />
-        <xpath value="not(parent::f:contained and f:contained)" />
-      </constraint>
-      <constraint>
-        <key value="dom-1" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
-        <expression value="contained.text.empty()" />
-        <xpath value="not(parent::f:contained and f:text)" />
-      </constraint>
-      <constraint>
-        <key value="dom-4" />
-        <severity value="error" />
-        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
-        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
-        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
-      </constraint>
-      <constraint>
-        <key value="dom-3" />
-        <severity value="error" />
-        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
-        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
-        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
-      </constraint>
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -6342,26 +6314,6 @@
       <mapping>
         <identity value="w5" />
         <map value="who" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="Entity. Role, or Act" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="PRD (as one example)" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="Role" />
-      </mapping>
-      <mapping>
-        <identity value="servd" />
-        <map value="Provider" />
-      </mapping>
-      <mapping>
-        <identity value="w5" />
-        <map value="administrative.individual" />
       </mapping>
     </element>
     <element id="Appointment.participant.actor.id">
