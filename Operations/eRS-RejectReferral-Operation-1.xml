@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OperationDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-RejectReferral-Operation-1"/>
+	<version value="1.0.0"/>
+	<name value="eRS-RejectReferral-Operation-1"/>
+	<status value="draft"/>
+	<kind value="operation"/>
+	<date value="2019-03-13T00:00:00+01:00"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="interoperabilityteam@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="Operation to reject a referral. Allows one to provide rejection details."/>
+	<code value="ers.rejectReferral"/>
+	<system value="false"/>
+	<type value="true"/>
+	<instance value="false"/>
+	<parameter>
+		<name value="rejectionReason"/>
+		<use value="in"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The reason why the referral is being rejected."/>
+		<type value="Coding"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-RejectionReason-1"/>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="rejectionComments"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="This may be mandatory, depending on the specific value chosen for rejectionReason. Max: 2000 chars."/>
+		<type value="string"/>
+	</parameter>
+	<parameter>
+		<name value="appointmentCancelledInPas"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Whether the appointment has been cancelled in the PAS system."/>
+		<type value="boolean"/>
+	</parameter>
+</OperationDefinition>

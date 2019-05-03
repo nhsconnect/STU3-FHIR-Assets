@@ -3,11 +3,11 @@
 		<lastUpdated value="2018-10-05T00:00:00+01:00"/>
 	</meta>
 	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-PatientServiceSearch-Operation-1"/>
-	<version value="1.0.0"/>
+	<version value="1.1.0"/>
 	<name value="eRS-PatientServiceSearch-Operation-1"/>
-	<status value="active"/>
+	<status value="draft"/>
 	<kind value="operation"/>
-	<date value="2018-10-05T00:00:00+01:00"/>
+	<date value="2019-04-15T00:00:00+01:00"/>
 	<publisher value="NHS Digital"/>
 	<contact>
 		<name value="Interoperability Team"/>
@@ -18,7 +18,7 @@
 		</telecom>
 	</contact>
 	<description value="Request to retrieve a healthcare service using patient specific details."/>
-	<code value="ers.patientServiceSearch"/>
+	<code value="ers.searchHealthcareServicesForPatient"/>
 	<system value="false"/>
 	<type value="true"/>
 	<instance value="false"/>
@@ -27,7 +27,8 @@
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="The NHS Number of the patient who the referral being created is for. Format: ^[0-9]{10}$"/>
+		<documentation value="The NHS Number of the patient who the search is for.
+Format: ^[0-9]{10}$"/>
 		<type value="Identifier"/>
 	</parameter>
 	<parameter>
@@ -35,8 +36,8 @@
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Request Type"/>
-		<type value="code"/>
+		<documentation value="The type of request in e-RS which this service search is aimed at creating or updating. The options are appointment request (i.e. referral) or advice and guidance request. Services may support one or the other or both and will be filtered accordingly."/>
+		<type value="Coding"/>
 		<binding>
 			<strength value="required"/>
 			<valueSetReference>
@@ -49,27 +50,39 @@
 		<use value="in"/>
 		<min value="0"/>
 		<max value="1"/>
-		<documentation value="Required if and only if the logged in user has a role of Referring Clinician Admin. 
-		Format: ^[0-9]{12}$"/>
+		<documentation value="Users with the role of Referring Clinician Admin need to indicate the Referring Clinician under whose authority they are acting.
+This parameter is required if and only if the logged in user has a role of Referring Clinician Admin and it is only applicable when searching services for a yet to be created request.
+Format: ^[0-9]{12}$"/>
 		<type value="Identifier"/>
 	</parameter>
 	<parameter>
-		<name value="SearchCriteria"/>
+		<name value="searchCriteria"/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Search criteria"/>
+		<documentation value="The search criteria contain details of the specific conditions which the services need to satisfy, such as the specialty supported or the distance from a given postcode."/>
 		<profile>
 			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ServiceSearchCriteria-Parameters-1"/>
 		</profile>
+	</parameter>
+	<parameter>
+		<name value="restrictedService"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="This parameter is used to retrieve further information about a restricted service.
+Services flagged as restricted are not directly available to the referrer, but they are associated to a so called ‘authorised pathway’ which provides a way into the restricted service (i.e. if a patient is referred to a pathway service to start with, they can then be referred on to the restricted service)
+If this parameter is provided, the endpoint will calculate the list of authorised pathway services for the given restricted service, filter it according to the search criteria and return the standard service search information for each service on the authorised pathway."/>
+		<type value="Reference"/>
 	</parameter>
 	<parameter>
 		<name value="sortBy"/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Sort By"/>
-		<type value="code"/>
+		<documentation value="The service search returns the top results according to the sorting requested.
+        Therefore, the sorting requested affects the selection of services that are included in the response."/>
+		<type value="Coding"/>
 		<binding>
 			<strength value="required"/>
 			<valueSetReference>
