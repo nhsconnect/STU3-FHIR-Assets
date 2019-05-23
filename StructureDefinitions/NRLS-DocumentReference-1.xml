@@ -3048,7 +3048,7 @@
         <strength value="required" />
         <description value="Precise type of clinical record." />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRLS-RecordType-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-RecordType-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -3566,7 +3566,7 @@
       <comment value="This is a metadata field from [XDS/MHD](http://wiki.ihe.net/index.php?title=Mobile_access_to_Health_Documents_(MHD))." />
       <requirements value="Helps humans to assess whether the document is of interest when viewing a list of documents." />
       <alias value="kind" />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="DocumentReference.class" />
@@ -3589,10 +3589,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DocumentC80Class" />
         </extension>
-        <strength value="example" />
+        <strength value="required" />
         <description value="High-level kind of a clinical document at a macro level." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/c80-doc-classcodes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-RecordClass-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -3840,7 +3840,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -3923,7 +3923,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -3968,7 +3968,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -6348,6 +6348,12 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <binding>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-ContentStability-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -6870,7 +6876,7 @@
       <short value="Format/content rules for the document" />
       <definition value="An identifier of the document encoding, structure, and template that the document conforms to beyond the base format indicated in the mimeType." />
       <comment value="Note that while IHE mostly issues URNs for format types, not all documents can be identified by a URI." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="DocumentReference.content.format" />
@@ -6893,10 +6899,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DocumentFormat" />
         </extension>
-        <strength value="preferred" />
+        <strength value="required" />
         <description value="Document Format Codes." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/formatcodes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-FormatCode-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -7008,7 +7014,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -7091,7 +7097,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -7136,7 +7142,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -8899,10 +8905,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="DocumentC80PracticeSetting" />
         </extension>
-        <strength value="example" />
+        <strength value="required" />
         <description value="Additional details about where the content was created (e.g. clinical specialty)." />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/c80-practice-codes" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-PracticeSetting-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -9146,7 +9152,7 @@
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
       <comment value="The URI may be an OID (urn:oid:...) or a UUID (urn:uuid:...).  OIDs and UUIDs SHALL be references to the HL7 OID registry. Otherwise, the URI should come from HL7's list of FHIR defined special URIs or it should de-reference to some definition that establish the system clearly and unambiguously." />
       <requirements value="Need to be unambiguous about the source of the definition of the symbol." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.system" />
@@ -9229,7 +9235,7 @@
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to refer to a particular code in the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.code" />
@@ -9274,7 +9280,7 @@
       <definition value="A representation of the meaning of the code in the system, following the rules of the system." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <requirements value="Need to be able to carry a human-readable meaning of the code for readers that do not know  the system." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Coding.display" />
@@ -11310,7 +11316,7 @@
         <strength value="required" />
         <description value="Precise type of clinical record." />
         <valueSetReference>
-          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRLS-RecordType-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-RecordType-1" />
         </valueSetReference>
       </binding>
     </element>
@@ -11344,6 +11350,34 @@
         <valueBoolean value="true" />
       </extension>
       <path value="DocumentReference.type.coding.display" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.class">
+      <path value="DocumentReference.class" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DocumentC80Class" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-RecordClass-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="DocumentReference.class.coding.system">
+      <path value="DocumentReference.class.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.class.coding.code">
+      <path value="DocumentReference.class.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.class.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="DocumentReference.class.coding.display" />
       <min value="1" />
     </element>
     <element id="DocumentReference.subject">
@@ -11461,12 +11495,16 @@
     <element id="DocumentReference.content.extension:contentStability">
       <path value="DocumentReference.content.extension" />
       <sliceName value="contentStability" />
-      <min value="1" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NRL-ContentStability-1" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-ContentStability-1" />
+        </valueSetReference>
+      </binding>
     </element>
     <element id="DocumentReference.content.attachment.contentType">
       <path value="DocumentReference.content.attachment.contentType" />
@@ -11476,12 +11514,64 @@
       <path value="DocumentReference.content.attachment.url" />
       <min value="1" />
     </element>
+    <element id="DocumentReference.content.format">
+      <path value="DocumentReference.content.format" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DocumentFormat" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-FormatCode-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="DocumentReference.content.format.system">
+      <path value="DocumentReference.content.format.system" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.content.format.code">
+      <path value="DocumentReference.content.format.code" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.content.format.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="DocumentReference.content.format.display" />
+      <min value="1" />
+    </element>
     <element id="DocumentReference.context">
       <path value="DocumentReference.context" />
       <min value="1" />
     </element>
     <element id="DocumentReference.context.practiceSetting">
       <path value="DocumentReference.context.practiceSetting" />
+      <min value="1" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DocumentC80PracticeSetting" />
+        </extension>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/NRL-PracticeSetting-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="DocumentReference.context.practiceSetting.coding.system">
+      <path value="DocumentReference.context.practiceSetting.coding.system" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.context.practiceSetting.coding.code">
+      <path value="DocumentReference.context.practiceSetting.coding.code" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.context.practiceSetting.coding.display">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="DocumentReference.context.practiceSetting.coding.display" />
       <min value="1" />
     </element>
   </differential>
