@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
     <lastUpdated value="2018-05-29T12:06:47.158+01:00" />
   </meta>
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/NRLS-DocumentReference-1" />
-  <version value="1.1.0" />
-  <name value="NRLS-DocumentReference-1" />
-  <title value="NRLS-DocumentReference-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/NRL-DocumentReference-1" />
+  <version value="1.0.0" />
+  <name value="NRL-DocumentReference-1" />
+  <title value="NRL-DocumentReference-1" />
   <status value="draft" />
-  <date value="2017-11-20" />
+  <date value="2019-05-24" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -18,8 +18,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <description value="NRLS-DocumentReference-1" />
-  <copyright value="Copyright © 2017 NHS Digital" />
+  <description value="NRL-DocumentReference-1" />
+  <copyright value="Copyright © 2019 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="resource" />
   <abstract value="false" />
@@ -5352,6 +5352,7 @@
       <type>
         <code value="code" />
       </type>
+      <fixedCode value="replaces" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -5398,7 +5399,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/DocumentReference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/NRL-DocumentReference-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6313,6 +6314,49 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="DocumentReference.content.extension:contentStability">
+      <path value="DocumentReference.content.extension" />
+      <sliceName value="contentStability" />
+      <short value="Record content stabilty" />
+      <definition value="Record content stabilty" />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NRL-ContentStability-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="DocumentReference.content.modifierExtension">
       <path value="DocumentReference.content.modifierExtension" />
       <short value="Extensions that cannot be ignored" />
@@ -7175,7 +7219,7 @@
       <short value="Clinical context of document" />
       <definition value="The clinical context in which the document was prepared." />
       <comment value="These values are primarily added to help with searching for interesting/relevant documents." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="DocumentReference.context" />
@@ -8832,7 +8876,7 @@
       <definition value="This property may convey specifics about the practice setting where the content was created, often reflecting the clinical specialty." />
       <comment value="The value set for this content has an example binding because it is a value set decided by community policy. Other examples exist for consideration: * HITSP created the table HITSP/C80 Table 2-148 Clinical Specialty Value Set (a value set based upon SNOMED CT which is referenced by Direct (XDR and XDM for Direct Messaging Specification, Version 1), as well as Nationwide Health Information Network (NHIN).  Query for Documents, Web Service Interface Specification, V 3.0, 07/27/2011 * ELGA (Austria) (ELGA CDA Implementie-rungsleitfäden Registrierung von CDA Dokumenten für ELGA mit IHE Cross-Enterprise Document Sharing: XDS Metadaten (XDSDocumentEntry), [1.2.40.0.34.7.6.3] * XDS Connect-a-thon practiceSettingCode." />
       <requirements value="This is an important piece of metadata that providers often rely upon to quickly sort and/or filter out to find specific content." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="DocumentReference.context.practiceSetting" />
@@ -11388,10 +11432,41 @@
       <path value="DocumentReference.custodian.display" />
       <max value="0" />
     </element>
+    <element id="DocumentReference.relatesTo.code">
+      <path value="DocumentReference.relatesTo.code" />
+      <fixedCode value="replaces" />
+    </element>
+    <element id="DocumentReference.relatesTo.target">
+      <path value="DocumentReference.relatesTo.target" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/NRL-DocumentReference-1" />
+      </type>
+    </element>
     <element id="DocumentReference.content">
       <path value="DocumentReference.content" />
       <short value="Record referenced" />
       <comment value="Record Pointer" />
+    </element>
+    <element id="DocumentReference.content.extension">
+      <path value="DocumentReference.content.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <rules value="open" />
+      </slicing>
+    </element>
+    <element id="DocumentReference.content.extension:contentStability">
+      <path value="DocumentReference.content.extension" />
+      <sliceName value="contentStability" />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-NRL-ContentStability-1" />
+      </type>
     </element>
     <element id="DocumentReference.content.attachment.contentType">
       <path value="DocumentReference.content.attachment.contentType" />
@@ -11399,6 +11474,14 @@
     </element>
     <element id="DocumentReference.content.attachment.url">
       <path value="DocumentReference.content.attachment.url" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.context">
+      <path value="DocumentReference.context" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.context.practiceSetting">
+      <path value="DocumentReference.context.practiceSetting" />
       <min value="1" />
     </element>
   </differential>
