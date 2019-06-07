@@ -15,7 +15,7 @@
 			<use value="work"/>
 		</telecom>
 	</contact>
-	<description value="Create a referral for a patient."/>
+	<description value="Create a referral for a patient and send it for triage at the selected service."/>
 	<code value="ers.createReferralAndSendForTriage"/>
 	<system value="false"/>
 	<type value="true"/>
@@ -50,8 +50,7 @@
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="A list of 1 to 20 services that will form the shortlist for the referral.
-The patient will be able to book an appointment at any of these services."/>
+		<documentation value="When sending for triage, the shortlist must contain exactly one service, and this must support the ‘triage request flow’."/>
 		<type value="List"/>
 		<profile>
 			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Shortlist-List-1"/>
@@ -71,8 +70,7 @@ Required if and only if the shortlist contains one or more 'unaccredited' servic
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="If > 0, the system will send an automated letter to the patient after the number of days stated, if the patient hasn't yet booked an appointment.
-If = 0, the system will not send reminder letters for this referral."/>
+		<documentation value="This parameter triggers a reminder letter to the patient to prompt them to book an appointment if they haven’t done so after x days. When sending for triage, the only acceptable value is 0, which means no follow up letter will be sent, as the patient does not need to book an appointment."/>
 		<type value="unsignedInt"/>
 	</parameter>
 	<parameter>
@@ -80,7 +78,7 @@ If = 0, the system will not send reminder letters for this referral."/>
 		<use value="in"/>
 		<min value="1"/>
 		<max value="1"/>
-		<documentation value="Intention to add a referral letter."/>
+		<documentation value="When sending for triage, a referral letter is always required; therefore the only acceptable value is NEED_TO_ADD_LATER."/>
 		<type value="Coding"/>
 		<binding>
 			<strength value="required"/>
