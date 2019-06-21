@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
     <lastUpdated value="2018-02-20T08:24:06.177+00:00" />
@@ -10,7 +10,7 @@
   <version value="1.0.0" />
   <name value="CareConnect-GPC-Encounter-1" />
   <status value="draft" />
-  <date value="2019-06-17" />
+  <date value="2019-06-21" />
   <publisher value="HL7 UK" />
   <contact>
     <name value="INTEROPen" />
@@ -3866,7 +3866,7 @@
       <definition value="The status history permits the encounter resource to contain the status history without needing to read through the historical versions of the resource, or even have the server store them." />
       <comment value="The current status is always found in the current version of the resource, not the status history." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Encounter.statusHistory" />
         <min value="0" />
@@ -4252,7 +4252,7 @@
       <definition value="Classification of the encounter." />
       <comment value="Codes may be defined very casually in enumerations or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Encounter.class" />
         <min value="0" />
@@ -4607,7 +4607,7 @@
       <short value="List of past encounter classes" />
       <definition value="The class history permits the tracking of the encounters transitions without needing to go  through the resource history.&#xA;&#xA;This would be used for a case where an admission starts of as an emergency encounter, then transisions into an inpatient scenario. Doing this and not restarting a new encounter ensures that any lab/diagnostic results can more easily follow the patient and not require re-processing and not get lost or cancelled during a kindof discharge from emergency to inpatient." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Encounter.classHistory" />
         <min value="0" />
@@ -5294,8 +5294,8 @@
       <short value="Specific type of encounter" />
       <definition value="Specific type of encounter (e.g. e-mail consultation, surgical day-care, skilled nursing, rehabilitation)." />
       <comment value="Since there are many ways to further classify encounters, this element is 0..*." />
-      <min value="1" />
-      <max value="1" />
+      <min value="0" />
+      <max value="*" />
       <base>
         <path value="Encounter.type" />
         <min value="0" />
@@ -6484,7 +6484,7 @@
       <definition value="Indicates the urgency of the encounter." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Encounter.priority" />
         <min value="0" />
@@ -7260,7 +7260,7 @@
       <definition value="Where a specific encounter should be classified as a part of a specific episode(s) of care this field should be used. This association can facilitate grouping of related encounters together for a specific purpose, such as government reporting, issue tracking, association via a common problem.  The association is recorded on the encounter as these are typically created after the episode of care, and grouped on entry rather than editing the episode of care to append another encounter to it (the episode of care could span years)." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Encounter.episodeOfCare" />
         <min value="0" />
@@ -9120,7 +9120,7 @@
       <short value="The start and end time of the encounter" />
       <definition value="The start and end time of the encounter." />
       <comment value="If not (yet) known, the end of the Period may be omitted." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Encounter.period" />
@@ -18980,7 +18980,7 @@
       <short value="The custodian organization of this Encounter record" />
       <definition value="An organization that is in charge of maintaining the information of this Encounter (e.g. who maintains the report or the master service catalog item, etc.). This MAY be the same as the organization on the Patient record, however it could be different. This MAY not be not the Service Delivery Location's Organization." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Encounter.serviceProvider" />
@@ -19558,30 +19558,17 @@
         <valueString value="StatusHistory" />
       </extension>
       <path value="Encounter.statusHistory" />
-      <max value="0" />
+      <max value="1" />
     </element>
     <element id="Encounter.class">
       <path value="Encounter.class" />
       <short value="Classification of the encounter" />
       <definition value="Classification of the encounter." />
-      <max value="0" />
-    </element>
-    <element id="Encounter.classHistory">
-      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
-        <valueString value="ClassHistory" />
-      </extension>
-      <path value="Encounter.classHistory" />
-      <max value="0" />
     </element>
     <element id="Encounter.classHistory.class">
       <path value="Encounter.classHistory.class" />
       <short value="Classification of the encounter" />
       <definition value="Classification of the encounter." />
-    </element>
-    <element id="Encounter.type">
-      <path value="Encounter.type" />
-      <min value="1" />
-      <max value="1" />
     </element>
     <element id="Encounter.type.coding">
       <path value="Encounter.type.coding" />
@@ -19644,10 +19631,6 @@
       <path value="Encounter.type.coding.display" />
       <min value="1" />
     </element>
-    <element id="Encounter.priority">
-      <path value="Encounter.priority" />
-      <max value="0" />
-    </element>
     <element id="Encounter.subject">
       <path value="Encounter.subject" />
       <short value="Reference to Patient resource representing the Patient against whom the source consultation/encounter was recorded." />
@@ -19657,10 +19640,6 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
-    </element>
-    <element id="Encounter.episodeOfCare">
-      <path value="Encounter.episodeOfCare" />
-      <max value="0" />
     </element>
     <element id="Encounter.incomingReferral">
       <path value="Encounter.incomingReferral" />
@@ -19684,6 +19663,10 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+    </element>
+    <element id="Encounter.period">
+      <path value="Encounter.period" />
+      <min value="1" />
     </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
@@ -19920,7 +19903,6 @@
     </element>
     <element id="Encounter.serviceProvider">
       <path value="Encounter.serviceProvider" />
-      <min value="1" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
