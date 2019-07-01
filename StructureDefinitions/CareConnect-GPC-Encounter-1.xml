@@ -10,7 +10,7 @@
   <version value="1.0.0" />
   <name value="CareConnect-GPC-Encounter-1" />
   <status value="draft" />
-  <date value="2019-06-24" />
+  <date value="2019-06-28" />
   <publisher value="HL7 UK" />
   <contact>
     <name value="INTEROPen" />
@@ -4830,7 +4830,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5506,8 +5506,8 @@
     </element>
     <element id="Encounter.class">
       <path value="Encounter.class" />
-      <short value="Classification of the encounter" />
-      <definition value="Classification of the encounter." />
+      <short value="inpatient | outpatient | ambulatory | emergency +" />
+      <definition value="inpatient | outpatient | ambulatory | emergency +." />
       <comment value="Codes may be defined very casually in enumerations or code lists, up to very formal definitions such as SNOMED CT - see the HL7 v3 Core Principles for more information." />
       <min value="0" />
       <max value="1" />
@@ -6552,8 +6552,8 @@
       <short value="Specific type of encounter" />
       <definition value="Specific type of encounter (e.g. e-mail consultation, surgical day-care, skilled nursing, rehabilitation)." />
       <comment value="Since there are many ways to further classify encounters, this element is 0..*." />
-      <min value="0" />
-      <max value="*" />
+      <min value="1" />
+      <max value="1" />
       <base>
         <path value="Encounter.type" />
         <min value="0" />
@@ -7696,7 +7696,7 @@
         <valueBoolean value="true" />
       </extension>
       <path value="Encounter.type.text" />
-      <short value="Plain text representation of the concept" />
+      <short value="Plain text representation of the consultation type as displayed by system" />
       <definition value="A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user." />
       <comment value="Very often the text is the same as a displayName of one of the codings." />
       <requirements value="The codes from the terminologies do not always capture the correct meaning with all the nuances of the human using them, or sometimes there is no appropriate code at all. In these cases, the text is used to capture the full meaning of the source." />
@@ -10378,7 +10378,7 @@
       <short value="The start and end time of the encounter" />
       <definition value="The start and end time of the encounter." />
       <comment value="If not (yet) known, the end of the Period may be omitted." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Encounter.period" />
@@ -10403,6 +10403,7 @@
         <expression value="start.empty() or end.empty() or (start &lt;= end)" />
         <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -20819,6 +20820,13 @@
       <path value="Encounter.identifier.value" />
       <min value="1" />
     </element>
+    <element id="Encounter.identifier:identifier.assigner">
+      <path value="Encounter.identifier.assigner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
+      </type>
+    </element>
     <element id="Encounter.status">
       <path value="Encounter.status" />
       <fixedCode value="finished" />
@@ -20830,15 +20838,15 @@
       <path value="Encounter.statusHistory" />
       <max value="1" />
     </element>
-    <element id="Encounter.class">
-      <path value="Encounter.class" />
-      <short value="Classification of the encounter" />
-      <definition value="Classification of the encounter." />
-    </element>
     <element id="Encounter.classHistory.class">
       <path value="Encounter.classHistory.class" />
       <short value="Classification of the encounter" />
       <definition value="Classification of the encounter." />
+    </element>
+    <element id="Encounter.type">
+      <path value="Encounter.type" />
+      <min value="1" />
+      <max value="1" />
     </element>
     <element id="Encounter.type.coding">
       <path value="Encounter.type.coding" />
@@ -20901,6 +20909,13 @@
       <path value="Encounter.type.coding.display" />
       <min value="1" />
     </element>
+    <element id="Encounter.type.text">
+      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
+        <valueBoolean value="true" />
+      </extension>
+      <path value="Encounter.type.text" />
+      <short value="Plain text representation of the consultation type as displayed by system" />
+    </element>
     <element id="Encounter.subject">
       <path value="Encounter.subject" />
       <short value="Reference to Patient resource representing the Patient against whom the source consultation/encounter was recorded." />
@@ -20936,7 +20951,7 @@
     </element>
     <element id="Encounter.period">
       <path value="Encounter.period" />
-      <min value="1" />
+      <mustSupport value="true" />
     </element>
     <element id="Encounter.period.start">
       <path value="Encounter.period.start" />
