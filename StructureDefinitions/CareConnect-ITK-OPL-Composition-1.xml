@@ -388,6 +388,261 @@
         <map value="N/A" />
       </mapping>
     </element>
+    <element id="Composition.extension:careSettingTypeExtension.id">
+      <path value="Composition.extension.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Composition.extension:careSettingTypeExtension.extension">
+      <path value="Composition.extension.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Composition.extension:careSettingTypeExtension.url">
+      <path value="Composition.extension.url" />
+      <representation value="xmlAttr" />
+      <short value="identifies the meaning of the extension" />
+      <definition value="Source of the definition for the extension code - a logical name or a URL." />
+      <comment value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Extension.url" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <fixedUri value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-CareSettingType-1" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Composition.extension:careSettingTypeExtension.value[x]">
+      <path value="Composition.extension.value[x]" />
+      <short value="Value of extension" />
+      <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Extension.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="base64Binary" />
+      </type>
+      <type>
+        <code value="boolean" />
+      </type>
+      <type>
+        <code value="code" />
+      </type>
+      <type>
+        <code value="date" />
+      </type>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <type>
+        <code value="decimal" />
+      </type>
+      <type>
+        <code value="id" />
+      </type>
+      <type>
+        <code value="instant" />
+      </type>
+      <type>
+        <code value="integer" />
+      </type>
+      <type>
+        <code value="markdown" />
+      </type>
+      <type>
+        <code value="oid" />
+      </type>
+      <type>
+        <code value="positiveInt" />
+      </type>
+      <type>
+        <code value="string" />
+      </type>
+      <type>
+        <code value="time" />
+      </type>
+      <type>
+        <code value="unsignedInt" />
+      </type>
+      <type>
+        <code value="uri" />
+      </type>
+      <type>
+        <code value="Address" />
+      </type>
+      <type>
+        <code value="Age" />
+      </type>
+      <type>
+        <code value="Annotation" />
+      </type>
+      <type>
+        <code value="Attachment" />
+      </type>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Coding" />
+      </type>
+      <type>
+        <code value="ContactPoint" />
+      </type>
+      <type>
+        <code value="Count" />
+      </type>
+      <type>
+        <code value="Distance" />
+      </type>
+      <type>
+        <code value="Duration" />
+      </type>
+      <type>
+        <code value="HumanName" />
+      </type>
+      <type>
+        <code value="Identifier" />
+      </type>
+      <type>
+        <code value="Money" />
+      </type>
+      <type>
+        <code value="Period" />
+      </type>
+      <type>
+        <code value="Quantity" />
+      </type>
+      <type>
+        <code value="Range" />
+      </type>
+      <type>
+        <code value="Ratio" />
+      </type>
+      <type>
+        <code value="Reference" />
+      </type>
+      <type>
+        <code value="SampledData" />
+      </type>
+      <type>
+        <code value="Signature" />
+      </type>
+      <type>
+        <code value="Timing" />
+      </type>
+      <type>
+        <code value="Meta" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Composition.modifierExtension">
       <path value="Composition.modifierExtension" />
       <slicing>
@@ -8423,7 +8678,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -10759,7 +11016,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -13087,7 +13346,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -15424,7 +15685,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -17759,7 +18022,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -20085,7 +20350,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -22420,7 +22687,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -24763,7 +25032,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -27095,7 +27366,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -29421,7 +29694,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -31748,7 +32023,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -34086,7 +34363,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -36421,7 +36700,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -38749,7 +39030,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -41087,7 +41370,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -43413,7 +43698,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -45753,7 +46040,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -48082,7 +48371,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -50408,7 +50699,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -52735,7 +53028,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -55067,7 +55362,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -57396,7 +57693,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -59725,7 +60024,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -62065,7 +62366,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -64406,7 +64709,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -66733,7 +67038,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -69062,7 +69369,9 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/doc-section-codes" />
+        </valueSetReference>
       </binding>
       <mapping>
         <identity value="rim" />
@@ -71171,6 +71480,10 @@
       </type>
       <mustSupport value="true" />
     </element>
+    <element id="Composition.extension:careSettingTypeExtension.url">
+      <path value="Composition.extension.url" />
+      <fixedUri value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-CareSettingType-1" />
+    </element>
     <element id="Composition.identifier">
       <path value="Composition.identifier" />
       <min value="1" />
@@ -71497,7 +71810,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:allergiesAndAdverseReactionsSection.code.coding">
@@ -71648,7 +71960,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:assessmentScalesSection.code.coding">
@@ -71785,7 +72096,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:attendanceDetailsSection.code.coding">
@@ -71934,7 +72244,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:clinicalReviewOfSystemsSection.code.coding">
@@ -72084,7 +72393,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:clinicalSummarySection.code.coding">
@@ -72213,7 +72521,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:diagnosesSection.code.coding">
@@ -72363,7 +72670,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:distributionListSection.code.coding">
@@ -72509,7 +72815,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:examinationFindingSection.code.coding">
@@ -72656,7 +72961,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:familyHistorySection.code.coding">
@@ -72785,7 +73089,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:gpPracticeSection.code.coding">
@@ -72916,7 +73219,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:historySection.code.coding">
@@ -73069,7 +73371,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:individualRequirementsSection.code.coding">
@@ -73219,7 +73520,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:informationAndAdviceGivenSection.code.coding">
@@ -73356,7 +73656,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:investigationResultsSection.code.coding">
@@ -73505,7 +73804,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:legalInformationSection.code.coding">
@@ -73634,7 +73932,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:medicationsAndMedicalDevicesSection.code.coding">
@@ -73792,7 +74089,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:participationInResearchSection.code.coding">
@@ -73930,7 +74226,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:patientAndCarerConcernsExpectationsAndWishesSection.code.coding">
@@ -74060,7 +74355,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:patientDemographicsSection.code.coding">
@@ -74191,7 +74485,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:personCompletingRecordSection.code.coding">
@@ -74332,7 +74625,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:planAndRequestedActionsSection.code.coding">
@@ -74470,7 +74762,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:problemsAndIssuesSection.code.coding">
@@ -74608,7 +74899,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:proceduresSection.code.coding">
@@ -74766,7 +75056,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:referrerDetailsSection.code.coding">
@@ -74916,7 +75205,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:relevantClinicalRiskFactorsSection.code.coding">
@@ -75052,7 +75340,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:safetyAlertsSection.code.coding">
@@ -75190,7 +75477,6 @@
         </extension>
         <strength value="required" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system which represents the type of section." />
-        <valueSetUri value="http://snomed.info/sct" />
       </binding>
     </element>
     <element id="Composition.section:socialContextSection.code.coding">
