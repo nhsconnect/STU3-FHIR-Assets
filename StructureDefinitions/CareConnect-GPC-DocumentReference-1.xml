@@ -4,7 +4,7 @@
   <version value="1.0.0" />
   <name value="CareConnect-GPC-DocumentReference-1" />
   <status value="draft" />
-  <date value="2019-07-24" />
+  <date value="2019-08-08" />
   <publisher value="HL7 UK" />
   <contact>
     <name value="INTEROPen" />
@@ -82,7 +82,7 @@
       <short value="Logical id of this artifact" />
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
       <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
-      <min value="0" />
+      <min value="1" />
       <max value="1" />
       <base>
         <path value="Resource.id" />
@@ -224,7 +224,7 @@
       <min value="0" />
       <max value="1" />
       <base>
-        <path value="Resource.meta.versionId" />
+        <path value="Meta.versionId" />
         <min value="0" />
         <max value="1" />
       </base>
@@ -253,7 +253,7 @@
       <min value="0" />
       <max value="1" />
       <base>
-        <path value="Resource.meta.lastUpdated" />
+        <path value="Meta.lastUpdated" />
         <min value="0" />
         <max value="1" />
       </base>
@@ -279,10 +279,10 @@
       <short value="Profiles this resource claims to conform to" />
       <definition value="A list of profiles (references to [StructureDefinition](structuredefinition.html#) resources) that this resource claims to conform to. The URL is a reference to [StructureDefinition.url]()." />
       <comment value="It is up to the server and/or other infrastructure of policy to determine whether/how these claims are verified and/or updated over time.  The list of profile URLs is a set." />
-      <min value="0" />
+      <min value="1" />
       <max value="*" />
       <base>
-        <path value="Resource.meta.profile" />
+        <path value="Meta.profile" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -311,7 +311,7 @@
       <min value="0" />
       <max value="*" />
       <base>
-        <path value="Resource.meta.security" />
+        <path value="Meta.security" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -655,7 +655,7 @@
       <min value="0" />
       <max value="*" />
       <base>
-        <path value="Resource.meta.tag" />
+        <path value="Meta.tag" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -1103,172 +1103,6 @@
       <mapping>
         <identity value="rim" />
         <map value="Act.text?" />
-      </mapping>
-    </element>
-    <element id="DocumentReference.text.id">
-      <path value="DocumentReference.text.id" />
-      <representation value="xmlAttr" />
-      <short value="xml:id (or equivalent in JSON)" />
-      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="0" />
-      <max value="1" />
-      <base>
-        <path value="Element.id" />
-        <min value="0" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="string" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-    </element>
-    <element id="DocumentReference.text.extension">
-      <path value="DocumentReference.text.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <description value="Extensions are always sliced by (at least) url" />
-        <rules value="open" />
-      </slicing>
-      <short value="Additional Content defined by implementations" />
-      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
-      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
-      <alias value="extensions" />
-      <alias value="user content" />
-      <min value="0" />
-      <max value="*" />
-      <base>
-        <path value="Element.extension" />
-        <min value="0" />
-        <max value="*" />
-      </base>
-      <type>
-        <code value="Extension" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ext-1" />
-        <severity value="error" />
-        <human value="Must have either extensions or value[x], not both" />
-        <expression value="extension.exists() != value.exists()" />
-        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="DocumentReference.text.status">
-      <path value="DocumentReference.text.status" />
-      <short value="generated | extensions | additional | empty" />
-      <definition value="The status of the narrative - whether it's entirely generated (from just the defined data or the extensions too), or whether a human authored it and it may contain additional data." />
-      <comment value="Note that FHIR strings may not exceed 1MB in size" />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Narrative.status" />
-        <min value="1" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="code" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="NarrativeStatus" />
-        </extension>
-        <strength value="required" />
-        <description value="The status of a resource narrative" />
-        <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/narrative-status" />
-        </valueSetReference>
-      </binding>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
-      </mapping>
-    </element>
-    <element id="DocumentReference.text.div">
-      <path value="DocumentReference.text.div" />
-      <short value="Limited xhtml content" />
-      <definition value="The actual narrative content, a stripped down version of XHTML." />
-      <comment value="The contents of the html element are an XHTML fragment containing only the basic html formatting elements described in chapters 7-11 and 15 of the HTML 4.0 standard, &lt;a&gt; elements (either name or href), images and internally contained stylesheets. The XHTML content may not contain a head, a body, external stylesheet references, scripts, forms, base/link/xlink, frames, iframes and objects." />
-      <min value="1" />
-      <max value="1" />
-      <base>
-        <path value="Narrative.div" />
-        <min value="1" />
-        <max value="1" />
-      </base>
-      <type>
-        <code value="xhtml" />
-      </type>
-      <condition value="ele-1" />
-      <constraint>
-        <key value="ele-1" />
-        <severity value="error" />
-        <human value="All FHIR elements must have a @value or children" />
-        <expression value="hasValue() | (children().count() &gt; id.count())" />
-        <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="txt-1" />
-        <severity value="error" />
-        <human value="The narrative SHALL contain only the basic html formatting elements and attributes described in chapters 7-11 (except section 4 of chapter 9) and 15 of the HTML 4.0 standard, &lt;a&gt; elements (either name or href), images and internally contained style attributes" />
-        <expression value="htmlchecks()" />
-        <xpath value="not(descendant-or-self::*[not(local-name(.)=('a', 'abbr', 'acronym', 'b', 'big', 'blockquote', 'br', 'caption', 'cite', 'code', 'col', 'colgroup', 'dd', 'dfn', 'div', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'li', 'ol', 'p', 'pre', 'q', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'tt', 'ul', 'var'))]) and not(descendant-or-self::*/@*[not(name(.)=('abbr', 'accesskey', 'align', 'alt', 'axis', 'bgcolor', 'border', 'cellhalign', 'cellpadding', 'cellspacing', 'cellvalign', 'char', 'charoff', 'charset', 'cite', 'class', 'colspan', 'compact', 'coords', 'dir', 'frame', 'headers', 'height', 'href', 'hreflang', 'hspace', 'id', 'lang', 'longdesc', 'name', 'nowrap', 'rel', 'rev', 'rowspan', 'rules', 'scope', 'shape', 'span', 'src', 'start', 'style', 'summary', 'tabindex', 'title', 'type', 'valign', 'value', 'vspace', 'width'))])" />
-      </constraint>
-      <constraint>
-        <key value="txt-2" />
-        <severity value="error" />
-        <human value="The narrative SHALL have some non-whitespace content" />
-        <expression value="htmlchecks()" />
-        <xpath value="descendant::text()[normalize-space(.)!=''] or descendant::h:img[@src]" />
-      </constraint>
-      <mapping>
-        <identity value="rim" />
-        <map value="n/a" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="N/A" />
       </mapping>
     </element>
     <element id="DocumentReference.contained">
@@ -3386,7 +3220,7 @@
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
       <comment value="see http://en.wikipedia.org/wiki/Uniform_resource_identifier" />
       <requirements value="There are many sets  of identifiers.  To perform matching of two identifiers, we need to know what set we're dealing with. The system identifies a particular set of unique identifiers." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Identifier.system" />
@@ -3431,7 +3265,7 @@
       <short value="The value that is unique" />
       <definition value="The portion of the identifier typically relevant to the user and which is unique within the context of the system." />
       <comment value="If the value is a full URI, then the system SHALL be urn:ietf:rfc:3986.  The value's primary purpose is computational mapping.  As a result, it may be normalized for comparison purposes (e.g. removing non-significant whitespace, dashes, etc.)  A value formatted for human display can be conveyed using the [Rendered Value extension](extension-rendered-value.html)." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Identifier.value" />
@@ -3696,7 +3530,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -3931,8 +3765,8 @@
     <element id="DocumentReference.identifier:crossCareSettingIdentifier">
       <path value="DocumentReference.identifier" />
       <sliceName value="crossCareSettingIdentifier" />
-      <short value="Cross Care Setting Identifier" />
-      <definition value="Other identifiers associated with the document, including version independent identifiers." />
+      <short value="Cross-Care Setting Identifier" />
+      <definition value="This Cross-Care Setting Identifier is a business identifiers and MUST be a GUID.  Providing systems MUST ensure this GUID is globally unique and a persistent identifier (that is, it doesn’t change between requests and, therefore, is stored with the source data).  Where consuming systems are integrating data from this resource to their local system, they MUST also persist this GUID at the same time." />
       <min value="1" />
       <max value="1" />
       <base>
@@ -4959,7 +4793,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -5191,9 +5025,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier">
+    <element id="DocumentReference.identifier:sliceIdentifier">
       <path value="DocumentReference.identifier" />
-      <sliceName value="identifier" />
+      <sliceName value="sliceIdentifier" />
       <short value="Other identifiers for the document" />
       <definition value="Other identifiers associated with the document, including version independent identifiers." />
       <min value="0" />
@@ -5248,7 +5082,7 @@
         <map value="id" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.id">
+    <element id="DocumentReference.identifier:sliceIdentifier.id">
       <path value="DocumentReference.identifier.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -5277,7 +5111,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.extension">
+    <element id="DocumentReference.identifier:sliceIdentifier.extension">
       <path value="DocumentReference.identifier.extension" />
       <slicing>
         <discriminator>
@@ -5326,7 +5160,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.use">
+    <element id="DocumentReference.identifier:sliceIdentifier.use">
       <path value="DocumentReference.identifier.use" />
       <short value="usual | official | temp | secondary (If known)" />
       <definition value="The purpose of this identifier." />
@@ -5375,7 +5209,7 @@
         <map value="Role.code or implied by context" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type">
+    <element id="DocumentReference.identifier:sliceIdentifier.type">
       <path value="DocumentReference.identifier.type" />
       <short value="Description of identifier" />
       <definition value="A coded type for the identifier that can be used to determine which identifier to use for a specific purpose." />
@@ -5438,7 +5272,7 @@
         <map value="Role.code or implied by context" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.id">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.id">
       <path value="DocumentReference.identifier.type.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -5467,7 +5301,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.extension">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.extension">
       <path value="DocumentReference.identifier.type.extension" />
       <slicing>
         <discriminator>
@@ -5516,7 +5350,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding">
       <path value="DocumentReference.identifier.type.coding" />
       <short value="Code defined by a terminology system" />
       <definition value="A reference to a code defined by a terminology system." />
@@ -5570,7 +5404,7 @@
         <map value="fhir:CodeableConcept.coding rdfs:subPropertyOf dt:CD.coding" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.id">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.id">
       <path value="DocumentReference.identifier.type.coding.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -5599,7 +5433,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.extension">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.extension">
       <path value="DocumentReference.identifier.type.coding.extension" />
       <slicing>
         <discriminator>
@@ -5648,7 +5482,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.system">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.system">
       <path value="DocumentReference.identifier.type.coding.system" />
       <short value="Identity of the terminology system" />
       <definition value="The identification of the code system that defines the meaning of the symbol in the code." />
@@ -5690,7 +5524,7 @@
         <map value="fhir:Coding.system rdfs:subPropertyOf dt:CDCoding.codeSystem" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.version">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.version">
       <path value="DocumentReference.identifier.type.coding.version" />
       <short value="Version of the system - if relevant" />
       <definition value="The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged." />
@@ -5731,7 +5565,7 @@
         <map value="fhir:Coding.version rdfs:subPropertyOf dt:CDCoding.codeSystemVersion" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.code">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.code">
       <path value="DocumentReference.identifier.type.coding.code" />
       <short value="Symbol in syntax defined by the system" />
       <definition value="A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination)." />
@@ -5773,7 +5607,7 @@
         <map value="fhir:Coding.code rdfs:subPropertyOf dt:CDCoding.code" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.display">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -5818,7 +5652,7 @@
         <map value="fhir:Coding.display rdfs:subPropertyOf dt:CDCoding.displayName" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.coding.userSelected">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.coding.userSelected">
       <path value="DocumentReference.identifier.type.coding.userSelected" />
       <short value="If this coding was chosen directly by the user" />
       <definition value="Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays)." />
@@ -5860,7 +5694,7 @@
         <map value="fhir:Coding.userSelected fhir:mapsTo dt:CDCoding.codingRationale. fhir:Coding.userSelected fhir:hasMap fhir:Coding.userSelected.map. fhir:Coding.userSelected.map a fhir:Map;   fhir:target dt:CDCoding.codingRationale. fhir:Coding.userSelected\#true a [     fhir:source &quot;true&quot;;     fhir:target dt:CDCoding.codingRationale\#O   ]" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.type.text">
+    <element id="DocumentReference.identifier:sliceIdentifier.type.text">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -5905,7 +5739,7 @@
         <map value="fhir:CodeableConcept.text rdfs:subPropertyOf dt:CD.originalText" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.system">
+    <element id="DocumentReference.identifier:sliceIdentifier.system">
       <path value="DocumentReference.identifier.system" />
       <short value="The namespace for the identifier value" />
       <definition value="Establishes the namespace for the value - that is, a URL that describes a set values that are unique." />
@@ -5951,7 +5785,7 @@
         <map value="./IdentifierType" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.value">
+    <element id="DocumentReference.identifier:sliceIdentifier.value">
       <path value="DocumentReference.identifier.value" />
       <short value="The value that is unique" />
       <definition value="The portion of the identifier typically relevant to the user and which is unique within the context of the system." />
@@ -5996,7 +5830,7 @@
         <map value="./Value" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.period">
+    <element id="DocumentReference.identifier:sliceIdentifier.period">
       <path value="DocumentReference.identifier.period" />
       <short value="Time period when id is/was valid for use" />
       <definition value="Time period during which identifier is/was valid for use." />
@@ -6052,7 +5886,7 @@
         <map value="./StartDate and ./EndDate" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.period.id">
+    <element id="DocumentReference.identifier:sliceIdentifier.period.id">
       <path value="DocumentReference.identifier.period.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -6081,7 +5915,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.period.extension">
+    <element id="DocumentReference.identifier:sliceIdentifier.period.extension">
       <path value="DocumentReference.identifier.period.extension" />
       <slicing>
         <discriminator>
@@ -6130,7 +5964,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.period.start">
+    <element id="DocumentReference.identifier:sliceIdentifier.period.start">
       <path value="DocumentReference.identifier.period.start" />
       <short value="Starting time with inclusive boundary" />
       <definition value="The start of the period. The boundary is inclusive." />
@@ -6168,7 +6002,7 @@
         <map value="./low" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.period.end">
+    <element id="DocumentReference.identifier:sliceIdentifier.period.end">
       <path value="DocumentReference.identifier.period.end" />
       <short value="End time with inclusive boundary, if not ongoing" />
       <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time." />
@@ -6207,7 +6041,7 @@
         <map value="./high" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner">
       <path value="DocumentReference.identifier.assigner" />
       <short value="Organization that issued id (may be just text)" />
       <definition value="Organization that issued/manages the identifier." />
@@ -6221,7 +6055,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -6260,7 +6094,7 @@
         <map value="./IdentifierIssuingAuthority" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner.id">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner.id">
       <path value="DocumentReference.identifier.assigner.id" />
       <representation value="xmlAttr" />
       <short value="xml:id (or equivalent in JSON)" />
@@ -6289,7 +6123,7 @@
         <map value="n/a" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner.extension">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner.extension">
       <path value="DocumentReference.identifier.assigner.extension" />
       <slicing>
         <discriminator>
@@ -6338,7 +6172,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner.reference">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner.reference">
       <path value="DocumentReference.identifier.assigner.reference" />
       <short value="Literal reference, Relative, internal or absolute URL" />
       <definition value="A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources." />
@@ -6372,7 +6206,7 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner.identifier">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner.identifier">
       <path value="DocumentReference.identifier.assigner.identifier" />
       <short value="Logical reference, when literal reference is not known" />
       <definition value="An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference." />
@@ -6417,7 +6251,7 @@
         <map value=".identifier" />
       </mapping>
     </element>
-    <element id="DocumentReference.identifier:identifier.assigner.display">
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner.display">
       <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
         <valueBoolean value="true" />
       </extension>
@@ -12666,7 +12500,6 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="http://snomed.info/sct" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -14327,7 +14160,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -14799,6 +14632,14 @@
     </element>
   </snapshot>
   <differential>
+    <element id="DocumentReference.id">
+      <path value="DocumentReference.id" />
+      <min value="1" />
+    </element>
+    <element id="DocumentReference.meta.profile">
+      <path value="DocumentReference.meta.profile" />
+      <min value="1" />
+    </element>
     <element id="DocumentReference.masterIdentifier">
       <path value="DocumentReference.masterIdentifier" />
       <short value="Version Number of the document" />
@@ -14831,25 +14672,11 @@
       <definition value="The identifier of the document. This will be generated by the organisation that is the custodian of the document. This could be a local identifier but will also contain identifier across care-settings." />
       <min value="1" />
     </element>
-    <element id="DocumentReference.identifier.system">
-      <path value="DocumentReference.identifier.system" />
-      <min value="1" />
-    </element>
-    <element id="DocumentReference.identifier.value">
-      <path value="DocumentReference.identifier.value" />
-      <min value="1" />
-    </element>
-    <element id="DocumentReference.identifier.assigner">
-      <path value="DocumentReference.identifier.assigner" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
-      </type>
-    </element>
     <element id="DocumentReference.identifier:crossCareSettingIdentifier">
       <path value="DocumentReference.identifier" />
       <sliceName value="crossCareSettingIdentifier" />
-      <short value="Cross Care Setting Identifier" />
+      <short value="Cross-Care Setting Identifier" />
+      <definition value="This Cross-Care Setting Identifier is a business identifiers and MUST be a GUID.  Providing systems MUST ensure this GUID is globally unique and a persistent identifier (that is, it doesn’t change between requests and, therefore, is stored with the source data).  Where consuming systems are integrating data from this resource to their local system, they MUST also persist this GUID at the same time." />
       <min value="1" />
       <max value="1" />
     </element>
@@ -14862,17 +14689,31 @@
       <path value="DocumentReference.identifier.value" />
       <min value="1" />
     </element>
-    <element id="DocumentReference.identifier:identifier">
-      <path value="DocumentReference.identifier" />
-      <sliceName value="identifier" />
+    <element id="DocumentReference.identifier:crossCareSettingIdentifier.assigner">
+      <path value="DocumentReference.identifier.assigner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
+      </type>
     </element>
-    <element id="DocumentReference.identifier:identifier.system">
+    <element id="DocumentReference.identifier:sliceIdentifier">
+      <path value="DocumentReference.identifier" />
+      <sliceName value="sliceIdentifier" />
+    </element>
+    <element id="DocumentReference.identifier:sliceIdentifier.system">
       <path value="DocumentReference.identifier.system" />
       <min value="1" />
     </element>
-    <element id="DocumentReference.identifier:identifier.value">
+    <element id="DocumentReference.identifier:sliceIdentifier.value">
       <path value="DocumentReference.identifier.value" />
       <min value="1" />
+    </element>
+    <element id="DocumentReference.identifier:sliceIdentifier.assigner">
+      <path value="DocumentReference.identifier.assigner" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
+      </type>
     </element>
     <element id="DocumentReference.type">
       <path value="DocumentReference.type" />
@@ -15022,10 +14863,6 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="DocumentReference.context.practiceSetting.coding.system">
-      <path value="DocumentReference.context.practiceSetting.coding.system" />
-      <fixedUri value="http://snomed.info/sct" />
-    </element>
     <element id="DocumentReference.context.sourcePatientInfo">
       <path value="DocumentReference.context.sourcePatientInfo" />
       <type>
@@ -15037,7 +14874,7 @@
       <path value="DocumentReference.context.related.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
   </differential>
