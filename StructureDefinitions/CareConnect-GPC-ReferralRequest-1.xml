@@ -4,7 +4,7 @@
   <version value="1.1.0" />
   <name value="CareConnect-GPC-ReferralRequest-1" />
   <status value="draft" />
-  <date value="2019-09-19" />
+  <date value="2019-11-04" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -78,7 +78,7 @@
       <short value="Logical id of this artifact" />
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
       <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Resource.id" />
@@ -7199,6 +7199,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <isSummary value="true" />
       <mapping>
@@ -7477,6 +7478,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <isSummary value="true" />
       <mapping>
@@ -7522,6 +7524,7 @@
         <expression value="(agent.resolve() is Device) or (agent.resolve() is Practitioner) or onBehalfOf.exists().not()" />
         <xpath value="contains(f:agent/f:reference/@value, '/Practitioner/') or contains(f:agent/f:reference/@value, '/Device/') or not(exists(f:onBehalfOf))" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -8713,6 +8716,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <isSummary value="true" />
       <mapping>
@@ -8948,6 +8952,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <isSummary value="true" />
       <binding>
@@ -9725,6 +9730,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <mapping>
         <identity value="rim" />
@@ -9762,6 +9768,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <mapping>
         <identity value="rim" />
@@ -9988,6 +9995,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -10451,10 +10459,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="ReferralRequest.id">
-      <path value="ReferralRequest.id" />
-      <min value="1" />
-    </element>
     <element id="ReferralRequest.meta.profile">
       <path value="ReferralRequest.meta.profile" />
       <min value="1" />
@@ -10563,14 +10567,17 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Encounter-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.authoredOn">
       <path value="ReferralRequest.authoredOn" />
       <short value="The user entered date for the referral" />
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.requester">
       <path value="ReferralRequest.requester" />
       <short value="Who has administered the referral request" />
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.requester.agent">
       <path value="ReferralRequest.requester.agent" />
@@ -10616,9 +10623,11 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.reasonCode">
       <path value="ReferralRequest.reasonCode" />
+      <mustSupport value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="ReferralReason" />
@@ -10648,15 +10657,18 @@
     <element id="ReferralRequest.description">
       <path value="ReferralRequest.description" />
       <short value="The free text description for the referral" />
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.supportingInfo">
       <path value="ReferralRequest.supportingInfo" />
       <short value="The referral letter(s) and any other supporting documents or linked detail with relates to another resource which is not specifically defined to another referralRequest element" />
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.note">
       <path value="ReferralRequest.note" />
       <short value="Any additional information recorded against the referral" />
       <definition value="This could include additional categorisation of the referral or notes recorded post referral such as details of progress or outcomes." />
+      <mustSupport value="true" />
     </element>
     <element id="ReferralRequest.note.author[x]">
       <path value="ReferralRequest.note.author[x]" />

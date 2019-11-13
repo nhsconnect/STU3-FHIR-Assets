@@ -4,7 +4,7 @@
   <version value="1.2.0" />
   <name value="CareConnect-GPC-ProcedureRequest-1" />
   <status value="draft" />
-  <date value="2019-10-24" />
+  <date value="2019-11-04" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -90,7 +90,7 @@
       <short value="Logical id of this artifact" />
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
       <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Resource.id" />
@@ -5054,7 +5054,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <alias value="protocol" />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.definition" />
         <min value="0" />
@@ -5305,7 +5305,7 @@
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <alias value="fulfills" />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.basedOn" />
         <min value="0" />
@@ -5551,7 +5551,7 @@
       <definition value="The request takes the place of the referenced completed or terminated request(s)." />
       <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.replaces" />
         <min value="0" />
@@ -5800,7 +5800,7 @@
       <alias value="grouperId" />
       <alias value="groupIdentifier" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ProcedureRequest.requisition" />
         <min value="0" />
@@ -6816,7 +6816,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7172,7 +7172,7 @@
       <definition value="Indicates how quickly the ProcedureRequest should be addressed with respect to other requests." />
       <comment value="Note that FHIR strings may not exceed 1MB in size" />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ProcedureRequest.priority" />
         <min value="0" />
@@ -7229,7 +7229,7 @@
       <comment value="This element is labeled as a [modifier](conformance-rules.html#isModifier.html) because it indicates that a procedure shouldn't happen, instead of a request for it to happen.  In general, only the code and timeframe will be present, though occasional additional qualifiers such as body site or even performer could be included to narrow the scope of the prohibition.  If the ProcedureRequest.code and ProcedureRequest.doNotPerform both contain negation, that will reinforce prohibition and should not have a double negative interpretation." />
       <requirements value="Used for do not ambulate, do not elevate head of bed, do not flush NG tube, do not take blood pressure on a certain arm, etc." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ProcedureRequest.doNotPerform" />
         <min value="0" />
@@ -7265,7 +7265,7 @@
       <comment value="There may be multiple axis of categorization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set." />
       <requirements value="Used for filtering what procedure request are retrieved and displayed." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.category" />
         <min value="0" />
@@ -10206,7 +10206,7 @@
       <short value="Preconditions for procedure or diagnostic" />
       <definition value="If a CodeableConcept is present, it indicates the pre-condition for performing the procedure.  For example &quot;pain&quot;, &quot;on flare-up&quot;, etc." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ProcedureRequest.asNeeded[x]" />
         <min value="0" />
@@ -10324,6 +10324,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -10983,7 +10984,7 @@
       <definition value="Desired type of performer for doing the diagnostic testing." />
       <comment value="this is a  role, not  a participation type.  I.e. does not describe the task, but describes the capacity.  For example, “compounding pharmacy” or “psychiatrist” or “internal referral”." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="ProcedureRequest.performerType" />
         <min value="0" />
@@ -11546,6 +11547,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -11788,6 +11790,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -12985,6 +12988,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -13457,7 +13461,7 @@
       <definition value="One or more specimens that the laboratory procedure will use." />
       <comment value="Many diagnostic procedures need a specimen, but the request itself is not actually about the specimen. This element is for when the diagnostic is requested on already existing specimens and the request points to the specimen it applies to.    Conversely, If the request is entered first with an unknown specimen, The [Specimen](specimen.html) resource references to the ProcedureRequest." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.specimen" />
         <min value="0" />
@@ -13701,7 +13705,7 @@
       <requirements value="Knowing where the procedure is performed is important for tracking if multiple sites are possible." />
       <alias value="location" />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.bodySite" />
         <min value="0" />
@@ -14906,6 +14910,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -15151,7 +15156,7 @@
       <definition value="Key events in the history of the request." />
       <comment value="This may not include provenances for all versions of the request – only those deemed “relevant” or important.&#xD;This SHALL NOT include the Provenance associated with this current version of the resource.  (If that provenance is deemed to be a “relevant” change, it will need to be added as part of a later update.  Until then, it can be queried directly as the Provenance that points to this version using _revinclude&#xD;All Provenances should have some historical version of this Request as their subject." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="ProcedureRequest.relevantHistory" />
         <min value="0" />
@@ -15392,10 +15397,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="ProcedureRequest.id">
-      <path value="ProcedureRequest.id" />
-      <min value="1" />
-    </element>
     <element id="ProcedureRequest.meta.profile">
       <path value="ProcedureRequest.meta.profile" />
       <min value="1" />
@@ -15452,27 +15453,11 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
-    <element id="ProcedureRequest.definition">
-      <path value="ProcedureRequest.definition" />
-      <max value="0" />
-    </element>
-    <element id="ProcedureRequest.basedOn">
-      <path value="ProcedureRequest.basedOn" />
-      <max value="0" />
-    </element>
-    <element id="ProcedureRequest.replaces">
-      <path value="ProcedureRequest.replaces" />
-      <max value="0" />
-    </element>
-    <element id="ProcedureRequest.requisition">
-      <path value="ProcedureRequest.requisition" />
-      <max value="0" />
-    </element>
     <element id="ProcedureRequest.requisition.assigner">
       <path value="ProcedureRequest.requisition.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="ProcedureRequest.status">
@@ -15483,18 +15468,6 @@
     <element id="ProcedureRequest.intent">
       <path value="ProcedureRequest.intent" />
       <fixedCode value="order" />
-    </element>
-    <element id="ProcedureRequest.priority">
-      <path value="ProcedureRequest.priority" />
-      <max value="0" />
-    </element>
-    <element id="ProcedureRequest.doNotPerform">
-      <path value="ProcedureRequest.doNotPerform" />
-      <max value="0" />
-    </element>
-    <element id="ProcedureRequest.category">
-      <path value="ProcedureRequest.category" />
-      <max value="0" />
     </element>
     <element id="ProcedureRequest.category.coding">
       <path value="ProcedureRequest.category.coding" />
@@ -15645,13 +15618,10 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Encounter-1" />
       </type>
     </element>
-    <element id="ProcedureRequest.asNeeded[x]">
-      <path value="ProcedureRequest.asNeeded[x]" />
-      <max value="0" />
-    </element>
     <element id="ProcedureRequest.requester">
       <path value="ProcedureRequest.requester" />
       <short value="Reference to the resource for the practitioner or organization that created the ProcedureRequest." />
+      <mustSupport value="true" />
     </element>
     <element id="ProcedureRequest.requester.agent">
       <path value="ProcedureRequest.requester.agent" />
@@ -15675,10 +15645,6 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
-    <element id="ProcedureRequest.performerType">
-      <path value="ProcedureRequest.performerType" />
-      <max value="0" />
-    </element>
     <element id="ProcedureRequest.performer">
       <path value="ProcedureRequest.performer" />
       <short value="Reference to the resource for the practitioner or organization that is requested to perform this request the ProcedureRequest." />
@@ -15690,10 +15656,12 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Practitioner-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="ProcedureRequest.reasonCode">
       <path value="ProcedureRequest.reasonCode" />
       <short value="An explanation or justification for why this diagnostic investigation is being requested in coded or textual form." />
+      <mustSupport value="true" />
     </element>
     <element id="ProcedureRequest.reasonCode.coding">
       <path value="ProcedureRequest.reasonCode.coding" />
@@ -15765,6 +15733,7 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="ProcedureRequest.supportingInfo">
       <path value="ProcedureRequest.supportingInfo" />
@@ -15775,15 +15744,10 @@
     </element>
     <element id="ProcedureRequest.specimen">
       <path value="ProcedureRequest.specimen" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Specimen-1" />
       </type>
-    </element>
-    <element id="ProcedureRequest.bodySite">
-      <path value="ProcedureRequest.bodySite" />
-      <max value="0" />
     </element>
     <element id="ProcedureRequest.bodySite.coding">
       <path value="ProcedureRequest.bodySite.coding" />
@@ -15852,6 +15816,7 @@
     <element id="ProcedureRequest.note">
       <path value="ProcedureRequest.note" />
       <short value="A human readable explanation from the requesting health care professional containing an explanation on why the test has been requested and any contextual information they considered relevant." />
+      <mustSupport value="true" />
     </element>
     <element id="ProcedureRequest.note.author[x]">
       <path value="ProcedureRequest.note.author[x]" />
@@ -15870,10 +15835,6 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-RelatedPerson-1" />
       </type>
-    </element>
-    <element id="ProcedureRequest.relevantHistory">
-      <path value="ProcedureRequest.relevantHistory" />
-      <max value="0" />
     </element>
   </differential>
 </StructureDefinition>
