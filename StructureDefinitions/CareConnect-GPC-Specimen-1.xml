@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Specimen-1" />
-  <version value="1.1.0" />
+  <version value="1.2.0" />
   <name value="CareConnect-GPC-Specimen-1" />
   <status value="draft" />
-  <date value="2019-08-28" />
+  <date value="2019-11-04" />
   <publisher value="HL7 UK" />
   <contact>
     <name value="INTEROPen" />
@@ -80,7 +80,7 @@
       <short value="Logical id of this artifact" />
       <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
       <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
-      <min value="1" />
+      <min value="0" />
       <max value="1" />
       <base>
         <path value="Resource.id" />
@@ -3774,6 +3774,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -5032,6 +5033,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="true" />
       <isSummary value="true" />
       <binding>
@@ -5084,6 +5086,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
@@ -6525,6 +6528,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -6549,7 +6553,7 @@
       <definition value="Reference to the parent (source) specimen which is used when the specimen was either derived from or a component of another specimen." />
       <comment value="The parent specimen could be the source from which the current specimen is derived by some processing step (e.g. an aliquot or isolate or extracted nucleic acids from clinical samples) or one of many specimens that were combined to create a pooled sample." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Specimen.parent" />
         <min value="0" />
@@ -6786,7 +6790,7 @@
       <definition value="Details concerning a test or procedure request that required a specimen to be collected." />
       <comment value="The request may be explicit or implied such with a ProcedureRequest that requires a blood draw." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Specimen.request" />
         <min value="0" />
@@ -6794,7 +6798,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-ProcedureRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-ProcedureRequest-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -7047,6 +7051,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -7172,6 +7177,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -7511,6 +7517,7 @@
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -7751,6 +7758,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -7807,6 +7815,7 @@
         <expression value="comparator.empty()" />
         <xpath value="not(exists(f:comparator))" />
       </constraint>
+      <mustSupport value="true" />
       <isModifier value="false" />
       <mapping>
         <identity value="rim" />
@@ -8119,7 +8128,7 @@
       <definition value="A coded value specifying the technique that is used to perform the procedure." />
       <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
       <min value="0" />
-      <max value="0" />
+      <max value="1" />
       <base>
         <path value="Specimen.collection.method" />
         <min value="0" />
@@ -8661,6 +8670,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <binding>
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="BodySite" />
@@ -9825,7 +9835,7 @@
       <short value="Processing and processing step details" />
       <definition value="Details concerning processing and processing steps for the specimen." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Specimen.processing" />
         <min value="0" />
@@ -10806,7 +10816,7 @@
       <short value="Direct container of specimen (tube/slide, etc.)" />
       <definition value="The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not addressed here." />
       <min value="0" />
-      <max value="0" />
+      <max value="*" />
       <base>
         <path value="Specimen.container" />
         <min value="0" />
@@ -11975,7 +11985,7 @@
       </base>
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -13537,6 +13547,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -13766,10 +13777,6 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Specimen.id">
-      <path value="Specimen.id" />
-      <min value="1" />
-    </element>
     <element id="Specimen.meta.profile">
       <path value="Specimen.meta.profile" />
       <min value="1" />
@@ -13810,6 +13817,7 @@
     <element id="Specimen.accessionIdentifier">
       <path value="Specimen.accessionIdentifier" />
       <short value="A business level identifier for the specimen supplied by the performing organisation. eg. lab performing the test." />
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.accessionIdentifier.assigner">
       <path value="Specimen.accessionIdentifier.assigner" />
@@ -13817,6 +13825,14 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
+    </element>
+    <element id="Specimen.status">
+      <path value="Specimen.status" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Specimen.type">
+      <path value="Specimen.type" />
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.type.coding">
       <path value="Specimen.type.coding" />
@@ -13896,9 +13912,12 @@
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1" />
       </type>
     </element>
+    <element id="Specimen.receivedTime">
+      <path value="Specimen.receivedTime" />
+      <mustSupport value="true" />
+    </element>
     <element id="Specimen.parent">
       <path value="Specimen.parent" />
-      <max value="0" />
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Specimen-1" />
@@ -13906,15 +13925,15 @@
     </element>
     <element id="Specimen.request">
       <path value="Specimen.request" />
-      <max value="0" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-ProcedureRequest-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-ProcedureRequest-1" />
       </type>
     </element>
     <element id="Specimen.collection">
       <path value="Specimen.collection" />
       <short value="Details of when/how the specimen was collected." />
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.collection.extension">
       <path value="Specimen.collection.extension" />
@@ -13933,6 +13952,7 @@
         <code value="Extension" />
         <profile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-FastingStatus-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.collection.extension:fastingStatus.url">
       <path value="Specimen.collection.extension.url" />
@@ -13945,14 +13965,20 @@
         <code value="Reference" />
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Practitioner-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.collection.collected[x]">
       <path value="Specimen.collection.collected[x]" />
       <short value="The date and time when the specimen was collected." />
+      <mustSupport value="true" />
     </element>
-    <element id="Specimen.collection.method">
-      <path value="Specimen.collection.method" />
-      <max value="0" />
+    <element id="Specimen.collection.quantity">
+      <path value="Specimen.collection.quantity" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Specimen.collection.bodySite">
+      <path value="Specimen.collection.bodySite" />
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.collection.bodySite.coding">
       <path value="Specimen.collection.bodySite.coding" />
@@ -14012,25 +14038,18 @@
       <path value="Specimen.collection.bodySite.coding.display" />
       <min value="1" />
     </element>
-    <element id="Specimen.processing">
-      <path value="Specimen.processing" />
-      <max value="0" />
-    </element>
-    <element id="Specimen.container">
-      <path value="Specimen.container" />
-      <max value="0" />
-    </element>
     <element id="Specimen.container.identifier.assigner">
       <path value="Specimen.container.identifier.assigner" />
       <type>
         <code value="Reference" />
-        <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Organization-1" />
       </type>
     </element>
     <element id="Specimen.note">
       <path value="Specimen.note" />
       <short value="Notes/comments relating to the specimen." />
       <max value="1" />
+      <mustSupport value="true" />
     </element>
     <element id="Specimen.note.author[x]">
       <path value="Specimen.note.author[x]" />

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <OperationDefinition xmlns="http://hl7.org/fhir">
 	<id value="GPConnect-GetStructuredRecord-Operation-1"/>
 	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/GPConnect-GetStructuredRecord-Operation-1"/>
-	<version value="1.9.0"/>
+	<version value="1.13.0"/>
 	<name value="GPConnect-GetStructuredRecord-Operation"/>
 	<status value="draft"/>
 	<kind value="operation"/>
-	<date value="2019-06-26"/>
+	<date value="2019-12-05"/>
 	<publisher value="NHS Digital"/>
 	<contact>
 		<name value="Interoperability Team"/>
@@ -53,7 +53,7 @@
 		<part>
 			<name value="includePrescriptionIssues"/>
 			<use value="in"/>
-			<min value="1"/>
+			<min value="0"/>
 			<max value="1"/>
 			<documentation value="Include each prescription issue in the response. By default, prescription issues are not included."/>
 			<type value="boolean"/>
@@ -98,17 +98,17 @@
 			<min value="0"/>
 			<max value="1"/>
 			<documentation value="Limit the number of returned consultations"/>
-			<type value="integer"/>
+			<type value="positiveInt"/>
 		</part>
 	</parameter>
 	<parameter>
 		<name value="includeProblems"/>
 		<use value="in"/>
 		<min value="0"/>
-		<max value="1"/>
+		<max value="*"/>
 		<documentation value="Include problems in the response."/>
 		<part>
-			<name value="includeStatus"/>
+			<name value="filterStatus"/>
 			<use value="in"/>
 			<min value="0"/>
 			<max value="1"/>
@@ -120,12 +120,12 @@
 			</binding>
 		</part>
 		<part>
-			<name value="includeSignificance"/>
+			<name value="filterSignificance"/>
 			<use value="in"/>
 			<min value="0"/>
 			<max value="1"/>
 			<documentation value="Restrict the problems that are returned by their clinical significance"/>
-			<type value="CodeableConcept"/>
+			<type value="code"/>
 			<binding>
 				<strength value="required"/>
 				<valueSetUri value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ProblemSignificance-1"/>
