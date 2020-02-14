@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OperationDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-BookAppointment-Operation-1"/>
+	<version value="1.0.0"/>
+	<name value="eRS-BookAppointment-Operation-1"/>
+	<status value="draft"/>
+	<kind value="operation"/>
+	<date value="2019-10-14T11:07:00+01:00"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="interoperabilityteam@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="To book an appointment slot for a referral of a patient."/>
+	<code value="ers.BookAppointment"/>
+	<system value="false"/>
+	<type value="true"/>
+	<instance value="false"/>
+	<parameter>
+		<name value="slotId"/>
+		<use value="in"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The identifier for this slot.  The namespace for this identifier is &quot;https://fhir.nhs.uk/Id/ers-slot-identifier&quot;."/>
+		<type value="Identifier"/>
+	</parameter>
+	<parameter>
+		<name value="intentionToAddReferralLetter"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Intention to add a referral letter."/>
+		<type value="Coding"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-ReferralLetterIntention-1"/>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="referral"/>
+		<use value="out"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The referral request that has just been updated."/>
+		<type value="ReferralRequest"/>
+		<profile>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"/>
+		</profile>
+	</parameter>
+</OperationDefinition>
