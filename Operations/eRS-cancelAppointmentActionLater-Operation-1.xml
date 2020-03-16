@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OperationDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-cancelAppointmentActionLater-Operation-1"/>
+	<version value="1.0.0"/>
+	<name value="eRS-cancelAppointmentActionLater-Operation-1"/>
+	<status value="active"/>
+	<kind value="operation"/>
+	<date value="2020-03-02T00:00:00+01:00"/>
+	<publisher value="NHS Digital"/>
+	<contact>
+		<name value="Interoperability Team"/>
+		<telecom>
+			<system value="email"/>
+			<value value="interoperabilityteam@nhs.net"/>
+			<use value="work"/>
+		</telecom>
+	</contact>
+	<description value="Following a clinicians review, this Operation is to cancel current booked appointment, retain responsibility for the Referral, add a comment, and pass to an administrator to manage the next action. administrator to manage the next action ."/>
+	<code value="ers.cancelAppointmentActionLater"/>
+	<system value="false"/>
+	<type value="false"/>
+	<instance value="true"/>
+	<parameter>
+		<name value="priority"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Priority"/>
+		<type value="CodeableConcept"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetReference>
+				<reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1"/>
+			</valueSetReference>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="appointmentCancelledinPAS"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="If true, the appointment has been cancelled in the PAS system."/>
+		<type value="boolean"/>
+	</parameter>
+	<parameter>
+		<name value="comments"/>
+		<use value="in"/>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="Max 2000 characters."/>
+		<type value="string"/>
+	</parameter>
+	<parameter>
+		<name value="providerAttachmentFile"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="*"/>
+		<documentation value="The reference to the DocumentReference profile"/>
+		<type value="DocumentReference"/>
+		<profile>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1"/>
+		</profile>
+	</parameter>
+	<parameter>
+		<name value="return"/>
+		<use value="out"></use>
+		<min value="1"/>
+		<max value="1"/>
+		<documentation value="The updated Referral Request."/>
+		<type value="ReferralRequest"/>
+		<profile>
+			<reference value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1"/>
+		</profile>
+	</parameter>
+</OperationDefinition>
