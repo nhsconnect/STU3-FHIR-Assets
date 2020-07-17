@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CapabilityStatement xmlns="http://hl7.org/fhir">
+    <meta>
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/NHSDigital-CapabilityStatement-1"/>
+    </meta> 
+    <url value="https://clinicals.spineservices.nhs.uk/STU3/metadata"/>
+    <version value="1.0.0"/>
+    <name value="SpineClinicals-Requirements-CapabilityStatement-1"/>
+    <status value="active"/>
+    <date value="2020-02-20T00:00:00+00:00"/>
+    <publisher value="NHS Digital"/>
+    <contact>
+        <name value="National Service Desk"/>
+        <telecom>
+            <system value="email"/>
+            <value value="ssd.nationalservicedesk@nhs.net"/>
+            <use value="work"/>
+        </telecom>
+        <telecom>
+            <system value="phone"/>
+            <value value="0300 303 5035"/>
+            <use value="work"/>
+        </telecom>
+    </contact>
+    <contact >
+        <name value="National Information Centre"/>
+        <telecom>
+            <system value="email"/>
+            <value value="exeter.helpdesk@nhs.net"/>
+            <use value="work"/>
+        </telecom>
+    </contact>
+    <description value="Spine Clinicals offers API to resources supporting: National Data Opt-out and Reasonable Adjustments."/>
+    <copyright value="Copyright © 2018 NHS Digital"/>
+    <kind value="instance"/>
+    <fhirVersion value="3.0.1"/>
+    <acceptUnknown value="no"/>
+    <format value="application/fhir+xml"/>
+    <format value="application/fhir+json"/>
+    <implementationGuide value="https://developer.nhs.uk/apis/reasonable-adjustments/"/>
+    <implementationGuide value="https://developer.nhs.uk/apis/optout/"/>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1"/>
+    </profile>
+    <profile>        
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentNotes-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-BestInterestSummary-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1"/>
+    </profile>
+    <profile>
+        <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1"/>
+    </profile>
+    <rest>
+        <mode value="server"/>
+        <security>
+            <cors value="true"/>
+        </security>
+        <resource>
+            <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+                <extension url="required">
+                    <valueString value="patient"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="status"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="category"/>
+                </extension>
+            </extension>
+            <type value="Consent"/>
+            <profile>
+                <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"/>
+            </profile>
+            <interaction>
+                <code value="create"/>
+            </interaction>
+            <interaction>
+                <code value="read"/>
+            </interaction>
+            <interaction>
+                <code value="update"/>
+            </interaction>
+            <interaction>
+                <code value="search-type"/>
+            </interaction>
+            <versioning value="versioned-update"/>
+            <readHistory value="false"/>
+            <updateCreate value="false"/>
+            <conditionalCreate value="false"/>
+            <conditionalRead value="not-supported"/>
+            <conditionalUpdate value="false"/>
+            <conditionalDelete value="not-supported"/>
+            <searchParam>
+                <name value="patient"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="status"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="category"/>
+                <type value="token"/>
+            </searchParam>
+        </resource>
+        <resource>
+            <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+                <extension url="required">
+                    <valueString value="patient"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="status"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="category"/>
+                </extension>
+            </extension>
+            <type value="Flag"/>
+            <profile>
+                <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"/>
+            </profile>
+            <interaction>
+                <code value="create"/>
+            </interaction>
+            <interaction>
+                <code value="read"/>
+            </interaction>
+            <interaction>
+                <code value="update"/>
+            </interaction>
+            <interaction>
+                <code value="search-type"/>
+            </interaction>
+            <versioning value="versioned-update"/>
+            <readHistory value="false"/>
+            <updateCreate value="false"/>
+            <conditionalCreate value="false"/>
+            <conditionalRead value="not-supported"/>
+            <conditionalUpdate value="false"/>
+            <conditionalDelete value="not-supported"/>
+            <searchParam>
+                <name value="patient"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="status"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="category"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="_format"/>
+                <type value="token"/>
+            </searchParam>
+        </resource>
+        <resource>
+            <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+                <extension url="required">
+                    <valueString value="patient"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="status"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="code"/>
+                </extension>
+            </extension>
+            <type value="List"/>
+            <profile>
+                <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1"/>
+            </profile>
+            <interaction>
+                <code value="create"/>
+            </interaction>
+            <interaction>
+                <code value="read"/>
+            </interaction>
+            <interaction>
+                <code value="update"/>
+            </interaction>
+            <interaction>
+                <code value="search-type"/>
+            </interaction>
+            <versioning value="versioned-update"/>
+            <readHistory value="false"/>
+            <updateCreate value="false"/>
+            <conditionalCreate value="false"/>
+            <conditionalRead value="not-supported"/>
+            <conditionalUpdate value="false"/>
+            <conditionalDelete value="not-supported"/>
+            <searchParam>
+                <name value="patient"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="status"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="code"/>
+                <type value="token"/>
+            </searchParam>
+        </resource>
+        <resource>
+            <extension url="http://hl7.org/fhir/StructureDefinition/capabilitystatement-search-parameter-combination">
+                <extension url="required">
+                    <valueString value="_list"/>
+                </extension>
+                <extension url="required">
+                    <valueString value="clinical-status"/>
+                </extension>
+            </extension>
+            <type value="Condition"/>
+            <profile>
+                <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1"/>
+            </profile>
+            <interaction>
+                <code value="create"/>
+            </interaction>
+            <interaction>
+                <code value="read"/>
+            </interaction>
+            <interaction>
+                <code value="update"/>
+            </interaction>
+            <interaction>
+                <code value="search-type"/>
+            </interaction>
+            <versioning value="versioned-update"/>
+            <readHistory value="false"/>
+            <updateCreate value="false"/>
+            <conditionalCreate value="false"/>
+            <conditionalRead value="not-supported"/>
+            <conditionalUpdate value="false"/>
+            <conditionalDelete value="not-supported"/>
+            <searchParam>
+                <name value="_list"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="clinical-status"/>
+                <type value="token"/>
+            </searchParam>
+        </resource>
+        <resource>
+            <type value="Consent"/>
+            <profile>
+                <reference value="https://fhir.nhs.uk/STU3/StructureDefinition/NDOP-Consent-1"/>
+                <display value="NDOP-Consent-1 Profile"/>
+            </profile>
+            <interaction>
+                <code value="create"/>
+            </interaction>
+            <interaction>
+                <code value="vread"/>
+            </interaction>
+            <interaction>
+                <code value="update"/>
+            </interaction>
+            <versioning value="versioned"/>
+            <readHistory value="true"/>
+            <updateCreate value="false"/>
+            <conditionalCreate value="false"/>
+            <conditionalRead value="not-supported"/>
+            <conditionalUpdate value="false"/>
+            <conditionalDelete value="not-supported"/>
+            <searchParam>
+                <name value="patient"/>
+                <type value="reference"/>
+            </searchParam>
+            <searchParam>
+                <name value="category"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="purpose"/>
+                <type value="token"/>
+            </searchParam>
+            <searchParam>
+                <name value="_id"/>
+                <type value="token"/>
+            </searchParam>
+        </resource>
+        <searchParam>
+            <name value="_format"/>
+            <type value="token"/>
+        </searchParam>
+        <operation>
+            <name value="removerarecord"/>
+            <definition>
+                <reference value="https://fhir.nhs.uk/STU3/OperationDefinition/RARecord-RemoveRARecord-Operation-1"/>
+            </definition>
+        </operation>
+    </rest>
+</CapabilityStatement>
