@@ -7,7 +7,7 @@
     <valueCode value="pher" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-DM-Immunization-1" />
-  <version value="1.0.0" />
+  <version value="1.1.0" />
   <name value="CareConnect-ITK-DM-Immunization-1" />
   <status value="draft" />
   <date value="2018-07-10" />
@@ -2625,7 +2625,6 @@
       <type>
         <code value="boolean" />
       </type>
-      <fixedBoolean value="false" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -4820,6 +4819,7 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -9475,10 +9475,10 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
           <valueString value="NoImmunizationReason" />
         </extension>
-        <strength value="example" />
+        <strength value="extensible" />
         <description value="The reason why a vaccine was not administered" />
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/no-immunization-reason" />
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ReasonImmunizationNotAdministered-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -13255,10 +13255,6 @@
       <path value="Immunization.status" />
       <short value="completed" />
     </element>
-    <element id="Immunization.notGiven">
-      <path value="Immunization.notGiven" />
-      <fixedBoolean value="false" />
-    </element>
     <element id="Immunization.vaccineCode">
       <path value="Immunization.vaccineCode" />
       <binding>
@@ -13303,6 +13299,10 @@
         <targetProfile value="https://fhir.hl7.org.uk/STU3/StructureDefinition/CareConnect-Organization-1" />
       </type>
       <mustSupport value="false" />
+    </element>
+    <element id="Immunization.lotNumber">
+      <path value="Immunization.lotNumber" />
+      <mustSupport value="true" />
     </element>
     <element id="Immunization.site.coding">
       <path value="Immunization.site.coding" />
@@ -13461,6 +13461,18 @@
         <strength value="preferred" />
         <valueSetReference>
           <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ImmunizationExplanationReason-2" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Immunization.explanation.reasonNotGiven">
+      <path value="Immunization.explanation.reasonNotGiven" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="NoImmunizationReason" />
+        </extension>
+        <strength value="extensible" />
+        <valueSetReference>
+          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-ReasonImmunizationNotAdministered-1" />
         </valueSetReference>
       </binding>
     </element>
