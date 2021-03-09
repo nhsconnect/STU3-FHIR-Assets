@@ -1,13 +1,13 @@
 <OperationDefinition xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<meta>
-		<lastUpdated value="2018-03-05T00:00:00+01:00"/>
+		<lastUpdated value="2021-03-08T00:00:00+01:00"/>
 	</meta>
 	<url value="https://fhir.nhs.uk/STU3/OperationDefinition/eRS-FetchWorklist-Operation-1"/>
-	<version value="1.0"/>
+	<version value="1.1.0"/>
 	<name value="eRS-FetchWorklist-Operation-1"/>
 	<status value="active"/>
 	<kind value="operation"/>
-	<date value="2018-03-05T00:00:00+01:00"/>
+	<date value="2021-03-08T00:00:00+01:00"/>
 	<publisher value="NHS Digital"/>
 	<contact>
 		<name value="Interoperability Team"/>
@@ -17,7 +17,7 @@
 			<use value="work"/>
 		</telecom>
 	</contact>
-	<description value="Request to retrieve a worklist for a referral request."/>
+	<description value="Request to retrieve a worklist for a referral request or communication request."/>
 	<code value="ers.fetchworklist"/>
 	<system value="false"/>
 	<type value="true"/>
@@ -25,13 +25,25 @@
 	<parameter>
 		<name value="listType"/>
 		<use value="in"/>
-		<min value="1"/>
+		<min value="0"/>
 		<max value="1"/>
-		<documentation value="Indicates the type of list requested, this is currently fixed to 'REFERRALS_FOR_REVIEW'."/>
+		<documentation value="Indicates the type of ReferralRequest list requested. Only one 'listType' parameter is supported in each call and must match the type of resource being fetched."/>
 		<type value="CodeableConcept"/>
 		<binding>
 			<strength value="required"/>
 			<valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-ReferralListSelector-1"/>
+		</binding>
+	</parameter>
+	<parameter>
+		<name value="listType"/>
+		<use value="in"/>
+		<min value="0"/>
+		<max value="1"/>
+		<documentation value="Indicates the type of CommunicationRequest list requested. Only one 'listType' parameter is supported in each call and must match the type of resource being fetched."/>
+		<type value="CodeableConcept"/>
+		<binding>
+			<strength value="required"/>
+			<valueSetUri value="https://fhir.nhs.uk/STU3/ValueSet/eRS-CommunicationListSelector-1"/>
 		</binding>
 	</parameter>
 	<parameter>
@@ -79,7 +91,7 @@
 		<use value="in"/>
 		<min value="0"/>
 		<max value="1"/>
-		<documentation value="Indicates whether a clinician is assigned to the Referral Request. If 'Assigned' the 'Clinician' parameter must be present. If 'Not Assigned' the 'Clinician' parameter must be absent."/>
+		<documentation value="Indicates whether a clinician is assigned to the Request. If 'Assigned' the 'Clinician' parameter must be present. If 'Not Assigned' the 'Clinician' parameter must be absent."/>
 		<type value="CodeableConcept"/>
 		<binding>
 			<strength value="required"/>
@@ -91,7 +103,7 @@
 		<use value="in"/>
 		<min value="0"/>
 		<max value="1"/>
-		<documentation value="The clinician assigned to the Referral Request. If present, the 'ClinicianAssignedIndicator' parameter must be set to 'Assigned'"/>
+		<documentation value="The clinician assigned to the Request. If present, the 'ClinicianAssignedIndicator' parameter must be set to 'Assigned'"/>
 		<type value="Identifier"/>
 	</parameter>
 	<parameter>
