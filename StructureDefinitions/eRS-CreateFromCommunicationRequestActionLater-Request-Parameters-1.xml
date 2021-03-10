@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-CreateFromCommunicationRequestActionLater-Request-Parameters-1" />
   <version value="1.0.0" />
@@ -814,6 +814,1298 @@
       <contentReference value="#Parameters.parameter" />
       <isSummary value="true" />
     </element>
+    <element id="Parameters.parameter:guidance">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidance" />
+      <short value="Mandatory guidance which provides the referrer with notes on what action to take. Max 2000 characters." />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.value[x]:valueString">
+      <path value="Parameters.parameter.valueString" />
+      <sliceName value="valueString" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidance.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
+    <element id="Parameters.parameter:updatedPriority">
+      <path value="Parameters.parameter" />
+      <sliceName value="updatedPriority" />
+      <short value="The priority the Advice and Guidance Request should be set to." />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="eRS Priority" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedPriority.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceOutcome" />
+      <short value="Summary of action" />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Response outcome" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-GuidanceResponseOutcome-1" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceIntendedRecommendation" />
+      <short value="Summary of advice given. Must only be provided if guidanceOutcome Code is RETURN_TO_REFERRER_WITH_ADVICE" />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Coding" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <strength value="required" />
+        <description value="Guidance intended recommendation" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-GuidanceIntendedRecommendation-1" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceAttachmentFile" />
+      <short value="Contains logical reference of file(s) to associate to the guidance response." />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.value[x]:valueReference">
+      <path value="Parameters.parameter.valueReference" />
+      <sliceName value="valueReference" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
   </snapshot>
   <differential>
     <element id="Parameters.parameter">
@@ -839,6 +2131,95 @@
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1" />
+      </type>
+    </element>
+    <element id="Parameters.parameter:guidance">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidance" />
+      <short value="Mandatory guidance which provides the referrer with notes on what action to take. Max 2000 characters." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Parameters.parameter:guidance.value[x]:valueString">
+      <path value="Parameters.parameter.valueString" />
+      <sliceName value="valueString" />
+      <type>
+        <code value="string" />
+      </type>
+    </element>
+    <element id="Parameters.parameter:updatedPriority">
+      <path value="Parameters.parameter" />
+      <sliceName value="updatedPriority" />
+      <short value="The priority the Advice and Guidance Request should be set to." />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Parameters.parameter:updatedPriority.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <description value="eRS Priority" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-Priority-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceOutcome" />
+      <short value="Summary of action" />
+      <min value="1" />
+      <max value="1" />
+    </element>
+    <element id="Parameters.parameter:guidanceOutcome.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <description value="Response outcome" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-GuidanceResponseOutcome-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceIntendedRecommendation" />
+      <short value="Summary of advice given. Must only be provided if guidanceOutcome Code is RETURN_TO_REFERRER_WITH_ADVICE" />
+      <max value="1" />
+    </element>
+    <element id="Parameters.parameter:guidanceIntendedRecommendation.value[x]:valueCoding">
+      <path value="Parameters.parameter.valueCoding" />
+      <sliceName value="valueCoding" />
+      <type>
+        <code value="Coding" />
+      </type>
+      <binding>
+        <strength value="required" />
+        <description value="Guidance intended recommendation" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-GuidanceIntendedRecommendation-1" />
+        </valueSetReference>
+      </binding>
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile">
+      <path value="Parameters.parameter" />
+      <sliceName value="guidanceAttachmentFile" />
+      <short value="Contains logical reference of file(s) to associate to the guidance response." />
+    </element>
+    <element id="Parameters.parameter:guidanceAttachmentFile.value[x]:valueReference">
+      <path value="Parameters.parameter.valueReference" />
+      <sliceName value="valueReference" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-DocumentReference-1" />
       </type>
     </element>
   </differential>
