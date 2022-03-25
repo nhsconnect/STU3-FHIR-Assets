@@ -4,10 +4,10 @@
     <lastUpdated value="2018-03-07T11:09:51.553+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1" />
-  <version value="1.1.0" />
+  <version value="1.2.0" />
   <name value="eRS-FetchWorklist-List-1" />
   <status value="active" />
-  <date value="2021-03-08" />
+  <date value="2022-03-25" />
   <publisher value="NHS Digital" />
   <contact>
     <name value="Interoperability Team" />
@@ -677,13 +677,6 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
-      <constraint>
-        <key value="ref-1" />
-        <severity value="error" />
-        <human value="SHALL have a contained resource if a local reference is provided" />
-        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
-        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-      </constraint>
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -821,13 +814,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-      </constraint>
-      <constraint>
-        <key value="ref-1" />
-        <severity value="error" />
-        <human value="SHALL have a contained resource if a local reference is provided" />
-        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
-        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -1056,7 +1042,7 @@
     <element id="List.entry.extension:ReferralsForReview">
       <path value="List.entry.extension" />
       <sliceName value="ReferralsForReview" />
-      <short value="Priority" />
+      <short value="Referrals for Review" />
       <definition value="Optional Extension Element - found in all resources." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
@@ -1099,7 +1085,7 @@
     <element id="List.entry.extension:AdviceAndGuidanceRequests">
       <path value="List.entry.extension" />
       <sliceName value="AdviceAndGuidanceRequests" />
-      <short value="Referrals for Review" />
+      <short value="Advice and guidance requests" />
       <definition value="Optional Extension Element - found in all resources." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
@@ -1142,7 +1128,7 @@
     <element id="List.entry.extension:AppointmentSlotIssues">
       <path value="List.entry.extension" />
       <sliceName value="AppointmentSlotIssues" />
-      <short value="Referrals for Review" />
+      <short value="Appointment Slot Issues" />
       <definition value="Optional Extension Element - found in all resources." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
@@ -1157,6 +1143,178 @@
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="List.entry.extension:LettersOutstanding">
+      <path value="List.entry.extension" />
+      <sliceName value="LettersOutstanding" />
+      <short value="Letters Outstanding" />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="List.entry.extension:RejectedTriageResponse">
+      <path value="List.entry.extension" />
+      <sliceName value="RejectedTriageResponse" />
+      <short value="Rejected / Triage Response" />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-RejectedTriageResponse-WorkListItem-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="List.entry.extension:AssessmentReturnedCancelledDNA">
+      <path value="List.entry.extension" />
+      <sliceName value="AssessmentReturnedCancelledDNA" />
+      <short value="Assessment Returned / Cancelled / DNA" />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDNA-WorkListItem-1" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="List.entry.extension:AwaitingBooking">
+      <path value="List.entry.extension" />
+      <sliceName value="AwaitingBooking" />
+      <short value="Awaiting Booking" />
+      <definition value="Optional Extension Element - found in all resources." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -2171,11 +2329,12 @@
         </discriminator>
         <rules value="open" />
       </slicing>
+      <min value="0" />
     </element>
     <element id="List.entry.extension:ReferralsForReview">
       <path value="List.entry.extension" />
       <sliceName value="ReferralsForReview" />
-      <short value="Priority" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -2185,6 +2344,7 @@
     <element id="List.entry.extension:AdviceAndGuidanceRequests">
       <path value="List.entry.extension" />
       <sliceName value="AdviceAndGuidanceRequests" />
+      <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
@@ -2194,13 +2354,56 @@
     <element id="List.entry.extension:AppointmentSlotIssues">
       <path value="List.entry.extension" />
       <sliceName value="AppointmentSlotIssues" />
-      <short value="Referrals for Review" />
-      <definition value="Optional Extension Element - found in all resources." />
+      <short value="Appointment Slot Issues" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AppointmentSlotIssues-WorkListItem-1" />
+      </type>
+    </element>
+    <element id="List.entry.extension:LettersOutstanding">
+      <path value="List.entry.extension" />
+      <sliceName value="LettersOutstanding" />
+      <short value="Letters Outstanding" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-LettersOutstanding-WorkListItem-1" />
+      </type>
+    </element>
+    <element id="List.entry.extension:RejectedTriageResponse">
+      <path value="List.entry.extension" />
+      <sliceName value="RejectedTriageResponse" />
+      <short value="Rejected / Triage Response" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-RejectedTriageResponse-WorkListItem-1" />
+      </type>
+    </element>
+    <element id="List.entry.extension:AssessmentReturnedCancelledDNA">
+      <path value="List.entry.extension" />
+      <sliceName value="AssessmentReturnedCancelledDNA" />
+      <short value="Assessment Returned / Cancelled / DNA" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDNA-WorkListItem-1" />
+      </type>
+    </element>
+    <element id="List.entry.extension:AwaitingBooking">
+      <path value="List.entry.extension" />
+      <sliceName value="AwaitingBooking" />
+      <short value="Awaiting Booking" />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Extension" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AwaitingBooking-WorkListItem-1" />
       </type>
     </element>
     <element id="List.entry.flag">
@@ -2236,9 +2439,6 @@
       <max value="0" />
     </element>
     <element id="List.entry.item.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
       <path value="List.entry.item.display" />
       <max value="0" />
     </element>
@@ -2265,9 +2465,6 @@
       </example>
     </element>
     <element id="List.emptyReason.coding.display">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
       <path value="List.emptyReason.coding.display" />
       <min value="1" />
       <example>
@@ -2280,9 +2477,6 @@
       <max value="0" />
     </element>
     <element id="List.emptyReason.text">
-      <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable">
-        <valueBoolean value="true" />
-      </extension>
       <path value="List.emptyReason.text" />
       <max value="0" />
     </element>
