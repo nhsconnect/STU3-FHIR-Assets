@@ -7,10 +7,10 @@
     <valueCode value="pc" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-ProblemHeader-Condition-1" />
-  <version value="1.6.0" />
+  <version value="1.7.0" />
   <name value="CareConnect-GPC-ProblemHeader-Condition-1" />
   <status value="draft" />
-  <date value="2020-10-14" />
+  <date value="2022-03-25" />
   <publisher value="HL7 UK" />
   <contact>
     <name value="INTEROPen" />
@@ -251,7 +251,7 @@
       <min value="0" />
       <max value="1" />
       <base>
-        <path value="Meta.versionId" />
+        <path value="Resource.meta.versionId" />
         <min value="0" />
         <max value="1" />
       </base>
@@ -280,7 +280,7 @@
       <min value="0" />
       <max value="1" />
       <base>
-        <path value="Meta.lastUpdated" />
+        <path value="Resource.meta.lastUpdated" />
         <min value="0" />
         <max value="1" />
       </base>
@@ -309,7 +309,7 @@
       <min value="1" />
       <max value="*" />
       <base>
-        <path value="Meta.profile" />
+        <path value="Resource.meta.profile" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -338,7 +338,7 @@
       <min value="0" />
       <max value="*" />
       <base>
-        <path value="Meta.security" />
+        <path value="Resource.meta.security" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -682,7 +682,7 @@
       <min value="0" />
       <max value="*" />
       <base>
-        <path value="Meta.tag" />
+        <path value="Resource.meta.tag" />
         <min value="0" />
         <max value="*" />
       </base>
@@ -1132,6 +1132,172 @@
         <map value="Act.text?" />
       </mapping>
     </element>
+    <element id="Condition.text.id">
+      <path value="Condition.text.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Condition.text.extension">
+      <path value="Condition.text.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Condition.text.status">
+      <path value="Condition.text.status" />
+      <short value="generated | extensions | additional | empty" />
+      <definition value="The status of the narrative - whether it's entirely generated (from just the defined data or the extensions too), or whether a human authored it and it may contain additional data." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Narrative.status" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="NarrativeStatus" />
+        </extension>
+        <strength value="required" />
+        <description value="The status of a resource narrative" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/narrative-status" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Condition.text.div">
+      <path value="Condition.text.div" />
+      <short value="Limited xhtml content" />
+      <definition value="The actual narrative content, a stripped down version of XHTML." />
+      <comment value="The contents of the html element are an XHTML fragment containing only the basic html formatting elements described in chapters 7-11 and 15 of the HTML 4.0 standard, &lt;a&gt; elements (either name or href), images and internally contained stylesheets. The XHTML content may not contain a head, a body, external stylesheet references, scripts, forms, base/link/xlink, frames, iframes and objects." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Narrative.div" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="xhtml" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="txt-1" />
+        <severity value="error" />
+        <human value="The narrative SHALL contain only the basic html formatting elements and attributes described in chapters 7-11 (except section 4 of chapter 9) and 15 of the HTML 4.0 standard, &lt;a&gt; elements (either name or href), images and internally contained style attributes" />
+        <expression value="htmlchecks()" />
+        <xpath value="not(descendant-or-self::*[not(local-name(.)=('a', 'abbr', 'acronym', 'b', 'big', 'blockquote', 'br', 'caption', 'cite', 'code', 'col', 'colgroup', 'dd', 'dfn', 'div', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 'li', 'ol', 'p', 'pre', 'q', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'tt', 'ul', 'var'))]) and not(descendant-or-self::*/@*[not(name(.)=('abbr', 'accesskey', 'align', 'alt', 'axis', 'bgcolor', 'border', 'cellhalign', 'cellpadding', 'cellspacing', 'cellvalign', 'char', 'charoff', 'charset', 'cite', 'class', 'colspan', 'compact', 'coords', 'dir', 'frame', 'headers', 'height', 'href', 'hreflang', 'hspace', 'id', 'lang', 'longdesc', 'name', 'nowrap', 'rel', 'rev', 'rowspan', 'rules', 'scope', 'shape', 'span', 'src', 'start', 'style', 'summary', 'tabindex', 'title', 'type', 'valign', 'value', 'vspace', 'width'))])" />
+      </constraint>
+      <constraint>
+        <key value="txt-2" />
+        <severity value="error" />
+        <human value="The narrative SHALL have some non-whitespace content" />
+        <expression value="htmlchecks()" />
+        <xpath value="descendant::text()[normalize-space(.)!=''] or descendant::h:img[@src]" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
     <element id="Condition.contained">
       <path value="Condition.contained" />
       <short value="Contained, inline Resources" />
@@ -1242,6 +1408,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <mustSupport value="true" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -9473,14 +9640,11 @@
     <element id="Condition.extension:actualProblem">
       <path value="Condition.extension" />
       <sliceName value="actualProblem" />
-      <short value="A reference to a resource that is the actual problem" />
-      <definition value="A reference to a Condition, Observation, Immunization, DiagnosticReport, MedicationStatement, ReferralRequest, FamilyMemberHistory or AllergyIntolerance that is the actual problem." />
-      <min value="0" />
-      <max value="1" />
       <type>
         <code value="Extension" />
         <profile value=" https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-ActualProblem-1" />
       </type>
+      <mustSupport value="true" />
     </element>
     <element id="Condition.extension:relatedProblemHeader">
       <path value="Condition.extension" />
