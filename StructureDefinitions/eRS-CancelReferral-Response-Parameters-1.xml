@@ -1146,8 +1146,9 @@
     </element>
     <element id="Parameters.parameter:updatedAppointment.resource">
       <path value="Parameters.parameter.resource" />
-      <short value="If parameter is a whole resource" />
-      <definition value="If the parameter is a whole resource." />
+      <short value="A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)" />
+      <definition value="A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)." />
+      <comment value="This resource element is profiled to accept an Appointment resource instance. In practice, this instance will be an eRS-Appointment-1 or a CareConnect-Appointment-1 instance." />
       <min value="0" />
       <max value="1" />
       <base>
@@ -1156,14 +1157,68 @@
         <max value="1" />
       </base>
       <type>
-        <code value="Resource" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1" />
+        <code value="Appointment" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
       </type>
       <condition value="inv-1" />
+      <constraint>
+        <key value="dom-2" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
+        <expression value="contained.contained.empty()" />
+        <xpath value="not(parent::f:contained and f:contained)" />
+      </constraint>
+      <constraint>
+        <key value="dom-1" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
+        <expression value="contained.text.empty()" />
+        <xpath value="not(parent::f:contained and f:text)" />
+      </constraint>
+      <constraint>
+        <key value="dom-4" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
+        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
+      </constraint>
+      <constraint>
+        <key value="dom-3" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
+        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
+        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
+      </constraint>
+      <constraint>
+        <key value="app-3" />
+        <severity value="error" />
+        <human value="Only proposed or cancelled appointments can be missing start/end dates" />
+        <expression value="(start.exists() and end.exists()) or (status in ('proposed' | 'cancelled'))" />
+        <xpath value="((exists(f:start) and exists(f:end)) or (f:status/@value='proposed') or (f:status/@value='cancelled'))" />
+      </constraint>
+      <constraint>
+        <key value="app-2" />
+        <severity value="error" />
+        <human value="Either start and end are specified, or neither" />
+        <expression value="start.empty() xor end.exists()" />
+        <xpath value="((exists(f:start) and exists(f:end)) or (not(exists(f:start)) and not(exists(f:end))))" />
+      </constraint>
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
         <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Act[@moodCode &lt;= 'INT']" />
+      </mapping>
+      <mapping>
+        <identity value="ical" />
+        <map value="VEVENT" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="workflow.scheduling" />
       </mapping>
     </element>
     <element id="Parameters.parameter:updatedAppointment.part">
@@ -1240,9 +1295,10 @@
     </element>
     <element id="Parameters.parameter:updatedAppointment.resource">
       <path value="Parameters.parameter.resource" />
+      <comment value="This resource element is profiled to accept an Appointment resource instance. In practice, this instance will be an eRS-Appointment-1 or a CareConnect-Appointment-1 instance." />
       <type>
-        <code value="Resource" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1" />
+        <code value="Appointment" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
       </type>
     </element>
     <element id="Parameters.parameter:updatedAppointment.part">

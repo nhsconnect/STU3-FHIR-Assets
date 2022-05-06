@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1" />
+  <id value="Extension-eRS-PatientAdditionalRequirement-1" />
+  <url value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1" />
   <version value="1.0.0" />
-  <name value="Extension-eRS-Appointment-Reference-1" />
-  <title value="Extension eRS Appointment Reference" />
+  <name value="Extension-eRS-PatientAdditionalRequirement-1" />
+  <title value="Extension eRS Patient Additional Requirement" />
   <status value="active" />
   <date value="2022-04-29" />
   <publisher value="NHS Digital" />
@@ -15,7 +16,8 @@
       <use value="work" />
     </telecom>
   </contact>
-  <copyright value="Copyright © 2022  NHS Digital" />
+  <description value="An extension to support exchange of additional accessibility requirements within a referral request" />
+  <copyright value="Copyright © 2022 NHS Digital" />
   <fhirVersion value="3.0.1" />
   <kind value="complex-type" />
   <abstract value="false" />
@@ -30,7 +32,7 @@
       <short value="Optional Extensions Element" />
       <definition value="Optional Extension Element - found in all resources." />
       <min value="0" />
-      <max value="1" />
+      <max value="*" />
       <base>
         <path value="Element" />
         <min value="0" />
@@ -154,7 +156,7 @@
       <type>
         <code value="uri" />
       </type>
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1" />
       <condition value="ele-1" />
       <constraint>
         <key value="ele-1" />
@@ -172,9 +174,9 @@
         <map value="N/A" />
       </mapping>
     </element>
-    <element id="Extension.value[x]:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
+    <element id="Extension.value[x]:valueCoding">
+      <path value="Extension.valueCoding" />
+      <sliceName value="valueCoding" />
       <short value="Value of extension" />
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)." />
       <comment value="A stream of bytes, base64 encoded" />
@@ -186,8 +188,7 @@
         <max value="1" />
       </base>
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1" />
+        <code value="Coding" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -197,6 +198,12 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <binding>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-AdditionalRequirementType-1" />
+        </valueSetReference>
+      </binding>
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -208,21 +215,22 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Extension">
-      <path value="Extension" />
-      <max value="1" />
-    </element>
     <element id="Extension.url">
       <path value="Extension.url" />
-      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-Appointment-Reference-1" />
+      <fixedUri value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-PatientAdditionalRequirement-1" />
     </element>
-    <element id="Extension.value[x]:valueReference">
-      <path value="Extension.valueReference" />
-      <sliceName value="valueReference" />
+    <element id="Extension.value[x]:valueCoding">
+      <path value="Extension.valueCoding" />
+      <sliceName value="valueCoding" />
       <type>
-        <code value="Reference" />
-        <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-Appointment-1" />
+        <code value="Coding" />
       </type>
+      <binding>
+        <strength value="required" />
+        <valueSetReference>
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/eRS-AdditionalRequirementType-1" />
+        </valueSetReference>
+      </binding>
     </element>
   </differential>
 </StructureDefinition>
