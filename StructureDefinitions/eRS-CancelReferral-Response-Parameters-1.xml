@@ -780,9 +780,8 @@
     </element>
     <element id="Parameters.parameter:updatedReferralRequest.resource">
       <path value="Parameters.parameter.resource" />
-      <short value="A request for referral or transfer of care" />
-      <definition value="Used to record and send details about a request for referral service or transfer of a patient to the care of another provider or provider organization." />
-      <alias value="ReferralRequest TransferOfCare Request" />
+      <short value="If parameter is a whole resource" />
+      <definition value="If the parameter is a whole resource." />
       <min value="1" />
       <max value="1" />
       <base>
@@ -793,6 +792,373 @@
       <type>
         <code value="Resource" />
         <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-ReferralRequest-1" />
+      </type>
+      <condition value="inv-1" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedReferralRequest.part">
+      <path value="Parameters.parameter.part" />
+      <short value="Named part of a multi-part parameter" />
+      <definition value="A named part of a multi-part parameter." />
+      <comment value="Only one level of nested parameters is allowed." />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Parameters.parameter.part" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <contentReference value="#Parameters.parameter" />
+      <isSummary value="true" />
+    </element>
+    <element id="Parameters.parameter:updatedAppointment">
+      <path value="Parameters.parameter" />
+      <sliceName value="updatedAppointment" />
+      <short value="Operation Parameter" />
+      <definition value="A parameter passed to or received from the operation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="inv-1" />
+        <severity value="error" />
+        <human value="A parameter must have only one of (value, resource, part)" />
+        <expression value="(part.exists() and value.empty() and resource.empty()) or (part.empty() and (value.exists() xor resource.exists()))" />
+        <xpath value="exists(f:value) or exists(f:resource) and not(exists(f:value) and exists(f:resource))" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.id">
+      <path value="Parameters.parameter.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.extension">
+      <path value="Parameters.parameter.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.modifierExtension">
+      <path value="Parameters.parameter.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.name">
+      <path value="Parameters.parameter.name" />
+      <short value="Name from the definition" />
+      <definition value="The name of the parameter (reference to the operation definition)." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.name" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <fixedString value="updatedAppointment" />
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.value[x]">
+      <path value="Parameters.parameter.value[x]" />
+      <short value="If parameter is a data type" />
+      <definition value="If the parameter is a data type." />
+      <comment value="A stream of bytes, base64 encoded" />
+      <min value="0" />
+      <max value="0" />
+      <base>
+        <path value="Parameters.parameter.value[x]" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="base64Binary" />
+      </type>
+      <type>
+        <code value="boolean" />
+      </type>
+      <type>
+        <code value="code" />
+      </type>
+      <type>
+        <code value="date" />
+      </type>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <type>
+        <code value="decimal" />
+      </type>
+      <type>
+        <code value="id" />
+      </type>
+      <type>
+        <code value="instant" />
+      </type>
+      <type>
+        <code value="integer" />
+      </type>
+      <type>
+        <code value="markdown" />
+      </type>
+      <type>
+        <code value="oid" />
+      </type>
+      <type>
+        <code value="positiveInt" />
+      </type>
+      <type>
+        <code value="string" />
+      </type>
+      <type>
+        <code value="time" />
+      </type>
+      <type>
+        <code value="unsignedInt" />
+      </type>
+      <type>
+        <code value="uri" />
+      </type>
+      <type>
+        <code value="Address" />
+      </type>
+      <type>
+        <code value="Age" />
+      </type>
+      <type>
+        <code value="Annotation" />
+      </type>
+      <type>
+        <code value="Attachment" />
+      </type>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <type>
+        <code value="Coding" />
+      </type>
+      <type>
+        <code value="ContactPoint" />
+      </type>
+      <type>
+        <code value="Count" />
+      </type>
+      <type>
+        <code value="Distance" />
+      </type>
+      <type>
+        <code value="Duration" />
+      </type>
+      <type>
+        <code value="HumanName" />
+      </type>
+      <type>
+        <code value="Identifier" />
+      </type>
+      <type>
+        <code value="Money" />
+      </type>
+      <type>
+        <code value="Period" />
+      </type>
+      <type>
+        <code value="Quantity" />
+      </type>
+      <type>
+        <code value="Range" />
+      </type>
+      <type>
+        <code value="Ratio" />
+      </type>
+      <type>
+        <code value="Reference" />
+      </type>
+      <type>
+        <code value="SampledData" />
+      </type>
+      <type>
+        <code value="Signature" />
+      </type>
+      <type>
+        <code value="Timing" />
+      </type>
+      <type>
+        <code value="Meta" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="inv-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.resource">
+      <path value="Parameters.parameter.resource" />
+      <short value="A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)" />
+      <definition value="A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)." />
+      <comment value="This resource element is profiled to accept an Appointment resource instance. In practice, this instance will be an eRS-Appointment-1 or a CareConnect-Appointment-1 instance." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Parameters.parameter.resource" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Appointment" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
       </type>
       <condition value="inv-1" />
       <constraint>
@@ -823,17 +1189,39 @@
         <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
         <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
       </constraint>
+      <constraint>
+        <key value="app-3" />
+        <severity value="error" />
+        <human value="Only proposed or cancelled appointments can be missing start/end dates" />
+        <expression value="(start.exists() and end.exists()) or (status in ('proposed' | 'cancelled'))" />
+        <xpath value="((exists(f:start) and exists(f:end)) or (f:status/@value='proposed') or (f:status/@value='cancelled'))" />
+      </constraint>
+      <constraint>
+        <key value="app-2" />
+        <severity value="error" />
+        <human value="Either start and end are specified, or neither" />
+        <expression value="start.empty() xor end.exists()" />
+        <xpath value="((exists(f:start) and exists(f:end)) or (not(exists(f:start)) and not(exists(f:end))))" />
+      </constraint>
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
         <map value="Entity. Role, or Act" />
       </mapping>
       <mapping>
+        <identity value="rim" />
+        <map value="Act[@moodCode &lt;= 'INT']" />
+      </mapping>
+      <mapping>
+        <identity value="ical" />
+        <map value="VEVENT" />
+      </mapping>
+      <mapping>
         <identity value="w5" />
-        <map value="clinical.careprovision" />
+        <map value="workflow.scheduling" />
       </mapping>
     </element>
-    <element id="Parameters.parameter:updatedReferralRequest.part">
+    <element id="Parameters.parameter:updatedAppointment.part">
       <path value="Parameters.parameter.part" />
       <short value="Named part of a multi-part parameter" />
       <definition value="A named part of a multi-part parameter." />
@@ -889,6 +1277,31 @@
       </type>
     </element>
     <element id="Parameters.parameter:updatedReferralRequest.part">
+      <path value="Parameters.parameter.part" />
+      <max value="0" />
+    </element>
+    <element id="Parameters.parameter:updatedAppointment">
+      <path value="Parameters.parameter" />
+      <sliceName value="updatedAppointment" />
+      <max value="1" />
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.name">
+      <path value="Parameters.parameter.name" />
+      <fixedString value="updatedAppointment" />
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.value[x]">
+      <path value="Parameters.parameter.value[x]" />
+      <max value="0" />
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.resource">
+      <path value="Parameters.parameter.resource" />
+      <comment value="This resource element is profiled to accept an Appointment resource instance. In practice, this instance will be an eRS-Appointment-1 or a CareConnect-Appointment-1 instance." />
+      <type>
+        <code value="Appointment" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/Appointment" />
+      </type>
+    </element>
+    <element id="Parameters.parameter:updatedAppointment.part">
       <path value="Parameters.parameter.part" />
       <max value="0" />
     </element>
