@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-03-07T11:09:51.553+00:00" />
+    <lastUpdated value="2022-07-01T10:00:45.1919214+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/eRS-FetchWorklist-List-1" />
   <version value="1.2.0" />
@@ -677,6 +677,13 @@
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
       </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
       <isSummary value="true" />
       <mapping>
         <identity value="rim" />
@@ -814,6 +821,13 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -1257,7 +1271,7 @@
     <element id="List.entry.extension:AssessmentReturnedCancelledDNA">
       <path value="List.entry.extension" />
       <sliceName value="AssessmentReturnedCancelledDNA" />
-      <short value="Assessment Returned / Cancelled / DNA" />
+      <short value="Optional Extensions Element" />
       <definition value="Optional Extension Element - found in all resources." />
       <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
       <alias value="extensions" />
@@ -1271,7 +1285,7 @@
       </base>
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDNA-WorkListItem-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1" />
       </type>
       <condition value="ele-1" />
       <constraint>
@@ -1288,6 +1302,7 @@
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
       </constraint>
+      <isModifier value="false" />
       <mapping>
         <identity value="rim" />
         <map value="n/a" />
@@ -2387,13 +2402,13 @@
     <element id="List.entry.extension:AssessmentReturnedCancelledDNA">
       <path value="List.entry.extension" />
       <sliceName value="AssessmentReturnedCancelledDNA" />
-      <short value="Assessment Returned / Cancelled / DNA" />
       <min value="0" />
       <max value="1" />
       <type>
         <code value="Extension" />
-        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDNA-WorkListItem-1" />
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-eRS-AssessmentReturnedCancelledDna-WorkListItem-1" />
       </type>
+      <isModifier value="false" />
     </element>
     <element id="List.entry.extension:AwaitingBooking">
       <path value="List.entry.extension" />
