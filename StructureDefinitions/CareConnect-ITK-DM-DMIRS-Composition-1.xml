@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2022-11-23T09:02:19.8603432+00:00" />
+    <lastUpdated value="2022-12-06T16:35:36.4452708+00:00" />
   </meta>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-ITK-DM-DMIRS-Composition-1" />
   <version value="1.0.0" />
@@ -45,7 +45,6 @@
         <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
         <expression value="contained.contained.empty()" />
         <xpath value="not(parent::f:contained and f:contained)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
       </constraint>
       <constraint>
         <key value="dom-1" />
@@ -53,7 +52,6 @@
         <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
         <expression value="contained.text.empty()" />
         <xpath value="not(parent::f:contained and f:text)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
       </constraint>
       <constraint>
         <key value="dom-4" />
@@ -61,7 +59,6 @@
         <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
         <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
         <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
       </constraint>
       <constraint>
         <key value="dom-3" />
@@ -69,7 +66,6 @@
         <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
         <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
         <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/DomainResource" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -325,7 +321,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -333,7 +328,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -370,7 +364,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -378,7 +371,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -421,7 +413,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -429,7 +420,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <mapping>
@@ -555,7 +545,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -563,7 +552,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -799,7 +787,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Period" />
       </constraint>
       <constraint>
         <key value="per-1" />
@@ -807,7 +794,6 @@
         <human value="If present, start SHALL have a lower value than end" />
         <expression value="start.empty() or end.empty() or (start &lt;= end)" />
         <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Period" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -858,7 +844,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -866,7 +851,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -1068,7 +1052,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -1076,7 +1059,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -1202,7 +1184,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -1210,7 +1191,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -1603,7 +1583,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -1611,7 +1590,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -1737,7 +1715,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -1745,7 +1722,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -2037,7 +2013,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -2045,7 +2020,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -2130,7 +2104,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -2138,7 +2111,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -2288,7 +2260,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -2296,7 +2267,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mustSupport value="true" />
       <isSummary value="true" />
@@ -2382,7 +2352,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -2390,7 +2359,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -2586,7 +2554,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -2594,7 +2561,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -2679,7 +2645,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -2687,7 +2652,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -2997,7 +2961,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3005,7 +2968,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -3041,7 +3003,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3049,7 +3010,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -3179,7 +3139,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -3187,7 +3146,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -3235,7 +3193,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -3243,7 +3200,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mustSupport value="true" />
       <isSummary value="true" />
@@ -3325,7 +3281,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3333,7 +3288,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -3557,7 +3511,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3565,7 +3518,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -3601,7 +3553,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3609,7 +3560,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -3809,7 +3759,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3817,7 +3766,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -3853,7 +3801,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -3861,7 +3808,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -3955,7 +3901,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Period" />
       </constraint>
       <constraint>
         <key value="per-1" />
@@ -3963,7 +3908,6 @@
         <human value="If present, start SHALL have a lower value than end" />
         <expression value="start.empty() or end.empty() or (start &lt;= end)" />
         <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Period" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -4010,7 +3954,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -4018,7 +3961,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <isSummary value="true" />
       <mapping>
@@ -4070,7 +4012,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -4078,7 +4019,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -4086,7 +4026,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -4162,7 +4101,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -4170,7 +4108,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -4206,7 +4143,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -4214,7 +4150,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -4503,7 +4438,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -4511,7 +4445,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -4602,7 +4535,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -4638,7 +4571,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -4646,7 +4578,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -4654,7 +4585,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -4730,7 +4660,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -4738,7 +4667,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -4774,7 +4702,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -4782,7 +4709,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -4955,7 +4881,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -4963,7 +4888,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -5089,7 +5013,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -5097,7 +5020,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -5549,7 +5471,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -5557,7 +5478,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -5637,7 +5557,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -5645,7 +5564,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -5843,7 +5761,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -5879,7 +5797,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -5887,7 +5804,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -5895,7 +5811,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -5972,7 +5887,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -5980,7 +5894,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -6016,7 +5929,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -6024,7 +5936,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -6196,7 +6107,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -6204,7 +6114,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -6330,7 +6239,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -6338,7 +6246,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -6786,7 +6693,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -6794,7 +6700,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -6874,7 +6779,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -6882,7 +6786,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -7080,7 +6983,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -7116,7 +7019,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -7124,7 +7026,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -7132,7 +7033,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -7208,7 +7108,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -7216,7 +7115,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -7252,7 +7150,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -7260,7 +7157,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -7434,7 +7330,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -7442,7 +7337,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -7568,7 +7462,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -7576,7 +7469,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -8023,7 +7915,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -8031,7 +7922,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -8122,7 +8012,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -8158,7 +8048,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -8166,7 +8055,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -8174,7 +8062,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -8251,7 +8138,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -8259,7 +8145,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -8295,7 +8180,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -8303,7 +8187,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -8475,7 +8358,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -8483,7 +8365,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -8609,7 +8490,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -8617,7 +8497,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -9065,7 +8944,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -9073,7 +8951,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -9164,7 +9041,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -9200,7 +9077,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -9208,7 +9084,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -9216,7 +9091,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -9293,7 +9167,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -9301,7 +9174,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -9337,7 +9209,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -9345,7 +9216,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -9519,7 +9389,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -9527,7 +9396,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -9653,7 +9521,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -9661,7 +9528,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10133,7 +9999,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -10141,7 +10006,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10221,7 +10085,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -10229,7 +10092,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10427,7 +10289,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -10463,7 +10325,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -10471,7 +10332,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -10479,7 +10339,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10555,7 +10414,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -10563,7 +10421,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10599,7 +10456,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -10607,7 +10463,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -10779,7 +10634,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -10787,7 +10641,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -10913,7 +10766,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -10921,7 +10773,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -11369,7 +11220,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -11377,7 +11227,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -11457,7 +11306,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -11465,7 +11313,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -11663,7 +11510,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -11699,7 +11546,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -11707,7 +11553,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -11715,7 +11560,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -11792,7 +11636,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -11800,7 +11643,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -11836,7 +11678,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -11844,7 +11685,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -12016,7 +11856,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -12024,7 +11863,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -12150,7 +11988,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -12158,7 +11995,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -12606,7 +12442,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -12614,7 +12449,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -12705,7 +12539,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -12741,7 +12575,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -12749,7 +12582,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -12757,7 +12589,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -12834,7 +12665,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -12842,7 +12672,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -12878,7 +12707,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -12886,7 +12714,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -13058,7 +12885,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -13066,7 +12892,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -13192,7 +13017,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -13200,7 +13024,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -13648,7 +13471,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -13656,7 +13478,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -13747,7 +13568,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -13783,7 +13604,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -13791,7 +13611,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -13799,7 +13618,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -13875,7 +13693,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -13883,7 +13700,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -13919,7 +13735,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -13927,7 +13742,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -14099,7 +13913,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -14107,7 +13920,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -14233,7 +14045,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -14241,7 +14052,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -14689,7 +14499,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -14697,7 +14506,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -14777,7 +14585,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -14785,7 +14592,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -14983,7 +14789,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -15019,7 +14825,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -15027,7 +14832,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -15035,7 +14839,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -15111,7 +14914,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -15119,7 +14921,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -15155,7 +14956,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -15163,7 +14963,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -15335,7 +15134,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -15343,7 +15141,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -15469,7 +15266,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -15477,7 +15273,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -15925,7 +15720,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -15933,7 +15727,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -16013,7 +15806,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -16021,7 +15813,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -16219,7 +16010,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -16255,7 +16046,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -16263,7 +16053,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -16271,7 +16060,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -16348,7 +16136,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -16356,7 +16143,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -16392,7 +16178,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -16400,7 +16185,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -16572,7 +16356,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -16580,7 +16363,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -16706,7 +16488,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -16714,7 +16495,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -17162,7 +16942,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -17170,7 +16949,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -17261,7 +17039,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -17297,7 +17075,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -17305,7 +17082,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -17313,7 +17089,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -17389,7 +17164,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -17397,7 +17171,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -17433,7 +17206,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -17441,7 +17213,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -17615,7 +17386,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -17623,7 +17393,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -17749,7 +17518,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -17757,7 +17525,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -18205,7 +17972,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -18213,7 +17979,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -18304,7 +18069,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -18340,7 +18105,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-1" />
@@ -18348,7 +18112,6 @@
         <human value="A section must at least one of text, entries, or sub-sections" />
         <expression value="text.exists() or entry.exists() or section.exists()" />
         <xpath value="exists(f:text) or exists(f:entry) or exists(f:section)" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <constraint>
         <key value="cmp-2" />
@@ -18356,7 +18119,6 @@
         <human value="A section can only have an emptyReason if it is empty" />
         <expression value="emptyReason.empty() or entry.empty()" />
         <xpath value="not(exists(f:emptyReason) and exists(f:entry))" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Composition" />
       </constraint>
       <mustSupport value="true" />
       <mapping>
@@ -18433,7 +18195,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -18441,7 +18202,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -18477,7 +18237,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -18485,7 +18244,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <isModifier value="true" />
       <isSummary value="true" />
@@ -18656,7 +18414,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -18664,7 +18421,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -18790,7 +18546,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -18798,7 +18553,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -19254,7 +19008,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <constraint>
         <key value="ref-1" />
@@ -19262,7 +19015,6 @@
         <human value="SHALL have a contained resource if a local reference is provided" />
         <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
         <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Reference" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -19342,7 +19094,6 @@
         <human value="All FHIR elements must have a @value or children" />
         <expression value="hasValue() | (children().count() &gt; id.count())" />
         <xpath value="@value|f:*|h:div" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <constraint>
         <key value="ext-1" />
@@ -19350,7 +19101,6 @@
         <human value="Must have either extensions or value[x], not both" />
         <expression value="extension.exists() != value.exists()" />
         <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
-        <source value="http://hl7.org/fhir/StructureDefinition/Extension" />
       </constraint>
       <mapping>
         <identity value="rim" />
@@ -19548,7 +19298,7 @@
         <min value="0" />
         <max value="*" />
       </base>
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
+      <contentReference value="#Composition.section" />
       <condition value="cmp-1" />
       <mapping>
         <identity value="rim" />
@@ -19782,10 +19532,6 @@
         </valueSetReference>
       </binding>
     </element>
-    <element id="Composition.section.section">
-      <path value="Composition.section.section" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
-    </element>
     <element id="Composition.section:allergiesAndAdverseReactions">
       <path value="Composition.section" />
       <sliceName value="allergiesAndAdverseReactions" />
@@ -19868,7 +19614,6 @@
     <element id="Composition.section:allergiesAndAdverseReactions.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:attendanceDetails">
       <path value="Composition.section" />
@@ -19956,7 +19701,6 @@
     <element id="Composition.section:attendanceDetails.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:clinicalNarrative">
       <path value="Composition.section" />
@@ -20029,7 +19773,6 @@
     <element id="Composition.section:clinicalNarrative.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:consent">
       <path value="Composition.section" />
@@ -20108,7 +19851,6 @@
     <element id="Composition.section:consent.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:distributionList">
       <path value="Composition.section" />
@@ -20211,7 +19953,6 @@
     <element id="Composition.section:distributionList.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:gpPractice">
       <path value="Composition.section" />
@@ -20299,7 +20040,6 @@
     <element id="Composition.section:gpPractice.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:history">
       <path value="Composition.section" />
@@ -20378,7 +20118,6 @@
     <element id="Composition.section:history.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:informationAndAdviceGiven">
       <path value="Composition.section" />
@@ -20457,7 +20196,6 @@
     <element id="Composition.section:informationAndAdviceGiven.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:medicationsAndMedicalDevices">
       <path value="Composition.section" />
@@ -20543,7 +20281,6 @@
     <element id="Composition.section:medicationsAndMedicalDevices.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:patientDemographics">
       <path value="Composition.section" />
@@ -20631,7 +20368,6 @@
     <element id="Composition.section:patientDemographics.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:planAndRequestedActions">
       <path value="Composition.section" />
@@ -20708,7 +20444,6 @@
     <element id="Composition.section:planAndRequestedActions.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:presentingComplaintOrIssues">
       <path value="Composition.section" />
@@ -20780,7 +20515,6 @@
     <element id="Composition.section:presentingComplaintOrIssues.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
     <element id="Composition.section:referralDetails">
       <path value="Composition.section" />
@@ -20871,7 +20605,6 @@
     <element id="Composition.section:referralDetails.section">
       <path value="Composition.section.section" />
       <max value="0" />
-      <contentReference value="http://hl7.org/fhir/StructureDefinition/Composition#Composition.section" />
     </element>
   </differential>
 </StructureDefinition>
