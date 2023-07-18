@@ -5895,12 +5895,11 @@
         <map value="grade" />
       </mapping>
     </element>
-    <element id="MedicationRequest.medicationReference:medicationReference">
-      <path value="MedicationRequest.medicationReference" />
-      <sliceName value="medicationReference" />
-      <short value="Medication to be taken" />
-      <definition value="Identifies the medication being requested. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications." />
-      <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.  For example, if you require form or lot number or if the medication is compounded or extemporaneously prepared, then you must reference the Medication resource. ." />
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <short value="What medication was taken" />
+      <definition value="Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications." />
+      <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.  For example if you require form or lot number, then you must reference the Medication resource. ." />
       <min value="1" />
       <max value="1" />
       <base>
@@ -5908,6 +5907,9 @@
         <min value="1" />
         <max value="1" />
       </base>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1" />
@@ -5926,7 +5928,7 @@
           <valueString value="MedicationCode" />
         </extension>
         <strength value="example" />
-        <description value="A coded concept identifying substance or product that can be ordered." />
+        <description value="A coded concept identifying the substance or product being taken." />
         <valueSetUri value="http://hl7.org/fhir/ValueSet/medication-codes" />
       </binding>
       <mapping>
@@ -5934,32 +5936,12 @@
         <map value="n/a" />
       </mapping>
       <mapping>
-        <identity value="v2" />
-        <map value="CE/CNE/CWE" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CD" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
-      </mapping>
-      <mapping>
         <identity value="workflow" />
         <map value="…code" />
       </mapping>
       <mapping>
-        <identity value="script10.6" />
-        <map value="Message/Body/NewRx/MedicationPrescribed&#xD;&#xD;Medication.code.coding.code = Message/Body/NewRx/MedicationPrescribed/DrugCoded/ProductCode&#xD;&#xD;Medication.code.coding.system = Message/Body/NewRx/MedicationPrescribed/DrugCoded/ProductCodeQualifier&#xD;&#xD;Medication.code.coding.display = Message/Body/NewRx/MedicationPrescribed/DrugDescription" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="RXE-2-Give Code / RXO-1-Requested Give Code / RXC-2-Component Code" />
-      </mapping>
-      <mapping>
         <identity value="rim" />
-        <map value="consumable.administrableMedication" />
+        <map value=".participation[typeCode=CSM].role[classCode=ADMM or MANU]" />
       </mapping>
       <mapping>
         <identity value="w5" />
@@ -17848,17 +17830,16 @@
       <path value="MedicationRequest.status" />
       <min value="1" />
     </element>
-    <element id="MedicationRequest.medicationReference:medicationReference">
-      <path value="MedicationRequest.medicationReference" />
-      <sliceName value="medicationReference" />
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1" />
       </type>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="MedicationCode" />
-        </extension>
         <strength value="example" />
         <valueSetUri value="http://hl7.org/fhir/ValueSet/medication-codes" />
       </binding>
