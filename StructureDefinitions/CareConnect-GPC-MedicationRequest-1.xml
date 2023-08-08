@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <meta>
-    <lastUpdated value="2018-08-02T12:07:59.169+01:00" />
+    <lastUpdated value="2023-07-28T13:42:35+0000" />
   </meta>
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="phx" />
   </extension>
   <url value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationRequest-1" />
-  <version value="1.6.0" />
+  <version value="1.7.0" />
   <name value="CareConnect-GPC-MedicationRequest-1" />
   <status value="active" />
-  <date value="2020-02-19" />
+  <date value="2023-07-23" />
   <publisher value="HL7 UK" />
   <description value="This MedicationRequest Resource represents an order for both supply of the medication and the instructions for administration of the medication to a patient. " />
   <copyright value="Copyright © 2020 HL7 UK&#xD;&#xA;&#xD;&#xA;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&#xD;&#xA;&#xD;&#xA;http://www.apache.org/licenses/LICENSE-2.0&#xD;&#xA;&#xD;&#xA;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&#xD;&#xA;&#xD;&#xA;HL7® FHIR® standard Copyright © 2011+ HL7&#xD;&#xA;&#xD;&#xA;The HL7® FHIR® standard is used under the FHIR license. You may obtain a copy of the FHIR license at&#xD;&#xA;&#xD;&#xA;https://www.hl7.org/fhir/license.html" />
@@ -5895,12 +5895,11 @@
         <map value="grade" />
       </mapping>
     </element>
-    <element id="MedicationRequest.medicationReference:medicationReference">
-      <path value="MedicationRequest.medicationReference" />
-      <sliceName value="medicationReference" />
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
       <short value="Medication to be taken" />
       <definition value="Identifies the medication being requested. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications." />
-      <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.  For example, if you require form or lot number or if the medication is compounded or extemporaneously prepared, then you must reference the Medication resource. ." />
+      <comment value="If only a code is specified, then it needs to be a code for a specific product. If more information is required, then the use of the medication resource is recommended.  For example if you require form or lot number, then you must reference the Medication resource. ." />
       <min value="1" />
       <max value="1" />
       <base>
@@ -5908,6 +5907,9 @@
         <min value="1" />
         <max value="1" />
       </base>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1" />
@@ -5934,32 +5936,12 @@
         <map value="n/a" />
       </mapping>
       <mapping>
-        <identity value="v2" />
-        <map value="CE/CNE/CWE" />
-      </mapping>
-      <mapping>
-        <identity value="rim" />
-        <map value="CD" />
-      </mapping>
-      <mapping>
-        <identity value="orim" />
-        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
-      </mapping>
-      <mapping>
         <identity value="workflow" />
         <map value="…code" />
       </mapping>
       <mapping>
-        <identity value="script10.6" />
-        <map value="Message/Body/NewRx/MedicationPrescribed&#xD;&#xD;Medication.code.coding.code = Message/Body/NewRx/MedicationPrescribed/DrugCoded/ProductCode&#xD;&#xD;Medication.code.coding.system = Message/Body/NewRx/MedicationPrescribed/DrugCoded/ProductCodeQualifier&#xD;&#xD;Medication.code.coding.display = Message/Body/NewRx/MedicationPrescribed/DrugDescription" />
-      </mapping>
-      <mapping>
-        <identity value="v2" />
-        <map value="RXE-2-Give Code / RXO-1-Requested Give Code / RXC-2-Component Code" />
-      </mapping>
-      <mapping>
         <identity value="rim" />
-        <map value="consumable.administrableMedication" />
+        <map value=".participation[typeCode=CSM].role[classCode=ADMM or MANU]" />
       </mapping>
       <mapping>
         <identity value="w5" />
@@ -12378,7 +12360,7 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
       <mapping>
@@ -17848,17 +17830,16 @@
       <path value="MedicationRequest.status" />
       <min value="1" />
     </element>
-    <element id="MedicationRequest.medicationReference:medicationReference">
-      <path value="MedicationRequest.medicationReference" />
-      <sliceName value="medicationReference" />
+    <element id="MedicationRequest.medication[x]">
+      <path value="MedicationRequest.medication[x]" />
+      <type>
+        <code value="CodeableConcept" />
+      </type>
       <type>
         <code value="Reference" />
         <targetProfile value="https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Medication-1" />
       </type>
       <binding>
-        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
-          <valueString value="MedicationCode" />
-        </extension>
         <strength value="example" />
         <valueSetUri value="http://hl7.org/fhir/ValueSet/medication-codes" />
       </binding>
@@ -18050,7 +18031,7 @@
         <strength value="preferred" />
         <description value="A code from the SNOMED Clinical Terminology UK coding system that describes the e-Prescribing route of administration." />
         <valueSetReference>
-          <reference value="https://fhir.hl7.org.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
+          <reference value="https://fhir.nhs.uk/STU3/ValueSet/CareConnect-MedicationDosageRoute-1" />
         </valueSetReference>
       </binding>
     </element>
